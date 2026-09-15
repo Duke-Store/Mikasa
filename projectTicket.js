@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const { loadProjects, saveProjects } = require('./db');
 const { isTrusted } = require('./trustedClients');
-const { addToQueue } = require('./adminReviewTimer');
+const { addToQueue, removeReview } = require('./adminReviewTimer');
 const { evaluateSellerProject } = require('./aiAgents/projectEvaluator');
 const { evaluateBuyerProject } = require('./aiAgents/projectEvaluator');
 const { listProduct } = require('./marketplace/marketplace');
@@ -843,19 +843,6 @@ async function handleAdminDeclineBuyerReason(interaction, client) {
 }
 
 module.exports = {
-  startProjectFlow,
-  handleProjectTypeSelect,
-  handleProjectAccept,
-  handleProjectDecline,
-  handleDeclineReasonSubmit,
-  buildProjectSummaryEmbed,
-  sendForAdminReview,
-  projectStore,
-  PROJECT_QUESTIONS,
-  ROLE_OPTIONS,
-  PROJECTS_CHANNEL_ID,
-  ADMIN_ROLE_ID,
-  // New marketplace exports
   startSellerFlow,
   handleSellerTermsAgree,
   handleSellerTermsDecline,
@@ -863,18 +850,23 @@ module.exports = {
   handleSellerSubmit,
   startBuyerFlow,
   handleBuyerTermsAgree,
-  handleBuyerTermsDecline,
   handleBuyerDescSubmit,
   handleBuyerSubmit,
   handleBuyerBudgetSubmit,
   handleBuyerPaymentSelect,
+  handleProjectAccept,
+  handleProjectDecline,
+  handleDeclineReasonSubmit,
+  projectStore,
+  PROJECTS_CHANNEL_ID,
+  ADMIN_ROLE_ID,
+  SELLER_QUESTIONS,
+  SELLER_ROLE_OPTIONS,
+  loadTermsContent,
   handleAdminAcceptSeller,
   handleAdminDeclineSeller,
   handleAdminDeclineSellerReason,
   handleAdminAcceptBuyer,
   handleAdminDeclineBuyer,
   handleAdminDeclineBuyerReason,
-  SELLER_QUESTIONS,
-  SELLER_ROLE_OPTIONS,
-  loadTermsContent,
 };

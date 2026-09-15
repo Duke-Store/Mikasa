@@ -496,8 +496,40 @@ client.on(Events.InteractionCreate, async (interaction) => {
       return;
     }
 
-    // From here on we only care about guild interactions (ticket UI uses guild channels)
-    if (!interaction.guild) return;
+    // === Terms agree/decline buttons for marketplace flows ===
+    if (interaction.isButton() && interaction.customId === 'seller_terms_agree') {
+      await projectTicket.handleSellerTermsAgree(interaction, client);
+      return;
+    }
+
+    if (interaction.isButton() && interaction.customId === 'seller_terms_decline') {
+      await projectTicket.handleSellerTermsDecline(interaction, client);
+      return;
+    }
+
+    if (interaction.isButton() && interaction.customId === 'buyer_terms_agree') {
+      await projectTicket.handleBuyerTermsAgree(interaction, client);
+      return;
+    }
+
+    if (interaction.isButton() && interaction.customId === 'buyer_terms_decline') {
+      await interaction.update({ content: '❌ Request cancelled.', components: [] });
+      const pending = client._pendingBuyerFlow?.get(interaction.user.id);
+      if (pending) client._pendingBuyerFlow.delete(interaction.user.id);
+      return;
+    }
+
+    // === Buyer description modal submit ===
+    if (interaction.isModalSubmit() && interaction.customId === 'buyer_desc_modal') {
+      await projectTicket.handleBuyerDescSubmit(interaction, client);
+      return;
+    }
+
+    // === Buyer budget modal submit ===
+    if (interaction.isModalSubmit() && interaction.customId === 'buyer_budget_modal') {
+      await projectTicket.handleBuyerBudgetSubmit(interaction, client);
+      return;
+    }
 
     // === Marketplace: Edit question jump ===
     if (interaction.isStringSelectMenu() && interaction.customId.startsWith('edit_question_')) {
