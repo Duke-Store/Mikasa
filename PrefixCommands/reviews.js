@@ -1,9 +1,9 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-  name: 'help',
-  description: 'Show available prefix commands',
-  aliases: ['commands', 'h'],
+  name: 'reviews',
+  description: 'Show auto-rating commands and status',
+  aliases: ['ratingcommands', 'r'],
   usage: '',
   cooldown: 3,
   async execute(message, args, client) {
@@ -12,8 +12,8 @@ module.exports = {
 
     const embed = new EmbedBuilder()
       .setColor(0x3498DB)
-      .setTitle('📋 Prefix Commands')
-      .setDescription(`Use \`${prefix}help <command>\` for details on a specific command.`)
+      .setTitle('📋 Auto-Rating Commands')
+      .setDescription(`Use \`${prefix}reviews <command>\` for details on a specific command.`)
       .addFields(
         { name: `${prefix}setratingchannel <#channel>`, value: 'Set the auto-rating channel', inline: false },
         { name: `${prefix}stopratings`, value: 'Stop auto-ratings in this server', inline: false },
@@ -24,7 +24,7 @@ module.exports = {
         { name: `${prefix}adminslist`, value: 'Show the admin list', inline: false },
         { name: `${prefix}sendmassratings <count>`, value: 'Send multiple random ratings (max 100)', inline: false },
       )
-      .setFooter({ text: `${prefix}help <command> for details` })
+      .setFooter({ text: `${prefix}reviews <command> for details` })
       .setTimestamp();
 
     await message.reply({ embeds: [embed] });
