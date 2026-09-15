@@ -1,0 +1,142 @@
+[
+  {
+    "severity": "error",
+    "file": "applySystem.js",
+    "line": 259,
+    "description": "Wrong ComponentType used to find TextDisplay in container: c.type === 4 (TextInput) instead of ComponentType.TextDisplay (10). The handleDevAppApprove function attempts to extract the userTag from the message container by searching for a component with type === 4, but TextDisplay components have type 10. This causes textContent to be empty, the regex match to fail, and the function to silently exit at 'if (!userTag) return;' without assigning the Developer role or sending the approval DM.",
+    "fix": "Change `c.type === 4` to `c.type === 10` (or use `ComponentType.TextDisplay` constant) on line 259. Also consider whether the first TextDisplay component is the correct one to extract the userTag from, or whether all text content should be concatenated."
+  },
+  {
+    "severity": "error",
+    "file": "applySystem.js",
+    "line": 294,
+    "description": "Same bug as line 259: Wrong ComponentType used to find TextDisplay in container. c.type === 4 should be c.type === 10 (TextDisplay). The handleDevAppDecline function cannot extract the userTag, causing it to silently return without sending the decline DM.",
+    "fix": "Change `c.type === 4` to `c.type === 10` (or use `ComponentType.TextDisplay`) on line 294."
+  },
+  {
+    "severity": "error",
+    "file": "index.js",
+    "line": 693,
+    "description": "Wrong ComponentType used to find TextDisplay in container content check: c.type === 4 (TextInput) instead of ComponentType.TextDisplay (10). The close flow checks if a rating has already been requested by searching for 'Service Rating' in TextDisplay components. This check will never match, so `hasRatingBeenRequested` will always be false, potentially sending duplicate rating requests.",
+    "fix": "Change `cc.type === 4` to `cc.type === 10` (or use `ComponentType.TextDisplay`) on line 693."
+  },
+  {
+    "severity": "error",
+    "file": "index.js",
+    "line": 845,
+    "description": "Wrong ComponentType used to find TextDisplay in container: c.type === 4 (TextInput) instead of ComponentType.TextDisplay (10). The claim flow checks if a claim success message already exists by searching for content in TextDisplay components. This check will never match, so `existingClaimMessage` will always be undefined, allowing duplicate claim messages and bypassing the 'already claimed' guard.",
+    "fix": "Change `c.type === 4` to `c.type === 10` (or use `ComponentType.TextDisplay`) on line 845."
+  },
+  {
+    "severity": "error",
+    "file": "ratingHandler.js",
+    "line": 31,
+    "description": "ActionRowBuilder.from(message.components[0]) treats message.components[0] as an ActionRow, but in Components V2 the first component is a Container (type 17), not an ActionRow (type 1). ActionRowBuilder.from() will create a builder with Container type data (type 17) instead of ActionRow type (type 1), resulting in an incorrectly typed builder.",
+    "fix": "Find the ActionRow inside the Container first: `const actionRowData = message.components[0].components?.find(c => c.type === 1 || c.type === ComponentType.ActionRow);` then use `ActionRowBuilder.from(actionRowData)`."
+  },
+  {
+    "severity": "error",
+    "file": "ratingHandler.js",
+    "line": 32,
+    "description": "message.components[0].components.map(btn => ButtonBuilder.from(btn).setDisabled(true)) iterates over ALL children of the Container (TextDisplays, Separators, ActionRows) and tries to create ButtonBuilder from each. This will fail on non-button components (TextDisplay type 10, Separator type 14) because they lack button properties like 'style' and 'label'. ButtonBuilder.from() likely throws an error when given non-button data.",
+    "fix": "First find the ActionRow (type 1) inside the Container's components, then map only its button components: `const actionRow = message.components[0].components?.find(c => c.type === 1); const disabledRow = ActionRowBuilder.from(actionRow).setComponents(actionRow.components.map(btn => ButtonBuilder.from(btn).setDisabled(true)));`"
+  },
+  {
+    "severity": "warning",
+    "file": "applySystem.js",
+    "line": 1,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 1."
+  },
+  {
+    "severity": "warning",
+    "file": "giveaway.js",
+    "line": 1,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 1."
+  },
+  {
+    "severity": "warning",
+    "file": "index.js",
+    "line": 19,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 19."
+  },
+  {
+    "severity": "warning",
+    "file": "projectTicket.js",
+    "line": 1,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 1."
+  },
+  {
+    "severity": "warning",
+    "file": "protectionEvents.js",
+    "line": 1,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 1."
+  },
+  {
+    "severity": "warning",
+    "file": "questionFlow.js",
+    "line": 1,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 1."
+  },
+  {
+    "severity": "warning",
+    "file": "ratingHandler.js",
+    "line": 1,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 1."
+  },
+  {
+    "severity": "warning",
+    "file": "portfolioScanner/templates/reportEmbed.js",
+    "line": 1,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 1."
+  },
+  {
+    "severity": "warning",
+    "file": "ticketLogger.js",
+    "line": 1,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 1."
+  },
+  {
+    "severity": "warning",
+    "file": "utils.js",
+    "line": 200,
+    "description": "Unused import: EmbedBuilder is destructured from discord.js but never used anywhere in this file. All embeds were converted to ContainerBuilder/TextDisplayBuilder patterns.",
+    "fix": "Remove `EmbedBuilder,` from the require() destructuring on line 200."
+  },
+  {
+    "severity": "info",
+    "file": "questionFlow.js",
+    "line": 94,
+    "description": "buildProgressEmbed function is defined and exported but never called anywhere in the codebase. This is dead code that was not cleaned up during the V2 conversion. The function was converted to return a ContainerBuilder, but since nothing consumes it, it serves no purpose.",
+    "fix": "Either remove the function definition and its export, or implement callers that use it. If it is intended for future use, add a comment documenting the intended usage."
+  },
+  {
+    "severity": "info",
+    "file": "applySystem.js",
+    "line": 86,
+    "description": "Pattern `{ components: [container, row] }` places the ActionRow as a separate top-level component alongside the Container. This is valid in Components V2, but differs from the pattern used elsewhere in the same file (e.g., line 239) where `container.addActionRowComponents(approveRow)` embeds the row inside the container. While both are technically valid, the inconsistency may cause confusion. The separate-row pattern means the action row is not visually grouped within the container's accent color boundary.",
+    "fix": "Consider using `container.addActionRowComponents(row)` instead of passing the row separately to keep action rows visually grouped inside the container (consistent with the pattern at line 239)."
+  },
+  {
+    "severity": "info",
+    "file": "projectTicket.js",
+    "line": 59,
+    "description": "Pattern `{ components: [container, row] }` places the ActionRow as a separate top-level component alongside the Container, while line 137 uses `container.addActionRowComponents(row)` instead. This inconsistency is valid but may cause visual differences in how the action row is displayed relative to the container's accent color.",
+    "fix": "For visual consistency, consider using `container.addActionRowComponents(row)` on line 59 instead of the separate row pattern."
+  },
+  {
+    "severity": "info",
+    "file": "index.js",
+    "line": 221,
+    "description": "Pattern `{ components: [verifyContainer, row] }` places the ActionRow separately from the Container. Valid in V2 but inconsistent with patterns that embed action rows inside containers via container.addActionRowComponents().",
+    "fix": "For visual consistency, consider using `verifyContainer.addActionRowComponents(row)` instead of the separate row pattern."
+  }
+]

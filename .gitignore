@@ -1,0 +1,9 @@
+node_modules/
+.env
+*.log
+saved-sessions.json
+scanHistory.json
+userStats.json
+guildSettings.json
+giveaways.json
+projects.json

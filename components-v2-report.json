@@ -1,0 +1,1010 @@
+[
+  {
+    "file": "index.js",
+    "lines": [43],
+    "context": "terms & conditions display for agreement",
+    "embedCode": "const termsEmbed = new EmbedBuilder()\n  .setColor('#FF9900')\n  .setTitle('📜 Terms & Conditions')\n  .setDescription(`## Payment Split\\n...`)",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "index.js",
+    "lines": [207],
+    "context": "verification process prompt with button",
+    "embedCode": "const verifyEmbed = new EmbedBuilder()\n  .setColor('#0099ff')\n  .setTitle('Verification Process')\n  .setDescription('To complete the verification process, click the button below to visit the verification page.');\nconst verifyButton = new ButtonBuilder()\n  .setLabel('Verify')\n  .setStyle(ButtonStyle.Link)\n  .setURL(dashboardUrl);\nconst row = new ActionRowBuilder().addComponents(verifyButton);\nreturn interaction.reply({ embeds: [verifyEmbed], components: [row], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "index.js",
+    "lines": [369],
+    "context": "developer portfolio submission to client DM",
+    "embedCode": "const portfolioEmbed = new EmbedBuilder()\n  .setColor('#5865F2')\n  .setTitle('📝 Developer Application')\n  .setDescription(`**Developer:** <@${interaction.user.id}>\\n**Portfolio:**\\n${portfolio}`)\n  .setFooter({ text: `Ticket #${ticketNumber}` });\nawait clientUser.send({ embeds: [portfolioEmbed], components: [acceptRow] }).catch(() => {});",
+    "conversionType": "qa_sections"
+  },
+  {
+    "file": "index.js",
+    "lines": [417],
+    "context": "payment method description display",
+    "embedCode": "const embed = new EmbedBuilder().setColor('#0099ff');\nif (selected === 'method_01') {\n  embed.setTitle('Method 01: 50% then 50%');\n  embed.setDescription(`## Payment Flow\\n...`);\n} else if (selected === 'method_02') {\n  embed.setTitle('Method 02: Part After Part');\n  embed.setDescription(`## Payment Flow\\n...`);\n}\nawait interaction.editReply({ embeds: [embed] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "index.js",
+    "lines": [570],
+    "context": "ticket opened success confirmation to user",
+    "embedCode": "const ticketOpenedEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ Ticket Opened').setDescription((ticketConfig.MESSAGES.TICKET_OPENED_SUCCESS || '').replace('{ticketNumber}', newTicketNumber).replace('{channelId}', ticketChannel.id));\nawait interaction.editReply({ embeds: [ticketOpenedEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "index.js",
+    "lines": [690],
+    "context": "service rating DM sent to ticket owner after close",
+    "embedCode": "const dmEmbed = new EmbedBuilder().setColor('#FFD700').setTitle('⭐ Service Rating').setDescription(`Hello! Your ticket **${channel.name}** has been closed by <@${closerId}>.\\n\\nPlease take a moment to rate your support experience.`).setFooter({ text: 'This is a private message and cannot be replied to' }).setTimestamp();\ntry {\n  await originalOwnerMember.send({ embeds: [dmEmbed], components: [ratingRow] });\n} catch (err) { ... }",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "index.js",
+    "lines": [697],
+    "context": "rating fallback embed when DM fails",
+    "embedCode": "const fallbackEmbed = new EmbedBuilder().setColor(0xFAA61A).setTitle('⚠️ Rating').setDescription(ticketConfig.MESSAGES.DM_RATING_FALLBACK.replace('{userId}', originalOwnerMember.id));\nawait channel.send({ embeds: [fallbackEmbed, dmEmbed], components: [ratingRow] }).catch(() => {});",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "index.js",
+    "lines": [758],
+    "context": "ticket reopened notification in channel",
+    "embedCode": "const reopenEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('🔓 Ticket Reopened').setDescription((ticketConfig.MESSAGES.REOPEN_SUCCESS || '').replace('{user}', interaction.user));\nawait interaction.reply({ embeds: [reopenEmbed], ephemeral: false });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "index.js",
+    "lines": [790],
+    "context": "transcript sent to archive channel",
+    "embedCode": "const embed = new EmbedBuilder().setTitle(ticketConfig.MESSAGES.TRANSCRIPT_SUCCESS_TITLE).setDescription((ticketConfig.MESSAGES.TRANSCRIPT_SUCCESS_DESCRIPTION || '').replace('{channelName}', channel.name).replace('{userTag}', ticketUserTag)).setColor('#3498DB').setTimestamp();\nawait transcriptChannel.send({ embeds: [embed], files: [attachment] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "index.js",
+    "lines": [839],
+    "context": "ticket claim success inline embed",
+    "embedCode": "await channel.send({ embeds: [new EmbedBuilder().setColor('#2ECC71').setDescription(`${ticketConfig.MESSAGES.CLAIM_SUCCESS_TITLE || ''}\\n${claimDescription}`)] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "applySystem.js",
+    "lines": [66],
+    "context": "application start prompt with apply buttons",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor('#5865F2')\n  .setTitle('📝 Developer / Staff Application')\n  .setDescription('Click the button below to start your application.\\n\\nWe will ask you a few questions to review your application.')\n  .setFooter({ text: 'Lunexis Team' });\nconst row = new ActionRowBuilder().addComponents(\n  new ButtonBuilder().setCustomId('start_developer_apply').setLabel('Apply as Developer').setStyle(ButtonStyle.Primary).setEmoji('📝'),\n  new ButtonBuilder().setCustomId('start_staff_apply').setLabel('Apply as Staff').setStyle(ButtonStyle.Secondary).setEmoji('🛡️')\n);\nawait channel.send({ embeds: [embed], components: [row] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "applySystem.js",
+    "lines": [132],
+    "context": "developer application summary for admin review channel",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor('#5865F2')\n  .setTitle('📝 Developer Application')\n  .setDescription(`New developer application from **${userTag}**`)\n  .addFields(\n    { name: 'Name', value: answers[APPLY_QUESTIONS[0].text] || 'N/A', inline: true },\n    { name: 'Age', value: answers[APPLY_QUESTIONS[1].text] || 'N/A', inline: true },\n    ...\n  )\n  .setFooter({ text: `Ticket #${session.ticketNumber}` })\n  .setTimestamp();",
+    "conversionType": "qa_sections"
+  },
+  {
+    "file": "applySystem.js",
+    "lines": [157],
+    "context": "application submitted confirmation to user",
+    "embedCode": "const confirmationEmbed = new EmbedBuilder()\n  .setColor('#00FF00')\n  .setTitle('✅ Application Submitted')\n  .setDescription(`Thank you **${interaction.user.tag}**! Your application has been submitted successfully.\\n\\nThe team will review it shortly.`)\n  .setFooter({ text: 'Lunexis Team' });\nawait interaction.channel.send({ embeds: [confirmationEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "applySystem.js",
+    "lines": [186],
+    "context": "fake/stolen portfolio detected warning for admins",
+    "embedCode": "const warningEmbed = new EmbedBuilder()\n  .setColor('#FF4444')\n  .setTitle('⚠️ Fake Portfolio Detected')\n  .setDescription(`The portfolio submitted by **${interaction.user.tag}** has been flagged as **${scanReport.classification}**.\\n\\nPlease review manually.`)\n  .addFields(\n    { name: 'Rating', value: `${scanReport.rawScores.legit}/100`, inline: true },\n    { name: 'Confidence', value: scanReport.confidence, inline: true }\n  )\n  .setFooter({ text: `Ticket #${session.ticketNumber}` })\n  .setTimestamp();\nawait channel.send({ embeds: [warningEmbed, reportEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "applySystem.js",
+    "lines": [209],
+    "context": "portfolio scan complete with rating for admins",
+    "embedCode": "const ratingEmbed = new EmbedBuilder()\n  .setColor('#2ECC71')\n  .setTitle('✅ Portfolio Scan Complete')\n  .setDescription(`The portfolio submitted by **${interaction.user.tag}** has been scanned.`)\n  .addFields(\n    { name: 'Rating', value: `**${rating}/100**`, inline: true },\n    { name: 'Classification', value: scanReport.classification, inline: true },\n    { name: 'Confidence', value: scanReport.confidence, inline: true }\n  )\n  .setFooter({ text: `Ticket #${session.ticketNumber}` })\n  .setTimestamp();\nawait channel.send({ embeds: [ratingEmbed, reportEmbed], components: [approveRow] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "giveaway.js",
+    "lines": [139],
+    "context": "giveaway ended with no participants",
+    "embedCode": "const endedEmbed = new EmbedBuilder().setColor(0xFF0000).setTitle('🎉 GIVEAWAY ENDED').setDescription(`**Prize:** ${giveaway.prize}\\n**Winner:** No one entered the giveaway.`);\nawait message.edit({ embeds: [endedEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "giveaway.js",
+    "lines": [144],
+    "context": "giveaway ended with winner announcement",
+    "embedCode": "const endedEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('🎉 GIVEAWAY ENDED').setDescription(`**Prize:** ${giveaway.prize}\\n**Winner:** ${winner.tag} (${winnerId})`);\nawait message.edit({ embeds: [endedEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "giveaway.js",
+    "lines": [146],
+    "context": "congratulations message to winner in channel",
+    "embedCode": "const congratsEmbed = new EmbedBuilder().setColor(0xFFD700).setTitle('🎉 Congratulations!').setDescription(`Congratulations ${winner}! You won **${giveaway.prize}**!`);\nawait channel.send({ embeds: [congratsEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [36],
+    "context": "anti-link: link detected and removed log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0xFF0000)\n  .setDescription(`A link was detected and removed.`)\n  .addFields(\n    { name: 'User', value: `${message.author.tag} (${message.author.id})`, inline: true },\n    { name: 'Channel', value: `${message.channel.name} (${message.channel.id})`, inline: true },\n    { name: 'Message Content', value: message.content.length > 1024 ? message.content.slice(0, 1021) + '...' : message.content }\n  )\n  .setTimestamp()\n  .setFooter({ text: `User ID: ${message.author.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [81],
+    "context": "anti-raid: potential raid user kicked log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0xFF0000)\n  .setDescription(language === 'ar' ? 'تم اكتشاف غارة محتملة وتم طرد مستخدم.' : 'A potential raid was detected and a user was kicked.')\n  .addFields(\n    { name: language === 'ar' ? 'المستخدم' : 'User', value: `${member.user.tag} (${member.id})`, inline: true },\n    ...\n  )\n  .setTimestamp()\n  .setFooter({ text: `User ID: ${member.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [137],
+    "context": "anti-scam: scam message detected and removed log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0xFFFF00)\n  .setDescription(language === 'ar' ? 'تم اكتشاف رسالة احتيال محتملة وإزالتها.' : 'A potential scam message was detected and removed.')\n  .addFields(\n    { name: language === 'ar' ? 'المستخدم' : 'User', value: `${message.author.tag} (${message.author.id})`, inline: true },\n    ...\n  )\n  .setTimestamp()\n  .setFooter({ text: `User ID: ${message.author.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [214],
+    "context": "anti-spam: spam detected action taken log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0xFF0000)\n  .setDescription(language === 'ar' ? 'تم اكتشاف رسائل متكررة من مستخدم. تم اتخاذ إجراء.' : 'Spam detected from a user. Action has been taken.')\n  .addFields(\n    { name: language === 'ar' ? 'المستخدم' : 'User', value: `${message.author.tag} (${message.author.id})`, inline: true },\n    ...\n  )\n  .setTimestamp()\n  .setFooter({ text: `User ID: ${message.author.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [287],
+    "context": "anti-channel-delete: channel restored and punishment applied log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0x800080)\n  .setDescription(language === 'ar' ? 'تم حذف قناة وتمت استعادتها. تم تطبيق العقوبة على المنفذ.' : 'A channel was deleted and has been restored. Punishment applied to the executor.')\n  .addFields(\n    { name: language === 'ar' ? 'اسم القناة' : 'Channel Name', value: channel.name, inline: true },\n    ...\n  )\n  .setTimestamp()\n  .setFooter({ text: language === 'ar' ? `معرف القناة: ${channel.id}` : `Channel ID: ${channel.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [365],
+    "context": "anti-channel-create: unauthorized creation reversed log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0xFFA500)\n  .setDescription(language === 'ar' ? 'تم اكتشاف إنشاء قناة غير مصرح به وتم إلغاؤه.' : 'An unauthorized channel creation was detected and reversed.')\n  .addFields(...)\n  .setTimestamp()\n  .setFooter({ text: language === 'ar' ? `معرف القناة: ${channel.id}` : `Channel ID: ${channel.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [450],
+    "context": "anti-channel-edit: unauthorized edit reversed log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0x008080)\n  .setDescription(language === 'ar' ? 'تم اكتشاف تعديل غير مصرح به للقناة وتم إلغاؤه.' : 'An unauthorized channel edit was detected and reversed.')\n  .addFields(...)\n  .setTimestamp()\n  .setFooter({ text: language === 'ar' ? `معرف القناة: ${newChannel.id}` : `Channel ID: ${newChannel.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [527],
+    "context": "anti-role-create: unauthorized role creation reversed log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0x1E90FF)\n  .setDescription(language === 'ar' ? 'تم اكتشاف إنشاء رتبة غير مصرح به وتم إلغاؤه.' : 'An unauthorized role creation was detected and reversed.')\n  .addFields(...)\n  .setTimestamp()\n  .setFooter({ text: language === 'ar' ? `معرف الرتبة: ${role.id}` : `Role ID: ${role.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [611],
+    "context": "anti-role-delete: role restored and punishment applied log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0xDC143C)\n  .setDescription(language === 'ar' ? 'تم حذف رتبة وتمت استعادتها.' : 'A role was deleted and has been restored.')\n  .addFields(...)\n  .setTimestamp()\n  .setFooter({ text: language === 'ar' ? `معرف الرتبة: ${newRole.id}` : `Role ID: ${newRole.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [694],
+    "context": "anti-role-edit: unauthorized role edit reversed log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0x32CD32)\n  .setDescription(language === 'ar' ? 'تم اكتشاف تعديل غير مصرح به للرتبة وتم إلغاؤه.' : 'An unauthorized role edit was detected and reversed.')\n  .addFields(...)\n  .setTimestamp()\n  .setFooter({ text: language === 'ar' ? `معرف الرتبة: ${newRole.id}` : `Role ID: ${newRole.id}` });\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [769],
+    "context": "anti-admin-grant: unauthorized admin role grant prevented log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0xFF0000)\n  .setDescription(language === 'ar' ? 'حاول أحد المشرفين منح رتبة إدارية لمستخدم آخر.' : 'An administrator attempted to grant admin role to another user.')\n  .addFields(...)\n  .setTimestamp();\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [837],
+    "context": "anti-kick: user exceeded kick limit log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0xFF0000)\n  .setDescription(language === 'ar' ? 'تجاوز أحد المستخدمين الحد المسموح به للطرد.' : 'A user has exceeded the kick limit.')\n  .addFields(...)\n  .setTimestamp();\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "protectionEvents.js",
+    "lines": [902],
+    "context": "anti-ban: user exceeded ban limit log",
+    "embedCode": "const logEmbed = new EmbedBuilder()\n  .setTitle('Log (Protection)')\n  .setColor(0xFF0000)\n  .setDescription(language === 'ar' ? 'تجاوز أحد المستخدمين الحد المسموح به للحظر.' : 'A user has exceeded the ban limit.')\n  .addFields(...)\n  .setTimestamp();\nlogChannel.send({ embeds: [logEmbed] });",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "questionFlow.js",
+    "lines": [86],
+    "context": "current question display in Q&A flow",
+    "embedCode": "return new EmbedBuilder()\n  .setColor('#5865F2')\n  .setTitle(session.flowTitle || 'Questions')\n  .setDescription(`**${q.text}**`)\n  .setFooter({ text: progress });",
+    "conversionType": "qa_sections"
+  },
+  {
+    "file": "questionFlow.js",
+    "lines": [101],
+    "context": "progress display during Q&A flow",
+    "embedCode": "return new EmbedBuilder()\n  .setColor('#5865F2')\n  .setTitle('Progress')\n  .setDescription(\n    `### ✅ Answered (${session.answers.length}/${session.questions.length})\\n${answered}\\n\\n### ❓ Remaining\\n${remaining}`\n  )\n  .setFooter({ text: `Step ${session.currentIndex + 1} of ${session.questions.length}` });",
+    "conversionType": "qa_sections"
+  },
+  {
+    "file": "questionFlow.js",
+    "lines": [241],
+    "context": "Q&A flow completed confirmation to user",
+    "embedCode": "const finalEmbed = new EmbedBuilder()\n  .setColor('#00FF00')\n  .setTitle('✅ Completed')\n  .setDescription(`All questions answered! Your ${session.type === 'developer' ? 'application' : 'project request'} has been submitted.`);\nawait interaction.update({ embeds: [finalEmbed], components: [] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "projectTicket.js",
+    "lines": [54],
+    "context": "project type selection prompt (developer vs service)",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor('#5865F2')\n  .setTitle('📋 What You Need')\n  .setDescription('Please select what you are looking for:');\nawait interaction.channel.send({ embeds: [embed], components: [row] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "projectTicket.js",
+    "lines": [64],
+    "context": "service request notification to admin",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor('#FAA61A')\n  .setTitle('🔧 Service Request')\n  .setDescription(`<@&${ADMIN_ROLE_ID}> A service request has been opened. Please handle it.`);\nawait interaction.update({ embeds: [embed], components: [] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "projectTicket.js",
+    "lines": [96],
+    "context": "project summary embed for admin review",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor('#2ECC71')\n  .setTitle('📋 New Project Request')\n  .addFields(\n    { name: 'Game Type', value: answers[PROJECT_QUESTIONS[0].text] || 'N/A', inline: true },\n    ...\n  )\n  .setFooter({ text: `Submitted by ${userTag} | Ticket #${session.ticketNumber}` })\n  .setTimestamp();\nreturn embed;",
+    "conversionType": "qa_sections"
+  },
+  {
+    "file": "ratingHandler.js",
+    "lines": [35],
+    "context": "rating submission confirmation to user",
+    "embedCode": "const confirmationEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ Thank You!').setDescription(`Your rating of ${starDisplay} (${rating}/5) for ticket **${channel.name}** has been successfully recorded.`);\nawait message.edit({ embeds: [confirmationEmbed], components: [disabledRow] }).catch(err => console.error('Failed to edit rating message:', err));",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "ticketLogger.js",
+    "lines": [11],
+    "context": "ticket action log (open/close/delete/claim/reopen/transcript)",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(`[${action}] | ${channel.name}`)\n  .setColor(color)\n  .addFields(\n    { name: '👤 Performed By', value: `${user.tag} (${user.id})`, inline: true },\n    { name: '📍 Ticket Channel', value: `<#${channel.id}>`, inline: true },\n    { name: '⏰ Date/Time', value: `<t:${Math.floor(Date.now() / 1000)}:F>`, inline: false }\n  )\n  .setFooter({ text: `Action ID: ${action}` })\n  .setTimestamp();\nif (details) embed.setDescription(details);\nawait logChannel.send({ embeds: [embed] }).catch(err => console.error('Failed to send general action log:', err));",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "ticketLogger.js",
+    "lines": [34],
+    "context": "ticket rating log entry",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(`⭐ New Rating for ${channel.name}`)\n  .setColor(rating >= 4 ? '#2ECC71' : rating === 3 ? '#FFAC33' : '#E74C3C')\n  .setDescription(`**${starEmoji} (${rating}/5)**`)\n  .addFields(\n    { name: '👤 Rated By', value: `${rater.tag} (${rater.id})`, inline: true },\n    { name: '🧑‍💻 Closed By', value: `${closer.tag} (${closer.id})`, inline: true },\n    { name: '📍 Ticket Link', value: `[Jump to Ticket](https://discord.com/channels/${channel.guild.id}/${channel.id})`, inline: false }\n  )\n  .setFooter({ text: `Rater ID: ${rater.id}` })\n  .setTimestamp();\nawait logChannel.send({ embeds: [embed] }).catch(err => console.error('Failed to send rating log:', err));",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "utils.js",
+    "lines": [208],
+    "context": "moderation action log (ban/kick/mute/warn/timeout)",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor('#e74c3c')\n  .setTitle(`Log (${action})`)\n  .setDescription(`**Admin:** ${admin}\\n**User:** ${targetUser}\\n**Reason:** ${reason}`)\n  .setTimestamp();\ntry {\n  await channel.send({ embeds: [embed] });\n} catch (e) { ... }",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/channelCreate.js",
+    "lines": [19],
+    "context": "channel created audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0x77dd77)\n  .addFields([\n    { name: 'Channel', value: `#${Channel.name}`, inline: true },\n    { name: 'Moderator', value: `@${Logs.entries.first().executor.username}`, inline: true }\n  ])\n  .setFooter({ text: `Channel ID: ${Channel.id}` })\n  .setTimestamp()\nswitch(Channel.type) {\n  case 0: Embed.setAuthor({ name: 'Channel Created', iconURL: Channel.guild.iconURL() }); break;\n  ...\n}\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/channelDelete.js",
+    "lines": [17],
+    "context": "channel deleted audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: 'Channel Deleted', iconURL: Channel.guild.iconURL() })\n  .addFields([\n    { name: 'Channel', value: `#${Channel.name}`, inline: true },\n    { name: 'Moderator', value: `@${Logs.entries.first().executor.username}`, inline: true }\n  ])\n  .setFooter({ text: `Channel ID: ${Channel.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/channelUpdate.js",
+    "lines": [19],
+    "context": "channel renamed audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0x77dd77)\n  .setAuthor({ name: 'Channel Renamed', iconURL: NewChannel.guild.iconURL() })\n  .setDescription(`The name of this channel was changed by **@${Logs.entries.first().executor.username}**.`)\n  .addFields([\n    { name: 'Before', value: `${OldChannel.name}`, inline: true },\n    { name: 'After', value: `${NewChannel.name}`, inline: true }\n  ])\n  .setFooter({ text: `Channel ID: ${NewChannel.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/channelUpdate.js",
+    "lines": [33],
+    "context": "channel topic created audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0x77dd77)\n  .setAuthor({ name: 'Channel Topic Created', iconURL: NewChannel.guild.iconURL() })\n  .setDescription(`The topic of the **#${NewChannel.name}** channel was changed by **@${Logs.entries.first().executor.username}**.`)\n  .addFields({ name: 'The Topic', value: `${NewChannel.topic}` })\n  .setFooter({ text: `Channel ID: ${NewChannel.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/channelUpdate.js",
+    "lines": [44],
+    "context": "channel topic updated audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xffa600)\n  .setAuthor({ name: 'Channel Topic Updated', iconURL: NewChannel.guild.iconURL() })\n  .setDescription(`The topic of the **#${NewChannel.name}** channel was changed by **@${Logs.entries.first().executor.username}**.`)\n  .addFields([\n    { name: 'Before', value: `${OldChannel.topic}`, inline: true },\n    { name: 'After', value: `${NewChannel.topic}`, inline: true }\n  ])\n  .setFooter({ text: `Channel ID: ${NewChannel.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/channelUpdate.js",
+    "lines": [58],
+    "context": "channel topic deleted audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: 'Channel Topic Deleted', iconURL: NewChannel.guild.iconURL() })\n  .setDescription(`The topic of the **#${NewChannel.name}** channel was changed by **@${Logs.entries.first().executor.username}**.`)\n  .addFields({ name: 'Old Topic', value: `${OldChannel.topic}`, inline: true })\n  .setFooter({ text: `Channel ID: ${NewChannel.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/channelUpdate.js",
+    "lines": [68],
+    "context": "channel category changed audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0x77dd77)\n  .setAuthor({ name: 'Channel Category Changed', iconURL: NewChannel.guild.iconURL() })\n  .setDescription(`The category of the **#${NewChannel.name}** channel was changed by **@${Logs.entries.first().executor.username}**.`)\n  .addFields([\n    { name: 'Category', value: `${NewChannel.parent}`, inline: true },\n    { name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: true }\n  ])\n  .setFooter({ text: `User ID: ${Logs.entries.first().executor.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/channelUpdate.js",
+    "lines": [80],
+    "context": "channel category updated audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0x77dd77)\n  .setAuthor({ name: 'Channel Category Updated', iconURL: NewChannel.guild.iconURL() })\n  .setDescription(`The category of the **#${NewChannel.name}** channel was updated by **@${Logs.entries.first().executor.username}**.`)\n  .addFields([\n    { name: 'Old Category', value: `${OldChannel.parent}`, inline: true },\n    { name: 'New Category', value: `${NewChannel.parent ? NewChannel.parent : 'No Category'}`, inline: true },\n    { name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: true }\n  ])\n  .setFooter({ text: `User ID: ${Logs.entries.first().executor.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildBanAdd.js",
+    "lines": [15],
+    "context": "member banned audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: 'Member Banned', iconURL: Member.user.displayAvatarURL() })\n  .addFields([\n    { name: 'User', value: `@${Member.user.username}`, inline: true },\n    { name: 'Moderator', value: `@${Logs.entries.first().executor.id}`}\n  ])\n  .setFooter({ text: `User ID: ${Member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildBanRemove.js",
+    "lines": [15],
+    "context": "member unbanned audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: 'Member Unbanned', iconURL: Member.user.displayAvatarURL() })\n  .addFields([\n    { name: 'User', value: `@${Member.user.username}`, inline: true },\n    { name: 'Moderator', value: `@${Logs.entries.first().executor.id}`}\n  ])\n  .setFooter({ text: `User ID: ${Member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildMemberAdd.js",
+    "lines": [18],
+    "context": "bot added to server audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor('#3498db')\n  .setTitle('Log (User join)')\n  .setDescription(`**User:** ${Member.user.tag}\\n**Bot:** Yes\\n**Invited by:** ${Logs.entries.first().executor.tag}`)\n  .setFooter({ text: `User ID: ${Member.user.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildMemberAdd.js",
+    "lines": [28],
+    "context": "user joined server audit log",
+    "embedCode": "const Embed = new EmbedBuilder() \n  .setColor('#3498db')\n  .setTitle('Log (User join)')\n  .setDescription(`**User:** ${Member.user.tag}\\n**Invited by:** ${Invite ? Invite.inviter.tag : 'Unknown'}`)\n  .setFooter({ text: `User ID: ${Member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildMemberRemove.js",
+    "lines": [14],
+    "context": "user left server audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor('#e74c3c')\n  .setTitle('Log (User left)')\n  .setDescription(`**User:** ${Member.user.tag}`)\n  .setFooter({ text: `User ID: ${Member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildMemberUpdate.js",
+    "lines": [18],
+    "context": "member role added audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xffa600)\n  .setAuthor({ name: 'Member Role Changed', iconURL: OldMember.guild.iconURL() })\n  .setDescription(`${NewMember.user} was given the **${Role.name}** role.`)\n  .addFields({ name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: true })\n  .setFooter({ text: `User ID: ${NewMember.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildMemberUpdate.js",
+    "lines": [28],
+    "context": "member role removed audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xffa600)\n  .setAuthor({ name: 'Member Role Changed', iconURL: OldMember.guild.iconURL() })\n  .setDescription(`${NewMember.user} was removed from the **${Role.name}** role.`)\n  .addFields({ name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: true })\n  .setFooter({ text: `User ID: ${NewMember.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildMemberUpdate.js",
+    "lines": [37],
+    "context": "guild ownership transferred audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xffa600)\n  .setAuthor({ name: 'Guild Ownership Updated', iconURL: NewMember.guild.iconURL() })\n  .setDescription(`**:writing_hand: ${OldMember.user} has been updated.**`)\n  .addFields([\n    { name: 'Old Ownership', value: `<@${OldMember.guild.ownerId}>`, inline: true },\n    { name: 'New Ownership', value: `<@${NewMember.guild.ownerId}>`, inline: true }\n  ])\n  .setFooter({ text: `User ID: ${NewMember.guild.ownerId}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildMemberUpdate.js",
+    "lines": [49],
+    "context": "member nickname changed audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xffa600)\n  .setAuthor({ name: 'Member Nickname Changed', iconURL: NewMember.guild.iconURL() })\n  .setDescription(`The nickname for ${NewMember.user} was changed by **${NewMember.user.username}**.`)\n  .addFields([\n    { name: 'Before', value: `${OldMember.nickname}`, inline: true },\n    { name: 'After', value: `${NewMember.nickname ? NewMember.nickname : NewMember.user.username}`, inline: true }\n  ])\n  .setFooter({ text: `User ID: ${NewMember.user.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildUpdate.js",
+    "lines": [16],
+    "context": "AFK channel set audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xffa600)\n  .setAuthor({ name: 'AFK Channel Changed', iconURL: NewGuild.iconURL() })\n  .addFields([\n    { name: 'The Channel', value: `${NewGuild.afkChannel}`, inline: true },\n    { name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: true }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildUpdate.js",
+    "lines": [26],
+    "context": "AFK channel removed audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: 'AFK Channel Removed', iconURL: NewGuild.iconURL() })\n  .addFields([\n    { name: 'Old AFK', value: `${OldGuild.afkChannel}`, inline: true },\n    { name: 'Responsible Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: true }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildUpdate.js",
+    "lines": [35],
+    "context": "AFK channel updated audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: 'AFK Channel Updated', iconURL: NewGuild.iconURL() })\n  .setDescription('AFK Channel has been updated.')\n  .addFields([\n    { name: 'Old AFK', value: `${OldGuild.afkChannel}`, inline: true },\n    { name: 'New AFK', value: `${NewGuild.afkChannel}`, inline: true },\n    { name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: true }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildUpdate.js",
+    "lines": [46],
+    "context": "guild description set audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: 'Guild Description Changed', iconURL: NewGuild.iconURL() })\n  .addFields([\n    { name: 'The Description', value: `${NewGuild.description}`, inline: false },\n    { name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: false }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildUpdate.js",
+    "lines": [55],
+    "context": "guild description updated audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: 'Guild Description Updated', iconURL: NewGuild.iconURL() })\n  .addFields([\n    { name: 'Old Description', value: '```' + OldGuild.description + '```', inline: true },\n    { name: 'New Description', value: '```' + NewGuild.description + '```', inline: true },\n    { name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: true }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildUpdate.js",
+    "lines": [65],
+    "context": "guild description removed audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: 'Guild Description Removed', iconURL: NewGuild.iconURL() })\n  .addFields([\n    { name: 'Old Description', value: `${OldGuild.description}`, inline: false },\n    { name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: false }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/guildUpdate.js",
+    "lines": [74],
+    "context": "guild name updated audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: 'Guild Name Updated', iconURL: NewGuild.iconURL() })\n  .setDescription('Guild Name has been updated.')\n  .addFields([\n    { name: 'Old Name', value: '`' + OldGuild.name + '`', inline: true },\n    { name: 'New Name', value: '`' + NewGuild.name + '`', inline: true },\n    { name: 'Moderator', value: `<@${Logs.entries.first().executor.id}>`, inline: true }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/messageDelete.js",
+    "lines": [18],
+    "context": "message deleted audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: 'Message Deleted', iconURL: Message.guild.iconURL() })\n  .setDescription(`Message from ${Message.author} deleted in ${Message.channel}\\nIt was sent on <t:${Math.floor(Message.createdAt / 1000)}:F>`)\n  .addFields({ name: 'Message Content', value: `${Message.content || '[Empty message]'}` })\n  .setFooter({ text: `User ID: ${Message.author.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/messageUpdate.js",
+    "lines": [18],
+    "context": "message edited audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xFFA500)\n  .setAuthor({ name: 'Message Edited', iconURL: OldMessage.author.displayAvatarURL() })\n  .addFields([\n    { name: 'Author', value: `<@${OldMessage.author.id}>`, inline: true },\n    { name: 'Channel', value: `<#${OldMessage.channel.id}>`, inline: true },\n    { name: 'Old Content', value: OldMessage.content.substring(0, 1024) || 'None', inline: false },\n    { name: 'New Content', value: NewMessage.content.substring(0, 1024) || 'None', inline: false }\n  ])\n  .setFooter({ text: `Message ID: ${OldMessage.id}` })\n  .setTimestamp()\nLogChannel.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleCreate.js",
+    "lines": [18],
+    "context": "role created audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0x77dd77)\n  .setAuthor({ name: 'Role Created', iconURL: Role.guild.iconURL() })\n  .addFields([\n    { name: 'Role', value: `${Role.name}`, inline: true },\n    { name: 'Moderator', value: `@${Username}`, inline: true }\n  ])\n  .setFooter({ text: `Role ID: ${Role.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleDelete.js",
+    "lines": [17],
+    "context": "role deleted audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: 'Role Deleted', iconURL: Role.guild.iconURL() })\n  .addFields([\n    { name: 'Role', value: `${Role.name}`, inline: true },\n    { name: 'Moderator', value: `@${Username}`, inline: true }\n  ])\n  .setFooter({ text: `Role ID: ${Role.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleUpdate.js",
+    "lines": [19],
+    "context": "role icon added audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: 'Role Updated', iconURL: Logs.entries.first().executor.displayAvatarURL() })\n  .setDescription(`The icon of the **${NewRole.name}** role was changed by **@${Logs.entries.first().executor.username}**`)\n  .addFields([{ name: 'Role Icon', value: `[Icon URL](${NewRole.iconURL({ size: 4096 })})` }])\n  .setFooter({ text: `Role ID: ${NewRole.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleUpdate.js",
+    "lines": [27],
+    "context": "role icon removed audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: 'Role Updated', iconURL: Logs.entries.first().executor.displayAvatarURL() })\n  .setDescription(`The icon of the **${NewRole.name}** role was removed by **@${Logs.entries.first().executor.username}**`)\n  .setThumbnail(NewRole.iconURL())\n  .addFields([{ name: '**Old Icon**', value: `[Icon URL](${OldRole.iconURL({ size: 4096 })})` }])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleUpdate.js",
+    "lines": [35],
+    "context": "role icon updated audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: 'Role Updated', iconURL: Logs.entries.first().executor.displayAvatarURL() })\n  .setDescription(`The icon of the **${NewRole.name}** role was updated by **@${Logs.entries.first().executor.username}**`)\n  .setThumbnail(NewRole.iconURL())\n  .addFields([\n    { name: '**Old Icon**', value: `[Icon URL](${OldRole.iconURL({ size: 4096 })})` },\n    { name: '**New Icon**', value: `[Icon URL](${NewRole.iconURL({ size: 4096 })})` }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleUpdate.js",
+    "lines": [46],
+    "context": "role color added audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(NewRole.color)\n  .setAuthor({ name: 'Role Updated', iconURL: Logs.entries.first().executor.displayAvatarURL() })\n  .setDescription(`The color of the **${NewRole.name}** role was changed by **@${Logs.entries.first().executor.username}**`)\n  .addFields([{ name: '**New Color**', value: `${NewRole.hexColor}` }])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleUpdate.js",
+    "lines": [56],
+    "context": "role color removed audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(OldRole.color)\n  .setAuthor({ name: 'Role Updated', iconURL: Logs.entries.first().executor.displayAvatarURL() })\n  .setDescription(`The color of the **${NewRole.name}** role was removed by **@${Logs.entries.first().executor.username}**`)\n  .addFields([{ name: '**Old Color**', value: `${OldRole.hexColor}` }])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleUpdate.js",
+    "lines": [64],
+    "context": "role color updated audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(NewRole.color)\n  .setAuthor({ name: 'Role Updated', iconURL: Logs.entries.first().executor.displayAvatarURL() })\n  .setDescription(`The color of the **${NewRole.name}** role was updated by **@${Logs.entries.first().executor.username}**`)\n  .addFields([\n    { name: '**Old Color**', value: `${OldRole.hexColor}` },\n    { name: '**New Color**', value: `${NewRole.hexColor}` }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleUpdate.js",
+    "lines": [75],
+    "context": "role name changed audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: Logs.entries.first().executor.username, iconURL: Logs.entries.first().executor.displayAvatarURL() })\n  .setDescription(`The name of this role was changed by **@${Logs.entries.first().executor.username}**.`)\n  .addFields([\n    { name: '**Old Name**', value: `${OldRole.name}` },\n    { name: '**New Name**', value: `${NewRole.name}` }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/roleUpdate.js",
+    "lines": [85],
+    "context": "role permissions updated audit log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setAuthor({ name: Logs.entries.first().executor.username, iconURL: Logs.entries.first().executor.displayAvatarURL() })\n  .setDescription(`**:family_mmb: Role permissions has been updated \\`${OldRole.name}\\`.**`)\n  .addFields([\n    { name: '**Old Permissions**', value: `${OldRole.permissions.bitfield}` },\n    { name: '**New Permissions**', value: `${NewRole.permissions.bitfield}` },\n    { name: '**Responsible Moderator**', value: `<@${Logs.entries.first().executor.id}>` }\n  ])\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [17],
+    "context": "user joined voice channel log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor('#3498db')\n  .setTitle('Log (User joined a voice)')\n  .setDescription(`**User:** ${NewVoice.member.user.tag}\\n**Channel:** ${NewVoice.channel.name}`)\n  .setFooter({ text: `User ID: ${NewVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [25],
+    "context": "user left voice channel log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor('#e74c3c')\n  .setTitle('Log (User has left a voice)')\n  .setDescription(`**User:** ${OldVoice.member.user.tag}\\n**Channel:** ${OldVoice.channel.name}`)\n  .setFooter({ text: `User ID: ${OldVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [33],
+    "context": "user server-muted in voice log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: `@${OldVoice.member.user.username}`, iconURL: OldVoice.member.user.displayAvatarURL() })\n  .setDescription(`Voice state of ${NewVoice.member} has been updated.`)\n  .addFields({ name: ':microphone2: Server Mute', value: '**True**' })\n  .setFooter({ text: `User ID: ${OldVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [42],
+    "context": "user server-unmuted in voice log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: `@${OldVoice.member.user.username}`, iconURL: OldVoice.member.user.displayAvatarURL() })\n  .setDescription(`Voice state of ${NewVoice.member} has been updated.`)\n  .addFields({ name: ':microphone2: Server Mute', value: '**False**' })\n  .setFooter({ text: `User ID: ${OldVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [51],
+    "context": "user server-deafened in voice log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: `@${OldVoice.member.user.username}`, iconURL: OldVoice.member.user.displayAvatarURL() })\n  .setDescription(`Voice state of ${NewVoice.member} has been updated.`)\n  .addFields({ name: ':speaker: Server Deafen', value: '**True**' })\n  .setFooter({ text: `User ID: ${OldVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [60],
+    "context": "user server-undeafened in voice log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: `@${OldVoice.member.user.username}`, iconURL: OldVoice.member.user.displayAvatarURL() })\n  .setDescription(`Voice state of ${NewVoice.member} has been updated.`)\n  .addFields({ name: ':speaker: Server Deafen', value: '**False**' })\n  .setFooter({ text: `User ID: ${OldVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [69],
+    "context": "user started streaming in voice log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: `@${OldVoice.member.user.username}`, iconURL: OldVoice.member.user.displayAvatarURL() })\n  .setDescription(`Voice state of ${NewVoice.member} has been updated.`)\n  .addFields({ name: ':tv: Streaming', value: '**True**' })\n  .setFooter({ text: `User ID: ${OldVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [78],
+    "context": "user stopped streaming in voice log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: `@${OldVoice.member.user.username}`, iconURL: OldVoice.member.user.displayAvatarURL() })\n  .setDescription(`Voice state of ${NewVoice.member} has been updated.`)\n  .addFields({ name: ':tv: Streaming', value: '**False**' })\n  .setFooter({ text: `User ID: ${OldVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [87],
+    "context": "user turned on video in voice log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: `@${OldVoice.member.user.username}`, iconURL: OldVoice.member.user.displayAvatarURL() })\n  .setDescription(`Voice state of ${NewVoice.member} has been updated.`)\n  .addFields({ name: ':movie_camera: Video Camera', value: '**True**' })\n  .setFooter({ text: `User ID: ${OldVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [96],
+    "context": "user turned off video in voice log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xe74d3c)\n  .setAuthor({ name: `@${OldVoice.member.user.username}`, iconURL: OldVoice.member.user.displayAvatarURL() })\n  .setDescription(`Voice state of ${NewVoice.member} has been updated.`)\n  .addFields({ name: ':movie_camera: Video Camera', value: '**False**' })\n  .setFooter({ text: `User ID: ${OldVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Events/voiceStateUpdate.js",
+    "lines": [105],
+    "context": "user moved to different voice channel log",
+    "embedCode": "const Embed = new EmbedBuilder()\n  .setColor(0xffff00)\n  .setAuthor({ name: `@${NewVoice.member.user.username}`, iconURL: NewVoice.member.user.displayAvatarURL() })\n  .setDescription(`${NewVoice.channel} has moved to a different voice channel.`)\n  .addFields([\n    { name: 'Previous Channel', value: `${OldVoice.channel.name} (${OldVoice.channel.members.size} Members)` },\n    { name: 'New Channel', value: `${NewVoice.channel.name} (${NewVoice.channel.members.size} Members)` }\n  ])\n  .setFooter({ text: `User ID: ${NewVoice.member.id}` })\n  .setTimestamp()\nLog.send({ embeds: [Embed] })",
+    "conversionType": "log_entry"
+  },
+  {
+    "file": "Commands/general/help.js",
+    "lines": [120],
+    "context": "help menu embed with category sections",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor(section.color)\n  .setTitle(section.title)\n  .setDescription(section.description)\n  .setFooter({ text: 'Use the buttons below to switch sections.' });\nif (section.commands && section.commands.length) {\n  embed.addFields(\n    section.commands.map((cmd) => ({\n      name: cmd.name, value: cmd.description, inline: false\n    }))\n  );\n}\nreturn embed;",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/general/payments-method.js",
+    "lines": [25],
+    "context": "payment methods selection prompt",
+    "embedCode": "const embed = new EmbedBuilder().setColor(0x0099ff).setTitle('💳 Payment Methods').setDescription('Select the payment method that suits your project below.');\nawait interaction.reply({ embeds: [embed], components: [row] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/general/settings.js",
+    "lines": [10],
+    "context": "server settings overview embed",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor(0x0099ff)\n  .setTitle('⚙️ Server Settings')\n  .addFields(\n    { name: 'Prefix', value: s.prefix, inline: true },\n    { name: 'Log Channel', value: s.logChannelId ? `<#${s.logChannelId}>` : 'Not set', inline: true },\n    ...\n  );\nawait safeRespond(interaction, { embeds: [embed], ephemeral: true });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/general/stats.js",
+    "lines": [14],
+    "context": "bot statistics display",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor(0x0099ff)\n  .setTitle('📊 Bot Statistics')\n  .addFields(\n    { name: 'Uptime', value: uptime, inline: true },\n    { name: 'Servers', value: `${guildCount}`, inline: true },\n    { name: 'Users', value: `${userCount}`, inline: true },\n    { name: 'Memory', value: `${mem} MB`, inline: true }\n  );\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/general/top.js",
+    "lines": [81],
+    "context": "server leaderboard embed",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor(0x00ae86)\n  .setTitle('🏆 Server Leaderboard')\n  .setDescription('Top members by chat activity and voice time.');\nif (type === 'chat' || type === 'both') {\n  embed.addFields({ name: '💬 Top Chat (Messages)', value: chatLines.length ? chatLines.join('\\n') : 'No data.' });\n}\nif (type === 'voice' || type === 'both') {\n  embed.addFields({ name: '🎙️ Top Voice (Time)', value: voiceLines.length ? voiceLines.join('\\n') : 'No data.' });\n}\nawait interaction.reply({ embeds: [embed], ephemeral: false });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/info/avatar.js",
+    "lines": [11],
+    "context": "user avatar display",
+    "embedCode": "const embed = new EmbedBuilder().setColor(0x0099ff).setTitle(`🖼️ ${user.tag}'s Avatar`).setImage(url);\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/info/channelinfo.js",
+    "lines": [10],
+    "context": "channel information display",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor(0x0099ff)\n  .setTitle(`📺 Channel Info: ${channel.name}`)\n  .addFields(\n    { name: 'ID', value: channel.id, inline: true },\n    { name: 'Type', value: ChannelType[channel.type] || `${channel.type}`, inline: true },\n    { name: 'Created', value: channel.createdAt.toLocaleString(), inline: true }\n  );\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/info/roleinfo.js",
+    "lines": [10],
+    "context": "role information display",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor(role.hexColor || 0x0099ff)\n  .setTitle(`🎭 Role Info: ${role.name}`)\n  .addFields(\n    { name: 'ID', value: role.id, inline: true },\n    { name: 'Color', value: role.hexColor, inline: true },\n    { name: 'Members', value: `${role.members.size}`, inline: true },\n    { name: 'Created', value: role.createdAt.toLocaleString(), inline: true }\n  );\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/info/serverinfo.js",
+    "lines": [10],
+    "context": "server information display",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor('#3498db')\n  .setTitle(`Server Information: ${g.name}`)\n  .setThumbnail(g.iconURL({ dynamic: true, size: 512 }))\n  .setImage(g.bannerURL({ dynamic: true, size: 1024 }) || null)\n  .addFields(\n    { name: '👑 Owner', value: `<@${g.ownerId}>`, inline: true },\n    ...\n  )\n  .setFooter({ text: `Server ID: ${g.id}` })\n  .setTimestamp();\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/info/userinfo.js",
+    "lines": [14],
+    "context": "user information display",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor(0x0099ff)\n  .setTitle(`👤 ${user.tag}`)\n  .setThumbnail(user.displayAvatarURL())\n  .addFields(\n    { name: 'ID', value: user.id, inline: true },\n    { name: 'Created', value: user.createdAt.toLocaleString(), inline: true },\n  );\nif (member) {\n  embed.addFields(\n    { name: 'Joined', value: member.joinedAt?.toLocaleString() || 'Unknown', inline: true },\n    { name: 'Roles', value: member.roles.cache.filter(r => r.id !== interaction.guild.id).map(r => r.toString()).join(', ') || 'None', inline: false }\n  );\n}\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/utility/invite.js",
+    "lines": [20],
+    "context": "bot invite link display",
+    "embedCode": "const embed = new EmbedBuilder().setColor(0x0099ff).setTitle('🔗 Invite the Bot').setDescription(`Click [here](${url}) to invite the bot to your server.`);\nawait interaction.reply({ embeds: [embed], ephemeral: true });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/moderation/ban.js",
+    "lines": [28],
+    "context": "user banned confirmation",
+    "embedCode": "const banEmbed = new EmbedBuilder().setColor(0xFF0000).setTitle('🔨 User Banned').setDescription(`**User:** ${target.user.tag}\\n**Reason:** ${reason}`);\nawait interaction.reply({ embeds: [banEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/moderation/clear.js",
+    "lines": [30],
+    "context": "messages cleared confirmation",
+    "embedCode": "const clearEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('🧹 Messages Cleared').setDescription(`Deleted ${deleted.size} messages.`);\nawait interaction.reply({ embeds: [clearEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/moderation/kick.js",
+    "lines": [28],
+    "context": "user kicked confirmation",
+    "embedCode": "const kickEmbed = new EmbedBuilder().setColor(0xFF0000).setTitle('👢 User Kicked').setDescription(`**User:** ${target.user.tag}\\n**Reason:** ${reason}`);\nawait interaction.reply({ embeds: [kickEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/moderation/lock.js",
+    "lines": [23],
+    "context": "channel locked confirmation",
+    "embedCode": "const lockEmbed = new EmbedBuilder().setColor(0xFF0000).setTitle('🔒 Channel Locked').setDescription('Channel locked for @everyone.');\nawait interaction.reply({ embeds: [lockEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/moderation/mute.js",
+    "lines": [30],
+    "context": "user muted confirmation",
+    "embedCode": "const muteEmbed = new EmbedBuilder().setColor(0xFF0000).setTitle('🔇 User Muted').setDescription(`**User:** ${target.user.tag}\\n**Duration:** ${durationStr}`);\nawait safeRespond(interaction, { embeds: [muteEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/moderation/timeout.js",
+    "lines": [39],
+    "context": "user timed out confirmation",
+    "embedCode": "const timeoutEmbed = new EmbedBuilder().setColor(0xFF0000).setTitle('⏰ User Timed Out').setDescription(`**User:** ${target.user.tag}\\n**Duration:** ${durationStr}\\n**Reason:** ${reason}`);\nawait interaction.reply({ embeds: [timeoutEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/moderation/unban.js",
+    "lines": [19],
+    "context": "user unbanned confirmation",
+    "embedCode": "const unbanEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ User Unbanned').setDescription(`**User ID:** ${userId}`);\nawait interaction.reply({ embeds: [unbanEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/moderation/unlock.js",
+    "lines": [23],
+    "context": "channel unlocked confirmation",
+    "embedCode": "const unlockEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('🔓 Channel Unlocked').setDescription('Channel unlocked for @everyone.');\nawait interaction.reply({ embeds: [unlockEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/moderation/unmute.js",
+    "lines": [27],
+    "context": "user unmuted confirmation",
+    "embedCode": "const unmuteEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('🔊 User Unmuted').setDescription(`**User:** ${target.user.tag}`);\nawait interaction.reply({ embeds: [unmuteEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/moderation/warn.js",
+    "lines": [22],
+    "context": "user warned confirmation",
+    "embedCode": "const warnEmbed = new EmbedBuilder().setColor(0xFAA61A).setTitle('⚠️ User Warned').setDescription(`**User:** ${target.tag}\\n**Reason:** ${reason}`);\nawait safeRespond(interaction, { embeds: [warnEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/ticket/manage.js",
+    "lines": [28],
+    "context": "user added to ticket confirmation (ephemeral)",
+    "embedCode": "const addEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ User Added').setDescription(`Added ${user.tag} to this ticket.`);\nawait interaction.editReply({ embeds: [addEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/ticket/manage.js",
+    "lines": [30],
+    "context": "ticket add announcement in channel",
+    "embedCode": "const addAnnounceEmbed = new EmbedBuilder().setColor(0x00FF00).setDescription(`**➕ ${interaction.user.tag}** added ${user} to this ticket.`);\nawait interaction.channel.send({ embeds: [addAnnounceEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/ticket/manage.js",
+    "lines": [34],
+    "context": "user removed from ticket confirmation (ephemeral)",
+    "embedCode": "const removeEmbed = new EmbedBuilder().setColor(0xFF0000).setTitle('✅ User Removed').setDescription(`Removed ${user.tag} from this ticket.`);\nawait interaction.editReply({ embeds: [removeEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/ticket/manage.js",
+    "lines": [36],
+    "context": "ticket remove announcement in channel",
+    "embedCode": "const removeAnnounceEmbed = new EmbedBuilder().setColor(0xFF0000).setDescription(`**➖ ${interaction.user.tag}** removed ${user} from this ticket.`);\nawait interaction.channel.send({ embeds: [removeAnnounceEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/ticket/ticket-setcategory.js",
+    "lines": [19],
+    "context": "ticket category set confirmation",
+    "embedCode": "const embed = new EmbedBuilder().setColor(0x5865F2).setTitle('📁 Ticket Category Set').setDescription(`Ticket category set to **${category.name}**. I will create ticket rooms under this category.`);\nawait safeRespond(interaction, { embeds: [embed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/config/setautorole.js",
+    "lines": [16],
+    "context": "auto-role set confirmation",
+    "embedCode": "const autoRoleEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ Auto Role Set').setDescription(`New members will receive role ${role}.`);\nawait interaction.reply({ embeds: [autoRoleEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/config/setgoodbye.js",
+    "lines": [26],
+    "context": "goodbye channel set confirmation",
+    "embedCode": "const goodbyeEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('👋 Goodbye Channel Set').setDescription(`Goodbye messages will be sent in ${channel}.`);\nawait interaction.reply({ embeds: [goodbyeEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/config/setlog.js",
+    "lines": [19],
+    "context": "log channel set confirmation",
+    "embedCode": "const logEmbed = new EmbedBuilder().setColor(0x5865F2).setTitle('📝 Log Channel Set').setDescription(`Log channel set to ${channel}.`);\nawait interaction.reply({ embeds: [logEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/config/setmodrole.js",
+    "lines": [16],
+    "context": "moderator role set confirmation",
+    "embedCode": "const modRoleEmbed = new EmbedBuilder().setColor(0x5865F2).setTitle('🛡️ Mod Role Set').setDescription(`Moderator role set to ${role}.`);\nawait interaction.reply({ embeds: [modRoleEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/config/setmuterole.js",
+    "lines": [16],
+    "context": "mute role set confirmation",
+    "embedCode": "const muteRoleEmbed = new EmbedBuilder().setColor(0x5865F2).setTitle('🔇 Mute Role Set').setDescription(`Mute role set to ${role}.`);\nawait interaction.reply({ embeds: [muteRoleEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/config/setprefix.js",
+    "lines": [16],
+    "context": "prefix set confirmation",
+    "embedCode": "const prefixEmbed = new EmbedBuilder().setColor(0x0099ff).setTitle('⚙️ Prefix Set').setDescription('Prefix set to `' + prefix + '`');\nawait interaction.reply({ embeds: [prefixEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/config/setwelcome.js",
+    "lines": [26],
+    "context": "welcome channel set confirmation",
+    "embedCode": "const welcomeEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('👋 Welcome Channel Set').setDescription(`Welcome messages will be sent in ${channel}.`);\nawait interaction.reply({ embeds: [welcomeEmbed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/store/store.js",
+    "lines": [9],
+    "context": "server store display",
+    "embedCode": "const storeEmbed = new EmbedBuilder().setColor(0x0099ff).setTitle('🏪 Server Store').setDescription(details);\nawait safeRespond(interaction, { embeds: [storeEmbed], ephemeral: false });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/store/store-setdetails.js",
+    "lines": [19],
+    "context": "store details updated confirmation",
+    "embedCode": "const detailsEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ Store Details Updated').setDescription('Store details have been updated.');\nawait safeRespond(interaction, { embeds: [detailsEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/store/store-setticketroom.js",
+    "lines": [25],
+    "context": "ticket room set confirmation",
+    "embedCode": "const ticketRoomEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ Ticket Room Set').setDescription(`Ticket room set to ${room}. Users will be sent there when they click **Buy** or **Contact Support**.`);\nawait safeRespond(interaction, { embeds: [ticketRoomEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/owner/setstatus.js",
+    "lines": [66],
+    "context": "bot status updated confirmation",
+    "embedCode": "const statusEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ Status Updated').setDescription(`Status updated to **${typeStr.toLowerCase()} ${text}** (${status}).`);\nawait interaction.reply({ embeds: [statusEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/owner/setstatus-clear.js",
+    "lines": [19],
+    "context": "bot status cleared confirmation",
+    "embedCode": "const clearEmbed = new EmbedBuilder().setColor(0x0099ff).setTitle('✅ Status Cleared').setDescription('Bot status cleared and set to **online**.');\nawait interaction.reply({ embeds: [clearEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/owner/shutdown.js",
+    "lines": [13],
+    "context": "shutdown confirmation",
+    "embedCode": "const shutdownEmbed = new EmbedBuilder().setColor(0xFF0000).setTitle('⛔ Shutting Down').setDescription('Shutting down...');\nawait interaction.reply({ embeds: [shutdownEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/log/log-set.js",
+    "lines": [75],
+    "context": "log room set confirmation",
+    "embedCode": "const logSetEmbed = new EmbedBuilder().setColor(0x5865F2).setTitle('📝 Log Room Set').setDescription(`Log room for **${logType}** has been set to ${room}.`);\nawait interaction.reply({ embeds: [logSetEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/log/log-on.js",
+    "lines": [14],
+    "context": "logging enabled confirmation",
+    "embedCode": "const logOnEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ Logging Enabled').setDescription('Logging enabled for this server.');\nawait safeRespond(interaction, { embeds: [logOnEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/log/log-off.js",
+    "lines": [14],
+    "context": "logging disabled confirmation",
+    "embedCode": "const logOffEmbed = new EmbedBuilder().setColor(0xFF0000).setTitle('❌ Logging Disabled').setDescription('Logging disabled for this server.');\nawait safeRespond(interaction, { embeds: [logOffEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/Giveaway/start.js",
+    "lines": [35],
+    "context": "giveaway announcement embed sent to channel",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle('🎉 Giveaway!')\n  .setDescription(`**Prize:** ${prize}\\n**Ends:** <t:${Math.floor(giveaway.endTime / 1000)}:R>\\n**Hosted by:** ${interaction.user}`)\n  .setColor('#00FF00')\n  .setFooter({ text: 'React with 🎉 to enter!' });\nconst message = await channel.send({ embeds: [embed] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/Giveaway/list.js",
+    "lines": [17],
+    "context": "active giveaways list display",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle('Active Giveaways')\n  .setColor('#00FF00');\ngiveaways.forEach(g => {\n  embed.addFields({\n    name: g.prize,\n    value: `Channel: <#${g.channelId}>\\nEnds: <t:${Math.floor(g.endTime / 1000)}:R>\\nParticipants: ${g.participants.length}`,\n    inline: false\n  });\n});\nawait interaction.reply({ embeds: [embed], ephemeral: true });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "Commands/protection/auditlog.js",
+    "lines": [76],
+    "context": "audit log channel set confirmation",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor(0x00FF00)\n  .setTitle(language === 'ar' ? '✅ تم تعيين سجل بنجاح' : '✅ Log Set Successfully')\n  .setDescription(...)\n  .setTimestamp()\n  .setFooter({ text: language === 'ar' ? 'بوت الحماية القوي' : 'Powerful Protection Bot' });\nawait interaction.reply({ embeds: [embed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/disable.js",
+    "lines": [131],
+    "context": "protection feature disabled confirmation",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(title)\n  .setDescription(description)\n  .setColor(color)\n  .setTimestamp();\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/enable.js",
+    "lines": [136],
+    "context": "protection feature enabled confirmation",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(`${emoji} ${title}`)\n  .setDescription(description)\n  .setColor(color)\n  .setTimestamp()\n  .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() });\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/setlimted.js",
+    "lines": [91],
+    "context": "protection limit set confirmation",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(title)\n  .setDescription(description)\n  .setColor(0x00FF00)\n  .setTimestamp();\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/setprotectionlog.js",
+    "lines": [53],
+    "context": "protection logging enabled/disabled confirmation",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(`${emoji} ${title}`)\n  .setDescription(description)\n  .setColor(color)\n  .setTimestamp()\n  .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() });\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/setpunishment.js",
+    "lines": [51],
+    "context": "protection punishment set confirmation",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(embedTitles[language])\n  .setColor(0x3498DB)\n  .setDescription(embedDescriptions[language])\n  .setTimestamp();\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/verify.js",
+    "lines": [29],
+    "context": "verification prompt embed with button",
+    "embedCode": "const verifyEmbed = new EmbedBuilder()\n  .setColor('#0099ff')\n  .setTitle('Member Verification')\n  .setDescription('To verify that you are human, please click the button below and proceed to the verification page in the dashboard.');\nconst verifyButton = new ButtonBuilder()\n  .setCustomId('ver')\n  .setLabel('Verify')\n  .setStyle(ButtonStyle.Success);\nconst row = new ActionRowBuilder().addComponents(verifyButton);\nconst message = await channel.send({ embeds: [verifyEmbed], components: [row] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/verify.js",
+    "lines": [47],
+    "context": "verification setup success confirmation",
+    "embedCode": "const successEmbed = new EmbedBuilder().setColor(0x00FF00).setTitle('✅ Verification Setup').setDescription(`Verification system has been set up successfully! Verified members will receive the ${role.name} role.`);\ninteraction.reply({ embeds: [successEmbed], ephemeral: true });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/whitelist.js",
+    "lines": [67],
+    "context": "user added to whitelist confirmation",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(`⚪ ${feature} Whitelist Updated`)\n  .setColor(0x00FF00)\n  .setDescription(`${user.tag} has been added to the ${feature} whitelist.`)\n  .setTimestamp();\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/whitelist.js",
+    "lines": [86],
+    "context": "user removed from whitelist confirmation",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(`⚪ ${feature} Whitelist Updated`)\n  .setColor(0xFF0000)\n  .setDescription(`${user.tag} has been removed from the ${feature} whitelist.`)\n  .setTimestamp();\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "confirmation"
+  },
+  {
+    "file": "Commands/protection/whitelist-list.js",
+    "lines": [38],
+    "context": "whitelist list display",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setTitle(`${feature} Whitelist`)\n  .setColor(0x00FF00)\n  .setDescription(whitelist.length > 0 ? 'List of whitelisted users:' : 'No users in the whitelist.')\n  .setTimestamp();\nif (whitelist.length > 0) {\n  const userList = await Promise.all(whitelist.map(async (userId) => { ... }));\n  embed.addFields({ name: 'Users', value: userList.join('\\n') });\n}\nawait interaction.reply({ embeds: [embed] });",
+    "conversionType": "info_display"
+  },
+  {
+    "file": "portfolioScanner/templates/reportEmbed.js",
+    "lines": [33],
+    "context": "portfolio scan report embed with scores and flags",
+    "embedCode": "const embed = new EmbedBuilder()\n  .setColor(colorMap[report.classification] || 0x888888)\n  .setTitle(`${emojiMap[report.classification] || '❓'} Portfolio Scan: ${report.classification}`)\n  .setDescription(`**Confidence:** ${confidenceEmoji[report.confidence] || ''} ${report.confidence}`)\n  .addFields(\n    { name: '📊 Scores', value: `Fake: \\`${report.rawScores.fake}/100\\`\\nStolen: \\`${report.rawScores.stolen}/100\\`\\nAI-Gen: \\`${report.rawScores.ai}/100\\`\\nLegit: \\`${report.rawScores.legit}/100\\``, inline: true },\n    { name: '⚠️ Flags', value: report.signals.slice(0, 5).join('\\n') || 'None', inline: true }\n  )\n  .setFooter({ text: `Scanner v1.0 | ${report.metadata.userTag || 'Unknown'}` })\n  .setTimestamp();",
+    "conversionType": "log_entry"
+  }
+]

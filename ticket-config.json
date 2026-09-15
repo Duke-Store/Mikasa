@@ -1,0 +1,89 @@
+{
+    "GUILD_ID": "830104403440566272",
+    "STAFF_ROLE_ID": "1530020900395815003",
+    "MANAGER_ROLE_ID": "1502962137612550245",
+    "TICKET_CATEGORY_ID": "1530684148744851536",
+    "TRANSCRIPT_CHANNEL_ID": "1526626558058434721",
+    "LOGS_CHANNEL_ID": "1526627600146108486",
+    "RATING_CHANNEL_ID": "1532532726060679229",
+    "TICKET_COUNTER": 1892,
+    "TICKET_TYPES": [
+        {
+            "label": "Technical Support",
+            "value": "support",
+            "description": "For general inquiries or technical assistance with our services.",
+            "emoji": "💡",
+            "color": "#3498DB"
+        },
+        {
+            "label": "Purchase / Sales Inquiry",
+            "value": "buy",
+            "description": "To request the purchase of a service or product.",
+            "emoji": "🛒",
+            "color": "#2ECC71"
+        },
+        {
+            "label": "Apply for Developer / Staff",
+            "value": "apply",
+            "description": "For applying to become a developer or staff member.",
+            "emoji": "📝",
+            "color": "#F1C40F"
+        },
+        {
+            "label": "Sell a Project / Product",
+            "value": "sell",
+            "description": "Submit your project or product for sale in the marketplace.",
+            "emoji": "🏷️",
+            "color": "#9B59B6"
+        },
+        {
+            "label": "Request a Project / Buy",
+            "value": "buy_req",
+            "description": "Request a custom project to be built by our developers.",
+            "emoji": "📋",
+            "color": "#E67E22"
+        }
+    ],
+    "MESSAGES": {
+        "SELECT_MENU_PLACEHOLDER": "Select the type of ticket you need...",
+        "ERROR_NO_PERMISSION": "Access Denied: You do not have the required permissions to perform this action.",
+        "ERROR_ALREADY_OPEN": "You already have an active ticket open: <#{channelId}>",
+        "ERROR_CONFIG_CHECK": "An unexpected error occurred. Please verify role and category IDs in config.json.",
+        "TICKET_OPENED_SUCCESS": "✅ Success! Your ticket **{ticketNumber}** is open. Proceed to <#{channelId}>",
+        "WELCOME_TITLE": "💡 New Ticket | Type: {ticketType}",
+        "WELCOME_DESCRIPTION": "Welcome <@{userId}>! Our staff will be with you shortly. Please be patient. Staff role: <@&{staffRoleId}>.\n\nTo close this ticket, press the 🔒 Close button.",
+        "WELCOME_STAFF_PING": "<@&{staffRoleId}>, Ticket #{ticketNumber} has been created by <@{userId}>",
+        "CLAIM_PROMPT": "🙋‍♂️ Staff: Press 'Claim' to assume responsibility for this ticket.",
+        "CONFIRM_CLOSE_PROMPT": "🔒 **Are you sure you wish to permanently close this ticket?**",
+        "CLOSE_ALREADY_OPEN": "🔒 A close request is already pending for this ticket.",
+        "CLOSE_ALREADY_CLOSED": "🔒 **Warning:** This ticket is already closed.",
+        "CLOSED_MESSAGE": "**Ticket Closed by @! {userTag}**",
+        "CLOSED_EMBED_DESCRIPTION": "Support Team Controls",
+        "TRANSCRIPT_CONFIG_ERROR": "⚠️ **Configuration Error:** Please specify the `TRANSCRIPT_CHANNEL_ID` in `config.json`.",
+        "TRANSCRIPT_CHANNEL_NOT_FOUND": "⚠️ **Error:** The specified transcript archive channel was not found.",
+        "TRANSCRIPT_SUCCESS_TITLE": "📄 Conversation Transcript Generated",
+        "TRANSCRIPT_SUCCESS_DESCRIPTION": "Transcript for ticket **{channelName}** (Owned by {userTag}) has been successfully archived.",
+        "TRANSCRIPT_SUCCESS_STAFF_REPLY": "✅ Transcript generated and sent to <#{channelId}>",
+        "TRANSCRIPT_ERROR": "❌ An error occurred while generating the transcript file.",
+        "DELETE_TICKET_PROMPT": "**🗑️ Deleting ticket in progress...**",
+        "REOPEN_SUCCESS": "**🔓 Ticket successfully reopened by {user}**.",
+        "REOPEN_WARNING_NO_OWNER": "⚠️ **Warning:** Original ticket owner could not be found to restore permissions. Ticket reopened by staff only.",
+        "CLAIM_STAFF_ONLY": "Only authorized staff members can claim tickets.",
+        "CLAIM_ALREADY_CLAIMED": "🔒 This ticket has already been claimed!",
+        "CLAIM_SUCCESS_TITLE": "✅ **Ticket Claimed!**",
+        "CLAIM_SUCCESS_DESCRIPTION": "This ticket has been claimed by {user}.",
+        "DM_RATING_FALLBACK": "**⚠️ DM Rating Failed.**\n<@{userId}>, please rate our service directly in this channel:",
+        "SELLER_TERMS_TITLE": "📜 Developer Terms & Conditions",
+        "BUYER_TERMS_TITLE": "🛡️ Customer Protection Terms",
+        "SEND_SUBMISSION": "🚀 Send Submission",
+        "EDIT_ANSWERS": "✏️ Edit Answers",
+        "NEXT_QUESTION": "▶️ Next",
+        "EDIT_QUESTION": "✏️ Edit",
+        "SELECT_QUESTION_TO_EDIT": "Select a question to edit:",
+        "SUBMITTED_SUCCESS": "✅ Your ${type} has been submitted successfully!",
+        "AI_ANALYSIS_TITLE": "🤖 AI Analysis",
+        "ADMIN_REVIEW_TITLE": "📋 New Submission for Review",
+        "TRUSTED_ONLY_WARNING": "⚠️ This payment method is only available for trusted clients (spent $120+, YouTuber/Streamer/Partner, or 2+ referrals). Please choose a different method.",
+        "AFTER_COMPLETION_NOT_AVAILABLE": "❌ After Completion payment is only for trusted clients. Please select a different payment method."
+    }
+}

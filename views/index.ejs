@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.ibb.co/Hq8V39j/image.png" type="image/png">
+    <title>Safety Bot - بوت الأمان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #ffffff;
+        }
+        .container {
+            background-color: rgba(40, 40, 40, 0.9);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+        }
+        h1 {
+            color: #2445b3;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: slideDown 0.8s ease-out;
+        }
+        p {
+            color: #2445b3;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.2s ease-out;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            background-color: #2445b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            animation: scaleIn 0.5s ease-out;
+        }
+        .btn:hover {
+            background-color: #2445b3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+        .language-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #2445b3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+        .language-btn:hover {
+            background-color: #2445b3;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .feature-list {
+            text-align: right;
+            margin-top: 2rem;
+            padding-right: 1rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .feature-item {
+            margin-bottom: 0.5rem;
+            color: #2445b3;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1rem;
+            animation: rotate 20s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(36, 69, 179, 0.7));
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <button class="language-btn" onclick="changeLanguage()">English</button>
+    <div class="container">
+        <img src="https://i.ibb.co/Hq8V39j/image.png" alt="Safety Bot Logo" class="logo">
+        <h1 id="welcome">مرحبًا بك في بوت الأمان</h1>
+        <p id="description">حماية متطورة وإدارة فعالة لسيرفر الديسكورد الخاص بك</p>
+        <a href="/auth/discord" class="btn" id="login">تسجيل الدخول باستخدام ديسكورد</a>
+        <a href="https://discord.com/api/oauth2/authorize?client_id=1268216881643520062&permissions=8&scope=bot%20applications.commands" class="btn" id="invite">دعوة البوت إلى سيرفرك</a>
+        <div class="feature-list">
+            <h3>مميزات البوت:</h3>
+            <div class="feature-item">✅ حماية ضد الرسائل المزعجة والروابط الضارة</div>
+            <div class="feature-item">✅ نظام تحذير وحظر متقدم</div>
+            <div class="feature-item">✅ لوحة تحكم سهلة الاستخدام</div>
+            <div class="feature-item">✅ تخصيص كامل لإعدادات الأمان</div>
+            <div class="feature-item">✅ حماية ضد الروابط الضارة</div>
+            <div class="feature-item">✅ حماية ضد الرسائل المزعجة</div>
+            <div class="feature-item">✅ حماية ضد عمليات الاحتيال</div>
+            <div class="feature-item">✅ حماية ضد هجمات الاختراق الجماعي</div>
+        </div>
+    </div>
+    <script nonce="<%= nonce %>">
+        // منع فتح أدوات المطور (F12)
+//        document.onkeydown = function(e) {
+//            if(e.keyCode == 123) {
+//                return false;
+//            }
+//            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+//                return false;
+//            }
+//            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+//                return false;
+//            }
+//            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+//                return false;
+//            }
+//            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+//                return false;
+//            }
+//       }
+
+        // منع النقر بزر الماوس الأيمن
+//        document.oncontextmenu = function(e) {
+//e.preventDefault();
+//            return false;
+//        }
+        
+        function changeLanguage() {
+            const html = document.documentElement;
+            const welcome = document.getElementById('welcome');
+            const description = document.getElementById('description');
+            const login = document.getElementById('login');
+            const invite = document.getElementById('invite');
+            const langBtn = document.querySelector('.language-btn');
+            const featureList = document.querySelector('.feature-list');
+
+            if (html.lang === 'ar') {
+                html.lang = 'en';
+                html.dir = 'ltr';
+                langBtn.textContent = 'العربية';
+                welcome.textContent = 'Welcome to Safety Bot';
+                description.textContent = 'Advanced protection and effective management for your Discord server';
+                login.textContent = 'Login with Discord';
+                invite.textContent = 'Invite Bot to Your Server';
+                featureList.innerHTML = `
+                    <h3>Bot Features:</h3>
+                    <div class="feature-item">✅ Protection against spam and harmful links</div>
+                    <div class="feature-item">✅ Advanced warning and ban system</div>
+                    <div class="feature-item">✅ User-friendly control panel</div>
+                    <div class="feature-item">✅ Full customization of security settings</div>
+                    <div class="feature-item">✅ Anti-link protection</div>
+                    <div class="feature-item">✅ Anti-spam protection</div>
+                    <div class="feature-item">✅ Anti-scam protection</div>
+                    <div class="feature-item">✅ Anti-raid protection</div>
+                `;
+            } else {
+                html.lang = 'ar';
+                html.dir = 'rtl';
+                langBtn.textContent = 'English';
+                welcome.textContent = 'مرحبًا بك في بوت الأمان';
+                description.textContent = 'حماية متطورة وإدارة فعالة لسيرفر الديسكورد الخاص بك';
+                login.textContent = 'تسجيل الدخول باستخدام ديسكورد';
+                invite.textContent = 'دعوة البوت إلى سيرفرك';
+                featureList.innerHTML = `
+                    <h3>مميزات البوت:</h3>
+                    <div class="feature-item">✅ حماية ضد الرسائل المزعجة والروابط الضارة</div>
+                    <div class="feature-item">✅ نظام تحذير وحظر متقدم</div>
+                    <div class="feature-item">✅ لوحة تحكم سهلة الاستخدام</div>
+                    <div class="feature-item">✅ تخصيص كامل لإعدادات الأمان</div>
+                    <div class="feature-item">✅ حماية ضد الروابط الضارة</div>
+                    <div class="feature-item">✅ حماية ضد الرسائل المزعجة</div>
+                    <div class="feature-item">✅ حماية ضد عمليات الاحتيال</div>
+                    <div class="feature-item">✅ حماية ضد هجمات الاختراق الجماعي</div>
+                `;
+            }
+
+            // Add animation when changing language
+            [welcome, description, login, invite, featureList].forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight; // Trigger reflow
+                el.style.animation = el === welcome ? 'slideDown 0.8s ease-out' : 'scaleIn 0.5s ease-out';
+            });
+        }
+    </script>
+</body>
+</html>

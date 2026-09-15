@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error - Lunexis</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; color: #eee; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .container { text-align: center; padding: 40px; }
+    .error-icon { font-size: 64px; margin-bottom: 20px; }
+    h1 { color: #e74c3c; margin-bottom: 16px; font-size: 28px; }
+    p { color: #aaa; font-size: 16px; max-width: 400px; line-height: 1.6; }
+    a { display: inline-block; margin-top: 24px; padding: 10px 24px; background: #5865f2; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 500; }
+    a:hover { background: #4752c4; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="error-icon">⚠️</div>
+    <h1>Something went wrong</h1>
+    <p><%= typeof message !== 'undefined' ? message : 'An unexpected error occurred.' %></p>
+    <a href="/">Go Home</a>
+  </div>
+</body>
+</html>

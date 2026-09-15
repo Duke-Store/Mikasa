@@ -1,0 +1,41 @@
+=== BOT TRAFFIC / STRESS TEST (no Discord connection) ===
+Started: 2026-08-02T19:52:36.512Z
+Backing up state files...
+Backed up 8 files to C:\Users\Admin\AppData\Local\Temp\bot-traffic-1785700356508
+
+PASS | utils-helpers (format*/parseDuration/cooldowns) | 1000 iters, 0 errors, 0 slow(>50ms), 0 bad cooldown reads
+  [TIMING] utils-helpers: 701 ms
+PASS | utils-writeFileAsync same-file race (500 x 2-way) | 0 corrupted writes, 0 rejected writes
+  [TIMING] utils-writeFileAsync race: 570 ms
+PASS | db.js get/set/del (1200 concurrent, guildSettings+pro.db) | 0 thrown errors, files parseable=true
+  [TIMING] db-concurrent: 507 ms
+PASS | questionFlow sessions (500 concurrent set/get/delete) | 0 errors, file parseable=true, active sessions after=332
+  [TIMING] questionFlow: 380 ms
+PASS | savingSystem.buildMarkdown (1000 concurrent) | 0 errors
+  [TIMING] savingSystem: 270 ms
+PASS | portfolioScanner.scanPortfolio (400 concurrent scans) | 0 errors, 0 bad reports, scanHistory parseable=true
+  [TIMING] portfolioScanner: 366 ms
+PASS | ratingSystem.autoRating.buildRatingEmbed (600 concurrent) | 0 errors
+  [TIMING] ratingMath: 410 ms
+PASS | giveaway create/join/reroll (50 create + 1000 joins) | 0 errors, file parseable=true
+  [TIMING] giveaway: 319 ms
+PASS | aiHandler.getActiveProviders (env resolution) | 
+  [TIMING] aiProviderResolution: 255 ms
+PASS | memory sanity (heap delta / RSS) | heap delta 0.0 MB, RSS 212.8 MB, heap total 116.9 MB
+  [TIMING] memory: 764 ms
+
+=== SUMMARY ===
+PASS | utils-helpers (format*/parseDuration/cooldowns) | 1000 iters, 0 errors, 0 slow(>50ms), 0 bad cooldown reads
+PASS | utils-writeFileAsync same-file race (500 x 2-way) | 0 corrupted writes, 0 rejected writes
+PASS | db.js get/set/del (1200 concurrent, guildSettings+pro.db) | 0 thrown errors, files parseable=true
+PASS | questionFlow sessions (500 concurrent set/get/delete) | 0 errors, file parseable=true, active sessions after=332
+PASS | savingSystem.buildMarkdown (1000 concurrent) | 0 errors
+PASS | portfolioScanner.scanPortfolio (400 concurrent scans) | 0 errors, 0 bad reports, scanHistory parseable=true
+PASS | ratingSystem.autoRating.buildRatingEmbed (600 concurrent) | 0 errors
+PASS | giveaway create/join/reroll (50 create + 1000 joins) | 0 errors, file parseable=true
+PASS | aiHandler.getActiveProviders (env resolution) | 
+PASS | memory sanity (heap delta / RSS) | heap delta 0.0 MB, RSS 212.8 MB, heap total 116.9 MB
+Passed: 10/10
+Global unhandledRejections: 0
+Global uncaughtExceptions: 0
+FINAL RESULT: ALL PASS

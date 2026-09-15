@@ -1,0 +1,375 @@
+[
+  {
+    "userId": "958429594187333662",
+    "userTag": "d0k3.",
+    "ticketNumber": "24",
+    "portfolio": "portfolio,com",
+    "aiReport": {
+      "finalScore": 1.3,
+      "classification": "FAKE",
+      "confidence": "MEDIUM",
+      "missingItems": [
+        "project descriptions",
+        "technical skills",
+        "experience level",
+        "actual portfolio link or description",
+        "relevant experience",
+        "skills",
+        "actual portfolio content",
+        "project links"
+      ],
+      "strengths": [],
+      "redFlags": [
+        "lack of detail",
+        "unverifiable portfolio link",
+        "vague portfolio description",
+        "unverifiable information"
+      ],
+      "evidence": "**Agent 1 (FAKE):** The portfolio link provided does not appear to be a real portfolio, and the application lacks any meaningful information about the developer's skills or experience. The brevity and vagueness of the answers raise significant concerns about the authenticity of the application.\n**Agent 2 (FAKE):** The portfolio link provided does not exist and seems to be a placeholder. The application lacks any meaningful information about the developer's experience, skills, or accomplishments.\n**Agent 3 (UNCERTAIN):** The portfolio link provided does not lead to a specific portfolio and lacks any actual content or evidence of work. The application lacks detail and does not provide sufficient information to verify the applicant's claims.",
+      "detailedFeedback": {
+        "skillsRating": "0.3",
+        "authenticityRating": "1.3",
+        "completenessRating": "0.7",
+        "professionalismRating": "2.0"
+      },
+      "agentResults": [
+        {
+          "agentName": "Skills & Experience Analyzer",
+          "score": 2,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        },
+        {
+          "agentName": "Authenticity & Legitimacy Checker",
+          "score": 0,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        },
+        {
+          "agentName": "Completeness & Quality Evaluator",
+          "score": 2,
+          "classification": "UNCERTAIN",
+          "confidence": "LOW"
+        }
+      ]
+    },
+    "messageId": "1529495674645647440",
+    "timestamp": "2026-07-22T14:29:46.210Z"
+  },
+  {
+    "userId": "967044051473940510",
+    "userTag": "speacial_one",
+    "ticketNumber": "26",
+    "portfolio": "...",
+    "aiReport": {
+      "finalScore": 0,
+      "classification": "FAKE",
+      "confidence": "HIGH",
+      "missingItems": [
+        "portfolio link or description",
+        "relevant experience",
+        "project examples",
+        "portfolio link",
+        "contact information",
+        "description of experience"
+      ],
+      "strengths": [],
+      "redFlags": [
+        "empty portfolio section",
+        "lack of information",
+        "lack of detail",
+        "empty portfolio",
+        "lack of effort"
+      ],
+      "evidence": "**Agent 1 (FAKE):** The portfolio section is empty and lacks any information about the developer's experience or projects, indicating a likely fabricated application.\n**Agent 2 (FAKE):** The portfolio section is empty and lacks any description or link to the applicant's work, indicating a likely fabricated application. The applied role answer is also vague and does not provide any relevant information.\n**Agent 3 (FAKE):** The portfolio section is completely empty, with no links, descriptions, or examples of work. This suggests a lack of effort or a fake application.",
+      "detailedFeedback": {
+        "skillsRating": "0.0",
+        "authenticityRating": "0.0",
+        "completenessRating": "0.0",
+        "professionalismRating": "0.7"
+      },
+      "agentResults": [
+        {
+          "agentName": "Skills & Experience Analyzer",
+          "score": 0,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        },
+        {
+          "agentName": "Authenticity & Legitimacy Checker",
+          "score": 0,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        },
+        {
+          "agentName": "Completeness & Quality Evaluator",
+          "score": 0,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        }
+      ]
+    },
+    "messageId": "1529522942008889606",
+    "timestamp": "2026-07-22T16:18:07.601Z"
+  },
+  {
+    "userId": "958429594187333662",
+    "userTag": "d0k3.",
+    "ticketNumber": "28",
+    "portfolio": "portfolio.com",
+    "aiReport": {
+      "finalScore": 2,
+      "classification": "UNCERTAIN",
+      "confidence": "MEDIUM",
+      "missingItems": [
+        "project descriptions",
+        "experience details",
+        "technical skills",
+        "actual portfolio content",
+        "detailed descriptions of experience",
+        "examples of work",
+        "project links",
+        "detailed descriptions of projects"
+      ],
+      "strengths": [],
+      "redFlags": [
+        "lack of detail",
+        "no direct evidence of work",
+        "vague portfolio link",
+        "lack of detail in application",
+        "unverifiable portfolio link"
+      ],
+      "evidence": "**Agent 1 (UNCERTAIN):** The portfolio link is provided but no direct information about projects, experience, or technical skills is given in the application. This makes it difficult to assess the developer's capabilities.\n**Agent 2 (FAKE):** The application lacks any substantial information about the developer's experience or skills, and the portfolio link provided does not offer any insight into their work. The brevity and lack of detail raise significant concerns about the authenticity of the application.\n**Agent 3 (UNCERTAIN):** The portfolio link provided is not sufficient to evaluate the developer's skills and experience, and there is no additional information provided to support their application. The lack of detail and unverifiable portfolio link raises concerns about the legitimacy of the application.",
+      "detailedFeedback": {
+        "skillsRating": "0.7",
+        "authenticityRating": "3.0",
+        "completenessRating": "1.3",
+        "professionalismRating": "3.0"
+      },
+      "agentResults": [
+        {
+          "agentName": "Skills & Experience Analyzer",
+          "score": 2,
+          "classification": "UNCERTAIN",
+          "confidence": "LOW"
+        },
+        {
+          "agentName": "Authenticity & Legitimacy Checker",
+          "score": 2,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        },
+        {
+          "agentName": "Completeness & Quality Evaluator",
+          "score": 2,
+          "classification": "UNCERTAIN",
+          "confidence": "LOW"
+        }
+      ]
+    },
+    "messageId": "1529525388466982935",
+    "timestamp": "2026-07-22T16:27:50.882Z"
+  },
+  {
+    "userId": "958429594187333662",
+    "userTag": "d0k3.",
+    "ticketNumber": "1892",
+    "answers": [
+      {
+        "question": "Name",
+        "answer": "test"
+      },
+      {
+        "question": "Age",
+        "answer": "15"
+      },
+      {
+        "question": "Work Time",
+        "answer": "8H a day"
+      },
+      {
+        "question": "Portfolio Link",
+        "answer": "test.com"
+      },
+      {
+        "question": "The best project you did",
+        "answer": "none"
+      },
+      {
+        "question": "Hours of work",
+        "answer": "8H"
+      },
+      {
+        "question": "Years of work",
+        "answer": "6 months"
+      },
+      {
+        "question": "What makes you unique",
+        "answer": "none"
+      },
+      {
+        "question": "What you can do",
+        "answer": "none"
+      },
+      {
+        "question": "Payment method(s)",
+        "answer": "none"
+      }
+    ],
+    "aiReport": {
+      "finalScore": 0.7,
+      "classification": "FAKE",
+      "confidence": "HIGH",
+      "missingItems": [
+        "detailed project descriptions",
+        "actual portfolio content",
+        "relevant skills",
+        "detailed portfolio link",
+        "description of best project",
+        "unique skills",
+        "contact information",
+        "project links"
+      ],
+      "strengths": [],
+      "redFlags": [
+        "lack of meaningful answers",
+        "unrealistic work hours for age and experience",
+        "incomplete portfolio link",
+        "vague answers",
+        "inconsistent work experience",
+        "lack of portfolio details",
+        "lack of detail in answers",
+        "unrealistic work hours for age"
+      ],
+      "evidence": "**Agent 1 (FAKE):** The developer's application lacks substantial information, with many answers being 'none', and the provided portfolio link is not a real portfolio. The claimed work hours and experience also seem unrealistic for a 15-year-old with only 6 months of experience.\n**Agent 2 (FAKE):** The application lacks specific details about the developer's experience, skills, and portfolio. The answers are brief and uninformative, suggesting a fabricated application. The claimed work experience of 6 months with 8 hours of work per day is also inconsistent with the age of 15.\n**Agent 3 (FAKE):** The portfolio lacks any substantial information about the developer's skills, experience, or projects. The answers provided are vague and unprofessional, suggesting a lack of effort or authenticity. The claim of 8 hours of work per day at the age of 15 is also unrealistic.",
+      "detailedFeedback": {
+        "skillsRating": "0.0",
+        "authenticityRating": "0.7",
+        "completenessRating": "0.3",
+        "professionalismRating": "0.3"
+      },
+      "agentResults": [
+        {
+          "agentName": "Skills & Experience Analyzer",
+          "score": 0,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        },
+        {
+          "agentName": "Authenticity & Legitimacy Checker",
+          "score": 0,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        },
+        {
+          "agentName": "Completeness & Quality Evaluator",
+          "score": 2,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        }
+      ]
+    },
+    "timestamp": "2026-07-25T15:08:09.513Z"
+  },
+  {
+    "userId": "958429594187333662",
+    "userTag": "d0k3.",
+    "ticketNumber": "1893",
+    "answers": [
+      {
+        "question": "What is you name :",
+        "answer": "Duke"
+      },
+      {
+        "question": "How old are you:",
+        "answer": "10"
+      },
+      {
+        "question": "Work Time:",
+        "answer": "8-5"
+      },
+      {
+        "question": "Portfolio Link:",
+        "answer": "test.com"
+      },
+      {
+        "question": "The best project you did:",
+        "answer": "a roblox game"
+      },
+      {
+        "question": "Hours of work:",
+        "answer": "5h"
+      },
+      {
+        "question": "Years of work:",
+        "answer": "6 months"
+      },
+      {
+        "question": "What makes you unique:",
+        "answer": "i can work alone on a big project"
+      },
+      {
+        "question": "What you can do :",
+        "answer": "making roblox games"
+      },
+      {
+        "question": "Payment method(s):",
+        "answer": "apple pay"
+      }
+    ],
+    "aiReport": {
+      "finalScore": 2,
+      "classification": "FAKE",
+      "confidence": "MEDIUM",
+      "missingItems": [
+        "detailed project descriptions",
+        "actual portfolio content",
+        "realistic work experience",
+        "contact information",
+        "evidence of work experience"
+      ],
+      "strengths": [
+        "claims ability to work independently",
+        "willingness to work independently"
+      ],
+      "redFlags": [
+        "age inconsistency with claimed experience",
+        "vague project descriptions",
+        "unrealistic work schedule",
+        "vague answers",
+        "inconsistent age and experience",
+        "lack of detail in answers",
+        "unrealistic work experience for age",
+        "invalid portfolio link"
+      ],
+      "evidence": "**Agent 1 (FAKE):** The developer's age and claimed years of experience are inconsistent, and the portfolio link is not a real portfolio. The project descriptions are also very vague and lack detail.\n**Agent 2 (FAKE):** The application lacks specific details about the developer's projects, and the age of 10 with 6 months of experience is highly unlikely. The provided portfolio link is also suspicious and does not appear to be a real portfolio.\n**Agent 3 (UNCERTAIN):** The developer's application lacks substantial evidence of their work, and their claimed experience seems unrealistic given their age. The provided portfolio link is also invalid, raising concerns about the legitimacy of their application.",
+      "detailedFeedback": {
+        "skillsRating": "1.7",
+        "authenticityRating": "1.7",
+        "completenessRating": "1.3",
+        "professionalismRating": "2.0"
+      },
+      "agentResults": [
+        {
+          "agentName": "Skills & Experience Analyzer",
+          "score": 2,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        },
+        {
+          "agentName": "Authenticity & Legitimacy Checker",
+          "score": 2,
+          "classification": "FAKE",
+          "confidence": "HIGH"
+        },
+        {
+          "agentName": "Completeness & Quality Evaluator",
+          "score": 2,
+          "classification": "UNCERTAIN",
+          "confidence": "LOW"
+        }
+      ]
+    },
+    "timestamp": "2026-07-25T15:16:23.438Z"
+  }
+]
