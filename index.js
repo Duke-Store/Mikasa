@@ -229,6 +229,14 @@ client.once(Events.ClientReady, async (c) => {
   // Start memory monitoring for rating system
   startMonitoring();
 
+  // Start 24h admin review timer escalation
+  try {
+    const adminReviewTimer = require('./adminReviewTimer');
+    adminReviewTimer.startTimerCheck(client);
+  } catch (err) {
+    console.error('Failed to start admin review timer:', err);
+  }
+
   const rest = new REST({ version: '10' }).setToken(TOKEN);
   const jsonCommands = commands.map((cmd) => cmd.data.toJSON());
 
