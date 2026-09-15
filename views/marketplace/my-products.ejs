@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Products - Mikasa Marketplace</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    const csrfToken = '<%= csrfToken %>';
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>📦 My Products</h1>
+
+    <% if (user) { %>
+      <p>Logged in as: <%= user.username %></p>
+    <% } %>
+
+    <div class="product-grid" id="product-grid">
+      <% if (products && products.length > 0) { %>
+        <% products.forEach(product => { %>
+          <div class="product-card">
+            <h3><%= product.name %></h3>
+            <span class="badge <%= product.status === 'listed' ? 'badge-green' : product.status === 'sold' ? 'badge-red' : 'badge-yellow' %>">
+              <%= product.status %>
+            </span>
+            <p><strong>Category:</strong> <%= product.category %></p>
+            <p><strong>Price:</strong> <%= product.price %></p>
+            <p><strong>Payment:</strong> <%= product.paymentMethod %></p>
+            <p><strong>Originality:</strong> <%= product.originalityStatus || 'unverified' %></p>
+            <p class="description"><%= product.description || 'No description' %></p>
+            <small>Created: <%= new Date(product.createdAt).toLocaleDateString() %></small>
+            <% if (product.status === 'listed') { %>
+              <div class="product-actions">
+                <button class="btn btn-danger" onclick="removeProduct('<%= product.productId %>')">Remove</button>
+              </div>
+            <% } %>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="empty-state">You have no products listed yet. Open a sell ticket to list your first product!</p>
+      <% } %>
+    </div>
+
+    <div class="user-actions">
+      <a href="/marketplace" class="btn btn-secondary">Browse Marketplace</a>
+      <% if (user) { %>
+        <a href="/logout" class="btn btn-danger">Logout</a>
+      <% } %>
+    </div>
+  </div>
+
+  <script>
+    function removeProduct(productId) {
+      if (!confirm('Are you sure you want to remove this product from the marketplace? This action cannot be undone.')) return;
+
+      fetch('/api/remove-product', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken
+        },
+        body: JSON.stringify({ productId })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert('✅ Product removed.');
+          location.reload();
+        } else {
+          alert('❌ ' + (data.message || 'Failed to remove product.'));
+        }
+      })
+      .catch(err => {
+        alert('Error: ' + err.message);
+      });
+    }
+  </script>
+</body>
+</html>

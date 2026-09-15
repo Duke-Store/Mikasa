@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace - Mikasa</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    const csrfToken = '<%= csrfToken %>';
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>📦 Marketplace</h1>
+
+    <div class="filter-bar">
+      <form action="/marketplace" method="GET" class="filter-form">
+        <select name="category" id="category-filter">
+          <option value="">All Categories</option>
+          <option value="Maps">Maps</option>
+          <option value="Games">Games</option>
+          <option value="Scripts">Scripts</option>
+          <option value="Models">Models</option>
+          <option value="UI / Textures">UI / Textures</option>
+          <option value="Audio">Audio</option>
+          <option value="Animation">Animation</option>
+          <option value="Services">Services</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" name="search" placeholder="Search products..." id="search-input">
+        <button type="submit" class="btn btn-primary">Filter</button>
+      </form>
+    </div>
+
+    <div class="product-grid" id="product-grid">
+      <% if (products && products.length > 0) { %>
+        <% products.forEach(product => { %>
+          <div class="product-card">
+            <h3><%= product.name %></h3>
+            <span class="badge <%= product.status === 'listed' ? 'badge-green' : product.status === 'sold' ? 'badge-red' : 'badge-yellow' %>">
+              <%= product.status %>
+            </span>
+            <p><strong>Seller:</strong> <%= product.sellerTag %></p>
+            <p><strong>Category:</strong> <%= product.category %></p>
+            <p><strong>Price:</strong> <%= product.price %></p>
+            <p><strong>Payment:</strong> <%= product.paymentMethod %></p>
+            <p><strong>Originality:</strong> <%= product.originalityStatus || 'unverified' %></p>
+            <p class="description"><%= product.description || 'No description' %></p>
+            <small>Listed: <%= new Date(product.createdAt).toLocaleDateString() %></small>
+            <div class="product-actions">
+              <button class="btn btn-success" onclick="purchaseProduct('<%= product.productId %>')">Purchase</button>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="empty-state">No products available in the marketplace yet.</p>
+      <% } %>
+    </div>
+
+    <div class="user-actions">
+      <a href="/marketplace/my-products" class="btn btn-secondary">My Products</a>
+      <% if (user) { %>
+        <a href="/auth/discord" class="btn btn-primary">Login to Sell</a>
+      <% } %>
+    </div>
+  </div>
+
+  <script>
+    function purchaseProduct(productId) {
+      if (!confirm('Are you sure you want to purchase this product?')) return;
+
+      fetch('/api/purchase-product', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken
+        },
+        body: JSON.stringify({ productId })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert('✅ Purchase confirmed! Check your DMs for payment instructions.');
+          location.reload();
+        } else {
+          alert('❌ ' + (data.message || 'Purchase failed.'));
+        }
+      })
+      .catch(err => {
+        alert('Error: ' + err.message);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('search-input');
+      const categorySelect = document.getElementById('category-filter');
+
+      if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            document.querySelector('.filter-form').submit();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

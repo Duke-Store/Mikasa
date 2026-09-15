@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Reviews - Mikasa</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    const csrfToken = '<%= csrfToken %>';
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>📋 Admin Review Queue</h1>
+
+    <div class="filter-bar">
+      <form action="/admin/reviews" method="GET" class="filter-form">
+        <select name="type" id="type-filter">
+          <option value="">All Types</option>
+          <option value="seller">Seller Submissions</option>
+          <option value="buyer">Buyer Requests</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Filter</button>
+      </form>
+    </div>
+
+    <div id="reviews-container">
+      <% if (reviews && reviews.length > 0) { %>
+        <% reviews.forEach(review => { %>
+          <div class="review-card <%= review.type === 'seller' ? 'review-seller' : 'review-buyer' %>">
+            <div class="review-header">
+              <h3>#<%= review.ticketNumber %> — <%= review.type === 'seller' ? 'Seller Submission' : 'Buyer Request' %></h3>
+              <span class="review-age">Submitted <%= Math.floor((Date.now() - new Date(review.submittedAt).getTime()) / 60000) %> minutes ago</span>
+            </div>
+            <div class="review-body">
+              <p><strong>User:</strong> <%= review.userTag %> (<%= review.userId %>)</p>
+              <p><strong>Status:</strong> <span class="badge <%= review.status === 'pending' ? 'badge-yellow' : review.status === 'accepted' ? 'badge-green' : 'badge-red' %>"><%= review.status %></span></p>
+              <% if (review.answers && review.answers.length > 0) { %>
+                <h4>Answers:</h4>
+                <% review.answers.forEach(answer => { %>
+                  <div class="answer-item">
+                    <strong><%= answer.question %>:</strong>
+                    <p><%= answer.answer %></p>
+                  </div>
+                <% }) %>
+              <% } %>
+              <% if (review.aiReport) { %>
+                <h4>AI Analysis:</h4>
+                <p><strong>Score:</strong> <%= review.aiReport.finalScore || review.aiReport.viabilityScore || 'N/A' %>/10</p>
+                <p><strong>Classification:</strong> <%= review.aiReport.classification || review.aiReport.complexity || 'N/A' %></p>
+                <% if (review.aiReport.strengths && review.aiReport.strengths.length > 0) { %>
+                  <p><strong>Strengths:</strong></p>
+                  <ul>
+                    <% review.aiReport.strengths.forEach(s => { %>
+                      <li><%= s %></li>
+                    <% }) %>
+                  </ul>
+                <% } %>
+                <% if (review.aiReport.weaknesses && review.aiReport.weaknesses.length > 0) { %>
+                  <p><strong>Weaknesses:</strong></p>
+                  <ul>
+                    <% review.aiReport.weaknesses.forEach(w => { %>
+                      <li><%= w %></li>
+                    <% }) %>
+                  </ul>
+                <% } %>
+              <% } %>
+              <% if (review.adminResponse) { %>
+                <div class="admin-response">
+                  <h4>Admin Response:</h4>
+                  <p><%= review.adminResponse %></p>
+                  <small>Resolved by <%= review.adminId %> at <%= new Date(review.resolvedAt).toLocaleString() %></small>
+                </div>
+              <% } %>
+            </div>
+            <div class="review-actions">
+              <% if (review.status === 'pending') { %>
+                <button class="btn btn-success" onclick="acceptReview('<%= review.requestId %>')">✅ Accept</button>
+                <button class="btn btn-danger" onclick="declineReview('<%= review.requestId %>')">❌ Decline</button>
+              <% } %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="empty-state">No reviews in the queue.</p>
+      <% } %>
+    </div>
+  </div>
+
+  <script>
+    function acceptReview(requestId) {
+      if (!confirm('Accept this review?')) return;
+      fetch('/api/review-action', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken
+        },
+        body: JSON.stringify({ requestId, action: 'accept' })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert('✅ Review accepted.');
+          location.reload();
+        } else {
+          alert('❌ ' + (data.message || 'Action failed.'));
+        }
+      });
+    }
+
+    function declineReview(requestId) {
+      const reason = prompt('Enter the reason for declining:');
+      if (!reason) return;
+
+      fetch('/api/review-action', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken
+        },
+        body: JSON.stringify({ requestId, action: 'decline', reason })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert('❌ Review declined.');
+          location.reload();
+        } else {
+          alert('❌ ' + (data.message || 'Action failed.'));
+        }
+      });
+    }
+  </script>
+</body>
+</html>

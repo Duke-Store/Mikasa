@@ -406,6 +406,127 @@ app.post('/verify', async (req, res) => {
     }
 });
 
+// Marketplace web routes
+app.get('/marketplace', (req, res) => {
+  const { category, search } = req.query;
+  let products;
+
+  if (search) {
+    products = require('./marketplace/marketplace').searchProducts(search);
+  } else {
+    products = require('./marketplace/marketplace').listAllProducts(category || null);
+  }
+
+  res.render('marketplace/index', {
+    products: products || [],
+    user: req.user || null,
+    csrfToken: req.session?.csrfToken || ''
+  });
+});
+
+app.get('/marketplace/my-products', (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/auth/discord');
+  }
+
+  const products = require('./marketplace/marketplace').getSellerProducts(req.user.id);
+  res.render('marketplace/my-products', {
+    products: products || [],
+    user: req.user,
+    csrfToken: req.session?.csrfToken || ''
+  });
+});
+
+app.get('/admin/reviews', (req, res) => {
+  if (!req.isAuthenticated() || !isAdmin(req.user.id)) {
+    return res.status(403).send('Unauthorized');
+  }
+
+  const { type } = req.query;
+  const pending = require('./adminReviewTimer').getPendingReviews();
+  let reviews = pending;
+
+  if (type) {
+    reviews = pending.filter(r => r.type === type);
+  }
+
+  res.render('admin/reviews', {
+    reviews: reviews || [],
+    user: req.user,
+    csrfToken: req.session?.csrfToken || ''
+  });
+});
+
+// API endpoints for marketplace
+app.post('/api/purchase-product', (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+
+  const { productId } = req.body;
+  if (!productId) {
+    return res.status(400).json({ success: false, message: 'Product ID required' });
+  }
+
+  try {
+    const result = require('./marketplace/marketplace').purchaseProduct(productId, req.user.id, req.user.username);
+    if (result) {
+      res.json({ success: true, message: 'Purchase confirmed' });
+    } else {
+      res.status(400).json({ success: false, message: 'Product not available or already sold' });
+    }
+  } catch (err) {
+    console.error('Purchase error:', err);
+    res.status(500).json({ success: false, message: 'Internal error' });
+  }
+});
+
+app.post('/api/remove-product', (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+
+  const { productId } = req.body;
+  if (!productId) {
+    return res.status(400).json({ success: false, message: 'Product ID required' });
+  }
+
+  try {
+    const success = require('./marketplace/marketplace').removeProduct(productId, req.user.id);
+    if (success) {
+      res.json({ success: true, message: 'Product removed' });
+    } else {
+      res.status(404).json({ success: false, message: 'Product not found' });
+    }
+  } catch (err) {
+    console.error('Remove error:', err);
+    res.status(500).json({ success: false, message: 'Internal error' });
+  }
+});
+
+app.post('/api/review-action', (req, res) => {
+  if (!req.isAuthenticated() || !isAdmin(req.user.id)) {
+    return res.status(403).json({ success: false, message: 'Unauthorized' });
+  }
+
+  const { requestId, action, reason } = req.body;
+  if (!requestId || !action) {
+    return res.status(400).json({ success: false, message: 'Missing parameters' });
+  }
+
+  try {
+    const success = require('./adminReviewTimer').acceptReview(requestId, req.user.id, action, reason || '');
+    if (success) {
+      res.json({ success: true, message: 'Review action processed' });
+    } else {
+      res.status(404).json({ success: false, message: 'Review not found' });
+    }
+  } catch (err) {
+    console.error('Review action error:', err);
+    res.status(500).json({ success: false, message: 'Internal error' });
+  }
+});
+
 // Use the port provided by the hosting panel
 const pterodactylPort = process.env.SERVER_PORT || 3000;
 
