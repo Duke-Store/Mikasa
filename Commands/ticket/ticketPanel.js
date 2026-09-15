@@ -68,8 +68,12 @@ module.exports = {
 								.setEmoji("1529181582089257162"),
 							new StringSelectMenuOptionBuilder()
 								.setLabel("Purchase A Service")
-								.setValue("buy_req")
+								.setValue("buy")
 								.setEmoji("1529182913592295584"),
+							new StringSelectMenuOptionBuilder()
+								.setLabel("Request a Project / Buy")
+								.setValue("buy_req")
+								.setEmoji("1529183052239077487"),
 							new StringSelectMenuOptionBuilder()
 								.setLabel("Sell a Project / Product")
 								.setValue("sell")
