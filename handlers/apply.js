@@ -7,8 +7,8 @@ const { isStaffMember } = require('../utils');
 const ticketConfig = require('../ticket-config.json');
 const { loadProjects, saveProjects } = require('../db');
 const config = require('../config');
-const { setSession, showCurrentQuestion } = require('./questionFlow');
-const { addToQueue, removeReview } = require('./adminReviewTimer');
+const questionFlow = require('../questionFlow');
+const { addToQueue, removeReview } = require('../adminReviewTimer');
 const { evaluateSellerProject, evaluateBuyerProject } = require('../aiAgents/projectEvaluator');
 const { isTrusted } = require('../trustedClients');
 const path = require('path');
@@ -595,4 +595,6 @@ module.exports = {
   handleAdminAcceptBuyer,
   handleAdminDeclineBuyer,
   handleAdminDeclineBuyerReason,
+  // Re-export dev matching functions
+  ...require('./devMatch'),
 };
