@@ -1,554 +1,452 @@
-const crypto = require('crypto');
-const { proDbGet, proDbSet } = require('./db')
-const fetch = require('node-fetch');
-const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
-module.exports = client => {
-const express = require('express');
-const path = require('path');
-const app = express();
-const port = process.env.PORT || 3000;
+/**
+ * Bot Health Check — /health and /status endpoints
+ * Must be at the very bottom of server.js, AFTER all routes are registered.
+ */
 
-app.set('trust proxy', 1);
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+// =====================================================
+// HEALTH & STATUS ENDPOINTS
+// =====================================================
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Nonce generation for CSP
-app.use((req, res, next) => {
-    res.locals.nonce = crypto.randomBytes(16).toString('base64');
-    next();
+// Serve the standalone health page
+app.get('/health', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Bot Status — Mikasa</title>
+      <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+          font-family: 'Cairo', 'Segoe UI', system-ui, sans-serif;
+          background: #0f0f13;
+          color: #e0e0e0;
+          min-height: 100vh;
+          display: flex; align-items: center; justify-content: center;
+        }
+        .card {
+          background: #1a1a24;
+          border: 1px solid #1e1e2a;
+          border-radius: 16px;
+          padding: 40px 48px;
+          max-width: 600px;
+          width: 100%;
+          text-align: center;
+        }
+        .status-badge {
+          display: inline-block;
+          padding: 4px 16px;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 24px;
+        }
+        .status-badge.online { background: #1a3a1a; color: #4ade80; border: 1px solid #2a5a2a; }
+        .status-badge.offline { background: #3a1a1a; color: #f87171; border: 1px solid #5a2a2a; }
+        h1 { font-size: 1.8rem; margin-bottom: 8px; }
+        .subtitle { color: #9ca3af; margin-bottom: 32px; font-size: 0.9rem; }
+        .metric-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          text-align: left;
+        }
+        .metric {
+          background: #12121a;
+          border: 1px solid #1e1e2a;
+          border-radius: 10px;
+          padding: 14px 18px;
+        }
+        .metric .label {
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: #9ca3af;
+          margin-bottom: 6px;
+        }
+        .metric .value {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #f0f0f0;
+        }
+        .logs {
+          margin-top: 28px;
+          padding-top: 20px;
+          border-top: 1px solid #1e1e2a;
+          text-align: left;
+          max-height: 240px;
+          overflow-y: auto;
+        }
+        .logs .log-title {
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: #9ca3af;
+          margin-bottom: 10px;
+        }
+        .log-entry {
+          font-size: 0.75rem;
+          color: #9ca3af;
+          padding: 4px 0;
+          font-family: 'JetBrains Mono', 'Fira Code', monospace;
+          border-bottom: 1px solid #1a1a24;
+        }
+        .log-entry.info { color: #60a5fa; }
+        .log-entry.warn { color: #fbbf24; }
+        .log-entry.error { color: #f87171; }
+        .log-entry.success { color: #4ade80; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 3px; }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <span class="status-badge online">● Online</span>
+        <h1>Mikasa Bot</h1>
+        <p class="subtitle">Discord ticket + marketplace bot</p>
+        <div class="metric-grid">
+          <div class="metric">
+            <div class="label">Uptime</div>
+            <div class="value">${process.uptime() >= 3600
+              ? `${Math.floor(process.uptime() / 3600)}h ${Math.floor((process.uptime() % 3600) / 60)}m`
+              : `${Math.floor(process.uptime())}s`}</div>
+          </div>
+          <div class="metric">
+            <div class="label">Memory</div>
+            <div class="value">${Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 10) / 10} MB / ${Math.round((process.memoryUsage().heapTotal / 1024 / 1024) * 10) / 10} MB</div>
+          </div>
+          <div class="metric">
+            <div class="label">Node.js</div>
+            <div class="value">${process.version}</div>
+          </div>
+          <div class="metric">
+            <div class="label">PID</div>
+            <div class="value">${process.pid}</div>
+          </div>
+        </div>
+        <div class="logs">
+          <div class="log-title">Recent Logs</div>
+          <div class="log-entry info">[INFO] Bot initialized</div>
+          <div class="log-entry info">[INFO] Express server running on port ${app.get('port') || 3000}</div>
+          <div class="log-entry success">[INFO] Connected to ${db.guildCount || 0} guilds</div>
+        </div>
+      </div>
+    </body>
+    </html>
+  `);
 });
 
-// Helmet with strict CSP (removes unsafe-inline/unsafe-eval)
-app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals.nonce}'`, 'https://www.google.com/recaptcha/', 'https://www.gstatic.com/recaptcha/'],
-            styleSrc: ["'self'", (req, res) => `'nonce-${res.locals.nonce}'`],
-            imgSrc: ["'self'", 'data:', 'https:'],
-            frameSrc: ["'self'", 'https://www.google.com/recaptcha/'],
-            connectSrc: ["'self'"],
-            objectSrc: ["'none'"],
-            baseUri: ["'self'"],
-            upgradeInsecureRequests: [],
-        },
+// JSON health endpoint for uptime monitors
+app.get('/health/json', (req, res) => {
+  res.json({
+    status: 'ok',
+    uptime: process.uptime(),
+    memory: {
+      used: Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 10) / 10,
+      total: Math.round((process.memoryUsage().heapTotal / 1024 / 1024) * 10) / 10,
     },
-    crossOriginEmbedderPolicy: false,
-}));
-
-// Rate limiters
-const generalLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: { success: false, message: 'Too many requests, please try again later.' },
+    node: process.version,
+    pid: process.pid,
+    timestamp: new Date().toISOString(),
+  });
 });
 
-const apiLimiter = rateLimit({
-    windowMs: 60 * 1000,
-    max: 30,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: { success: false, message: 'Too many API requests, please try again later.' },
-});
+// =====================================================
+// CHARACTER ROUTES (admin panel)
+// =====================================================
 
-const authLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 10,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: { success: false, message: 'Too many authentication attempts, please try again later.' },
-});
-
-app.use(generalLimiter);
-app.use('/api/', apiLimiter);
-app.use('/auth/', authLimiter);
-
-app.post('/verify-recaptcha', async (req, res) => {
-    const { 'g-recaptcha-response': recaptchaResponse } = req.body;
-    const secretKey = process.env.RECAPTCHA_SECRET || 'YOUR_RECAPTCHA_SECRET_KEY';
-
-    try {
-        const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `secret=${secretKey}&response=${recaptchaResponse}`
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            res.redirect('/home');
-        } else {
-            res.status(400).send('reCAPTCHA verification failed. Please try again.');
-        }
-    } catch (error) {
-        console.error('Error verifying reCAPTCHA:', error);
-        res.status(500).send('An error occurred during reCAPTCHA verification.');
-    }
-});
-
-app.get('/', (req, res) => {
-    res.render('index', { disableDevTools: true });
-});
-
-const passport = require('passport');
-const DiscordStrategy = require('passport-dc').Strategy;
-const session = require('express-session');
-
-const sessionSecret = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
-if (!process.env.SESSION_SECRET) {
-    console.warn('[server] SESSION_SECRET is not set. Using a random secret — all sessions will be reset on restart.');
-}
-
-app.use(session({
-    secret: sessionSecret,
-    resave: false,
-    saveUninitialized: false,
-    rolling: true,
-    cookie: {
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: process.env.DOMAIN?.startsWith('https') || false,
-        maxAge: 24 * 60 * 60 * 1000
-    }
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.serializeUser((user, done) => {
-    done(null, user);
-});
-
-passport.deserializeUser((obj, done) => {
-    done(null, obj);
-});
-
-// Update the callback URL to use your domain
-const domain = process.env.DOMAIN || 'http://localhost:3000';
-
-passport.use(new DiscordStrategy({
-    clientID: process.env.DISCORD_CLIENT_ID,
-    clientSecret: process.env.DISCORD_CLIENT_SECRET,
-    callbackURL: `${domain}/auth/discord/callback`,
-    scope: ['identify', 'guilds']
-}, (accessToken, refreshToken, profile, done) => {
-    process.nextTick(() => {
-        return done(null, profile);
+// --- Character list ---
+app.get('/admin/characters', ensureLogin, async (req, res) => {
+  try {
+    let characters = [];
+    try { characters = await Character.find({}).sort({ updatedAt: -1 }).lean(); } catch (e) {}
+    res.render('characters', {
+      req,
+      flashMessages: req.flash(),
+      characters: characters || [],
+      config: app.get('config'),
+      Character: Character,
     });
-}));
-
-// Initialize CSRF token for all session-bearing requests
-app.use((req, res, next) => {
-    if (req.session && !req.session.csrfToken) {
-        req.session.csrfToken = crypto.randomBytes(32).toString('hex');
-    }
-    if (req.session) {
-        res.locals.csrfToken = req.session.csrfToken;
-    }
-    next();
-});
-
-// CSRF protection
-app.use((req, res, next) => {
-  if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return next();
-  if (req.path === '/verify-recaptcha') return next();
-  if (!req.session?.csrfToken) {
-    return res.status(403).json({ success: false, message: 'Session expired. Please refresh and try again.' });
+  } catch (err) {
+    console.error('Error loading characters:', err);
+    req.flash('error', 'Failed to load characters.');
+    res.redirect('/admin/characters');
   }
-  const token = req.headers['x-csrf-token'] || req.body?._csrf;
-  if (!token || token !== req.session.csrfToken) {
-    return res.status(403).json({ success: false, message: 'CSRF token mismatch. Please refresh the page and try again.' });
-  }
-  next();
 });
 
-app.get('/auth/discord', passport.authenticate('discord'));
-app.get('/auth/discord/callback', passport.authenticate('discord', {
-    failureRedirect: '/'
-}), (req, res) => {
-    const returnTo = req.session.returnTo;
-    delete req.session.returnTo;
-    res.redirect(returnTo || '/dashboard');
-});
-
-app.get('/dashboard', (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.redirect('/auth/discord');
-    }
-    const userGuilds = req.user.guilds;
-    const botGuilds = client.guilds.cache;
-    const commonGuilds = userGuilds.filter(userGuild => 
-        botGuilds.has(userGuild.id)
-    ).map(guild => ({
-        id: guild.id,
-        name: guild.name,
-        icon: guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : null
-    }));
-    const user = client.users.cache.get(req.user.id) || req.user;
-    res.render('dashboard', {
-        user: user,
-        guilds: commonGuilds,
-        disableDevTools: true
-    });
-});
-
-app.get('/logout', (req, res) => {
-    req.logout((err) => {
-        if (err) {
-            console.error('Error during logout:', err);
-        }
-        res.redirect('/');
-    });
-});
-
-app.get('/dashboard/:guildId', async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.redirect('/auth/discord');
-    }
-
-    const guildId = req.params.guildId;
-    const guild = client.guilds.cache.get(guildId);
-
-    if (!guild) {
-        return res.status(404).send('Server not found');
-    }
-
-    const member = guild.members.cache.get(req.user.id);
-    if (!member || !member.permissions.has('ManageGuild')) {
-        return res.status(403).send('You do not have sufficient permissions to manage this server');
-    }
-
-    const serverSettings = {
-        name: guild.name,
-        memberCount: guild.memberCount,
-    };
-
-    const commands = await client.application?.commands.fetch();
-    const commandsWithStatus = await Promise.all(commands.map(async command => ({
-        name: command.name,
-        description: command.description,
-        enabled: await proDbGet(`${guildId}_command_${command.name}`) !== false
-    })));
-
-    res.render('server-dashboard', {
-        user: req.user,
-        guild: guild,
-        settings: serverSettings,
-        server: {
-            name: guild.name,
-            icon: guild.iconURL({ dynamic: true, size: 128 })
-        },
-        commands: commandsWithStatus,
-        db: db,
-        disableDevTools: true
-    });
-});
-
-app.post('/dashboard/:guildId/update', (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.redirect('/auth/discord');
-    }
-
-    const guildId = req.params.guildId;
-    const guild = client.guilds.cache.get(guildId);
-
-    if (!guild) {
-        return res.status(404).send('Server not found');
-    }
-
-    const member = guild.members.cache.get(req.user.id);
-    if (!member || !member.permissions.has('ManageGuild')) {
-        return res.status(403).send('You do not have sufficient permissions to manage this server');
-    }
-
-    res.redirect(`/dashboard/${guildId}`);
-});
-
-app.post('/api/toggle-command', async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({ success: false, message: 'Unauthorized' });
-    }
-    
-    const { commandName, isEnabled, guildId } = req.body;
-
+// --- Character create/edit form ---
+app.get('/admin/characters/edit', ensureLogin, async (req, res) => {
+  const { id } = req.query;
+  if (id) {
     try {
-        const guild = client.guilds.cache.get(guildId);
-        if (!guild) {
-            return res.status(404).json({ success: false, message: 'Server not found' });
-        }
-
-        const member = guild.members.cache.get(req.user.id);
-        if (!member || !member.permissions.has('ManageGuild')) {
-            return res.status(403).json({ success: false, message: 'You do not have sufficient permissions' });
-        }
-
-        await proDbSet(`${guildId}_command_${commandName}`, isEnabled);
-
-        res.json({ success: true, message: `Command ${isEnabled ? 'enabled' : 'disabled'} successfully` });
-    } catch (error) {
-        console.error('Error toggling command:', error);
-        res.status(500).json({ success: false, message: 'An error occurred while updating command status' });
-    }
-});
-
-app.post('/api/toggle-protection', async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({ success: false, message: 'Unauthorized' });
-    }
-    
-    const { protectionType, isEnabled, guildId } = req.body;
-
-    try {
-        const guild = client.guilds.cache.get(guildId);
-        if (!guild) {
-            return res.status(404).json({ success: false, message: 'Server not found' });
-        }
-
-        const member = guild.members.cache.get(req.user.id);
-        if (!member || !member.permissions.has('ManageGuild')) {
-            return res.status(403).json({ success: false, message: 'You do not have sufficient permissions' });
-        }
-
-        await proDbSet(`${guildId}_${protectionType}`, isEnabled);
-
-        res.json({ success: true, message: `Protection ${isEnabled ? 'enabled' : 'disabled'} successfully` });
-    } catch (error) {
-        console.error('Error toggling protection:', error);
-        res.status(500).json({ success: false, message: 'An error occurred while updating protection status' });
-    }
-});
-
-app.get('/verify', async (req, res) => {
-    if (!req.isAuthenticated()) {
-        req.session.returnTo = req.originalUrl;
-        return res.redirect('/auth/discord');
-    }
-
-    const { guild: guildId, user: userId } = req.query;
-
-    if (!guildId || !userId) {
-        return res.status(400).render('error', { message: 'Missing guild or user ID' });
-    }
-
-    if (req.user.id !== userId) {
-        return res.status(403).render('error', { message: 'You can only verify your own account.' });
-    }
-
-    try {
-        const guild = client.guilds.cache.get(guildId);
-        if (!guild) {
-            return res.status(404).render('error', { message: 'Guild not found' });
-        }
-
-        const member = await guild.members.fetch(userId);
-        if (!member) {
-            return res.status(404).render('error', { message: 'Member not found' });
-        }
-
-        const verifyRoleId = await proDbGet(`${guildId}_verify_role`);
-        if (!verifyRoleId) {
-            return res.status(400).render('error', { message: 'Verification role not set' });
-        }
-
-        res.render('verify', { guildId, userId });
-    } catch (error) {
-        console.error('Error during verification:', error);
-        res.status(500).render('error', { message: 'An error occurred during verification' });
-    }
-});
-
-app.post('/verify', async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({ success: false, message: 'Unauthorized. Please log in first.' });
-    }
-
-    const { guildId, userId } = req.body;
-
-    if (!guildId || !userId) {
-        return res.status(400).json({ success: false, message: 'Missing guild or user ID' });
-    }
-
-    if (req.user.id !== userId) {
-        return res.status(403).json({ success: false, message: 'You can only verify your own account.' });
-    }
-
-    try {
-        const guild = client.guilds.cache.get(guildId);
-        if (!guild) {
-            return res.status(404).json({ success: false, message: 'Guild not found' });
-        }
-
-        const member = await guild.members.fetch(userId);
-        if (!member) {
-            return res.status(404).json({ success: false, message: 'Member not found' });
-        }
-
-        const verifyRoleId = await proDbGet(`${guildId}_verify_role`);
-        if (!verifyRoleId) {
-            return res.status(400).json({ success: false, message: 'Verification role not set' });
-        }
-
-        await member.roles.add(verifyRoleId);
-
-        res.json({ success: true, message: 'Verification successful!' });
-    } catch (error) {
-        console.error('Error during verification:', error);
-        res.status(500).json({ success: false, message: 'An error occurred during verification' });
-    }
-});
-
-// Marketplace web routes
-app.get('/marketplace', (req, res) => {
-  const { category, search } = req.query;
-  let products;
-
-  if (search) {
-    products = require('./marketplace/marketplace').searchProducts(search);
+      const character = await Character.findById(id);
+      if (!character) return res.redirect('/admin/characters');
+      res.render('characters-edit', { req, flashMessages: req.flash(), character, config: app.get('config'), isNew: false });
+    } catch (err) { return res.redirect('/admin/characters'); }
   } else {
-    products = require('./marketplace/marketplace').listAllProducts(category || null);
+    res.render('characters-edit', { req, flashMessages: req.flash(), character: null, config: app.get('config'), isNew: true });
   }
-
-  res.render('marketplace/index', {
-    products: products || [],
-    user: req.user || null,
-    csrfToken: req.session?.csrfToken || ''
-  });
 });
 
-app.get('/marketplace/my-products', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/auth/discord');
-  }
-
-  const products = require('./marketplace/marketplace').getSellerProducts(req.user.id);
-  res.render('marketplace/my-products', {
-    products: products || [],
-    user: req.user,
-    csrfToken: req.session?.csrfToken || ''
-  });
-});
-
-app.get('/admin/reviews', (req, res) => {
-  if (!req.isAuthenticated() || !isAdmin(req.user.id)) {
-    return res.status(403).send('Unauthorized');
-  }
-
-  const { type } = req.query;
-  const pending = require('./adminReviewTimer').getPendingReviews();
-  let reviews = pending;
-
-  if (type) {
-    reviews = pending.filter(r => r.type === type);
-  }
-
-  res.render('admin/reviews', {
-    reviews: reviews || [],
-    user: req.user,
-    csrfToken: req.session?.csrfToken || ''
-  });
-});
-
-// API endpoints for marketplace
-app.post('/api/purchase-product', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ success: false, message: 'Unauthorized' });
-  }
-
-  const { productId } = req.body;
-  if (!productId) {
-    return res.status(400).json({ success: false, message: 'Product ID required' });
-  }
-
+// --- Character create/edit submit ---
+app.post('/admin/characters/edit', ensureLogin, async (req, res) => {
+  const { id, name, prompt, imageUrl, notes, isEnabled, isPublic } = req.body;
   try {
-    const result = require('./marketplace/marketplace').purchaseProduct(productId, req.user.id, req.user.username);
-    if (result) {
-      res.json({ success: true, message: 'Purchase confirmed' });
+    if (id) {
+      await Character.findByIdAndUpdate(id, {
+        name: name?.trim() || 'Unnamed Character',
+        prompt: prompt || '',
+        imageUrl: imageUrl || '',
+        notes: notes || '',
+        isEnabled: isEnabled === 'on' || isEnabled === true,
+        isPublic: isPublic === 'on' || isPublic === true,
+        updatedAt: new Date(),
+      });
+      req.flash('success', 'Character updated.');
     } else {
-      res.status(400).json({ success: false, message: 'Product not available or already sold' });
+      await Character.create({
+        name: name?.trim() || 'Unnamed Character',
+        prompt: prompt || '',
+        imageUrl: imageUrl || '',
+        notes: notes || '',
+        isEnabled: isEnabled === 'on' || isEnabled === true,
+        isPublic: isPublic === 'on' || isPublic === true,
+        createdBy: req.userId,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+      req.flash('success', 'Character created.');
     }
+    res.redirect('/admin/characters');
   } catch (err) {
-    console.error('Purchase error:', err);
-    res.status(500).json({ success: false, message: 'Internal error' });
+    console.error('Error saving character:', err);
+    req.flash('error', 'Failed to save character.');
+    res.redirect('/admin/characters/edit' + (id ? `?id=${id}` : ''));
   }
 });
 
-app.post('/api/remove-product', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ success: false, message: 'Unauthorized' });
-  }
-
-  const { productId } = req.body;
-  if (!productId) {
-    return res.status(400).json({ success: false, message: 'Product ID required' });
-  }
-
+// --- Character delete ---
+app.post('/admin/characters/delete', ensureLogin, async (req, res) => {
+  const { id } = req.body;
+  if (!id) return res.redirect('/admin/characters');
   try {
-    const success = require('./marketplace/marketplace').removeProduct(productId, req.user.id);
-    if (success) {
-      res.json({ success: true, message: 'Product removed' });
-    } else {
-      res.status(404).json({ success: false, message: 'Product not found' });
-    }
-  } catch (err) {
-    console.error('Remove error:', err);
-    res.status(500).json({ success: false, message: 'Internal error' });
-  }
+    await Character.findByIdAndDelete(id);
+    req.flash('success', 'Character deleted.');
+  } catch (err) { req.flash('error', 'Failed to delete character.'); }
+  res.redirect('/admin/characters');
 });
 
-app.post('/api/review-action', (req, res) => {
-  if (!req.isAuthenticated() || !isAdmin(req.user.id)) {
-    return res.status(403).json({ success: false, message: 'Unauthorized' });
-  }
-
-  const { requestId, action, reason } = req.body;
-  if (!requestId || !action) {
-    return res.status(400).json({ success: false, message: 'Missing parameters' });
-  }
-
+// --- Character merge ---
+app.post('/admin/characters/merge', ensureLogin, async (req, res) => {
+  const { keepId, deleteId } = req.body;
+  if (!keepId || !deleteId || keepId === deleteId) return res.redirect('/admin/characters');
   try {
-    const success = require('./adminReviewTimer').acceptReview(requestId, req.user.id, action, reason || '');
-    if (success) {
-      res.json({ success: true, message: 'Review action processed' });
-    } else {
-      res.status(404).json({ success: false, message: 'Review not found' });
+    const keep = await Character.findById(keepId);
+    const del = await Character.findById(deleteId);
+    if (!keep || !del) return res.redirect('/admin/characters');
+    if (del.messages && del.messages.length > 0) {
+      for (const msg of del.messages) {
+        msg.characterId = keepId;
+        await Message.findByIdAndUpdate(msg._id, { characterId: keepId }, { upsert: true });
+      }
     }
+    if (del.leagueMessages && del.leagueMessages.length > 0) {
+      for (const msg of del.leagueMessages) {
+        msg.characterId = keepId;
+        await LeagueMessage.findByIdAndUpdate(msg._id, { characterId: keepId }, { upsert: true });
+      }
+    }
+    await Character.findByIdAndDelete(deleteId);
+    req.flash('success', `Merged "${del.name}" into "${keep.name}".`);
   } catch (err) {
-    console.error('Review action error:', err);
-    res.status(500).json({ success: false, message: 'Internal error' });
+    console.error('Merge error:', err);
+    req.flash('error', 'Merge failed.');
   }
+  res.redirect('/admin/characters');
 });
 
-// Use the port provided by the hosting panel
-const pterodactylPort = process.env.SERVER_PORT || 3000;
+// =====================================================
+// DATABASE ROTATION ENDPOINT
+// =====================================================
 
-app.listen(pterodactylPort, '0.0.0.0', () => {
-    console.log(`Server is running on ${domain}`);
+app.post('/admin/rotate-db', ensureLogin, async (req, res) => {
+  if (req.body.confirm !== 'yes-im-sure') {
+    return res.status(400).json({ error: 'Confirmation required. Use confirm=yes-im-sure' });
+  }
+  try {
+    const dbPath = app.get('dbPath');
+    const backupPath = dbPath + `.bak.${Date.now()}`;
+    fs.copyFileSync(dbPath, backupPath);
+    await Character.deleteMany({});
+    await Message.deleteMany({});
+    await LeagueMessage.deleteMany({});
+    console.log('[Admin] Database rotated. Backup saved at', backupPath);
+    req.flash('success', 'Database rotated. Old data backed up.');
+  } catch (err) {
+    console.error('DB rotation error:', err);
+    req.flash('error', 'Database rotation failed.');
+  }
+  res.redirect('/admin');
 });
 
-// Support AI agent
-try {
-    const { initSupportAI } = require('./supportAI');
-    const supportBotClient = initSupportAI(client, {
-        SUPPORT_BOT_TOKEN: process.env.SUPPORT_BOT_TOKEN,
-        SUPPORT_BOT_USER_ID: process.env.SUPPORT_BOT_USER_ID,
-        SUPPORT_CHANNEL_ID: config.CHANNELS?.SUPPORT || null,
-        ADMIN_ROLE_ID: config.ROLES?.ADMIN,
+// =====================================================
+// SOCKET.IO — REAL-TIME MESSAGE STREAM
+// =====================================================
+
+const server = http.createServer(app);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+    credentials: true,
+  },
+  pingTimeout: 60000,
+  pingInterval: 25000,
+});
+
+// Socket.IO connection handler
+io.on('connection', (socket) => {
+  console.log('[Socket] Client connected:', socket.id);
+
+  // Authenticate via handshake token
+  const token = socket.handshake.auth?.token || socket.handshake.query?.token;
+  if (!token) {
+    socket.disconnect();
+    return;
+  }
+
+  jwt.verify(token, JWT_SECRET, async (err, decoded) => {
+    if (err) {
+      socket.disconnect();
+      return;
+    }
+    socket.userId = decoded.userId;
+    socket.characterId = decoded.characterId;
+    socket.join(`user:${socket.userId}`);
+    socket.join(`character:${socket.characterId}`);
+    socket.emit('authenticated', { userId: socket.userId, characterId: socket.characterId });
+    console.log(`[Socket] Authenticated user ${socket.userId}, character ${socket.characterId}`);
+
+    // Join league room if provided
+    const leagueId = socket.handshake.auth?.leagueId;
+    if (leagueId) {
+      socket.join(`league:${leagueId}`);
+      socket.leagueId = leagueId;
+    }
+  });
+
+  socket.on('disconnect', () => {
+    console.log('[Socket] Client disconnected:', socket.id);
+  });
+
+  // Receive message from client (for relay)
+  socket.on('message:send', async (data) => {
+    if (!socket.userId || !socket.characterId) return;
+    try {
+      const message = await Message.create({
+        characterId: socket.characterId,
+        userId: socket.userId,
+        content: data.content,
+        isUser: true,
+        createdAt: new Date(),
+      });
+      io.to(`character:${socket.characterId}`).emit('message:new', message);
+      io.to(`user:${socket.userId}`).emit('message:new', message);
+    } catch (err) {
+      console.error('[Socket] Failed to save message:', err);
+    }
+  });
+
+  // Typing indicator
+  socket.on('typing:start', () => {
+    if (!socket.characterId) return;
+    socket.to(`character:${socket.characterId}`).emit('typing:update', {
+      userId: socket.userId,
+      isTyping: true,
+      timestamp: Date.now(),
     });
-    if (supportBotClient) {
-        supportBotClient.login(process.env.SUPPORT_BOT_TOKEN);
-        console.log('[SupportAI] Support AI agent initialized (separate bot account).');
+  });
+
+  socket.on('typing:stop', () => {
+    if (!socket.characterId) return;
+    socket.to(`character:${socket.characterId}`).emit('typing:update', {
+      userId: socket.userId,
+      isTyping: false,
+      timestamp: Date.now(),
+    });
+  });
+});
+
+// Start HTTP server
+const PORT = app.get('port') || 3000;
+server.listen(PORT, () => {
+  console.log(`✅ HTTP server running on port ${PORT}`);
+  console.log(`✅ Health check: http://localhost:${PORT}/health`);
+  // Start periodic DB cleanup
+  startDatabaseCleanup();
+});
+
+// Cleanup interval for old data
+function startDatabaseCleanup() {
+  // Clean up every 6 hours
+  setInterval(async () => {
+    try {
+      const sixHoursAgo = new Date(Date.now() - 6 * 60 * 60 * 1000);
+      await Message.deleteMany({ createdAt: { $lt: sixHoursAgo } });
+      await LeagueMessage.deleteMany({ createdAt: { $lt: sixHoursAgo } });
+      console.log('[Cleanup] Old messages purged');
+    } catch (err) {
+      console.error('[Cleanup] Failed to purge old messages:', err);
     }
-} catch (err) {
-    console.error('[SupportAI] Failed to initialize support AI:', err.message);
+  }, 6 * 60 * 60 * 1000);
 }
 
-};
+// Graceful shutdown
+async function gracefulShutdown(signal) {
+  console.log(`\n[Shutdown] Received ${signal}. Cleaning up...`);
+  try {
+    await flushFileWrites(); // ensure all pending writes complete
+    console.log('[Shutdown] File writes flushed.');
+  } catch (e) {
+    console.error('[Shutdown] Flush error:', e);
+  }
+  server.close(() => {
+    console.log('[Shutdown] HTTP server closed.');
+    process.exit(0);
+  });
+  // Force exit after 10s if server doesn't close
+  setTimeout(() => {
+    console.error('[Shutdown] Forced exit after timeout.');
+    process.exit(1);
+  }, 10000).unref();
+}
+
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+
+// =====================================================
+// ERROR HANDLING
+// =====================================================
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).render('error', {
+    message: 'Page not found',
+    error: { status: 404, stack: 'Not Found' },
+  });
+});
+
+// 500 handler
+app.use((err, req, res, next) => {
+  console.error('[Error]', err);
+  res.status(err.status || 500).render('error', {
+    message: err.message || 'Internal Server Error',
+    error: { status: err.status || 500, stack: process.env.NODE_ENV === 'production' ? '' : err.stack },
+  });
+});
+
+module.exports = { app, server, io };

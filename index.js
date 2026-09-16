@@ -38,6 +38,8 @@ const { loadGiveaways } = require('./giveaway');
 const questionFlow = require('./questionFlow');
 const projectTicket = require('./projectTicket');
 const applySystem = require('./applySystem');
+const ticketHandler = require('./handlers/ticket');
+const applyHandler = require('./handlers/apply');
 const { saveProjects } = require('./db');
 const idleSystem = require('./idleSystem');
 const { startMonitoring } = require('./ratingSystem/monitor');
@@ -349,46 +351,43 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
     // === NEW: Project type select ===
     if (interaction.isStringSelectMenu() && interaction.customId === 'project_type_select') {
-      await projectTicket.handleProjectTypeSelect(interaction, client);
+      await ticketHandler.handleProjectTypeSelect(interaction, client);
       return;
     }
 
     // === NEW: Project accept ===
     if (interaction.isButton() && interaction.customId.startsWith('accept_project_')) {
-      await projectTicket.handleProjectAccept(interaction, client);
+      await ticketHandler.handleProjectAccept(interaction, client);
       return;
     }
 
     // === NEW: Project decline ===
     if (interaction.isButton() && interaction.customId.startsWith('decline_project_')) {
-      await projectTicket.handleProjectDecline(interaction, client);
+      await ticketHandler.handleProjectDecline(interaction, client);
       return;
     }
 
     // === NEW: Decline reason modal ===
     if (interaction.isModalSubmit() && interaction.customId.startsWith('decline_reason_')) {
-      await projectTicket.handleDeclineReasonSubmit(interaction, client);
+      await ticketHandler.handleDeclineReasonSubmit(interaction, client);
       return;
     }
 
     // === NEW: Developer apply button ===
     if (interaction.isButton() && interaction.customId === 'start_developer_apply') {
-      await applySystem.handleApplyButton(interaction);
+      await applyHandler.handleApplyButton(interaction);
       return;
     }
 
     // === NEW: View terms button ===
     if (interaction.isButton() && interaction.customId === 'view_terms') {
-      await interaction.reply({ components: [termsContainer], flags: MessageFlags.IsComponentsV2 | 64 });
+      await applyHandler.showTerms(interaction);
       return;
     }
 
     // === NEW: Agree terms button ===
     if (interaction.isButton() && interaction.customId === 'agree_terms') {
-      const session = questionFlow.getSession(interaction.user.id);
-      if (!session) { await interaction.reply({ content: 'Session expired.', flags: 64 }).catch(() => {}); return; }
-      session.termsAgreed = true;
-      await interaction.update({ content: '✅ Terms agreed!', components: [] });
+      await applyHandler.handleTermsAgree(interaction);
       return;
     }
 
@@ -410,67 +409,31 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
     // === NEW: Staff apply button ===
     if (interaction.isButton() && interaction.customId === 'start_staff_apply') {
-      await applySystem.handleStaffApplyButton(interaction);
+      await applyHandler.handleStaffApplyButton(interaction);
       return;
     }
 
     // === NEW: Dev app approve/decline buttons ===
     if (interaction.isButton() && interaction.customId.startsWith('dev_app_approve_')) {
-      await applySystem.handleDevAppApprove(interaction);
+      await applyHandler.handleDevAppApprove(interaction);
       return;
     }
     if (interaction.isButton() && interaction.customId.startsWith('dev_app_decline_')) {
-      await applySystem.handleDevAppDecline(interaction);
+      await applyHandler.handleDevAppDecline(interaction);
       return;
     }
 
     // === NEW: Developer apply on project ===
     if (interaction.isButton() && interaction.customId.startsWith('apply_project_')) {
       const ticketNumber = interaction.customId.replace('apply_project_', '');
-      const project = projectTicket.projectStore.get(ticketNumber);
-      if (!project) { await interaction.reply({ content: 'Project not found.', flags: 64 }).catch(() => {}); return; }
-      const modal = new ModalBuilder()
-        .setCustomId(`dev_portfolio_${ticketNumber}`)
-        .setTitle('Submit Your Portfolio');
-      const input = new TextInputBuilder()
-        .setCustomId('portfolio_input')
-        .setLabel('Paste a link or describe your portfolio')
-        .setStyle(TextInputStyle.Paragraph)
-        .setRequired(true)
-        .setMaxLength(1024);
-      modal.addComponents(new ActionRowBuilder().addComponents(input));
-      await interaction.showModal(modal);
+      await applyHandler.showPortfolioModal(interaction, ticketNumber);
       return;
     }
 
     // === NEW: Developer portfolio modal submit ===
     if (interaction.isModalSubmit() && interaction.customId.startsWith('dev_portfolio_')) {
       const ticketNumber = interaction.customId.replace('dev_portfolio_', '');
-      const project = projectTicket.projectStore.get(ticketNumber);
-      if (!project) { await interaction.reply({ content: 'Project not found.', flags: 64 }).catch(() => {}); return; }
-      const portfolio = interaction.fields.getTextInputValue('portfolio_input');
-      const clientUser = await client.users.fetch(project.clientId);
-      const acceptRow = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-          .setCustomId(`dev_accept_${interaction.user.id}_${ticketNumber}`)
-          .setLabel('Accept')
-          .setStyle(ButtonStyle.Success)
-          .setEmoji('✅'),
-        new ButtonBuilder()
-          .setCustomId(`dev_decline_${interaction.user.id}_${ticketNumber}`)
-          .setLabel('Decline')
-          .setStyle(ButtonStyle.Danger)
-          .setEmoji('❌')
-      );
-      const portfolioContainer = new ContainerBuilder()
-        .setAccentColor(0xFFDD00)
-        .addTextDisplayComponents(
-          new TextDisplayBuilder().setContent(`# 📝 Developer Application\n\n**Developer:** <@${interaction.user.id}>\n**Portfolio:**\n${portfolio}`),
-          new TextDisplayBuilder().setContent(`*Ticket #${ticketNumber}*`)
-        );
-      portfolioContainer.addActionRowComponents(acceptRow);
-      await clientUser.send({ components: [portfolioContainer], flags: MessageFlags.IsComponentsV2 }).catch(err => console.error('Failed to DM portfolio to client:', err));
-      await interaction.reply({ content: '✅ Your portfolio has been sent to the client for review.', flags: 64 });
+      await applyHandler.handlePortfolioSubmit(interaction, ticketNumber, client);
       return;
     }
 
@@ -479,17 +442,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       const parts = interaction.customId.replace('dev_accept_', '').split('_');
       const devId = parts[0];
       const ticketNumber = parts.slice(1).join('_');
-      const project = projectTicket.projectStore.get(ticketNumber);
-      if (!project) { await interaction.reply({ content: 'Project not found.', flags: 64 }).catch(() => {}); return; }
-      const guild = client.guilds.cache.get(interaction.guildId);
-      if (!guild) { await interaction.reply({ content: 'Guild not found.', flags: 64 }).catch(() => {}); return; }
-      const ticketChannel = guild.channels.cache.get(project.channelId);
-      if (ticketChannel) {
-        await ticketChannel.permissionOverwrites.edit(devId, { ViewChannel: true, SendMessages: true, ReadMessageHistory: true }).catch(err => console.error('Failed to add developer to ticket channel:', err));
-      }
-      const devUser = await client.users.fetch(devId);
-      await devUser.send('✅ **You have been accepted to work on the project!**').catch(err => console.error('Failed to DM developer acceptance:', err));
-      try { await interaction.update({ content: '✅ **Developer has been added to your ticket.**', components: [] }); } catch (e) {}
+      await applyHandler.handleClientAcceptDev(interaction, devId, ticketNumber, client);
       return;
     }
 
@@ -498,9 +451,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       const parts = interaction.customId.replace('dev_decline_', '').split('_');
       const devId = parts[0];
       const ticketNumber = parts.slice(1).join('_');
-      const devUser = await client.users.fetch(devId);
-      await devUser.send('❌ **Unfortunately, the client has declined your application for this project.**').catch(err => console.error('Failed to DM developer decline:', err));
-      try { await interaction.update({ content: '❌ **You have declined the developer.**', components: [] }); } catch (e) {}
+      await applyHandler.handleClientDeclineDev(interaction, devId, ticketNumber, client);
       return;
     }
 
@@ -779,6 +730,16 @@ To be a **Trusted** client you need to follow at least a single **Condition** of
         return;
       }
 
+      // Per-guild ticket cap
+      const maxTicketsPerGuild = ticketConfig.MAX_TICKETS_PER_GUILD || 20;
+      const openTicketsInGuild = guild.channels.cache.filter(c =>
+        c.name?.startsWith('🎫・') && c.parentId === ticketConfig.TICKET_CATEGORY_ID
+      ).size;
+      if (openTicketsInGuild >= maxTicketsPerGuild) {
+        if (deferred) await interaction.editReply({ content: `❌ Ticket limit reached (${maxTicketsPerGuild} per guild). Please close an existing ticket first.`, flags: 64 }).catch(() => {});
+        return;
+      }
+
       // Increment counter in ticket config file (persist)
       ticketConfig.TICKET_COUNTER = (ticketConfig.TICKET_COUNTER || 0) + 1;
       const newTicketNumber = ticketConfig.TICKET_COUNTER;
@@ -917,172 +878,13 @@ To be a **Trusted** client you need to follow at least a single **Condition** of
 
     // 2. Close ticket -> ask confirm
     if (interaction.isButton() && interaction.customId === 'close_ticket') {
-      const staffRoleID = ticketConfig.STAFF_ROLE_ID;
-      const managerRoleID = ticketConfig.MANAGER_ROLE_ID;
-      const channel = interaction.channel;
-
-      const isStaff = isStaffMember(interaction.member);
-      const channelOwner = channel.permissionOverwrites.cache.find(p => p.id === interaction.user.id && p.allow && p.allow.has(PermissionFlagsBits.ViewChannel));
-      if (!isStaff && !channelOwner) { await interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {}); return; }
-
-      const messages = await channel.messages.fetch({ limit: 10 });
-      const existingConfirmation = messages.find(m =>
-        (m.content && m.content.includes((ticketConfig.MESSAGES.CONFIRM_CLOSE_PROMPT || '').split('**')[1] || '') && m.components.length > 0) ||
-        (m.components?.length > 0 && componentHasButton(m.components, 'confirm_close'))
-      );
-      const existingControl = messages.find(m =>
-        (m.content && m.content.includes((ticketConfig.MESSAGES.CLOSED_MESSAGE || '').split('@!')[0].trim()) && m.components.length > 0) ||
-        (m.components?.length > 0 && componentHasButton(m.components, 'transcript_btn'))
-      );
-
-      if (existingConfirmation) { await interaction.reply({ content: ticketConfig.MESSAGES.CLOSE_ALREADY_OPEN, flags: 64 }).catch(() => {}); return; }
-      if (existingControl) { await interaction.reply({ content: ticketConfig.MESSAGES.CLOSE_ALREADY_CLOSED, flags: 64 }).catch(() => {}); return; }
-
-      try { await interaction.deferUpdate(); } catch (e) {}
-      const closeConfirmComponents = [
-        new ContainerBuilder()
-          .setAccentColor(0xFFDD00)
-          .addTextDisplayComponents(
-            new TextDisplayBuilder().setContent(`# 🔒 ${ticketConfig.MESSAGES.CONFIRM_CLOSE_PROMPT}`)
-          )
-          .addSectionComponents(
-            new SectionBuilder()
-              .setButtonAccessory(new ButtonBuilder().setCustomId('confirm_close').setLabel('Close').setStyle(ButtonStyle.Danger))
-              .addTextDisplayComponents(new TextDisplayBuilder().setContent('Permanently close this ticket'))
-          )
-          .addSectionComponents(
-            new SectionBuilder()
-              .setButtonAccessory(new ButtonBuilder().setCustomId('cancel_close').setLabel('Cancel').setStyle(ButtonStyle.Secondary))
-              .addTextDisplayComponents(new TextDisplayBuilder().setContent('Keep the ticket open'))
-          )
-      ];
-
-      await channel.send({ components: closeConfirmComponents, flags: MessageFlags.IsComponentsV2 });
+      await ticketHandler.handleCloseTicket(interaction, client, ticketConfig, idleSystem, logTicketAction);
       return;
     }
 
     // 3. Confirm Close -> lock channel and initiate rating
     if (interaction.isButton() && interaction.customId === 'confirm_close') {
-      const staffRoleID = ticketConfig.STAFF_ROLE_ID;
-      const managerRoleID = ticketConfig.MANAGER_ROLE_ID;
-      const channel = interaction.channel;
-      try { await interaction.deferUpdate(); } catch (e) {}
-
-      const originalOwner = channel.permissionOverwrites.cache.find(p => p.allow && p.allow.has(PermissionFlagsBits.ViewChannel) && p.id !== channel.guild.id && p.id !== staffRoleID && p.id !== managerRoleID);
-      const originalOwnerMember = originalOwner ? interaction.guild.members.cache.get(originalOwner.id) : null;
-      const closerId = interaction.user.id;
-
-      try {
-        await applyTicketPermissionOverwrites(channel, {
-          staffRoleId,
-          managerRoleId,
-          ownerId: originalOwner ? originalOwner.id : null,
-          openOwner: false,
-        });
-      } catch (permErr) {
-        console.error('Failed to set permission overwrites on close:', permErr);
-      }
-
-      await logTicketAction(client, 'CLOSED', interaction.user, channel, `Ticket locked by ${interaction.user.tag}`, '#000000');
-      await interaction.message.delete().catch(() => {});
-
-      const closedMessageContent = (ticketConfig.MESSAGES.CLOSED_MESSAGE || '').replace('{userTag}', interaction.user.tag);
-
-      const closedComponents = [
-        new ContainerBuilder()
-          .setAccentColor(0xFFDD00)
-          .addTextDisplayComponents(
-            new TextDisplayBuilder().setContent(closedMessageContent)
-          )
-          .addSeparatorComponents(
-            new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small)
-          )
-          .addTextDisplayComponents(
-            new TextDisplayBuilder().setContent(`### ${ticketConfig.MESSAGES.CLOSED_EMBED_DESCRIPTION || 'Support Team Controls'}`)
-          )
-          .addActionRowComponents(
-            new ActionRowBuilder().addComponents(
-              new ButtonBuilder().setCustomId('transcript_btn').setLabel('Transcript').setStyle(ButtonStyle.Secondary).setEmoji('📄').setDisabled(false),
-              new ButtonBuilder().setCustomId('reopen_ticket').setLabel('Refresh').setStyle(ButtonStyle.Primary).setEmoji('🔄'),
-              new ButtonBuilder().setCustomId('delete_ticket').setLabel('Delete').setStyle(ButtonStyle.Danger).setEmoji('🗑️')
-            )
-          )
-      ];
-
-      await channel.send({ components: closedComponents, flags: MessageFlags.IsComponentsV2 });
-      idleSystem.untrackTicket(channel.id);
-
-      // Auto-send transcript to logs channel and user
-      try {
-        const transcriptAttachment = await createTranscript(channel, { limit: -1, fileName: `${channel.name}_transcript.html` });
-        const transcriptChannelId = ticketConfig.TRANSCRIPT_CHANNEL_ID;
-        if (transcriptChannelId && transcriptChannelId !== 'PLACE_YOUR_TRANSCRIPT_ARCHIVE_CHANNEL_ID_HERE') {
-          const transcriptChannel = interaction.guild.channels.cache.get(transcriptChannelId);
-          if (transcriptChannel) {
-            const transcriptLogContainer = new ContainerBuilder()
-              .setAccentColor(0xFFDD00)
-              .addTextDisplayComponents(
-                new TextDisplayBuilder().setContent(`# 📄 Conversation Transcript Generated\n\nTranscript for ticket **${channel.name}** (Owned by ${originalOwner ? `<@${originalOwner.id}>` : 'Unspecified User'}) has been successfully archived.`),
-                new TextDisplayBuilder().setContent(`*<t:${Math.floor(Date.now() / 1000)}:F>*`)
-              );
-            await transcriptChannel.send({ components: [transcriptLogContainer], flags: MessageFlags.IsComponentsV2 });
-            await transcriptChannel.send({ files: [transcriptAttachment] });
-          }
-        }
-        // DM transcript to the original owner
-        if (originalOwnerMember) {
-          try {
-            const userTranscriptContainer = new ContainerBuilder()
-              .setAccentColor(0xFFDD00)
-              .addTextDisplayComponents(
-                new TextDisplayBuilder().setContent(`# 📄 Your Ticket Transcript\n\nTranscript for **${channel.name}**`),
-                new TextDisplayBuilder().setContent(`*<t:${Math.floor(Date.now() / 1000)}:F>*`)
-              );
-            await originalOwnerMember.send({ components: [userTranscriptContainer], flags: MessageFlags.IsComponentsV2 });
-            await originalOwnerMember.send({ files: [transcriptAttachment] });
-          } catch (dmErr) {
-            console.warn(`Could not DM transcript to ticket owner:`, dmErr.message);
-          }
-        }
-      } catch (transcriptErr) {
-        console.error('Failed to auto-generate/send transcript:', transcriptErr);
-      }
-
-      // Rating initiation (only if not requested)
-      let hasRatingBeenRequested = idleSystem.hasRatingBeenRequested(channel.id);
-      if (!idleSystem.isTracked(channel.id)) {
-        try {
-          const ratingCheckMessages = await channel.messages.fetch({ limit: 50 });
-          hasRatingBeenRequested = ratingCheckMessages.some(m => m.content === '// RATING_REQUEST_SENT //' || m.components?.some(c => c.components?.some(cc => cc.type === 10 && cc.content?.includes('Service Rating'))));
-        } catch (e) {}
-      }
-      if (!hasRatingBeenRequested && originalOwnerMember) {
-        const ratingRow = new ActionRowBuilder().addComponents(
-          new ButtonBuilder().setCustomId(`dm_rate_5_${channel.id}_${closerId}`).setLabel('⭐⭐⭐⭐⭐ (5)').setStyle(ButtonStyle.Success),
-          new ButtonBuilder().setCustomId(`dm_rate_4_${channel.id}_${closerId}`).setLabel('⭐⭐⭐⭐ (4)').setStyle(ButtonStyle.Success),
-          new ButtonBuilder().setCustomId(`dm_rate_3_${channel.id}_${closerId}`).setLabel('⭐⭐⭐ (3)').setStyle(ButtonStyle.Secondary),
-          new ButtonBuilder().setCustomId(`dm_rate_2_${channel.id}_${closerId}`).setLabel('⭐⭐ (2)').setStyle(ButtonStyle.Danger),
-          new ButtonBuilder().setCustomId(`dm_rate_1_${channel.id}_${closerId}`).setLabel('⭐ (1)').setStyle(ButtonStyle.Danger)
-        );
-
-        const dmContainer = new ContainerBuilder().setAccentColor(0xFFDD00).addTextDisplayComponents(
-          new TextDisplayBuilder().setContent(`# ⭐ Service Rating\n\nHello! Your ticket **${channel.name}** has been closed by <@${closerId}>.\n\nPlease take a moment to rate your support experience.`),
-          new TextDisplayBuilder().setContent(`*This is a private message and cannot be replied to | <t:${Math.floor(Date.now() / 1000)}:F>*`)
-        );
-
-        try {
-          dmContainer.addActionRowComponents(ratingRow);
-          await originalOwnerMember.send({ components: [dmContainer], flags: MessageFlags.IsComponentsV2 });
-          idleSystem.markRatingRequested(channel.id);
-          await channel.send({ content: '// RATING_REQUEST_SENT //' }).catch(err => console.error('Failed to send rating request flag:', err));
-        } catch (err) {
-          console.warn('Failed to DM rating; falling back to channel:', err);
-          const fallbackContainer = new ContainerBuilder().setAccentColor(0xFFDD00).addTextDisplayComponents(
-            new TextDisplayBuilder().setContent(`# ⚠️ Rating\n\n${ticketConfig.MESSAGES.DM_RATING_FALLBACK.replace('{userId}', originalOwnerMember.id)}`)
-          );
-          await channel.send({ components: [fallbackContainer, dmContainer], flags: MessageFlags.IsComponentsV2 }).catch(err => console.error('Failed to send rating fallback:', err));
-        }
-      }
+      await ticketHandler.handleConfirmClose(interaction, client, ticketConfig, idleSystem, logTicketAction, createTranscript, applyTicketPermissionOverwrites, componentHasButton);
       return;
     }
 
@@ -1095,199 +897,31 @@ To be a **Trusted** client you need to follow at least a single **Condition** of
 
     // 5. Delete ticket
     if (interaction.isButton() && interaction.customId === 'delete_ticket') {
-      const staffRoleID = ticketConfig.STAFF_ROLE_ID;
-      // Allow staff or manager (via isStaffMember helper)
-      if (!isStaffMember(interaction.member)) { await interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {}); return; }
-
-      await logTicketAction(client, 'DELETED', interaction.user, interaction.channel, `Ticket deleted by ${interaction.user.tag}. No channel link available.`, '#E74C3C');
-      await interaction.reply({ content: ticketConfig.MESSAGES.DELETE_TICKET_PROMPT, flags: 64 });
-      await interaction.channel.delete().catch(err => console.error('Failed to delete channel:', err));
+      await ticketHandler.handleDeleteTicket(interaction, client, ticketConfig, isStaffMember, logTicketAction);
       return;
     }
 
     // 6. Reopen ticket
     if (interaction.isButton() && interaction.customId === 'reopen_ticket') {
-      const staffRoleID = ticketConfig.STAFF_ROLE_ID;
-      const channel = interaction.channel;
-      if (!isStaffMember(interaction.member)) { await interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {}); return; }
-
-      const originalOwner = channel.permissionOverwrites.cache.find(p => {
-        if (!p) return false;
-        if (p.id === channel.guild.id) return false;
-        if (p.id === ticketConfig.STAFF_ROLE_ID) return false;
-        if (p.id === ticketConfig.MANAGER_ROLE_ID) return false;
-        if (channel.guild.roles.cache.has(p.id)) return false;
-        return true;
-      });
-      const originalOwnerID = originalOwner?.id ?? null;
-
-      const newChannelName = channel.name.replace(/・claim-.*$/i, '');
-      try { await channel.setName(newChannelName); } catch (err) { console.error('Failed to rename channel on reopen:', err); }
-
-      if (originalOwnerID) {
-        try {
-          await applyTicketPermissionOverwrites(channel, {
-            staffRoleId: staffRoleID,
-            managerRoleId: ticketConfig.MANAGER_ROLE_ID,
-            ownerId: originalOwnerID,
-            openOwner: true,
-          });
-        } catch (permErr) {
-          console.error('Failed to set permission overwrites on reopen:', permErr);
-        }
-      } else {
-        await interaction.followUp({ content: ticketConfig.MESSAGES.REOPEN_WARNING_NO_OWNER, flags: 64 });
-      }
-
-      idleSystem.trackTicket(channel.id);
-
-      await logTicketAction(client, 'REOPENED', interaction.user, channel, `Ticket reopened by ${interaction.user.tag}`, '#2ECC71');
-      const reopenContainer = new ContainerBuilder().setAccentColor(0xFFDD00).addTextDisplayComponents(
-        new TextDisplayBuilder().setContent(`# 🔓 Ticket Reopened\n\n${(ticketConfig.MESSAGES.REOPEN_SUCCESS || '').replace('{user}', `<@${interaction.user.id}>`)}`)
-      );
-      await interaction.reply({ components: [reopenContainer], flags: MessageFlags.IsComponentsV2 });
-      await interaction.message.delete().catch(() => {});
+      await ticketHandler.handleReopenTicket(interaction, client, ticketConfig, idleSystem, logTicketAction, applyTicketPermissionOverwrites, isStaffMember);
       return;
     }
 
     // 7. Transcript
     if (interaction.isButton() && interaction.customId === 'transcript_btn') {
-      const staffRoleID = ticketConfig.STAFF_ROLE_ID;
-      const transcriptChannelId = ticketConfig.TRANSCRIPT_CHANNEL_ID;
-      const channel = interaction.channel;
-      if (!isStaffMember(interaction.member)) { await interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {}); return; }
-      if (!transcriptChannelId || transcriptChannelId === 'PLACE_YOUR_TRANSCRIPT_ARCHIVE_CHANNEL_ID_HERE') { await interaction.reply({ content: ticketConfig.MESSAGES.TRANSCRIPT_CONFIG_ERROR, flags: 64 }).catch(() => {}); return; }
-
-      await interaction.deferReply({ flags: 64 }).catch(() => {});
-      try {
-        const attachment = await createTranscript(channel, { limit: -1, fileName: `${channel.name}_transcript.html` });
-        const transcriptChannel = interaction.guild.channels.cache.get(transcriptChannelId);
-        if (!transcriptChannel) { await interaction.editReply({ content: ticketConfig.MESSAGES.TRANSCRIPT_CHANNEL_NOT_FOUND, flags: 64 }).catch(() => {}); return; }
-
-        // Find the permission overwrite that represents the ticket owner (a user, not a role or @everyone)
-        const originalOwner = channel.permissionOverwrites.cache.find(p => {
-          if (!p) return false;
-          if (p.id === channel.guild.id) return false;
-          if (p.id === ticketConfig.STAFF_ROLE_ID) return false;
-          if (p.id === ticketConfig.MANAGER_ROLE_ID) return false;
-          // If a role with this id exists in the guild, skip it
-          if (channel.guild.roles.cache.has(p.id)) return false;
-          return true;
-        });
-        let ticketUserTag = originalOwner ? `<@${originalOwner.id}>` : 'Unspecified User';
-
-        // Send transcript to logs channel - separate components v2 message and file
-        const transcriptContainer = new ContainerBuilder().setAccentColor(0xFFDD00).addTextDisplayComponents(
-          new TextDisplayBuilder().setContent(`# ${ticketConfig.MESSAGES.TRANSCRIPT_SUCCESS_TITLE}\n\n${(ticketConfig.MESSAGES.TRANSCRIPT_SUCCESS_DESCRIPTION || '').replace('{channelName}', channel.name).replace('{userTag}', ticketUserTag)}`),
-          new TextDisplayBuilder().setContent(`*<t:${Math.floor(Date.now() / 1000)}:F>*`)
-        );
-        await transcriptChannel.send({ components: [transcriptContainer], flags: MessageFlags.IsComponentsV2 });
-        // Send transcript file separately
-        await transcriptChannel.send({ files: [attachment] });
-
-        // DM transcript to ticket opener
-        if (originalOwner) {
-          try {
-            const ticketUser = await client.users.fetch(originalOwner.id);
-            const userTranscriptContainer = new ContainerBuilder().setAccentColor(0xFFDD00).addTextDisplayComponents(
-              new TextDisplayBuilder().setContent(`# 📄 Your Ticket Transcript\n\nTranscript for **${channel.name}**`),
-              new TextDisplayBuilder().setContent(`*<t:${Math.floor(Date.now() / 1000)}:F>*`)
-            );
-            await ticketUser.send({ components: [userTranscriptContainer], flags: MessageFlags.IsComponentsV2 });
-            await ticketUser.send({ files: [attachment] });
-          } catch (dmError) {
-            console.warn(`Could not DM transcript to ${ticketUserTag}:`, dmError.message);
-          }
-        }
-
-        await logTicketAction(client, 'TRANSCRIPT', interaction.user, channel, `Transcript generated and sent to <#${transcriptChannelId}> and to ${ticketUserTag}`, '#FFDD00');
-
-        await interaction.editReply({ content: `${ticketConfig.MESSAGES.TRANSCRIPT_SUCCESS_STAFF_REPLY.replace('{channelId}', transcriptChannelId)} (also sent to ${ticketUserTag})`, flags: 64 });
-
-        const container = interaction.message.components[0];
-        const json = JSON.parse(JSON.stringify(container));
-        const actionRow = json.components?.find(c => c.type === 1);
-        if (actionRow && actionRow.components?.[0]) {
-          actionRow.components[0].disabled = true;
-        }
-        await interaction.message.edit({
-          components: [new ContainerBuilder(json)],
-          flags: MessageFlags.IsComponentsV2
-        });
-      } catch (error) {
-        console.error('Failed to create or send transcript:', error);
-        await interaction.editReply({ content: ticketConfig.MESSAGES.TRANSCRIPT_ERROR, flags: 64 });
-      }
+      await ticketHandler.handleTranscript(interaction, client, ticketConfig, isStaffMember, logTicketAction, createTranscript, componentHasButton);
       return;
     }
 
     // 8. Claim ticket
     if (interaction.isButton() && interaction.customId === 'claim_ticket') {
-      const staffRoleID = ticketConfig.STAFF_ROLE_ID;
-      const channel = interaction.channel;
-      if (!isStaffMember(interaction.member)) { await interaction.reply({ content: ticketConfig.MESSAGES.CLAIM_STAFF_ONLY, flags: 64 }).catch(() => {}); return; }
-
-      const messages = await channel.messages.fetch({ limit: 10 });
-      const existingClaimMessage = messages.find(m => m.components?.length > 0 && m.components[0]?.components?.some(c => c.type === 10 && c.content?.includes((ticketConfig.MESSAGES.CLAIM_SUCCESS_TITLE || '').split('✅')[1] || '')));
-      if (existingClaimMessage) { await interaction.reply({ content: ticketConfig.MESSAGES.CLAIM_ALREADY_CLAIMED, flags: 64 }).catch(() => {}); return; }
-
-      const originalMessage = messages.find(m => m.components.length > 0 && componentHasButton(m.components, 'claim_ticket'));
-      if (originalMessage) {
-        const container = originalMessage.components[0];
-        const json = JSON.parse(JSON.stringify(container));
-        const actionRow = json.components?.find(c => c.type === 1);
-        if (actionRow && actionRow.components?.[0]) {
-          actionRow.components[0].custom_id = 'unclaim_ticket';
-          actionRow.components[0].label = 'Unclaim';
-          actionRow.components[0].style = 1;
-          actionRow.components[0].emoji = { name: '🙋‍♂️' };
-          actionRow.components[0].disabled = false;
-        }
-        await originalMessage.edit({
-          components: [new ContainerBuilder(json)],
-          flags: MessageFlags.IsComponentsV2
-        });
-      }
-
-      const claimDescription = (ticketConfig.MESSAGES.CLAIM_SUCCESS_DESCRIPTION || '').replace('{user}', interaction.user);
-      await channel.send({ components: [new ContainerBuilder().setAccentColor(0xFFDD00).addTextDisplayComponents(
-        new TextDisplayBuilder().setContent(`${ticketConfig.MESSAGES.CLAIM_SUCCESS_TITLE || ''}\n\n${claimDescription}`)
-      )], flags: MessageFlags.IsComponentsV2 });
-
-      await logTicketAction(client, 'CLAIMED', interaction.user, channel, `Ticket claimed by ${interaction.user.tag}`, '#FFDD00');
-      try { await interaction.deferUpdate(); } catch (e) {}
+      await ticketHandler.handleClaimTicket(interaction, client, ticketConfig, idleSystem, logTicketAction, componentHasButton);
       return;
     }
 
     // 9. Unclaim ticket
     if (interaction.isButton() && interaction.customId === 'unclaim_ticket') {
-      const channel = interaction.channel;
-      if (!isStaffMember(interaction.member)) { await interaction.reply({ content: ticketConfig.MESSAGES.CLAIM_STAFF_ONLY, flags: 64 }).catch(() => {}); return; }
-
-      const messages = await channel.messages.fetch({ limit: 10 });
-      const claimMessage = messages.find(m => m.components?.length > 0 && m.components[0]?.components?.some(c => c.type === 10 && c.content?.includes((ticketConfig.MESSAGES.CLAIM_SUCCESS_TITLE || '').split('✅')[1] || '')));
-      if (claimMessage) await claimMessage.delete().catch(() => {});
-
-      const welcomeMsg = messages.find(m => m.components.length > 0 && componentHasButton(m.components, 'unclaim_ticket'));
-      if (welcomeMsg) {
-        const container = welcomeMsg.components[0];
-        const json = JSON.parse(JSON.stringify(container));
-        const actionRow = json.components?.find(c => c.type === 1);
-        if (actionRow && actionRow.components?.[0]) {
-          actionRow.components[0].custom_id = 'claim_ticket';
-          actionRow.components[0].label = 'Claim';
-          actionRow.components[0].style = 3;
-          actionRow.components[0].emoji = { name: '🙋‍♂️' };
-          actionRow.components[0].disabled = false;
-        }
-        await welcomeMsg.edit({
-          components: [new ContainerBuilder(json)],
-          flags: MessageFlags.IsComponentsV2
-        });
-      }
-
-      await logTicketAction(client, 'UNCLAIMED', interaction.user, channel, `Ticket unclaimed by ${interaction.user.tag}`, '#FFDD00');
-      try { await interaction.deferUpdate(); } catch (e) {}
+      await ticketHandler.handleUnclaimTicket(interaction, client, ticketConfig, idleSystem, logTicketAction, componentHasButton);
       return;
     }
 

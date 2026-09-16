@@ -10,7 +10,7 @@ const TYPOS = {
 
 const PROJECTS_FILE = path.join(__dirname, 'projects.json');
 
-const PRODB_FILE = path.join(process.cwd(), 'database.json');
+const PRODB_FILE = path.join(__dirname, 'database.json');
 
 let proDbCache = null;
 let proDbCacheMtime = 0;

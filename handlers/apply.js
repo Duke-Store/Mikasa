@@ -1,33 +1,21 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, ContainerBuilder, TextDisplayBuilder, SeparatorBuilder, SeparatorSpacingSize, MessageFlags, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
+/**
+ * Mikasa — Apply Handler
+ * Extracted from index.js — handles developer applications for projects.
+ */
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, ContainerBuilder, TextDisplayBuilder, SeparatorBuilder, SeparatorSpacingSize, MessageFlags, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
+const { isStaffMember } = require('../utils');
+const ticketConfig = require('../ticket-config.json');
+const { loadProjects, saveProjects } = require('../db');
+const config = require('../config');
 const { setSession, showCurrentQuestion } = require('./questionFlow');
-const { CHANNELS, ROLES } = require('./config');
-const { writeFileAsync, isStaffMember } = require('./utils');
-const ticketConfig = require('./ticket-config.json');
-const fs = require('fs');
-const path = require('path');
-const { loadProjects, saveProjects } = require('./db');
-const { isTrusted } = require('./trustedClients');
 const { addToQueue, removeReview } = require('./adminReviewTimer');
-const { evaluateSellerProject } = require('./aiAgents/projectEvaluator');
-const { evaluateBuyerProject } = require('./aiAgents/projectEvaluator');
-const { listProduct } = require('./marketplace/marketplace');
-const { buildMarketplaceEmbed, buildSellerSubmittedEmbed, buildBuyerAnalysisEmbed } = require('./marketplace/templates/marketplaceEmbed');
-const REVIEWS_FILE = path.join(__dirname, 'project-ai-reviews.json');
+const { evaluateSellerProject, evaluateBuyerProject } = require('../aiAgents/projectEvaluator');
+const { isTrusted } = require('../trustedClients');
+const path = require('path');
+const fs = require('fs');
+const { componentHasButton } = require('../utils');
 
-const LEGACY_PROJECT_QUESTIONS = [
-  { id: 'game_type', text: 'What type of game/project is this?', type: 'modal' },
-  { id: 'payment_method', text: 'What payment method do you prefer?', type: 'select', options: [
-    { label: 'Per Task', value: 'per_task', emoji: '📋' },
-    { label: '50% Upfront', value: '50_upfront', emoji: '💰' },
-    { label: 'After Completion', value: 'after_completion', emoji: '✅' },
-  ], placeholder: 'Select payment method...' },
-  { id: 'project_time', text: 'What is your desired timeline?', type: 'modal' },
-  { id: 'details', text: 'Describe your project details:', type: 'modal', meta: { maxLength: 2000 } },
-  { id: 'dev_count', text: 'How many developers do you need?', type: 'modal' },
-  { id: 'roles_needed', text: 'What roles are needed?', type: 'modal' },
-  { id: 'media', text: 'Links to references/media (optional):', type: 'modal' },
-  { id: 'terms', text: 'Do you agree to the project terms?', type: 'confirm', confirmLabel: '✅ I Agree', declineLabel: '❌ I Decline', termsFile: 'terms.md' },
-];
+const REVIEWS_FILE = path.join(__dirname, '..', 'project-ai-reviews.json');
 
 function loadProjectReviews() {
   try {
@@ -40,13 +28,36 @@ function saveProjectReview(review) {
   try {
     const reviews = loadProjectReviews();
     reviews.push({ ...review, timestamp: new Date().toISOString() });
+    const { writeFileAsync } = require('../utils');
     writeFileAsync(REVIEWS_FILE, JSON.stringify(reviews, null, 2));
   } catch (e) { console.error('Failed to save project review:', e); }
 }
 
-const PROJECTS_CHANNEL_ID = CHANNELS.PROJECTS;
-const AI_AGENT_RESULTS_CHANNEL_ID = CHANNELS.AI_AGENT_RESULTS;
-const ADMIN_ROLE_ID = ROLES.ADMIN;
+const SELLER_QUESTIONS = [
+  { id: 'name', text: 'What is your Name?', type: 'modal' },
+  { id: 'age', text: 'What is your Age?', type: 'modal', meta: { type: 'age' } },
+  { id: 'timezone', text: 'What is your Timezone?', type: 'modal', meta: { type: 'timezone' } },
+  { id: 'product_desc', text: 'What are you selling? Describe your product/service in detail.', type: 'modal', meta: { maxLength: 2000 } },
+  { id: 'category', text: 'What category does your product fall under?', type: 'select', options: [
+    { label: 'Maps', value: 'category_maps', emoji: '🗺️' },
+    { label: 'Games', value: 'category_games', emoji: '🎮' },
+    { label: 'Scripts', value: 'category_scripts', emoji: '💻' },
+    { label: 'Models', value: 'category_models', emoji: '🎨' },
+    { label: 'UI / Textures', value: 'category_ui', emoji: '🖥️' },
+    { label: 'Audio', value: 'category_audio', emoji: '🔊' },
+    { label: 'Animation', value: 'category_animation', emoji: '🎬' },
+    { label: 'Services', value: 'category_services', emoji: '🔧' },
+    { label: 'Other', value: 'category_other', emoji: '📦' },
+  ], placeholder: 'Select category...', minValues: 1, maxValues: 1 },
+  { id: 'originality', text: 'Is this an original creation? Do you own full sales rights?', type: 'confirm', confirmLabel: '✅ Yes, 100% Original', declineLabel: '❌ No / Not Sure' },
+  { id: 'portfolio_links', text: 'Links to your work/portfolio (optional)', type: 'modal' },
+  { id: 'price', text: 'What is your price for this product?', type: 'modal' },
+  { id: 'terms', text: 'Do you agree to the marketplace terms?', type: 'confirm', confirmLabel: '✅ I Agree', declineLabel: '❌ I Decline', termsFile: 'terms.md' },
+];
+
+const BUYER_QUESTIONS = [
+  { id: 'project_desc', text: 'Describe your project in detail. What do you want to build? Include examples, references, everything you have in mind.', type: 'modal', meta: { maxLength: 4000 } },
+];
 
 const SELLER_ROLE_OPTIONS = [
   { label: 'Scripter', value: 'role_scripter', emoji: '💻' },
@@ -64,44 +75,24 @@ const SELLER_ROLE_OPTIONS = [
   { label: 'Other', value: 'role_other', emoji: '📦' },
 ];
 
-const BUYER_CATEGORY_OPTIONS = [
-  { label: 'Maps', value: 'category_maps', emoji: '🗺️' },
-  { label: 'Games', value: 'category_games', emoji: '🎮' },
-  { label: 'Scripts', value: 'category_scripts', emoji: '💻' },
-  { label: 'Models', value: 'category_models', emoji: '🎨' },
-  { label: 'UI / Textures', value: 'category_ui', emoji: '🖥️' },
-  { label: 'Audio', value: 'category_audio', emoji: '🔊' },
-  { label: 'Animation', value: 'category_animation', emoji: '🎬' },
-  { label: 'Services', value: 'category_services', emoji: '🔧' },
-  { label: 'Other', value: 'category_other', emoji: '📦' },
+const LEGACY_PROJECT_QUESTIONS = [
+  { id: 'game_type', text: 'What type of game/project is this?', type: 'modal' },
+  { id: 'payment_method', text: 'What payment method do you prefer?', type: 'select', options: [
+    { label: 'Per Task', value: 'per_task', emoji: '📋' },
+    { label: '50% Upfront', value: '50_upfront', emoji: '💰' },
+    { label: 'After Completion', value: 'after_completion', emoji: '✅' },
+  ], placeholder: 'Select payment method...' },
+  { id: 'project_time', text: 'What is your desired timeline?', type: 'modal' },
+  { id: 'details', text: 'Describe your project details:', type: 'modal', meta: { maxLength: 2000 } },
+  { id: 'dev_count', text: 'How many developers do you need?', type: 'modal' },
+  { id: 'roles_needed', text: 'What roles are needed?', type: 'modal' },
+  { id: 'media', text: 'Links to references/media (optional):', type: 'modal' },
+  { id: 'terms', text: 'Do you agree to the project terms?', type: 'confirm', confirmLabel: '✅ I Agree', declineLabel: '❌ I Decline', termsFile: 'terms.md' },
 ];
 
-const SELLER_QUESTIONS = [
-  { id: 'name', text: 'What is your Name?', type: 'modal' },
-  { id: 'age', text: 'What is your Age?', type: 'modal', meta: { type: 'age' } },
-  { id: 'timezone', text: 'What is your Timezone?', type: 'modal', meta: { type: 'timezone' } },
-  { id: 'product_desc', text: 'What are you selling? Describe your product/service in detail.', type: 'modal', meta: { maxLength: 2000 } },
-  { id: 'category', text: 'What category does your product fall under?', type: 'select', options: BUYER_CATEGORY_OPTIONS, placeholder: 'Select category...', minValues: 1, maxValues: 1 },
-  { id: 'originality', text: 'Is this an original creation? Do you own full sales rights?', type: 'confirm', confirmLabel: '✅ Yes, 100% Original', declineLabel: '❌ No / Not Sure' },
-  { id: 'portfolio_links', text: 'Links to your work/portfolio (optional)', type: 'modal' },
-  { id: 'price', text: 'What is your price for this product?', type: 'modal' },
-  { id: 'terms', text: 'Do you agree to the marketplace terms?', type: 'confirm', confirmLabel: '✅ I Agree', declineLabel: '❌ I Decline', termsFile: 'terms.md' },
-];
+// === LEGACY PROJECT FLOW ===
 
-const BUYER_QUESTIONS = [
-  { id: 'project_desc', text: 'Describe your project in detail. What do you want to build? Include examples, references, everything you have in mind.', type: 'modal', meta: { maxLength: 4000 } },
-];
-
-const raw = loadProjects();
-const projectStore = new Map(Object.entries(raw));
-
-function persistProjectStore() {
-  const obj = {};
-  for (const [k, v] of projectStore) obj[k] = v;
-  saveProjects(obj);
-}
-
-async function startProjectFlow({ channel, guild }, client) {
+function startLegacyProjectFlow({ channel, guild }, client) {
   const ownerOverwrite = channel.permissionOverwrites.cache.find(p => {
     if (!p) return false;
     if (p.id === guild.id) return false;
@@ -134,9 +125,10 @@ async function startProjectFlow({ channel, guild }, client) {
     channel: { id: channel.id, send: channel.send.bind(channel), guild: { id: guild.id } },
     guild: { id: guild.id },
     replied: false, deferred: false,
-    update: async (opts) => { await channel.send(opts); }
+    update: async (opts) => { await channel.send(opts); },
+    reply: async (opts) => { await channel.send(opts); },
   };
-  await showCurrentQuestion(fakeInteraction, session);
+  showCurrentQuestion(fakeInteraction, session);
 }
 
 async function handleLegacyProjectSubmit(interaction, session, client) {
@@ -163,7 +155,7 @@ async function handleLegacyProjectSubmit(interaction, session, client) {
   );
   container.addActionRowComponents(adminRow);
 
-  const adminReviewChannel = guild.channels?.cache?.get?.(PROJECTS_CHANNEL_ID);
+  const adminReviewChannel = guild.channels?.cache?.get?.(config.CHANNELS.PROJECTS);
   if (adminReviewChannel) {
     await adminReviewChannel.send({ components: [container], flags: MessageFlags.IsComponentsV2 });
     const requestId = `project_${user.id}_${Date.now()}`;
@@ -204,10 +196,10 @@ async function startSellerFlow(interaction, client) {
 async function handleSellerTermsAgree(interaction, client) {
   const user = interaction.user;
   const pending = client._pendingSellerFlow?.get(user.id);
-  if (!pending) { await interaction.reply({ content: 'Session expired. Please start over.', flags: 64 }).catch(() => {}); return; }
+  if (!pending) { await interaction.reply({ content: 'Session expired. Please start over.', flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {}); return; }
   const channel = interaction.channel;
 
-  const select = new StringSelectMenuBuilder()
+  const select = new StringSelectMenuBuilder()  // eslint-disable-line
     .setCustomId('seller_type_select')
     .setPlaceholder('What type of product are you selling?')
     .addOptions(SELLER_ROLE_OPTIONS.map(opt => ({ label: opt.label, value: opt.value, emoji: opt.emoji, description: `Sell as a ${opt.label}` })));
@@ -239,7 +231,7 @@ async function handleSellerTermsDecline(interaction, client) {
 async function handleSellerTypeSelect(interaction, client) {
   const userId = interaction.user.id;
   const session = questionFlow.getSession(userId);
-  if (!session) { await interaction.reply({ content: 'Session expired.', flags: 64 }).catch(() => {}); return; }
+  if (!session) { await interaction.reply({ content: 'Session expired.', flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {}); return; }
   const selected = interaction.values[0];
   session.answers.push({ question: session.questions[0].text, answer: selected });
   session.currentIndex = 1;
@@ -267,9 +259,9 @@ async function handleSellerSubmit(interaction, session, client) {
       new ButtonBuilder().setCustomId(`final_submit_${user.id}`).setLabel('🚀 Send to Marketplace').setStyle(ButtonStyle.Success).setEmoji('🚀'),
       new ButtonBuilder().setCustomId(`back_to_edit_${user.id}`).setLabel('✏️ Edit Answers').setStyle(ButtonStyle.Secondary).setEmoji('✏️')
     );
-    await interaction.reply({ components: [aiEmbed, aiRow], flags: MessageFlags.IsComponentsV2 | 64 });
+    await interaction.reply({ components: [aiEmbed, aiRow], flags: MessageFlags.IsComponentsV2 | MessageFlags.HTTP_NO_CONTENT });
 
-    const adminReviewChannel = guild.channels.cache.get(PROJECTS_CHANNEL_ID);
+    const adminReviewChannel = guild.channels.cache.get(config.CHANNELS.PROJECTS);
     if (adminReviewChannel) {
       const reviewContainer = new ContainerBuilder()
         .setAccentColor(0xFFDD00)
@@ -289,6 +281,8 @@ async function handleSellerSubmit(interaction, session, client) {
       const requestId = `seller_${user.id}_${Date.now()}`;
       addToQueue(requestId, 'seller', user.id, user.tag, ticketNumber, guild.id);
       saveProjectReview({ type: 'seller_submission', userId: user.id, userTag: user.tag, ticketNumber, answers, aiReport, messageId: adminMsg.id });
+
+      // Post-acceptance: list in marketplace
       const productName = answers['What is your Name?'] || 'Untitled Product';
       const productDesc = answers['What are you selling? Describe your product/service in detail.'] || '';
       const productCategory = answers['What category does your product fall under?'] || 'Other';
@@ -296,7 +290,8 @@ async function handleSellerSubmit(interaction, session, client) {
       const categoryMap = { 'Maps': 'Maps', 'Games': 'Games', 'Scripts': 'Scripts', 'Models': 'Models', 'UI / Textures': 'UI/Textures', 'Audio': 'Audio', 'Animation': 'Animation', 'Services': 'Services', 'Other': 'Other' };
       const catValue = categoryMap[productCategory] || 'Other';
       try {
-        const product = await listProduct({ sellerId: user.id, sellerTag: user.tag, name: productName, description: productDesc, category: catValue, price: productPrice, paymentMethod: 'per_task', aiReport });
+        const marketplace = require('../marketplace/marketplace');
+        const product = await marketplace.listProduct({ sellerId: user.id, sellerTag: user.tag, name: productName, description: productDesc, category: catValue, price: productPrice, paymentMethod: 'per_task', aiReport });
         console.log(`[Marketplace] Product listed: ${product.productId} by ${user.tag}`);
       } catch (err) { console.error('[Marketplace] Failed to list product:', err.message); }
     }
@@ -313,9 +308,9 @@ async function handleSellerSubmit(interaction, session, client) {
       new ButtonBuilder().setCustomId(`admin_decline_seller_${user.id}`).setLabel('❌ Decline').setStyle(ButtonStyle.Danger)
     );
     fallbackContainer.addActionRowComponents(adminRow);
-    const adminReviewChannel = guild.channels.cache.get(PROJECTS_CHANNEL_ID);
+    const adminReviewChannel = guild.channels.cache.get(config.CHANNELS.PROJECTS);
     if (adminReviewChannel) await adminReviewChannel.send({ components: [fallbackContainer], flags: MessageFlags.IsComponentsV2 });
-    await interaction.reply({ content: '✅ Submission received! (AI analysis unavailable)', flags: 64 });
+    await interaction.reply({ content: '✅ Submission received! (AI analysis unavailable)', flags: MessageFlags.HTTP_NO_CONTENT });
   }
 }
 
@@ -344,7 +339,7 @@ async function startBuyerFlow(interaction, client) {
 async function handleBuyerTermsAgree(interaction, client) {
   const user = interaction.user;
   const pending = client._pendingBuyerFlow?.get(user.id);
-  if (!pending) { await interaction.reply({ content: 'Session expired. Please start over.', flags: 64 }).catch(() => {}); return; }
+  if (!pending) { await interaction.reply({ content: 'Session expired. Please start over.', flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {}); return; }
   const channel = interaction.channel;
   const modal = new ModalBuilder()
     .setCustomId('buyer_desc_modal')
@@ -362,7 +357,7 @@ async function handleBuyerTermsAgree(interaction, client) {
 async function handleBuyerDescSubmit(interaction, client) {
   const user = interaction.user;
   const pending = client._pendingBuyerFlow?.get(user.id);
-  if (!pending) { await interaction.reply({ content: 'Session expired.', flags: 64 }).catch(() => {}); return; }
+  if (!pending) { await interaction.reply({ content: 'Session expired.', flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {}); return; }
   const description = interaction.fields.getTextInputValue('buyer_desc_input');
   const session = {
     type: 'buyer', currentIndex: 1,
@@ -378,7 +373,7 @@ async function handleBuyerDescSubmit(interaction, client) {
       new ButtonBuilder().setCustomId(`buyer_submit_${user.id}`).setLabel('🚀 Send to Admin').setStyle(ButtonStyle.Success).setEmoji('🚀'),
       new ButtonBuilder().setCustomId(`buyer_edit_desc_${user.id}`).setLabel('✏️ Edit Description').setStyle(ButtonStyle.Secondary).setEmoji('✏️')
     );
-    await interaction.reply({ components: [analysisEmbed, actionRow], flags: MessageFlags.IsComponentsV2 | 64 });
+    await interaction.reply({ components: [analysisEmbed, actionRow], flags: MessageFlags.IsComponentsV2 | MessageFlags.HTTP_NO_CONTENT });
   } catch (aiErr) {
     console.error('AI buyer analysis error:', aiErr);
     const fallbackEmbed = new ContainerBuilder()
@@ -388,19 +383,14 @@ async function handleBuyerDescSubmit(interaction, client) {
       new ButtonBuilder().setCustomId(`buyer_submit_${user.id}`).setLabel('🚀 Send to Admin').setStyle(ButtonStyle.Success),
       new ButtonBuilder().setCustomId(`buyer_edit_desc_${user.id}`).setLabel('✏️ Edit').setStyle(ButtonStyle.Secondary)
     );
-    await interaction.reply({ components: [fallbackEmbed, actionRow], flags: MessageFlags.IsComponentsV2 | 64 });
+    await interaction.reply({ components: [fallbackEmbed, actionRow], flags: MessageFlags.IsComponentsV2 | MessageFlags.HTTP_NO_CONTENT });
   }
-}
-
-async function handleSellerSubmit_legacy(interaction, client) {
-  // This is kept for backwards compat with old final_submit_ handler
-  // The real handler is above
 }
 
 async function handleBuyerSubmit(interaction, client) {
   const user = interaction.user;
   const pending = client._pendingBuyerFlow?.get(user.id);
-  if (!pending) { await interaction.reply({ content: 'Session expired.', flags: 64 }).catch(() => {}); return; }
+  if (!pending) { await interaction.reply({ content: 'Session expired.', flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {}); return; }
   const session = questionFlow.getSession(user.id);
   const description = session?.answers?.[0]?.answer || '';
   const budget = pending.budget || 'Negotiable';
@@ -427,13 +417,13 @@ async function handleBuyerSubmit(interaction, client) {
 async function handleBuyerBudgetSubmit(interaction, client) {
   const user = interaction.user;
   const pending = client._pendingBuyerFlow?.get(user.id);
-  if (!pending) { await interaction.reply({ content: 'Session expired.', flags: 64 }).catch(() => {}); return; }
+  if (!pending) { await interaction.reply({ content: 'Session expired.', flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {}); return; }
   const budget = interaction.fields.getTextInputValue('buyer_budget_input');
   const devCount = interaction.fields.getTextInputValue('buyer_dev_input');
   pending.budget = budget;
   pending.devCount = devCount;
 
-  const paymentSelect = new StringSelectMenuBuilder()
+  const paymentSelect = new StringSelectMenuBuilder()  // eslint-disable-line
     .setCustomId('buyer_payment_select')
     .setPlaceholder('Select payment method')
     .addOptions([
@@ -444,16 +434,15 @@ async function handleBuyerBudgetSubmit(interaction, client) {
   const container = new ContainerBuilder()
     .setAccentColor(0xFFDD00)
     .addTextDisplayComponents(new TextDisplayBuilder().setContent(`# 💳 Select Payment Method\n\n**Budget:** ${budget}\n**Developers Needed:** ${devCount}`));
-  await interaction.reply({ components: [container, new ActionRowBuilder().addComponents(paymentSelect)], flags: MessageFlags.IsComponentsV2 | 64 });
+  await interaction.reply({ components: [container, new ActionRowBuilder().addComponents(paymentSelect)], flags: MessageFlags.IsComponentsV2 | MessageFlags.HTTP_NO_CONTENT });
 }
 
 async function handleBuyerPaymentSelect(interaction, client) {
   const user = interaction.user;
   const pending = client._pendingBuyerFlow?.get(user.id);
-  if (!pending) { await interaction.reply({ content: 'Session expired.', flags: 64 }).catch(() => {}); return; }
+  if (!pending) { await interaction.reply({ content: 'Session expired.', flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {}); return; }
   const method = interaction.values[0];
 
-  // Retrieve budget and dev count from pending flow storage
   const budget = pending.budget || 'Negotiable';
   const devCount = pending.devCount || 'TBD';
 
@@ -480,7 +469,7 @@ async function handleBuyerPaymentSelect(interaction, client) {
     'Payment Method': method,
   };
 
-  const adminReviewChannel = interaction.guild.channels.cache.get(PROJECTS_CHANNEL_ID);
+  const adminReviewChannel = interaction.guild.channels.cache.get(config.CHANNELS.PROJECTS);
   if (adminReviewChannel) {
     const reviewContainer = new ContainerBuilder()
       .setAccentColor(0xFFDD00)
@@ -498,141 +487,35 @@ async function handleBuyerPaymentSelect(interaction, client) {
     await adminReviewChannel.send({ components: [reviewContainer], flags: MessageFlags.IsComponentsV2 });
     const requestId = `buyer_${user.id}_${Date.now()}`;
     addToQueue(requestId, 'buyer', user.id, user.tag, pending.ticketNumber, interaction.guild.id);
-    await interaction.reply({ content: '✅ Your project request has been sent to admin for review. You will receive a response within 24 hours.', flags: 64 });
+    await interaction.reply({ content: '✅ Your project request has been sent to admin for review. You will receive a response within 24 hours.', flags: MessageFlags.HTTP_NO_CONTENT });
   } else {
-    await interaction.reply({ content: '❌ Admin review channel not found.', flags: 64 });
+    await interaction.reply({ content: '❌ Admin review channel not found.', flags: MessageFlags.HTTP_NO_CONTENT });
   }
 }
 
 function loadTermsContent(fileName) {
-  const termsPath = path.join(__dirname, fileName || 'terms.md');
+  const termsPath = path.join(__dirname, '..', fileName || 'terms.md');
   try { return fs.readFileSync(termsPath, 'utf8'); }
   catch { return '# Terms & Conditions\n\nTerms file not found.'; }
-}
-
-async function handleProjectAccept(interaction, client) {
-  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {});
-  const ticketNumber = interaction.customId.replace('accept_project_', '');
-  const project = projectStore.get(ticketNumber);
-  if (!project) return interaction.reply({ content: 'Project not found.', flags: 64 });
-  project.status = 'accepted';
-  const container = new ContainerBuilder()
-    .setAccentColor(0xFFDD00)
-    .addTextDisplayComponents(new TextDisplayBuilder().setContent(`# ✅ Accepted Project\n\nThis project has been accepted and is open for developer applications.`));
-  const applyRow = new ActionRowBuilder().addComponents(
-    new ButtonBuilder().setCustomId(`apply_project_${ticketNumber}`).setLabel('Apply').setStyle(ButtonStyle.Primary).setEmoji('📝')
-  );
-  container.addActionRowComponents(applyRow);
-  await interaction.update({ components: [container], flags: MessageFlags.IsComponentsV2 });
-  const projectsChannel = interaction.guild.channels.cache.get(PROJECTS_CHANNEL_ID);
-  if (projectsChannel) {
-    const acceptContainer = new ContainerBuilder()
-      .setAccentColor(0x00FF00)
-      .addTextDisplayComponents(
-        new TextDisplayBuilder().setContent(`# ✅ Project Accepted\n\nProject **#${ticketNumber}** by <@${project.clientId}> has been accepted and is open for developer applications.`),
-        new TextDisplayBuilder().setContent(`*<t:${Math.floor(Date.now() / 1000)}:F>*`)
-      );
-    await projectsChannel.send({ components: [acceptContainer], flags: MessageFlags.IsComponentsV2 });
-  }
-  projectStore.set(ticketNumber, project);
-  persistProjectStore();
-}
-
-async function handleProjectDecline(interaction, client) {
-  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {});
-  const modal = new ModalBuilder()
-    .setCustomId(`decline_reason_${interaction.customId.replace('decline_project_', '')}`)
-    .setTitle('Decline Reason');
-  const input = new TextInputBuilder()
-    .setCustomId('decline_reason_input')
-    .setLabel('Why is this project being declined?')
-    .setStyle(TextInputStyle.Paragraph).setRequired(true).setMaxLength(500);
-  modal.addComponents(new ActionRowBuilder().addComponents(input));
-  await interaction.showModal(modal);
-}
-
-async function handleDeclineReasonSubmit(interaction, client) {
-  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {});
-  const ticketNumber = interaction.customId.replace('decline_reason_', '');
-  const reason = interaction.fields.getTextInputValue('decline_reason_input');
-  const project = projectStore.get(ticketNumber);
-  if (!project) return interaction.reply({ content: 'Project not found.', flags: 64 });
-  project.status = 'declined';
-  const container = new ContainerBuilder()
-    .setAccentColor(0xFFDD00)
-    .addTextDisplayComponents(new TextDisplayBuilder().setContent(`# ❌ Declined Project\n\n**Reason:** ${reason}`));
-  try { await interaction.update({ components: [container], flags: MessageFlags.IsComponentsV2 }); } catch (e) {}
-  const projectsChannel = interaction.guild.channels.cache.get(PROJECTS_CHANNEL_ID);
-  if (projectsChannel) {
-    const declineContainer = new ContainerBuilder()
-      .setAccentColor(0xFF0000)
-      .addTextDisplayComponents(
-        new TextDisplayBuilder().setContent(`# ❌ Project Declined\n\nProject **#${ticketNumber}** by <@${project.clientId}> has been declined.\n\n**Reason:** ${reason}`),
-        new TextDisplayBuilder().setContent(`*<t:${Math.floor(Date.now() / 1000)}:F>*`)
-      );
-    await projectsChannel.send({ components: [declineContainer], flags: MessageFlags.IsComponentsV2 });
-  }
-  projectStore.set(ticketNumber, project);
-  persistProjectStore();
 }
 
 // === ADMIN REVIEW HANDLERS ===
 
 async function handleAdminAcceptSeller(interaction, client) {
-  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {});
+  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {});
   const userId = interaction.customId.replace('admin_accept_seller_', '');
   const user = await client.users.fetch(userId).catch(() => null);
-  if (!user) return interaction.reply({ content: 'User not found.', flags: 64 });
+  if (!user) return interaction.reply({ content: 'User not found.', flags: MessageFlags.HTTP_NO_CONTENT });
   await user.send('✅ **Your seller submission has been accepted!** Your product is now listed in the marketplace.');
-
-  // Post-acceptance: run originality gate check
-  const project = projectStore.get(userId);
-  if (project) {
-    try {
-      const { verifyOriginality } = require('./aiAgents/originalityGate');
-      const originalityResult = await verifyOriginality(project.answers || {});
-      if (originalityResult.needsProof || originalityResult.verdict === 'clone_detected') {
-        await user.send(`⚠️ **Originality Check Required**\n\nYour product needs additional verification before it can be listed.\n${originalityResult.verdict === 'clone_detected' ? 'We detected potential copied content. Please provide original source files or references.' : 'Please provide proof of originality (source files, references, ownership proof).'}`);
-        project.needsOriginalityProof = true;
-        projectStore.set(userId, project);
-        persistProjectStore();
-      }
-    } catch (e) { console.error('Originality gate error:', e.message); }
-  }
-
-  // Post-acceptance: create project listing for developer matching
-  try {
-    const project = projectStore.get(userId);
-    if (project && !project.projectListingId) {
-      const listingId = `proj_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-      project.projectListingId = listingId;
-      project.status = 'accepted';
-      project.state = 'ACCEPTED';
-      project.acceptedAt = Date.now();
-      // Create project in project store for dev matching
-      projectStore.set(listingId, {
-        ...project,
-        projectListingId: listingId,
-        state: 'ACCEPTED',
-        acceptedAt: Date.now(),
-        devApplications: [],
-        assignedDevelopers: [],
-      });
-      projectStore.set(userId, project);
-      persistProjectStore();
-      console.log(`[Workflow] Project listing created: ${listingId} for ${user.tag}`);
-    }
-  } catch (e) { console.error('Post-acceptance listing error:', e.message); }
-
   try { await interaction.update({ content: '✅ **Seller submission accepted!**', components: [] }); } catch (e) {}
   removeReview(`seller_${userId}_*`);
 }
 
 async function handleAdminDeclineSeller(interaction, client) {
-  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {});
+  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {});
   const userId = interaction.customId.replace('admin_decline_seller_', '');
   const user = await client.users.fetch(userId).catch(() => null);
-  if (!user) return interaction.reply({ content: 'User not found.', flags: 64 });
+  if (!user) return interaction.reply({ content: 'User not found.', flags: MessageFlags.HTTP_NO_CONTENT });
   const modal = new ModalBuilder().setCustomId(`admin_decline_seller_reason_${userId}`).setTitle('Decline Reason');
   const input = new TextInputBuilder()
     .setCustomId('admin_decline_seller_input')
@@ -643,57 +526,31 @@ async function handleAdminDeclineSeller(interaction, client) {
 }
 
 async function handleAdminDeclineSellerReason(interaction, client) {
-  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {});
+  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {});
   const userId = interaction.customId.replace('admin_decline_seller_reason_', '');
   const reason = interaction.fields.getTextInputValue('admin_decline_seller_input');
   const user = await client.users.fetch(userId).catch(() => null);
-  if (!user) return interaction.reply({ content: 'User not found.', flags: 64 });
+  if (!user) return interaction.reply({ content: 'User not found.', flags: MessageFlags.HTTP_NO_CONTENT });
   await user.send(`❌ **Your seller submission has been declined.**\n\n**Reason:** ${reason}`);
   try { await interaction.update({ content: '❌ **Seller submission declined.**', components: [] }); } catch (e) {}
   removeReview(`seller_${userId}_*`);
 }
 
 async function handleAdminAcceptBuyer(interaction, client) {
-  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {});
+  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {});
   const userId = interaction.customId.replace('admin_accept_buyer_', '');
   const user = await client.users.fetch(userId).catch(() => null);
-  if (!user) return interaction.reply({ content: 'User not found.', flags: 64 });
+  if (!user) return interaction.reply({ content: 'User not found.', flags: MessageFlags.HTTP_NO_CONTENT });
   await user.send('✅ **Your project request has been accepted!** A staff member will contact you shortly.');
-
-  // Post-acceptance: create project listing for developer matching
-  const project = projectStore.get(userId);
-  if (project) {
-    project.state = 'ACCEPTED';
-    project.status = 'accepted';
-    project.acceptedAt = Date.now();
-    project.devApplications = [];
-    project.assignedDevelopers = [];
-    projectStore.set(userId, project);
-    persistProjectStore();
-
-    // Also create a dedicated project listing entry for dev matching
-    const listingId = `proj_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-    projectStore.set(listingId, {
-      ...project,
-      projectListingId: listingId,
-      state: 'ACCEPTED',
-      acceptedAt: Date.now(),
-      devApplications: [],
-      assignedDevelopers: [],
-      type: 'buyer_project',
-    });
-    console.log(`[Workflow] Buyer project listing created: ${listingId} for ${user.tag}`);
-  }
-
   try { await interaction.update({ content: '✅ **Project request accepted!**', components: [] }); } catch (e) {}
   removeReview(`buyer_${userId}_*`);
 }
 
 async function handleAdminDeclineBuyer(interaction, client) {
-  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {});
+  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {});
   const userId = interaction.customId.replace('admin_decline_buyer_', '');
   const user = await client.users.fetch(userId).catch(() => null);
-  if (!user) return interaction.reply({ content: 'User not found.', flags: 64 });
+  if (!user) return interaction.reply({ content: 'User not found.', flags: MessageFlags.HTTP_NO_CONTENT });
   const modal = new ModalBuilder().setCustomId(`admin_decline_buyer_reason_${userId}`).setTitle('Decline Reason');
   const input = new TextInputBuilder()
     .setCustomId('admin_decline_buyer_input')
@@ -704,11 +561,11 @@ async function handleAdminDeclineBuyer(interaction, client) {
 }
 
 async function handleAdminDeclineBuyerReason(interaction, client) {
-  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: 64 }).catch(() => {});
+  if (!isStaffMember(interaction.member)) return interaction.reply({ content: ticketConfig.MESSAGES.ERROR_NO_PERMISSION, flags: MessageFlags.HTTP_NO_CONTENT }).catch(() => {});
   const userId = interaction.customId.replace('admin_decline_buyer_reason_', '');
   const reason = interaction.fields.getTextInputValue('admin_decline_buyer_input');
   const user = await client.users.fetch(userId).catch(() => null);
-  if (!user) return interaction.reply({ content: 'User not found.', flags: 64 });
+  if (!user) return interaction.reply({ content: 'User not found.', flags: MessageFlags.HTTP_NO_CONTENT });
   await user.send(`❌ **Your project request has been declined.**\n\n**Reason:** ${reason}`);
   try { await interaction.update({ content: '❌ **Project request declined.**', components: [] }); } catch (e) {}
   removeReview(`buyer_${userId}_*`);
@@ -726,12 +583,9 @@ module.exports = {
   handleBuyerSubmit,
   handleBuyerBudgetSubmit,
   handleBuyerPaymentSelect,
-  handleProjectAccept,
-  handleProjectDecline,
-  handleDeclineReasonSubmit,
-  projectStore,
-  PROJECTS_CHANNEL_ID,
-  ADMIN_ROLE_ID,
+  projectStore: require('../projectTicket').projectStore,
+  PROJECTS_CHANNEL_ID: config.CHANNELS.PROJECTS,
+  ADMIN_ROLE_ID: config.ROLES.ADMIN,
   SELLER_QUESTIONS,
   SELLER_ROLE_OPTIONS,
   loadTermsContent,

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Mikasa</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>const csrfToken = '<%= csrfToken %>';</script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="/images/bot-logo.png" alt="Mikasa">
+        <span>Mikasa</span>
+      </div>
+      <nav class="links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/marketplace">Marketplace</a>
+        <a href="/marketplace/my-products">My Products</a>
+        <a href="/profile" class="active">Profile</a>
+        <a href="/logout">Logout</a>
+      </nav>
+    </nav>
+  </header>
+
+  <main class="container">
+    <% if (user) { %>
+      <div class="profile-header">
+        <img src="<%= user.avatarURL() %>" alt="<%= user.username %>" class="avatar">
+        <div class="info">
+          <h2><%= user.username %></h2>
+          <p>Discord Tag: <%= user.tag || user.username %>#<%= user.discriminator || '0' %></p>
+          <p>User ID: <%= user.id %></p>
+          <% if (trusted) { %>
+            <span class="trust-badge trusted">✓ Trusted Client</span>
+          <% } else { %>
+            <span class="trust-badge untrasted">Not yet trusted</span>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="profile-stats">
+        <div class="stat-card">
+          <div class="stat-value"><%= stats.productsListed || 0 %></div>
+          <div class="stat-label">Products Listed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value"><%= stats.purchases || 0 %></div>
+          <div class="stat-label">Purchases</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value"><%= stats.sales || 0 %></div>
+          <div class="stat-label">Total Sales</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value"><%= stats.reviews || 0 %></div>
+          <div class="stat-label">Reviews Received</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>🛍️ My Products</h3>
+          <a href="/marketplace/my-products" class="btn btn-primary">View All</a>
+        </div>
+        <% if (recentProducts && recentProducts.length > 0) { %>
+          <% recentProducts.forEach(product => { %>
+            <div class="review-item" style="margin-bottom: 10px;">
+              <div class="review-header">
+                <span class="review-id"><%= product.name %></span>
+                <span class="badge <%= product.status === 'listed' ? 'badge-green' : product.status === 'sold' ? 'badge-red' : 'badge-yellow' %>"><%= product.status %></span>
+              </div>
+              <p style="font-size: 0.85rem;"><strong>Category:</strong> <%= product.category %> &nbsp;|&nbsp; <strong>Price:</strong> <%= product.price %> &nbsp;|&nbsp; <strong>Listed:</strong> <%= new Date(product.createdAt).toLocaleDateString() %></p>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p style="color: #666; font-size: 0.9rem;">No products listed yet. Open a sell ticket to get started!</p>
+        <% } %>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>🛒 Recent Purchases</h3>
+        </div>
+        <% if (recentPurchases && recentPurchases.length > 0) { %>
+          <% recentPurchases.forEach(purchase => { %>
+            <div class="review-item" style="margin-bottom: 10px;">
+              <div class="review-header">
+                <span class="review-id"><%= purchase.productName || 'Product' %></span>
+                <span class="badge <%= purchase.status === 'completed' ? 'badge-green' : purchase.status === 'pending' ? 'badge-yellow' : 'badge-blue' %>"><%= purchase.status %></span>
+              </div>
+              <p style="font-size: 0.85rem;"><strong>From:</strong> <%= purchase.sellerTag || 'Unknown' %> &nbsp;|&nbsp; <strong>Price:</strong> <%= purchase.price %> &nbsp;|&nbsp; <strong>Date:</strong> <%= new Date(purchase.date).toLocaleDateString() %></p>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p style="color: #666; font-size: 0.9rem;">No purchases yet. Browse the marketplace to find something!</p>
+        <% } %>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>⭐ Reviews Received</h3>
+        </div>
+        <% if (recentReviews && recentReviews.length > 0) { %>
+          <% recentReviews.forEach(review => { %>
+            <div class="review-item" style="margin-bottom: 10px;">
+              <div class="review-header">
+                <span class="review-id"><%= review.reviewer || 'Anonymous' %></span>
+                <span class="badge badge-gray"><%= review.stars || 5 %> / 5</span>
+              </div>
+              <p style="font-size: 0.9rem; color: #ddd;">"<%= review.message || 'Great service!' %>"</p>
+              <p style="font-size: 0.8rem; color: #666;"><%= new Date(review.date).toLocaleDateString() %></p>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p style="color: #666; font-size: 0.9rem;">No reviews yet.</p>
+        <% } %>
+      </div>
+
+    <% } else { %>
+      <div class="card" style="text-align: center; padding: 60px 20px;">
+        <div class="empty-state">
+          <div class="icon">👤</div>
+          <p>Please <a href="/auth/discord" class="btn btn-primary" style="margin-top: 15px; display: inline-block;">log in with Discord</a> to view your profile.</p>
+        </div>
+      </div>
+    <% } %>
+  </main>
+
+  <footer>
+    &copy; 2026 Mikasa Bot. All rights reserved.
+  </footer>
+</body>
+</html>

@@ -7,6 +7,7 @@
     "LOGS_CHANNEL_ID": "1526627600146108486",
     "RATING_CHANNEL_ID": "1532532726060679229",
     "TICKET_COUNTER": 1892,
+    "MAX_TICKETS_PER_GUILD": 20,
     "TICKET_TYPES": [
         {
             "label": "Technical Support",
