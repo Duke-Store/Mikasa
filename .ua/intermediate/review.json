@@ -1,0 +1,32 @@
+{
+  "issues": [],
+  "warnings": [
+    "Node 'config:.ua/config.json' has no edges (orphan)",
+    "Node 'file:Events/inviteCreate.js' has no edges (orphan)",
+    "Node 'file:Events/inviteDelete.js' has no edges (orphan)",
+    "Node 'file:views/error.ejs' has no edges (orphan)",
+    "Node 'file:views/recaptcha.ejs' has no edges (orphan)",
+    "Node 'file:views/verify.ejs' has no edges (orphan)"
+  ],
+  "stats": {
+    "totalNodes": 480,
+    "totalEdges": 1024,
+    "totalLayers": 8,
+    "tourSteps": 15,
+    "nodeTypes": {
+      "file": 148,
+      "function": 315,
+      "document": 14,
+      "config": 3
+    },
+    "edgeTypes": {
+      "imports": 179,
+      "calls": 146,
+      "contains": 315,
+      "exports": 241,
+      "configures": 14,
+      "documents": 119,
+      "related": 10
+    }
+  }
+}

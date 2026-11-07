@@ -14866,5 +14866,412 @@
       "weight": 0.7,
       "recoveredFromImportMap": true
     }
+  ],
+  "version": "1.0.0",
+  "project": {
+    "name": "system-bot",
+    "languages": [
+      "css",
+      "ejs",
+      "javascript",
+      "json",
+      "markdown"
+    ],
+    "frameworks": [
+      "Express"
+    ],
+    "description": "A Discord.js v14 support and marketplace bot (system-bot) for a Roblox development community, combining a ticket system, question-flow engine, seller/buyer marketplace submissions, staff and developer applications, and an Express + EJS web dashboard. It also provides AI-assisted evaluation and support via Groq and Google Gemini SDKs. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+    "analyzedAt": "2026-11-07T10:53:16.344Z",
+    "gitCommitHash": "31ea6ada5a4991db249fa0bd22765721526c4b87"
+  },
+  "layers": [
+    {
+      "id": "layer:bot-commands",
+      "name": "Bot Commands Layer",
+      "description": "Slash commands, legacy prefix commands, and interaction handlers that form the bot's user-facing command surface across moderation, tickets, giveaways, protection, store, and marketplace actions.",
+      "nodeIds": [
+        "file:Commands/config/setautorole.js",
+        "file:Commands/config/setgoodbye.js",
+        "file:Commands/config/setlog.js",
+        "file:Commands/config/setmodrole.js",
+        "file:Commands/config/setmuterole.js",
+        "file:Commands/config/setprefix.js",
+        "file:Commands/config/setwelcome.js",
+        "file:Commands/general/settings.js",
+        "file:Commands/general/stats.js",
+        "file:Commands/general/top.js",
+        "file:Commands/log/log-off.js",
+        "file:Commands/log/log-on.js",
+        "file:Commands/log/log-set.js",
+        "file:Commands/moderation/ban.js",
+        "file:Commands/moderation/kick.js",
+        "file:Commands/moderation/lock.js",
+        "file:Commands/moderation/mute.js",
+        "file:Commands/moderation/timeout.js",
+        "file:Commands/moderation/unban.js",
+        "file:Commands/moderation/unlock.js",
+        "file:Commands/moderation/unmute.js",
+        "file:Commands/moderation/warn.js",
+        "file:Commands/moderation/warnings.js",
+        "file:Commands/owner/setstatus-clear.js",
+        "file:Commands/owner/setstatus.js",
+        "file:Commands/owner/shutdown.js",
+        "file:Commands/store/store-setdetails.js",
+        "file:Commands/store/store-setticketroom.js",
+        "file:Commands/store/store.js",
+        "file:Commands/ticket/ticket-setcategory.js",
+        "file:Commands/utility/remind.js",
+        "file:PrefixCommands/reviews.js",
+        "file:commands/admin/review.js",
+        "file:commands/marketplace/buy.js",
+        "file:commands/marketplace/list.js",
+        "file:commands/marketplace/submit.js",
+        "file:handlers/apply.js",
+        "file:handlers/devMatch.js",
+        "file:handlers/ticket.js",
+        "file:PrefixCommands/addadmin.js",
+        "file:PrefixCommands/adminslist.js",
+        "file:PrefixCommands/ratingstatus.js",
+        "file:PrefixCommands/removeadmin.js",
+        "file:PrefixCommands/sendmassratings.js",
+        "file:PrefixCommands/sendrating.js",
+        "file:PrefixCommands/setratingchannel.js",
+        "file:PrefixCommands/stopratings.js",
+        "file:Commands/Giveaway/edit.js",
+        "file:Commands/Giveaway/end.js",
+        "file:Commands/Giveaway/list.js",
+        "file:Commands/Giveaway/pause.js",
+        "file:Commands/Giveaway/reroll.js",
+        "file:Commands/Giveaway/resume.js",
+        "file:Commands/Giveaway/start.js",
+        "file:Commands/general/help.js",
+        "file:Commands/general/payments-method.js",
+        "file:Commands/general/ping.js",
+        "file:Commands/info/avatar.js",
+        "file:Commands/info/channelinfo.js",
+        "file:Commands/info/roleinfo.js",
+        "file:Commands/info/serverinfo.js",
+        "file:Commands/info/userinfo.js",
+        "file:Commands/moderation/clear.js",
+        "file:Commands/protection/auditlog.js",
+        "file:Commands/protection/disable.js",
+        "file:Commands/protection/enable.js",
+        "file:Commands/protection/setlimted.js",
+        "file:Commands/protection/setprotectionlog.js",
+        "file:Commands/protection/setpunishment.js",
+        "file:Commands/protection/verify.js",
+        "file:Commands/protection/whitelist-list.js",
+        "file:Commands/protection/whitelist.js",
+        "file:Commands/ticket/come.js",
+        "file:Commands/ticket/manage.js",
+        "file:Commands/ticket/ticketPanel.js",
+        "file:Commands/utility/announce.js",
+        "file:Commands/utility/invite.js",
+        "file:Commands/utility/say.js"
+      ]
+    },
+    {
+      "id": "layer:event-listeners",
+      "name": "Event Listeners Layer",
+      "description": "Discord gateway event listeners for guild, channel, role, member, message, and invite changes, plus the protection event module enforcing anti-link, anti-scam, and anti-spam rules.",
+      "nodeIds": [
+        "file:Events/channelCreate.js",
+        "file:Events/channelDelete.js",
+        "file:Events/channelUpdate.js",
+        "file:Events/guildBanAdd.js",
+        "file:Events/guildBanRemove.js",
+        "file:Events/guildMemberAdd.js",
+        "file:Events/guildMemberRemove.js",
+        "file:Events/guildMemberUpdate.js",
+        "file:Events/guildUpdate.js",
+        "file:Events/messageDelete.js",
+        "file:Events/messageUpdate.js",
+        "file:Events/roleCreate.js",
+        "file:Events/roleDelete.js",
+        "file:Events/roleUpdate.js",
+        "file:Events/voiceStateUpdate.js",
+        "file:protectionEvents.js",
+        "file:Events/inviteCreate.js",
+        "file:Events/inviteDelete.js"
+      ]
+    },
+    {
+      "id": "layer:web-dashboard",
+      "name": "Web Dashboard Layer",
+      "description": "Express and Socket.IO web layer with the server bootstrap, EJS views for dashboards, profiles, verification, and marketplace pages, and the static stylesheet assets.",
+      "nodeIds": [
+        "file:server.js",
+        "file:public/css/style.css",
+        "file:views/admin/reviews.ejs",
+        "file:views/dashboard.ejs",
+        "file:views/error.ejs",
+        "file:views/index.ejs",
+        "file:views/marketplace/index.ejs",
+        "file:views/marketplace/my-products.ejs",
+        "file:views/profile.ejs",
+        "file:views/recaptcha.ejs",
+        "file:views/server-dashboard.ejs",
+        "file:views/verify.ejs"
+      ]
+    },
+    {
+      "id": "layer:ai-services",
+      "name": "AI Services Layer",
+      "description": "Groq and Google Gemini powered evaluation services: project evaluator, originality gate, and the portfolio scanner pipeline with its analyzers, scoring, and report embeds.",
+      "nodeIds": [
+        "file:aiAgents/originalityGate.js",
+        "file:aiAgents/projectEvaluator.js",
+        "file:aiAgents/templates/projectEvalEmbed.js",
+        "file:portfolioScanner/templates/reportEmbed.js",
+        "file:portfolioScanner/analyzers/aiDetector.js",
+        "file:portfolioScanner/analyzers/fakeDetector.js",
+        "file:portfolioScanner/analyzers/legitimacyCheck.js",
+        "file:portfolioScanner/analyzers/stolenDetector.js",
+        "file:portfolioScanner/index.js",
+        "file:portfolioScanner/utils/adjustments.js",
+        "file:portfolioScanner/utils/keywordSets.js",
+        "file:portfolioScanner/utils/preprocessor.js",
+        "file:portfolioScanner/utils/scoring.js",
+        "file:portfolioScanner/utils/urlChecker.js",
+        "file:portfolioScanner/aiAgentScanner.js",
+        "file:portfolioScanner/templates/aiReportEmbed.js"
+      ]
+    },
+    {
+      "id": "layer:domain-services",
+      "name": "Domain Services Layer",
+      "description": "Core business engines of the bot: ticket lifecycle and idle auto-close, question-flow sessions, marketplace submissions and project tickets, applications, rating system, giveaways, workflow state machine, and action logging.",
+      "nodeIds": [
+        "file:adminReviewTimer.js",
+        "file:applySystem.js",
+        "file:marketplace/marketplace.js",
+        "file:marketplace/templates/marketplaceEmbed.js",
+        "file:projectTicket.js",
+        "file:questionFlow.js",
+        "file:savingSystem.js",
+        "file:trustedClients.js",
+        "file:workflow.js",
+        "file:idleSystem.js",
+        "file:ratingHandler.js",
+        "file:ratingSystem/aiHandler.js",
+        "file:ratingSystem/dmHandler.js",
+        "file:ratingSystem/monitor.js",
+        "file:ratingSystem/serverContext.js",
+        "file:ticketLogger.js",
+        "file:ratingSystem/autoRating.js",
+        "file:giveaway.js"
+      ]
+    },
+    {
+      "id": "layer:core-runtime",
+      "name": "Core Runtime Layer",
+      "description": "Runtime foundation: main and support Discord client entry points, central constants module, JSON-backed persistence, shared utilities used across the bot, and the standalone stress test.",
+      "nodeIds": [
+        "file:utils.js",
+        "file:config.js",
+        "file:traffic-test.js",
+        "file:db.js",
+        "file:index.js",
+        "file:supportAI.js"
+      ]
+    },
+    {
+      "id": "layer:documentation",
+      "name": "Documentation Layer",
+      "description": "Feature architecture specs, system requirements and database specification, audit and implementation reports, and buyer/developer terms of service.",
+      "nodeIds": [
+        "document:AGENT-REPORT.md",
+        "document:AUDIT-REPORT.md",
+        "document:IMPLEMENTATION-PLAN.md",
+        "document:IMPROVEMENTS.md",
+        "document:terms-dev.md",
+        "document:terms.md",
+        "document:architectures/Applying system.md",
+        "document:architectures/COMPILED-MESSAGES.md",
+        "document:architectures/Payments on development services.md",
+        "document:architectures/Portfolio Scanner Report.md",
+        "document:architectures/Projects tickets - Payment.md",
+        "document:architectures/Questions Answering System.md",
+        "document:architectures/SYSTEMS-REQUIREMENTS.md",
+        "document:architectures/Saving system.md"
+      ]
+    },
+    {
+      "id": "layer:configuration",
+      "name": "Configuration Layer",
+      "description": "Project and runtime configuration: npm manifest declaring dependencies and scripts, ticket system settings, and tooling configuration.",
+      "nodeIds": [
+        "config:package.json",
+        "config:ticket-config.json",
+        "config:.ua/config.json"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Project Overview",
+      "description": "Start with AGENT-REPORT.md, a comprehensive analysis of the bot covering its architecture, a full per-file map, gap analysis, and quick-reference file locations — your roadmap for this tour. Then meet index.js, the main Discord entry point that builds the client with full gateway intents, dynamically loads slash and prefix commands, and registers the interaction, message, and channel-delete handlers that drive tickets, applications, question flows, giveaways, and AI features. Together they answer what this project is and where the runtime begins.",
+      "nodeIds": [
+        "document:AGENT-REPORT.md",
+        "file:index.js"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Core Runtime Foundation",
+      "description": "Before any feature, the foundation everything else stands on: utils.js is the most widely depended-upon module in the codebase, exporting guild settings and user stats persistence, duration formatting/parsing, safe interaction replies, and moderation logging. db.js routes guild-scoped keys through a JSON-backed cache, config.js centralizes the hardcoded guild, channel, and role IDs, and package.json declares the runtime stack — discord.js, Express/EJS, Groq and Google Gemini SDKs, Passport Discord auth, and pro.db storage. Nearly every later step imports these shared services.",
+      "nodeIds": [
+        "file:utils.js",
+        "file:db.js",
+        "file:config.js",
+        "config:package.json"
+      ],
+      "languageLesson": "JSON-backed persistence stores state in plain files that are human-readable and dependency-free, which suits a bot of this scale — but it loads everything into memory and has no transactions, so db.js wraps it with a cache and centralized key routing to keep access consistent."
+    },
+    {
+      "order": 3,
+      "title": "Bot Command Surface",
+      "description": "This layer is what users actually type: the Commands/ tree holds slash commands for moderation, configuration, protection, tickets, giveaways, and info, while Commands/general/help.js renders a paginated, button-navigable catalog grouped into nine sections using Discord Components V2 containers. Commands/ticket/ticketPanel.js posts the /setup panel with its service select menu, and moderation/ban.js and protection/enable.js show the standard command pattern — validate permissions, act, then log through the shared utilities from Step 2.",
+      "nodeIds": [
+        "file:Commands/general/help.js",
+        "file:Commands/ticket/ticketPanel.js",
+        "file:Commands/moderation/ban.js",
+        "file:Commands/protection/enable.js"
+      ],
+      "languageLesson": "Discord.js commands are discovered dynamically: index.js scans the command folders, imports each module, and registers it against the client, so adding a command is simply dropping a new file into the right folder — no central registry to edit."
+    },
+    {
+      "order": 4,
+      "title": "Ticket System Lifecycle",
+      "description": "The ticket system is the bot's front door for support, purchases, and applications. config:ticket-config.json is referenced by fifteen modules and holds guild/role/category IDs, ticket counters and limits, five selectable ticket types (support, buy, apply, sell, buy request), plus every user-facing message template. handlers/ticket.js implements the close, delete, reopen, transcript, and claim interactions gated by staff permissions, idleSystem.js auto-closes inactive tickets with a halfway warning, and ticketLogger.js posts styled Components V2 log messages for each action.",
+      "nodeIds": [
+        "config:ticket-config.json",
+        "file:handlers/ticket.js",
+        "file:idleSystem.js",
+        "file:ticketLogger.js"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Question-Flow Session Engine",
+      "description": "Building on the ticket flows, questionFlow.js is the reusable multi-step session engine that renders questions via embeds, modals, and select menus, tracks answers with editing, and persists completed sessions. savingSystem.js serializes finished answers into a formatted Markdown file posted to the dedicated Discord channel for developer applications or client projects. The paired specs — Questions Answering System.md and Saving system.md — document the sequential flow and save-to-channel behavior that this code implements.",
+      "nodeIds": [
+        "file:questionFlow.js",
+        "file:savingSystem.js",
+        "document:architectures/Questions Answering System.md",
+        "document:architectures/Saving system.md"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Marketplace Submissions & Review",
+      "description": "With session flows understood, projectTicket.js becomes the core marketplace ticket engine: seller and buyer submission flows with terms gating, AI evaluation, admin review queueing, and project acceptance decisions. handlers/apply.js implements the full submission UX end to end, adminReviewTimer.js maintains a persistent queue that escalates any review unanswered after 24 hours, and trustedClients.js keeps a JSON-backed registry of spending and referral flags used to gate and fast-track submissions.",
+      "nodeIds": [
+        "file:projectTicket.js",
+        "file:handlers/apply.js",
+        "file:adminReviewTimer.js",
+        "file:trustedClients.js"
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Marketplace Store & Catalog",
+      "description": "The store side of the marketplace: marketplace/marketplace.js provides the JSON-backed product store with listing, purchase recording, keyword search, and seller queries, while marketplaceEmbed.js builds the product list, detail, purchase confirmation, and submission report embeds. commands/marketplace/list.js lets users browse by category and search with AI evaluation embeds, and submit.js and buy.js are slash-command entry points that start the seller and buyer flows from Step 6 inside an existing or freshly created ticket.",
+      "nodeIds": [
+        "file:marketplace/marketplace.js",
+        "file:marketplace/templates/marketplaceEmbed.js",
+        "file:commands/marketplace/list.js",
+        "file:commands/marketplace/submit.js",
+        "file:commands/marketplace/buy.js"
+      ]
+    },
+    {
+      "order": 8,
+      "title": "Applications & Developer Matching",
+      "description": "applySystem.js implements the developer and staff application flow: entry buttons, question sessions reusing the Step 5 engine, portfolio fraud screening, and admin approve/decline handling. handlers/devMatch.js then manages developer applications to accepted projects — portfolio submission, client accept/decline decisions, and matching developers to open projects. Applying system.md specifies the 10-question form, role selector, terms agreement, and the commission splits the code enforces.",
+      "nodeIds": [
+        "file:applySystem.js",
+        "file:handlers/devMatch.js",
+        "document:architectures/Applying system.md"
+      ]
+    },
+    {
+      "order": 9,
+      "title": "Giveaways & Rating Systems",
+      "description": "These domain services keep the community engaged: giveaway.js persists giveaway state to giveaways.json and runs a full lifecycle of create, pause, resume, end, reroll, and edit with a ticking timer, driven by the /gstart-style slash commands from Step 3. ratingHandler.js handles the star-rating buttons sent by DM after a ticket closes and disables them once recorded, while ratingSystem/autoRating.js powers a scheduled stream of randomized \"Verified Customer\" review embeds with its own per-guild admin and channel configuration.",
+      "nodeIds": [
+        "file:giveaway.js",
+        "file:ratingHandler.js",
+        "file:ratingSystem/autoRating.js"
+      ]
+    },
+    {
+      "order": 10,
+      "title": "AI Evaluation Agents",
+      "description": "Now the AI layer that gates the submissions from Step 6: aiAgents/projectEvaluator.js runs parallel Groq-powered agents to evaluate seller submissions and buyer requests, then aggregates their scores and feedback into a single report. aiAgents/templates/projectEvalEmbed.js renders those reports as Components V2 containers with score bars, strengths, and recommendations, while aiAgents/originalityGate.js interprets the originality assessment and detects clone products by comparing them against existing listings.",
+      "nodeIds": [
+        "file:aiAgents/projectEvaluator.js",
+        "file:aiAgents/originalityGate.js",
+        "file:aiAgents/templates/projectEvalEmbed.js"
+      ]
+    },
+    {
+      "order": 11,
+      "title": "Portfolio Scanner Pipeline",
+      "description": "portfolioScanner/index.js orchestrates a deeper screening pipeline: it preprocesses application answers, runs the fake, stolen, AI, and legitimacy analyzers plus work-sample checks, applies scoring adjustments, classifies the result, and persists per-user scan history. portfolioScanner/utils/scoring.js converts analyzer signals into clamped 0-100 scores and risk categories, keywordSets.js holds every regex and phrase signature the analyzers depend on, and analyzers/legitimacyCheck.js combines the sub-scores into the final verdict rendered by templates/reportEmbed.js.",
+      "nodeIds": [
+        "file:portfolioScanner/index.js",
+        "file:portfolioScanner/utils/scoring.js",
+        "file:portfolioScanner/utils/keywordSets.js",
+        "file:portfolioScanner/analyzers/legitimacyCheck.js",
+        "file:portfolioScanner/templates/reportEmbed.js"
+      ]
+    },
+    {
+      "order": 12,
+      "title": "Support AI Assistant",
+      "description": "A separate AI surface powers customer support: ratingSystem/aiHandler.js is a multi-provider chat engine that fans requests out across Gemini, OpenRouter, and Groq with per-model fallback, exponential backoff, and per-user session history. ratingSystem/serverContext.js exports the large shared system prompt defining the LUNEXIS assistant's persona, service scope, and escalation rules, dmHandler.js routes incoming DMs with a typing indicator and chunked replies, and supportAI.js runs a second dedicated bot client answering DMs, mentions, and support-channel messages.",
+      "nodeIds": [
+        "file:ratingSystem/aiHandler.js",
+        "file:ratingSystem/serverContext.js",
+        "file:ratingSystem/dmHandler.js",
+        "file:supportAI.js"
+      ]
+    },
+    {
+      "order": 13,
+      "title": "Express Web Dashboard",
+      "description": "Outside Discord, server.js provides the Express and Socket.IO web layer: /health and /status endpoints, admin character CRUD and DB-rotation routes, JWT-authenticated real-time messaging, periodic cleanup, and graceful shutdown. views/dashboard.ejs renders the logged-in member's server cards with an Arabic/English language toggle, views/marketplace/index.ejs is the filterable Roblox product catalog with purchase buttons, and public/css/style.css supplies the shared dark-theme styling. These are the EJS views that the Express routes from server.js render.",
+      "nodeIds": [
+        "file:server.js",
+        "file:views/dashboard.ejs",
+        "file:views/marketplace/index.ejs",
+        "file:public/css/style.css"
+      ],
+      "languageLesson": "EJS is a server-side template language: `<%= %>` prints an escaped value into the HTML, `<% %>` executes control flow without outputting anything, and includes compose shared partials — so Express builds the full page on the server before sending it to the browser."
+    },
+    {
+      "order": 14,
+      "title": "Event Listeners & Protection",
+      "description": "The Event Listeners layer watches the guild: guildMemberAdd.js logs new members with invite attribution, messageDelete.js records deleted messages with an author and content snapshot, and channelDelete.js resolves the moderator who deleted a channel from the ChannelDelete audit log. protectionEvents.js registers the enforcement side — anti-link, anti-scam, and anti-spam listeners with per-guild rate limiting — configured through the protection commands you saw in Step 3.",
+      "nodeIds": [
+        "file:protectionEvents.js",
+        "file:Events/guildMemberAdd.js",
+        "file:Events/messageDelete.js",
+        "file:Events/channelDelete.js"
+      ]
+    },
+    {
+      "order": 15,
+      "title": "Documentation & Specs",
+      "description": "Close with the specs that define the project: SYSTEMS-REQUIREMENTS.md is the comprehensive requirements and database specification covering the saving system, question-answering flow, project ticket/payment flow, and full module skeletons for the core engines toured above. COMPILED-MESSAGES.md catalogs every user-facing message and embed with source line references into the implementing files, IMPLEMENTATION-PLAN.md lays out the marketplace transformation in a 12-step order, and AUDIT-REPORT.md lists the prioritized P0-P3 bug findings that still guide follow-up work.",
+      "nodeIds": [
+        "document:architectures/SYSTEMS-REQUIREMENTS.md",
+        "document:architectures/COMPILED-MESSAGES.md",
+        "document:IMPLEMENTATION-PLAN.md",
+        "document:AUDIT-REPORT.md"
+      ]
+    }
   ]
 }
