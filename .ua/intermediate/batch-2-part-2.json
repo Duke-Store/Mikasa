@@ -1,0 +1,1467 @@
+{
+  "nodes": [
+    {
+      "id": "file:handlers/apply.js",
+      "type": "file",
+      "name": "apply.js",
+      "filePath": "handlers/apply.js",
+      "summary": "Implements the full seller and buyer marketplace submission flows: terms acceptance, question sessions, AI evaluation, admin review queuing, and accept/decline decisions.",
+      "tags": [
+        "marketplace",
+        "submission-flow",
+        "ai-evaluation",
+        "admin-review",
+        "interaction-handler"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:handlers/devMatch.js",
+      "type": "file",
+      "name": "devMatch.js",
+      "filePath": "handlers/devMatch.js",
+      "summary": "Handles developer applications to accepted projects: portfolio submission, client accept/decline decisions, and matching developers to open projects.",
+      "tags": [
+        "developer-matching",
+        "portfolio",
+        "interaction-handler",
+        "project-workflow"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:marketplace/marketplace.js",
+      "type": "file",
+      "name": "marketplace.js",
+      "filePath": "marketplace/marketplace.js",
+      "summary": "JSON-file-backed marketplace store providing product listing, purchase recording, keyword search, and seller product queries.",
+      "tags": [
+        "marketplace",
+        "data-store",
+        "persistence",
+        "crud"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:marketplace/templates/marketplaceEmbed.js",
+      "type": "file",
+      "name": "marketplaceEmbed.js",
+      "filePath": "marketplace/templates/marketplaceEmbed.js",
+      "summary": "Builds Discord embeds for the marketplace UI: product lists, product detail, purchase confirmation, and seller/buyer submission reports.",
+      "tags": [
+        "discord-embed",
+        "template",
+        "marketplace",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:portfolioScanner/templates/reportEmbed.js",
+      "type": "file",
+      "name": "reportEmbed.js",
+      "filePath": "portfolioScanner/templates/reportEmbed.js",
+      "summary": "Builds the Discord embed that renders a portfolio scan report with its classification, score, and flagged findings.",
+      "tags": [
+        "discord-embed",
+        "template",
+        "portfolio-scan",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:startLegacyProjectFlow",
+      "type": "function",
+      "name": "startLegacyProjectFlow",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        95,
+        132
+      ],
+      "summary": "Opens a project request ticket channel and seeds a legacy project questionnaire session.",
+      "tags": [
+        "project-flow",
+        "ticket",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleLegacyProjectSubmit",
+      "type": "function",
+      "name": "handleLegacyProjectSubmit",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        134,
+        171
+      ],
+      "summary": "Submits the completed legacy project questionnaire, saving answers and notifying staff.",
+      "tags": [
+        "project-flow",
+        "submission",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:startSellerFlow",
+      "type": "function",
+      "name": "startSellerFlow",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        175,
+        194
+      ],
+      "summary": "Begins the seller submission flow with a terms agreement screen.",
+      "tags": [
+        "seller-flow",
+        "marketplace",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleSellerTermsAgree",
+      "type": "function",
+      "name": "handleSellerTermsAgree",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        196,
+        220
+      ],
+      "summary": "Records seller terms acceptance and advances to the product type selection step.",
+      "tags": [
+        "seller-flow",
+        "terms",
+        "interaction-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleSellerTermsDecline",
+      "type": "function",
+      "name": "handleSellerTermsDecline",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        222,
+        229
+      ],
+      "summary": "Cancels the seller flow when the applicant declines the terms.",
+      "tags": [
+        "seller-flow",
+        "terms",
+        "cancellation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:handlers/apply.js:handleSellerTypeSelect",
+      "type": "function",
+      "name": "handleSellerTypeSelect",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        231,
+        247
+      ],
+      "summary": "Captures the seller product type choice and moves on to the questionnaire.",
+      "tags": [
+        "seller-flow",
+        "interaction-handler",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleSellerSubmit",
+      "type": "function",
+      "name": "handleSellerSubmit",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        249,
+        315
+      ],
+      "summary": "Runs AI evaluation on the seller answers, queues the submission for admin review, and posts the submission embed.",
+      "tags": [
+        "seller-flow",
+        "ai-evaluation",
+        "admin-review"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:handlers/apply.js:startBuyerFlow",
+      "type": "function",
+      "name": "startBuyerFlow",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        319,
+        337
+      ],
+      "summary": "Begins the buyer project-request flow with a terms agreement screen.",
+      "tags": [
+        "buyer-flow",
+        "marketplace",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleBuyerTermsAgree",
+      "type": "function",
+      "name": "handleBuyerTermsAgree",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        339,
+        355
+      ],
+      "summary": "Records buyer terms acceptance and advances to the project description step.",
+      "tags": [
+        "buyer-flow",
+        "terms",
+        "interaction-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleBuyerDescSubmit",
+      "type": "function",
+      "name": "handleBuyerDescSubmit",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        357,
+        388
+      ],
+      "summary": "Captures the buyer project description answer and continues the flow.",
+      "tags": [
+        "buyer-flow",
+        "question-flow",
+        "interaction-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleBuyerSubmit",
+      "type": "function",
+      "name": "handleBuyerSubmit",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        390,
+        415
+      ],
+      "summary": "Runs AI evaluation on the buyer request, queues it for admin review, and posts the analysis embed.",
+      "tags": [
+        "buyer-flow",
+        "ai-evaluation",
+        "admin-review"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleBuyerBudgetSubmit",
+      "type": "function",
+      "name": "handleBuyerBudgetSubmit",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        417,
+        438
+      ],
+      "summary": "Captures the buyer's budget answer and advances to payment method selection.",
+      "tags": [
+        "buyer-flow",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleBuyerPaymentSelect",
+      "type": "function",
+      "name": "handleBuyerPaymentSelect",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        440,
+        494
+      ],
+      "summary": "Captures the buyer's payment method selection and finalizes the submission.",
+      "tags": [
+        "buyer-flow",
+        "payment",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:loadTermsContent",
+      "type": "function",
+      "name": "loadTermsContent",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        496,
+        500
+      ],
+      "summary": "Reads a terms markdown file from disk for embedding into the flow.",
+      "tags": [
+        "file-io",
+        "terms",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:handlers/apply.js:handleAdminAcceptSeller",
+      "type": "function",
+      "name": "handleAdminAcceptSeller",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        504,
+        512
+      ],
+      "summary": "Accepts a queued seller submission, lists the product, and notifies the seller.",
+      "tags": [
+        "admin-action",
+        "marketplace",
+        "notification"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:handlers/apply.js:handleAdminDeclineSeller",
+      "type": "function",
+      "name": "handleAdminDeclineSeller",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        514,
+        526
+      ],
+      "summary": "Declines a queued seller submission and prompts the admin for a reason.",
+      "tags": [
+        "admin-action",
+        "marketplace",
+        "review"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleAdminDeclineSellerReason",
+      "type": "function",
+      "name": "handleAdminDeclineSellerReason",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        528,
+        537
+      ],
+      "summary": "Records the decline reason for a seller submission and notifies the applicant.",
+      "tags": [
+        "admin-action",
+        "review",
+        "notification"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:handlers/apply.js:handleAdminAcceptBuyer",
+      "type": "function",
+      "name": "handleAdminAcceptBuyer",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        539,
+        547
+      ],
+      "summary": "Accepts a queued buyer request and advances it into the project workflow.",
+      "tags": [
+        "admin-action",
+        "buyer-flow",
+        "notification"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:handlers/apply.js:handleAdminDeclineBuyer",
+      "type": "function",
+      "name": "handleAdminDeclineBuyer",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        549,
+        561
+      ],
+      "summary": "Declines a queued buyer request and prompts the admin for a reason.",
+      "tags": [
+        "admin-action",
+        "buyer-flow",
+        "review"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/apply.js:handleAdminDeclineBuyerReason",
+      "type": "function",
+      "name": "handleAdminDeclineBuyerReason",
+      "filePath": "handlers/apply.js",
+      "lineRange": [
+        563,
+        572
+      ],
+      "summary": "Records the decline reason for a buyer request and notifies the requester.",
+      "tags": [
+        "admin-action",
+        "review",
+        "notification"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:handlers/devMatch.js:showPortfolioModal",
+      "type": "function",
+      "name": "showPortfolioModal",
+      "filePath": "handlers/devMatch.js",
+      "lineRange": [
+        17,
+        37
+      ],
+      "summary": "Opens the portfolio submission modal for a developer applying to a project.",
+      "tags": [
+        "discord-modal",
+        "portfolio",
+        "interaction-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/devMatch.js:handlePortfolioSubmit",
+      "type": "function",
+      "name": "handlePortfolioSubmit",
+      "filePath": "handlers/devMatch.js",
+      "lineRange": [
+        43,
+        98
+      ],
+      "summary": "Validates and stores a submitted portfolio link against the project record.",
+      "tags": [
+        "portfolio",
+        "validation",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/devMatch.js:handleClientAcceptDev",
+      "type": "function",
+      "name": "handleClientAcceptDev",
+      "filePath": "handlers/devMatch.js",
+      "lineRange": [
+        104,
+        151
+      ],
+      "summary": "Handles a client accepting a developer: assigns them to the project and notifies both parties.",
+      "tags": [
+        "project-workflow",
+        "role-management",
+        "notification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/devMatch.js:handleClientDeclineDev",
+      "type": "function",
+      "name": "handleClientDeclineDev",
+      "filePath": "handlers/devMatch.js",
+      "lineRange": [
+        156,
+        179
+      ],
+      "summary": "Handles a client declining a developer applicant and records the outcome.",
+      "tags": [
+        "project-workflow",
+        "interaction-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:handlers/devMatch.js:getOpenProjectsForMatching",
+      "type": "function",
+      "name": "getOpenProjectsForMatching",
+      "filePath": "handlers/devMatch.js",
+      "lineRange": [
+        185,
+        197
+      ],
+      "summary": "Returns projects that are currently open for developer applications.",
+      "tags": [
+        "query",
+        "project-workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:handlers/devMatch.js:matchDeveloperToProjects",
+      "type": "function",
+      "name": "matchDeveloperToProjects",
+      "filePath": "handlers/devMatch.js",
+      "lineRange": [
+        203,
+        231
+      ],
+      "summary": "Scores open projects against a developer role and specialty to rank matches.",
+      "tags": [
+        "matching",
+        "ranking",
+        "project-workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:marketplace/marketplace.js:loadMarketplace",
+      "type": "function",
+      "name": "loadMarketplace",
+      "filePath": "marketplace/marketplace.js",
+      "lineRange": [
+        10,
+        22
+      ],
+      "summary": "Loads the marketplace product map from disk into memory.",
+      "tags": [
+        "loader",
+        "persistence"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:marketplace/marketplace.js:saveMarketplace",
+      "type": "function",
+      "name": "saveMarketplace",
+      "filePath": "marketplace/marketplace.js",
+      "lineRange": [
+        24,
+        35
+      ],
+      "summary": "Persists the marketplace product map to disk as JSON.",
+      "tags": [
+        "persistence",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:marketplace/marketplace.js:listProduct",
+      "type": "function",
+      "name": "listProduct",
+      "filePath": "marketplace/marketplace.js",
+      "lineRange": [
+        41,
+        84
+      ],
+      "summary": "Validates and records a new product listing with a generated ID and timestamps.",
+      "tags": [
+        "marketplace",
+        "validation",
+        "crud"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:marketplace/marketplace.js:getProduct",
+      "type": "function",
+      "name": "getProduct",
+      "filePath": "marketplace/marketplace.js",
+      "lineRange": [
+        86,
+        88
+      ],
+      "summary": "Looks up a single product by its ID.",
+      "tags": [
+        "lookup",
+        "marketplace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:marketplace/marketplace.js:listAllProducts",
+      "type": "function",
+      "name": "listAllProducts",
+      "filePath": "marketplace/marketplace.js",
+      "lineRange": [
+        90,
+        98
+      ],
+      "summary": "Returns all marketplace products, optionally filtered by category.",
+      "tags": [
+        "query",
+        "marketplace",
+        "filtering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:marketplace/marketplace.js:getSellerProducts",
+      "type": "function",
+      "name": "getSellerProducts",
+      "filePath": "marketplace/marketplace.js",
+      "lineRange": [
+        100,
+        108
+      ],
+      "summary": "Returns every product listed by a given seller.",
+      "tags": [
+        "query",
+        "marketplace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:marketplace/marketplace.js:purchaseProduct",
+      "type": "function",
+      "name": "purchaseProduct",
+      "filePath": "marketplace/marketplace.js",
+      "lineRange": [
+        110,
+        122
+      ],
+      "summary": "Records a purchase against a product, updating buyer count and timestamps.",
+      "tags": [
+        "marketplace",
+        "purchase",
+        "mutation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:marketplace/marketplace.js:removeProduct",
+      "type": "function",
+      "name": "removeProduct",
+      "filePath": "marketplace/marketplace.js",
+      "lineRange": [
+        124,
+        133
+      ],
+      "summary": "Removes a product from the marketplace, recording which admin deleted it.",
+      "tags": [
+        "marketplace",
+        "mutation",
+        "admin"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:marketplace/marketplace.js:searchProducts",
+      "type": "function",
+      "name": "searchProducts",
+      "filePath": "marketplace/marketplace.js",
+      "lineRange": [
+        135,
+        147
+      ],
+      "summary": "Searches marketplace products by keyword across names and descriptions.",
+      "tags": [
+        "search",
+        "marketplace",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:marketplace/templates/marketplaceEmbed.js:buildMarketplaceEmbed",
+      "type": "function",
+      "name": "buildMarketplaceEmbed",
+      "filePath": "marketplace/templates/marketplaceEmbed.js",
+      "lineRange": [
+        3,
+        37
+      ],
+      "summary": "Renders a paginated list of marketplace products into a container embed.",
+      "tags": [
+        "discord-embed",
+        "marketplace",
+        "pagination"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:marketplace/templates/marketplaceEmbed.js:buildProductDetailEmbed",
+      "type": "function",
+      "name": "buildProductDetailEmbed",
+      "filePath": "marketplace/templates/marketplaceEmbed.js",
+      "lineRange": [
+        39,
+        75
+      ],
+      "summary": "Renders a single product's full detail card with price, seller, and stats.",
+      "tags": [
+        "discord-embed",
+        "marketplace",
+        "template"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:marketplace/templates/marketplaceEmbed.js:buildPurchaseConfirmationEmbed",
+      "type": "function",
+      "name": "buildPurchaseConfirmationEmbed",
+      "filePath": "marketplace/templates/marketplaceEmbed.js",
+      "lineRange": [
+        77,
+        105
+      ],
+      "summary": "Renders the confirmation card shown to a buyer before purchasing.",
+      "tags": [
+        "discord-embed",
+        "marketplace",
+        "purchase"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:marketplace/templates/marketplaceEmbed.js:buildSellerSubmittedEmbed",
+      "type": "function",
+      "name": "buildSellerSubmittedEmbed",
+      "filePath": "marketplace/templates/marketplaceEmbed.js",
+      "lineRange": [
+        107,
+        151
+      ],
+      "summary": "Renders the seller submission summary together with its AI evaluation report.",
+      "tags": [
+        "discord-embed",
+        "ai-evaluation",
+        "marketplace"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:marketplace/templates/marketplaceEmbed.js:buildBuyerAnalysisEmbed",
+      "type": "function",
+      "name": "buildBuyerAnalysisEmbed",
+      "filePath": "marketplace/templates/marketplaceEmbed.js",
+      "lineRange": [
+        153,
+        202
+      ],
+      "summary": "Renders the buyer project analysis produced by the AI evaluation.",
+      "tags": [
+        "discord-embed",
+        "ai-evaluation",
+        "marketplace"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:portfolioScanner/templates/reportEmbed.js:buildReportEmbed",
+      "type": "function",
+      "name": "buildReportEmbed",
+      "filePath": "portfolioScanner/templates/reportEmbed.js",
+      "lineRange": [
+        3,
+        88
+      ],
+      "summary": "Converts a portfolio scan report (FAKE, STOLEN, AI_GEN, LEGIT, UNCERTAIN) into a detailed container embed with findings.",
+      "tags": [
+        "discord-embed",
+        "portfolio-scan",
+        "template"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:startLegacyProjectFlow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleLegacyProjectSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:startSellerFlow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:startSellerFlow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleSellerTermsAgree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleSellerTermsAgree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleSellerTermsDecline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleSellerTermsDecline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleSellerTypeSelect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleSellerTypeSelect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleSellerSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleSellerSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:startBuyerFlow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:startBuyerFlow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerTermsAgree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerTermsAgree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerDescSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerDescSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerBudgetSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerBudgetSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerPaymentSelect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleBuyerPaymentSelect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:loadTermsContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:loadTermsContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminAcceptSeller",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminAcceptSeller",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminDeclineSeller",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminDeclineSeller",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminDeclineSellerReason",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminDeclineSellerReason",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminAcceptBuyer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminAcceptBuyer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminDeclineBuyer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminDeclineBuyer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminDeclineBuyerReason",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "function:handlers/apply.js:handleAdminDeclineBuyerReason",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:showPortfolioModal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:showPortfolioModal",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:handlePortfolioSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:handlePortfolioSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:handleClientAcceptDev",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:handleClientAcceptDev",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:handleClientDeclineDev",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:handleClientDeclineDev",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:getOpenProjectsForMatching",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:getOpenProjectsForMatching",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:matchDeveloperToProjects",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "function:handlers/devMatch.js:matchDeveloperToProjects",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:loadMarketplace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:loadMarketplace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:saveMarketplace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:saveMarketplace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:listProduct",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:listProduct",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:getProduct",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:getProduct",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:listAllProducts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:listAllProducts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:getSellerProducts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:getSellerProducts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:purchaseProduct",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:purchaseProduct",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:removeProduct",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:removeProduct",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:searchProducts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "function:marketplace/marketplace.js:searchProducts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildMarketplaceEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildMarketplaceEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildProductDetailEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildProductDetailEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildPurchaseConfirmationEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildPurchaseConfirmationEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildSellerSubmittedEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildSellerSubmittedEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildBuyerAnalysisEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:marketplace/templates/marketplaceEmbed.js",
+      "target": "function:marketplace/templates/marketplaceEmbed.js:buildBuyerAnalysisEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:portfolioScanner/templates/reportEmbed.js",
+      "target": "function:portfolioScanner/templates/reportEmbed.js:buildReportEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:portfolioScanner/templates/reportEmbed.js",
+      "target": "function:portfolioScanner/templates/reportEmbed.js:buildReportEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:adminReviewTimer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:aiAgents/projectEvaluator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:config.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:db.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:handlers/devMatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:marketplace/marketplace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:projectTicket.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:questionFlow.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:ticket-config.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:trustedClients.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/apply.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "file:projectTicket.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "file:ticket-config.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:handlers/devMatch.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "file:aiAgents/projectEvaluator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:marketplace/marketplace.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:handlers/apply.js:handleSellerSubmit",
+      "target": "function:aiAgents/projectEvaluator.js:evaluateSellerProject",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:handlers/apply.js:handleSellerSubmit",
+      "target": "function:marketplace/marketplace.js:listProduct",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:handlers/apply.js:handleSellerSubmit",
+      "target": "function:adminReviewTimer.js:addToQueue",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:marketplace/marketplace.js:listProduct",
+      "target": "function:aiAgents/projectEvaluator.js:evaluateSellerProject",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "nodes": [
+    {
+      "id": "file:Events/inviteCreate.js",
+      "type": "file",
+      "name": "inviteCreate.js",
+      "filePath": "Events/inviteCreate.js",
+      "summary": "Discord inviteCreate event handler that records the usage count of a newly created invite in the client's invite tracking map for later join-source attribution.",
+      "tags": ["event-handler", "discord", "invite-tracking", "cache"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/inviteDelete.js",
+      "type": "file",
+      "name": "inviteDelete.js",
+      "filePath": "Events/inviteDelete.js",
+      "summary": "Discord inviteDelete event handler that evicts a deleted invite code from the client's cached invite map so join attribution stays accurate.",
+      "tags": ["event-handler", "discord", "invite-tracking", "cache"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:portfolioScanner/aiAgentScanner.js",
+      "type": "file",
+      "name": "aiAgentScanner.js",
+      "filePath": "portfolioScanner/aiAgentScanner.js",
+      "summary": "Multi-agent AI portfolio scanner that fans developer application answers out to three specialized Groq LLM agents in parallel and merges their scores, strengths, red flags, and missing-item feedback into one report.",
+      "tags": ["ai-evaluation", "llm-orchestration", "service", "aggregation", "portfolio-scanner"],
+      "complexity": "complex",
+      "languageNotes": "Runs a Promise.all fan-out over agent configs and strips markdown code fences before JSON.parse so free-form LLM output becomes machine-readable."
+    },
+    {
+      "id": "file:portfolioScanner/templates/aiReportEmbed.js",
+      "type": "file",
+      "name": "aiReportEmbed.js",
+      "filePath": "portfolioScanner/templates/aiReportEmbed.js",
+      "summary": "Builds the Discord message-component report for an AI portfolio scan: accent-colored containers with score bars, strengths, missing items, red flags, per-agent lines, and a metadata footer.",
+      "tags": ["discord", "embed-template", "ai-report", "presentation"],
+      "complexity": "moderate",
+      "languageNotes": "Uses Discord's newer ContainerBuilder / TextDisplayBuilder / SeparatorBuilder component API instead of the classic EmbedBuilder."
+    },
+    {
+      "id": "file:public/css/style.css",
+      "type": "file",
+      "name": "style.css",
+      "filePath": "public/css/style.css",
+      "summary": "Shared dark-theme stylesheet for the Express web dashboard covering header and navigation, cards, product grid, badges, buttons, profile stats, admin review items, footer, and a mobile breakpoint.",
+      "tags": ["stylesheet", "ui", "dashboard", "responsive-design", "dark-theme"],
+      "complexity": "complex",
+      "languageNotes": "Organized into commented section blocks with a single max-width:768px media query that collapses grids and the nav for mobile."
+    },
+    {
+      "id": "file:views/admin/reviews.ejs",
+      "type": "file",
+      "name": "reviews.ejs",
+      "filePath": "views/admin/reviews.ejs",
+      "summary": "Admin moderation queue template listing pending seller submissions and buyer requests with their answers, AI evaluation scores, admin responses, and accept/decline actions posted to /api/review-action.",
+      "tags": ["template", "admin-dashboard", "review-queue", "marketplace"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:views/dashboard.ejs",
+      "type": "file",
+      "name": "dashboard.ejs",
+      "filePath": "views/dashboard.ejs",
+      "summary": "User dashboard template rendering the logged-in member's Discord servers as manage cards, with an Arabic/English language toggle and staggered card entrance animations.",
+      "tags": ["template", "dashboard", "guild-list", "i18n"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:views/error.ejs",
+      "type": "file",
+      "name": "error.ejs",
+      "filePath": "views/error.ejs",
+      "summary": "Minimal standalone error page rendering an optional message passed by the Express error handler plus a link back to the home page.",
+      "tags": ["template", "error-handling", "ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:views/index.ejs",
+      "type": "file",
+      "name": "index.ejs",
+      "filePath": "views/index.ejs",
+      "summary": "Public landing page offering Discord OAuth login and bot invite links, a bot feature list, and a client-side Arabic/English RTL language switcher.",
+      "tags": ["template", "landing-page", "i18n", "discord-oauth", "ui"],
+      "complexity": "moderate",
+      "languageNotes": "Renders Arabic right-to-left by default and flips document.dir, lang, and every text node client-side when the language button is pressed."
+    },
+    {
+      "id": "file:views/marketplace/index.ejs",
+      "type": "file",
+      "name": "index.ejs",
+      "filePath": "views/marketplace/index.ejs",
+      "summary": "Marketplace catalog template filtering and listing Roblox products by category and search text, with a purchase button that posts to /api/purchase-product.",
+      "tags": ["template", "marketplace", "product-grid", "api-client"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:views/marketplace/my-products.ejs",
+      "type": "file",
+      "name": "my-products.ejs",
+      "filePath": "views/marketplace/my-products.ejs",
+      "summary": "Seller-facing template listing the current user's marketplace products with status badges and a removal action that posts to /api/remove-product.",
+      "tags": ["template", "marketplace", "seller-dashboard", "api-client"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:views/profile.ejs",
+      "type": "file",
+      "name": "profile.ejs",
+      "filePath": "views/profile.ejs",
+      "summary": "User profile page showing the trust badge, marketplace statistics, recent listings, purchases, and reviews, with a logged-out fallback that links to Discord OAuth.",
+      "tags": ["template", "profile", "marketplace", "user-stats"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:views/recaptcha.ejs",
+      "type": "file",
+      "name": "recaptcha.ejs",
+      "filePath": "views/recaptcha.ejs",
+      "summary": "Arabic right-to-left reCAPTCHA challenge page that renders Google's reCAPTCHA widget and submits the form response to /verify-recaptcha.",
+      "tags": ["template", "captcha", "security", "form"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:views/server-dashboard.ejs",
+      "type": "file",
+      "name": "server-dashboard.ejs",
+      "filePath": "views/server-dashboard.ejs",
+      "summary": "Per-guild control panel template rendering anti-raid and moderation protection toggles, per-command enable switches, and a marketplace management tab, all wired to CSRF-protected JSON APIs.",
+      "tags": ["template", "dashboard", "protection-toggles", "api-client", "csrf"],
+      "complexity": "complex",
+      "languageNotes": "Generates bilingual toggle cards by looping EJS over protection-type arrays and indexing inline Arabic/English lookup maps by key."
+    },
+    {
+      "id": "file:views/verify.ejs",
+      "type": "file",
+      "name": "verify.ejs",
+      "filePath": "views/verify.ejs",
+      "summary": "Account verification page that POSTs the guild ID, user ID, and CSRF token to /verify, then reports success or failure inline with a loading spinner.",
+      "tags": ["template", "verification", "api-client", "security"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:portfolioScanner/aiAgentScanner.js:buildPortfolioText",
+      "type": "function",
+      "name": "buildPortfolioText",
+      "filePath": "portfolioScanner/aiAgentScanner.js",
+      "lineRange": [26, 44],
+      "summary": "Flattens developer application answers and application metadata into a markdown text block formatted for the LLM agent prompts.",
+      "tags": ["utility", "prompt-building", "serialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:portfolioScanner/aiAgentScanner.js:callAgent",
+      "type": "function",
+      "name": "callAgent",
+      "filePath": "portfolioScanner/aiAgentScanner.js",
+      "lineRange": [81, 122],
+      "summary": "Sends the portfolio text to one configured Groq chat agent, strips markdown fences from the reply, parses the JSON, and returns a normalized result or an error entry.",
+      "tags": ["llm-client", "api-call", "json-parsing", "ai-evaluation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:portfolioScanner/aiAgentScanner.js:aggregateResults",
+      "type": "function",
+      "name": "aggregateResults",
+      "filePath": "portfolioScanner/aiAgentScanner.js",
+      "lineRange": [124, 188],
+      "summary": "Merges the per-agent results into a single report with an averaged score, classification tally, combined strengths, missing items and red flags, evidence excerpts, and per-category sub-scores.",
+      "tags": ["aggregation", "scoring", "ai-evaluation", "utility"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:portfolioScanner/aiAgentScanner.js:scanPortfolioWithAI",
+      "type": "function",
+      "name": "scanPortfolioWithAI",
+      "filePath": "portfolioScanner/aiAgentScanner.js",
+      "lineRange": [190, 198],
+      "summary": "Exported entry point that builds the portfolio text, runs every configured AI agent concurrently, and returns the aggregated evaluation report.",
+      "tags": ["ai-evaluation", "orchestration", "export"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:portfolioScanner/templates/aiReportEmbed.js:buildAIAgentReportEmbed",
+      "type": "function",
+      "name": "buildAIAgentReportEmbed",
+      "filePath": "portfolioScanner/templates/aiReportEmbed.js",
+      "lineRange": [9, 131],
+      "summary": "Assembles the complete Discord report payload for an AI portfolio scan, chaining containers for the classification header, score bars, strengths, missing items, red flags, per-agent lines, and metadata.",
+      "tags": ["discord", "embed-template", "presentation", "ai-report"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:views/index.ejs:changeLanguage",
+      "type": "function",
+      "name": "changeLanguage",
+      "filePath": "views/index.ejs",
+      "lineRange": [161, 216],
+      "summary": "Swaps every landing page string between Arabic and English, flips document direction, and replays the entrance animations on the changed elements.",
+      "tags": ["i18n", "dom-manipulation", "client-script"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:views/dashboard.ejs:toggleLanguage",
+      "type": "function",
+      "name": "toggleLanguage",
+      "filePath": "views/dashboard.ejs",
+      "lineRange": [175, 197],
+      "summary": "Toggles the dashboard title, action buttons, and empty-state message between Arabic and English and switches the document direction.",
+      "tags": ["i18n", "dom-manipulation", "client-script"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:views/server-dashboard.ejs:toggleCommand",
+      "type": "function",
+      "name": "toggleCommand",
+      "filePath": "views/server-dashboard.ejs",
+      "lineRange": [231, 242],
+      "summary": "POSTs a command enable/disable change for a guild to /api/toggle-command together with the CSRF token.",
+      "tags": ["api-client", "toggle", "client-script"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:views/server-dashboard.ejs:toggleProtection",
+      "type": "function",
+      "name": "toggleProtection",
+      "filePath": "views/server-dashboard.ejs",
+      "lineRange": [244, 255],
+      "summary": "POSTs an anti-raid or moderation protection toggle for a guild to /api/toggle-protection together with the CSRF token.",
+      "tags": ["api-client", "toggle", "client-script"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:views/server-dashboard.ejs:removeProduct",
+      "type": "function",
+      "name": "removeProduct",
+      "filePath": "views/server-dashboard.ejs",
+      "lineRange": [257, 270],
+      "summary": "Confirms with the admin and posts product deletion to /api/remove-product, reloading the control panel when the server reports success.",
+      "tags": ["api-client", "marketplace", "client-script"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:views/admin/reviews.ejs:acceptReview",
+      "type": "function",
+      "name": "acceptReview",
+      "filePath": "views/admin/reviews.ejs",
+      "lineRange": [91, 110],
+      "summary": "Confirms and submits an accept action for a pending review to /api/review-action with the CSRF token, then reloads the queue.",
+      "tags": ["api-client", "admin-action", "client-script"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:views/admin/reviews.ejs:declineReview",
+      "type": "function",
+      "name": "declineReview",
+      "filePath": "views/admin/reviews.ejs",
+      "lineRange": [112, 133],
+      "summary": "Prompts the admin for a reason and posts the decline action for a pending review to /api/review-action with the CSRF token.",
+      "tags": ["api-client", "admin-action", "client-script"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:views/marketplace/index.ejs:purchaseProduct",
+      "type": "function",
+      "name": "purchaseProduct",
+      "filePath": "views/marketplace/index.ejs",
+      "lineRange": [69, 92],
+      "summary": "Confirms and submits a product purchase to /api/purchase-product with the CSRF token, reloading the catalog on success.",
+      "tags": ["api-client", "marketplace", "client-script"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:views/marketplace/my-products.ejs:removeProduct",
+      "type": "function",
+      "name": "removeProduct",
+      "filePath": "views/marketplace/my-products.ejs",
+      "lineRange": [55, 78],
+      "summary": "Confirms and posts a product removal to /api/remove-product with the CSRF token, reloading the seller's listing grid on success.",
+      "tags": ["api-client", "marketplace", "client-script"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:portfolioScanner/aiAgentScanner.js", "target": "function:portfolioScanner/aiAgentScanner.js:buildPortfolioText", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:portfolioScanner/aiAgentScanner.js", "target": "function:portfolioScanner/aiAgentScanner.js:callAgent", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:portfolioScanner/aiAgentScanner.js", "target": "function:portfolioScanner/aiAgentScanner.js:aggregateResults", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:portfolioScanner/aiAgentScanner.js", "target": "function:portfolioScanner/aiAgentScanner.js:scanPortfolioWithAI", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:portfolioScanner/templates/aiReportEmbed.js", "target": "function:portfolioScanner/templates/aiReportEmbed.js:buildAIAgentReportEmbed", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:views/index.ejs", "target": "function:views/index.ejs:changeLanguage", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:views/dashboard.ejs", "target": "function:views/dashboard.ejs:toggleLanguage", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:views/server-dashboard.ejs", "target": "function:views/server-dashboard.ejs:toggleCommand", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:views/server-dashboard.ejs", "target": "function:views/server-dashboard.ejs:toggleProtection", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:views/server-dashboard.ejs", "target": "function:views/server-dashboard.ejs:removeProduct", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:views/admin/reviews.ejs", "target": "function:views/admin/reviews.ejs:acceptReview", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:views/admin/reviews.ejs", "target": "function:views/admin/reviews.ejs:declineReview", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:views/marketplace/index.ejs", "target": "function:views/marketplace/index.ejs:purchaseProduct", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:views/marketplace/my-products.ejs", "target": "function:views/marketplace/my-products.ejs:removeProduct", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:portfolioScanner/aiAgentScanner.js", "target": "function:portfolioScanner/aiAgentScanner.js:scanPortfolioWithAI", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:portfolioScanner/templates/aiReportEmbed.js", "target": "function:portfolioScanner/templates/aiReportEmbed.js:buildAIAgentReportEmbed", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:public/css/style.css", "target": "file:views/admin/reviews.ejs", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:public/css/style.css", "target": "file:views/profile.ejs", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:public/css/style.css", "target": "file:views/marketplace/index.ejs", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:public/css/style.css", "target": "file:views/marketplace/my-products.ejs", "type": "configures", "direction": "forward", "weight": 0.6},
+    {"source": "file:public/css/style.css", "target": "file:views/server-dashboard.ejs", "type": "configures", "direction": "forward", "weight": 0.6}
+  ]
+}

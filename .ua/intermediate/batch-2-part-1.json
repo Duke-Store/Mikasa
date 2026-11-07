@@ -1,0 +1,1150 @@
+{
+  "nodes": [
+    {
+      "id": "file:adminReviewTimer.js",
+      "type": "file",
+      "name": "adminReviewTimer.js",
+      "filePath": "adminReviewTimer.js",
+      "summary": "Maintains a persistent queue of pending admin reviews for marketplace submissions, with a background timer that escalates any review unanswered after 24 hours to the admin channel.",
+      "tags": [
+        "review-queue",
+        "timer",
+        "escalation",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:aiAgents/originalityGate.js",
+      "type": "file",
+      "name": "originalityGate.js",
+      "filePath": "aiAgents/originalityGate.js",
+      "summary": "Gates marketplace submissions by interpreting the AI originality assessment and detecting clone products by comparing them against existing listings.",
+      "tags": [
+        "ai-evaluation",
+        "validation",
+        "marketplace",
+        "originality"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:aiAgents/projectEvaluator.js",
+      "type": "file",
+      "name": "projectEvaluator.js",
+      "filePath": "aiAgents/projectEvaluator.js",
+      "summary": "Runs parallel Groq-powered AI agents to evaluate seller submissions and buyer requests, then aggregates their scores and feedback into a single report.",
+      "tags": [
+        "ai-evaluation",
+        "groq",
+        "multi-agent",
+        "llm",
+        "aggregation"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Uses Promise.all to fan out prompts to several Groq chat-completion agents, then strips Markdown code fences before JSON.parse-ing each response."
+    },
+    {
+      "id": "file:aiAgents/templates/projectEvalEmbed.js",
+      "type": "file",
+      "name": "projectEvalEmbed.js",
+      "filePath": "aiAgents/templates/projectEvalEmbed.js",
+      "summary": "Builds Discord Components-v2 container embeds that render seller and buyer AI evaluation reports with score bars, strengths, and recommendations.",
+      "tags": [
+        "discord-embed",
+        "template",
+        "ai-evaluation",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:applySystem.js",
+      "type": "file",
+      "name": "applySystem.js",
+      "filePath": "applySystem.js",
+      "summary": "Implements the developer and staff application flow: entry buttons, question sessions, portfolio fraud screening, and admin approve/decline handling.",
+      "tags": [
+        "application-flow",
+        "discord-interaction",
+        "portfolio-scan",
+        "question-flow"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:commands/admin/review.js",
+      "type": "file",
+      "name": "review.js",
+      "filePath": "commands/admin/review.js",
+      "summary": "Slash command that lists pending seller and buyer admin reviews from the review queue for staff members, with accept/decline controls.",
+      "tags": [
+        "slash-command",
+        "admin",
+        "review-queue",
+        "discord"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:commands/marketplace/buy.js",
+      "type": "file",
+      "name": "buy.js",
+      "filePath": "commands/marketplace/buy.js",
+      "summary": "Slash command alternative entry point that opens the buyer project-request flow inside an existing or freshly created ticket.",
+      "tags": [
+        "slash-command",
+        "marketplace",
+        "buyer-flow",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:commands/marketplace/list.js",
+      "type": "file",
+      "name": "list.js",
+      "filePath": "commands/marketplace/list.js",
+      "summary": "Slash command for browsing the marketplace: list products by category, search by keyword, and open product details with AI evaluation embeds.",
+      "tags": [
+        "slash-command",
+        "marketplace",
+        "search",
+        "browsing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:commands/marketplace/submit.js",
+      "type": "file",
+      "name": "submit.js",
+      "filePath": "commands/marketplace/submit.js",
+      "summary": "Slash command alternative entry point that starts the seller product-submission flow inside an existing or freshly created ticket.",
+      "tags": [
+        "slash-command",
+        "marketplace",
+        "seller-flow",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:config.js",
+      "type": "file",
+      "name": "config.js",
+      "filePath": "config.js",
+      "summary": "Exports hardcoded guild, channel, and role IDs consumed across the bot features as the central constants module.",
+      "tags": [
+        "configuration",
+        "constants",
+        "discord",
+        "ids"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:loadReviewQueue",
+      "type": "function",
+      "name": "loadReviewQueue",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        9,
+        21
+      ],
+      "summary": "Loads the persisted review queue from disk into the in-memory Map on startup.",
+      "tags": [
+        "loader",
+        "persistence"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:saveReviewQueue",
+      "type": "function",
+      "name": "saveReviewQueue",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        23,
+        34
+      ],
+      "summary": "Persists the current review queue Map to disk as JSON.",
+      "tags": [
+        "persistence",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:addToQueue",
+      "type": "function",
+      "name": "addToQueue",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        36,
+        54
+      ],
+      "summary": "Adds a submission to the review queue with a 24-hour expiry and saves it.",
+      "tags": [
+        "review-queue",
+        "scheduling",
+        "persistence"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:getPendingReviews",
+      "type": "function",
+      "name": "getPendingReviews",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        56,
+        65
+      ],
+      "summary": "Returns queue entries whose expiry deadline has not yet passed.",
+      "tags": [
+        "review-queue",
+        "query"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:getExpiredReviews",
+      "type": "function",
+      "name": "getExpiredReviews",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        67,
+        76
+      ],
+      "summary": "Returns review entries that have been pending past their expiry, ready for escalation.",
+      "tags": [
+        "review-queue",
+        "query",
+        "escalation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:acceptReview",
+      "type": "function",
+      "name": "acceptReview",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        78,
+        87
+      ],
+      "summary": "Records an admin decision and reason on a review, then persists the queue.",
+      "tags": [
+        "review-queue",
+        "admin",
+        "persistence"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:getReview",
+      "type": "function",
+      "name": "getReview",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        89,
+        91
+      ],
+      "summary": "Looks up a single review entry by request ID.",
+      "tags": [
+        "lookup",
+        "review-queue"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:removeReview",
+      "type": "function",
+      "name": "removeReview",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        93,
+        96
+      ],
+      "summary": "Deletes a review entry from the queue and persists the change.",
+      "tags": [
+        "review-queue",
+        "mutation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:startTimerCheck",
+      "type": "function",
+      "name": "startTimerCheck",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        100,
+        109
+      ],
+      "summary": "Starts a periodic interval that escalates any expired reviews.",
+      "tags": [
+        "timer",
+        "scheduling",
+        "escalation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:adminReviewTimer.js:escalateReview",
+      "type": "function",
+      "name": "escalateReview",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        111,
+        146
+      ],
+      "summary": "Builds and sends an urgent escalation embed to the admin review channel for a review pending over 24 hours.",
+      "tags": [
+        "escalation",
+        "discord-embed",
+        "notification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:adminReviewTimer.js:stopTimerCheck",
+      "type": "function",
+      "name": "stopTimerCheck",
+      "filePath": "adminReviewTimer.js",
+      "lineRange": [
+        148,
+        153
+      ],
+      "summary": "Clears the escalation interval to stop background review checks.",
+      "tags": [
+        "timer",
+        "lifecycle"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:aiAgents/originalityGate.js:verifyOriginality",
+      "type": "function",
+      "name": "verifyOriginality",
+      "filePath": "aiAgents/originalityGate.js",
+      "lineRange": [
+        14,
+        53
+      ],
+      "summary": "Runs the AI seller evaluation and interprets its originality assessment to flag non-original submissions.",
+      "tags": [
+        "ai-evaluation",
+        "validation",
+        "originality"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:aiAgents/originalityGate.js:checkForClones",
+      "type": "function",
+      "name": "checkForClones",
+      "filePath": "aiAgents/originalityGate.js",
+      "lineRange": [
+        58,
+        88
+      ],
+      "summary": "Compares a product name and description against existing listings using token overlap to detect clones.",
+      "tags": [
+        "clone-detection",
+        "validation",
+        "text-similarity"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:aiAgents/projectEvaluator.js:callSellerAgent",
+      "type": "function",
+      "name": "callSellerAgent",
+      "filePath": "aiAgents/projectEvaluator.js",
+      "lineRange": [
+        74,
+        119
+      ],
+      "summary": "Sends one seller evaluation prompt to Groq and parses the agent JSON response.",
+      "tags": [
+        "ai-evaluation",
+        "groq",
+        "http-client"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:aiAgents/projectEvaluator.js:aggregateSellerResults",
+      "type": "function",
+      "name": "aggregateSellerResults",
+      "filePath": "aiAgents/projectEvaluator.js",
+      "lineRange": [
+        121,
+        174
+      ],
+      "summary": "Merges seller agent outputs into one report with averaged scores, deduplicated strengths and weaknesses, and an originality verdict.",
+      "tags": [
+        "aggregation",
+        "scoring",
+        "ai-evaluation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:aiAgents/projectEvaluator.js:evaluateSellerProject",
+      "type": "function",
+      "name": "evaluateSellerProject",
+      "filePath": "aiAgents/projectEvaluator.js",
+      "lineRange": [
+        176,
+        181
+      ],
+      "summary": "Fans out to all seller evaluation agents in parallel and aggregates their reports.",
+      "tags": [
+        "orchestration",
+        "ai-evaluation",
+        "fan-out"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:aiAgents/projectEvaluator.js:callBuyerAgent",
+      "type": "function",
+      "name": "callBuyerAgent",
+      "filePath": "aiAgents/projectEvaluator.js",
+      "lineRange": [
+        244,
+        289
+      ],
+      "summary": "Sends one buyer evaluation prompt to Groq and parses the JSON response into viability metrics.",
+      "tags": [
+        "ai-evaluation",
+        "groq",
+        "http-client"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:aiAgents/projectEvaluator.js:aggregateBuyerResults",
+      "type": "function",
+      "name": "aggregateBuyerResults",
+      "filePath": "aiAgents/projectEvaluator.js",
+      "lineRange": [
+        291,
+        342
+      ],
+      "summary": "Merges buyer agent outputs into one analysis with viability score, complexity estimate, and price hints.",
+      "tags": [
+        "aggregation",
+        "scoring",
+        "ai-evaluation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:aiAgents/projectEvaluator.js:evaluateBuyerProject",
+      "type": "function",
+      "name": "evaluateBuyerProject",
+      "filePath": "aiAgents/projectEvaluator.js",
+      "lineRange": [
+        344,
+        349
+      ],
+      "summary": "Fans out to all buyer evaluation agents in parallel and aggregates their reports.",
+      "tags": [
+        "orchestration",
+        "ai-evaluation",
+        "fan-out"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:aiAgents/templates/projectEvalEmbed.js:buildProjectEvalEmbed",
+      "type": "function",
+      "name": "buildProjectEvalEmbed",
+      "filePath": "aiAgents/templates/projectEvalEmbed.js",
+      "lineRange": [
+        7,
+        103
+      ],
+      "summary": "Renders the seller AI evaluation report as a container embed with score bar, strengths, weaknesses, and categories.",
+      "tags": [
+        "discord-embed",
+        "ai-evaluation",
+        "template"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:aiAgents/templates/projectEvalEmbed.js:buildBuyerEvalEmbed",
+      "type": "function",
+      "name": "buildBuyerEvalEmbed",
+      "filePath": "aiAgents/templates/projectEvalEmbed.js",
+      "lineRange": [
+        109,
+        210
+      ],
+      "summary": "Renders the buyer project analysis as a container embed with viability score, winning ideas, and negatives.",
+      "tags": [
+        "discord-embed",
+        "ai-evaluation",
+        "template"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:applySystem.js:startApplyFlow",
+      "type": "function",
+      "name": "startApplyFlow",
+      "filePath": "applySystem.js",
+      "lineRange": [
+        65,
+        89
+      ],
+      "summary": "Posts the application entry embed with developer and staff apply buttons to the applications channel.",
+      "tags": [
+        "entry-point",
+        "discord-embed",
+        "application-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:applySystem.js:handleApplyButton",
+      "type": "function",
+      "name": "handleApplyButton",
+      "filePath": "applySystem.js",
+      "lineRange": [
+        91,
+        109
+      ],
+      "summary": "Starts a developer application session by loading the apply questions into the question flow.",
+      "tags": [
+        "interaction-handler",
+        "application-flow",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:applySystem.js:handleStaffApplyButton",
+      "type": "function",
+      "name": "handleStaffApplyButton",
+      "filePath": "applySystem.js",
+      "lineRange": [
+        111,
+        129
+      ],
+      "summary": "Starts a staff application session using the staff-specific question set.",
+      "tags": [
+        "interaction-handler",
+        "application-flow",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:applySystem.js:buildApplySummaryEmbed",
+      "type": "function",
+      "name": "buildApplySummaryEmbed",
+      "filePath": "applySystem.js",
+      "lineRange": [
+        131,
+        160
+      ],
+      "summary": "Renders a container embed summarizing all answered application fields for admin review.",
+      "tags": [
+        "discord-embed",
+        "application-flow",
+        "template"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:applySystem.js:finalizeApplication",
+      "type": "function",
+      "name": "finalizeApplication",
+      "filePath": "applySystem.js",
+      "lineRange": [
+        162,
+        254
+      ],
+      "summary": "Completes an application: persists it, posts the summary, screens the submitted portfolio for fraud, and attaches approve/decline controls.",
+      "tags": [
+        "application-flow",
+        "portfolio-scan",
+        "admin-review"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:applySystem.js:handleDevAppApprove",
+      "type": "function",
+      "name": "handleDevAppApprove",
+      "filePath": "applySystem.js",
+      "lineRange": [
+        256,
+        295
+      ],
+      "summary": "Staff-only handler that approves a developer application, assigns the role, and notifies the applicant.",
+      "tags": [
+        "admin-action",
+        "role-management",
+        "interaction-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:applySystem.js:handleDevAppDecline",
+      "type": "function",
+      "name": "handleDevAppDecline",
+      "filePath": "applySystem.js",
+      "lineRange": [
+        297,
+        326
+      ],
+      "summary": "Staff-only handler that declines a developer application with an optional reason.",
+      "tags": [
+        "admin-action",
+        "application-flow",
+        "interaction-handler"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:loadReviewQueue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:loadReviewQueue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:saveReviewQueue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:saveReviewQueue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:addToQueue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:addToQueue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:getPendingReviews",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:getPendingReviews",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:getExpiredReviews",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:getExpiredReviews",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:acceptReview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:acceptReview",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:getReview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:getReview",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:removeReview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:removeReview",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:startTimerCheck",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:startTimerCheck",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:escalateReview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:stopTimerCheck",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "function:adminReviewTimer.js:stopTimerCheck",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:aiAgents/originalityGate.js",
+      "target": "function:aiAgents/originalityGate.js:verifyOriginality",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/originalityGate.js",
+      "target": "function:aiAgents/originalityGate.js:verifyOriginality",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:aiAgents/originalityGate.js",
+      "target": "function:aiAgents/originalityGate.js:checkForClones",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/originalityGate.js",
+      "target": "function:aiAgents/originalityGate.js:checkForClones",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:aiAgents/projectEvaluator.js",
+      "target": "function:aiAgents/projectEvaluator.js:callSellerAgent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/projectEvaluator.js",
+      "target": "function:aiAgents/projectEvaluator.js:aggregateSellerResults",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/projectEvaluator.js",
+      "target": "function:aiAgents/projectEvaluator.js:evaluateSellerProject",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/projectEvaluator.js",
+      "target": "function:aiAgents/projectEvaluator.js:evaluateSellerProject",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:aiAgents/projectEvaluator.js",
+      "target": "function:aiAgents/projectEvaluator.js:callBuyerAgent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/projectEvaluator.js",
+      "target": "function:aiAgents/projectEvaluator.js:aggregateBuyerResults",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/projectEvaluator.js",
+      "target": "function:aiAgents/projectEvaluator.js:evaluateBuyerProject",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/projectEvaluator.js",
+      "target": "function:aiAgents/projectEvaluator.js:evaluateBuyerProject",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:aiAgents/templates/projectEvalEmbed.js",
+      "target": "function:aiAgents/templates/projectEvalEmbed.js:buildProjectEvalEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/templates/projectEvalEmbed.js",
+      "target": "function:aiAgents/templates/projectEvalEmbed.js:buildProjectEvalEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:aiAgents/templates/projectEvalEmbed.js",
+      "target": "function:aiAgents/templates/projectEvalEmbed.js:buildBuyerEvalEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:aiAgents/templates/projectEvalEmbed.js",
+      "target": "function:aiAgents/templates/projectEvalEmbed.js:buildBuyerEvalEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:startApplyFlow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:startApplyFlow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:handleApplyButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:handleApplyButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:handleStaffApplyButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:handleStaffApplyButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:buildApplySummaryEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:finalizeApplication",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:finalizeApplication",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:handleDevAppApprove",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:handleDevAppApprove",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:handleDevAppDecline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "function:applySystem.js:handleDevAppDecline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "file:config.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:adminReviewTimer.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:aiAgents/originalityGate.js",
+      "target": "file:aiAgents/projectEvaluator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "file:config.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "file:portfolioScanner/index.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "file:portfolioScanner/templates/reportEmbed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "file:questionFlow.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "file:savingSystem.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "file:ticket-config.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:applySystem.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:commands/admin/review.js",
+      "target": "file:adminReviewTimer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:commands/admin/review.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:commands/marketplace/buy.js",
+      "target": "file:projectTicket.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:commands/marketplace/buy.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:commands/marketplace/list.js",
+      "target": "file:aiAgents/templates/projectEvalEmbed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:commands/marketplace/list.js",
+      "target": "file:marketplace/marketplace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:commands/marketplace/list.js",
+      "target": "file:marketplace/templates/marketplaceEmbed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:commands/marketplace/submit.js",
+      "target": "file:projectTicket.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:commands/marketplace/submit.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:aiAgents/originalityGate.js:verifyOriginality",
+      "target": "function:aiAgents/projectEvaluator.js:evaluateSellerProject",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:commands/admin/review.js",
+      "target": "file:adminReviewTimer.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:commands/marketplace/buy.js",
+      "target": "file:projectTicket.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:commands/marketplace/submit.js",
+      "target": "file:projectTicket.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:commands/marketplace/list.js",
+      "target": "file:marketplace/marketplace.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:commands/marketplace/list.js",
+      "target": "file:marketplace/templates/marketplaceEmbed.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:commands/marketplace/list.js",
+      "target": "file:aiAgents/templates/projectEvalEmbed.js",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

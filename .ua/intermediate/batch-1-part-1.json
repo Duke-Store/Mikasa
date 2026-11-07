@@ -1,0 +1,615 @@
+{
+  "nodes": [
+    {
+      "id": "file:Commands/config/setautorole.js",
+      "type": "file",
+      "name": "setautorole.js",
+      "filePath": "Commands/config/setautorole.js",
+      "summary": "Slash command that sets the role automatically assigned to new members, persisting the auto-role ID into guild settings.",
+      "tags": [
+        "slash-command",
+        "guild-settings",
+        "configuration",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/config/setgoodbye.js",
+      "type": "file",
+      "name": "setgoodbye.js",
+      "filePath": "Commands/config/setgoodbye.js",
+      "summary": "Slash command that configures the goodbye channel and message (supporting {user}/{server} placeholders) posted when a member leaves the server.",
+      "tags": [
+        "slash-command",
+        "guild-settings",
+        "configuration",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/config/setlog.js",
+      "type": "file",
+      "name": "setlog.js",
+      "filePath": "Commands/config/setlog.js",
+      "summary": "Slash command that assigns the moderation log channel after validating the target is text-based, saving it to guild settings.",
+      "tags": [
+        "slash-command",
+        "logging",
+        "guild-settings",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/config/setmodrole.js",
+      "type": "file",
+      "name": "setmodrole.js",
+      "filePath": "Commands/config/setmodrole.js",
+      "summary": "Slash command that stores the moderator role ID in guild settings for use by staff permission checks.",
+      "tags": [
+        "slash-command",
+        "guild-settings",
+        "roles",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/config/setmuterole.js",
+      "type": "file",
+      "name": "setmuterole.js",
+      "filePath": "Commands/config/setmuterole.js",
+      "summary": "Slash command that stores the role used for mute operations in the guild settings store.",
+      "tags": [
+        "slash-command",
+        "guild-settings",
+        "roles",
+        "moderation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/config/setprefix.js",
+      "type": "file",
+      "name": "setprefix.js",
+      "filePath": "Commands/config/setprefix.js",
+      "summary": "Slash command that updates the legacy command prefix kept in guild settings.",
+      "tags": [
+        "slash-command",
+        "guild-settings",
+        "configuration",
+        "prefix"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/config/setwelcome.js",
+      "type": "file",
+      "name": "setwelcome.js",
+      "filePath": "Commands/config/setwelcome.js",
+      "summary": "Slash command that configures the welcome channel and message posted when new members join, with {user}/{server} placeholder support.",
+      "tags": [
+        "slash-command",
+        "guild-settings",
+        "configuration",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/general/settings.js",
+      "type": "file",
+      "name": "settings.js",
+      "filePath": "Commands/general/settings.js",
+      "summary": "Slash command that renders a Components V2 panel displaying every guild setting — prefix, log channel, welcome/goodbye messages, and roles — in a single view.",
+      "tags": [
+        "slash-command",
+        "guild-settings",
+        "display",
+        "discord"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/general/stats.js",
+      "type": "file",
+      "name": "stats.js",
+      "filePath": "Commands/general/stats.js",
+      "summary": "Slash command that reports bot uptime, guild count, total members, and heap memory usage in a formatted container reply.",
+      "tags": [
+        "slash-command",
+        "statistics",
+        "monitoring",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/general/top.js",
+      "type": "file",
+      "name": "top.js",
+      "filePath": "Commands/general/top.js",
+      "summary": "Slash command that builds a top-10 leaderboard of members by chat messages and voice time, merging active voice sessions with persisted per-guild stats.",
+      "tags": [
+        "slash-command",
+        "leaderboard",
+        "statistics",
+        "display"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/log/log-off.js",
+      "type": "file",
+      "name": "log-off.js",
+      "filePath": "Commands/log/log-off.js",
+      "summary": "Slash command that disables moderation logging for the server by clearing the logEnabled flag and persisting guild settings.",
+      "tags": [
+        "slash-command",
+        "logging",
+        "guild-settings",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/log/log-on.js",
+      "type": "file",
+      "name": "log-on.js",
+      "filePath": "Commands/log/log-on.js",
+      "summary": "Slash command that enables moderation logging for the server by setting the logEnabled flag and persisting guild settings.",
+      "tags": [
+        "slash-command",
+        "logging",
+        "guild-settings",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/log/log-set.js",
+      "type": "file",
+      "name": "log-set.js",
+      "filePath": "Commands/log/log-set.js",
+      "summary": "Slash command that maps a specific log type (timeout, ban, kick, join, leave, role events, or generic) to a chosen text channel via a switch over guild settings fields.",
+      "tags": [
+        "slash-command",
+        "logging",
+        "guild-settings",
+        "configuration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/moderation/ban.js",
+      "type": "file",
+      "name": "ban.js",
+      "filePath": "Commands/moderation/ban.js",
+      "summary": "Slash command that bans a member after permission, membership, and bannable checks, then records the action through the moderation logger.",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "ban",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/moderation/kick.js",
+      "type": "file",
+      "name": "kick.js",
+      "filePath": "Commands/moderation/kick.js",
+      "summary": "Slash command that kicks a member after permission and target checks, replying with a confirmation container and logging the action.",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "kick",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/moderation/lock.js",
+      "type": "file",
+      "name": "lock.js",
+      "filePath": "Commands/moderation/lock.js",
+      "summary": "Slash command that locks the current channel by denying SendMessages to @everyone through permission overwrites.",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "permissions",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/moderation/mute.js",
+      "type": "file",
+      "name": "mute.js",
+      "filePath": "Commands/moderation/mute.js",
+      "summary": "Slash command that mutes a member by applying a timeout for a parsed duration (default 10m) and logging the action.",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "timeout",
+        "discord"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Commands/config/setautorole.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/config/setgoodbye.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/config/setlog.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/config/setmodrole.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/config/setmuterole.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/config/setprefix.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/config/setwelcome.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/general/settings.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/general/stats.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/general/top.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/log/log-off.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/log/log-on.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/log/log-set.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/moderation/ban.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/moderation/kick.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/moderation/lock.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/moderation/mute.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/config/setautorole.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setautorole.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setgoodbye.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setgoodbye.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setlog.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setlog.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setmodrole.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setmodrole.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setmuterole.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setmuterole.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setprefix.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setprefix.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setwelcome.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/config/setwelcome.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/general/settings.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/general/settings.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/general/stats.js",
+      "target": "function:utils.js:formatUptime",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/general/top.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/general/top.js",
+      "target": "function:utils.js:formatDuration",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/log/log-off.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/log/log-off.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/log/log-off.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/log/log-on.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/log/log-on.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/log/log-on.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/log/log-set.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/log/log-set.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/log/log-set.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/ban.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/ban.js",
+      "target": "function:utils.js:logModerationAction",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/kick.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/kick.js",
+      "target": "function:utils.js:logModerationAction",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/lock.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/mute.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/mute.js",
+      "target": "function:utils.js:parseDuration",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/mute.js",
+      "target": "function:utils.js:logModerationAction",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

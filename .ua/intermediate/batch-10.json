@@ -1,0 +1,281 @@
+{
+  "nodes": [
+    {
+      "id": "config:.ua/config.json",
+      "type": "config",
+      "name": "config.json",
+      "filePath": ".ua/config.json",
+      "summary": "Understand-Anything tooling configuration that pins the generated knowledge graph output language to English.",
+      "tags": ["configuration", "tooling", "localization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/general/help.js",
+      "type": "file",
+      "name": "help.js",
+      "filePath": "Commands/general/help.js",
+      "summary": "Interactive /help slash command that renders a paginated, button-navigable command catalog grouped into nine sections using Discord Components V2 containers and a timed message component collector.",
+      "tags": ["slash-command", "help-menu", "discord-components", "collector"],
+      "complexity": "complex",
+      "languageNotes": "Built on Discord.js v14 Components V2 (ContainerBuilder, TextDisplayBuilder, SeparatorBuilder) with a 5-minute message component collector that swaps sections on button presses and rewrites the message to an expiry notice when the collector ends."
+    },
+    {
+      "id": "function:Commands/general/help.js:getHelpContainer",
+      "type": "function",
+      "name": "getHelpContainer",
+      "filePath": "Commands/general/help.js",
+      "lineRange": [118, 133],
+      "summary": "Builds the Components V2 container for a help section, laying out its title, description, and one separator-plus-command-listing pair per command.",
+      "tags": ["ui-builder", "discord-components", "help-menu"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:Commands/general/help.js:getHelpRows",
+      "type": "function",
+      "name": "getHelpRows",
+      "filePath": "Commands/general/help.js",
+      "lineRange": [135, 163],
+      "summary": "Builds the two button rows used to switch help sections, highlighting the currently active section with a success-styled button.",
+      "tags": ["ui-builder", "navigation", "buttons"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/general/payments-method.js",
+      "type": "file",
+      "name": "payments-method.js",
+      "filePath": "Commands/general/payments-method.js",
+      "summary": "Slash command that posts a string select menu letting users pick a payment method (upfront payment or alternatives) for marketplace transactions.",
+      "tags": ["slash-command", "select-menu", "payments", "discord-ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/general/ping.js",
+      "type": "file",
+      "name": "ping.js",
+      "filePath": "Commands/general/ping.js",
+      "summary": "Minimal /ping slash command that measures round-trip message latency and WebSocket API ping and reports both back to the invoker.",
+      "tags": ["slash-command", "latency", "diagnostics", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/info/avatar.js",
+      "type": "file",
+      "name": "avatar.js",
+      "filePath": "Commands/info/avatar.js",
+      "summary": "Slash command that displays a target user's (or the invoker's) 1024px avatar inside a Components V2 media gallery container.",
+      "tags": ["slash-command", "user-info", "discord-ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/info/channelinfo.js",
+      "type": "file",
+      "name": "channelinfo.js",
+      "filePath": "Commands/info/channelinfo.js",
+      "summary": "Slash command that renders details about a selected channel — ID, type, and category — in a styled Components V2 container.",
+      "tags": ["slash-command", "channel-info", "discord-ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/info/roleinfo.js",
+      "type": "file",
+      "name": "roleinfo.js",
+      "filePath": "Commands/info/roleinfo.js",
+      "summary": "Slash command that shows a role's properties — ID, color, member count, and hoisting/mentionable flags — in a Components V2 container.",
+      "tags": ["slash-command", "role-info", "discord-ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/info/serverinfo.js",
+      "type": "file",
+      "name": "serverinfo.js",
+      "filePath": "Commands/info/serverinfo.js",
+      "summary": "Slash command that summarizes guild statistics — member and bot counts, creation date, boost level, and channel totals — with a server icon gallery.",
+      "tags": ["slash-command", "guild-info", "statistics", "discord-ui"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/info/userinfo.js",
+      "type": "file",
+      "name": "userinfo.js",
+      "filePath": "Commands/info/userinfo.js",
+      "summary": "Slash command that inspects a guild member — account age, join date, roles, and status — fetching the member from cache or the API when needed.",
+      "tags": ["slash-command", "user-info", "discord-ui"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/moderation/clear.js",
+      "type": "file",
+      "name": "clear.js",
+      "filePath": "Commands/moderation/clear.js",
+      "summary": "Moderation slash command that bulk-deletes 1–100 recent messages in the current channel after re-checking the Manage Messages permission, with graceful handling of unknown-message errors.",
+      "tags": ["slash-command", "moderation", "bulk-delete", "permissions"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/protection/auditlog.js",
+      "type": "file",
+      "name": "auditlog.js",
+      "filePath": "Commands/protection/auditlog.js",
+      "summary": "Administrator slash command that assigns a log channel for a chosen event category (messages, channels, voice, members, guild, roles, moderation) by persisting the channel ID under a per-guild pro.db key.",
+      "tags": ["slash-command", "logging", "audit-log", "prodb", "configuration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/protection/disable.js",
+      "type": "file",
+      "name": "disable.js",
+      "filePath": "Commands/protection/disable.js",
+      "summary": "Administrator slash command that turns off one of the server protection features (anti-spam, anti-raid, anti-scam, anti-link, channel/role/kick/ban guards) by deleting its per-guild pro.db flag and confirming with a colored embed.",
+      "tags": ["slash-command", "protection", "feature-toggle", "prodb"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/protection/enable.js",
+      "type": "file",
+      "name": "enable.js",
+      "filePath": "Commands/protection/enable.js",
+      "summary": "Administrator slash command that activates a chosen protection feature by writing a boolean flag to pro.db under a flat `<guildId>_<feature>` key, with an invalid-choice fallback.",
+      "tags": ["slash-command", "protection", "feature-toggle", "prodb"],
+      "complexity": "moderate",
+      "languageNotes": "Protection state lives in pro.db as flat string keys of the form `<guildId>_<feature>`; a large switch statement maps each select choice to its key, title, and color."
+    },
+    {
+      "id": "file:Commands/protection/setlimted.js",
+      "type": "file",
+      "name": "setlimted.js",
+      "filePath": "Commands/protection/setlimted.js",
+      "summary": "Administrator slash command that configures the action threshold (1–100) at which a protection feature triggers, storing a per-feature limit key in pro.db.",
+      "tags": ["slash-command", "protection", "limits", "prodb"],
+      "complexity": "moderate",
+      "languageNotes": "The command and file name contain the typo 'setlimted' (instead of 'setlimited'); since slash command names are user-facing and registered from this file, the spelling is load-bearing."
+    },
+    {
+      "id": "file:Commands/protection/setprotectionlog.js",
+      "type": "file",
+      "name": "setprotectionlog.js",
+      "filePath": "Commands/protection/setprotectionlog.js",
+      "summary": "Administrator slash command that enables or disables protection-event logging by setting or deleting the `<guildId>_logchannel` pro.db key after validating the target is a text channel.",
+      "tags": ["slash-command", "logging", "protection", "prodb"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/protection/setpunishment.js",
+      "type": "file",
+      "name": "setpunishment.js",
+      "filePath": "Commands/protection/setpunishment.js",
+      "summary": "Administrator slash command that stores the punishment applied on protection violations — remove roles, kick, or ban — in pro.db and confirms the choice.",
+      "tags": ["slash-command", "protection", "punishment", "moderation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/protection/verify.js",
+      "type": "file",
+      "name": "verify.js",
+      "filePath": "Commands/protection/verify.js",
+      "summary": "Guild-management slash command that posts a verification prompt with a button in a chosen channel and records the message, channel, and role IDs in pro.db for the verification flow.",
+      "tags": ["slash-command", "verification", "prodb", "moderation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/protection/whitelist-list.js",
+      "type": "file",
+      "name": "whitelist-list.js",
+      "filePath": "Commands/protection/whitelist-list.js",
+      "summary": "Slash command that displays the users whitelisted for a selected protection feature, resolving each stored user ID to a mention with per-user error fallbacks.",
+      "tags": ["slash-command", "whitelist", "protection", "prodb"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/protection/whitelist.js",
+      "type": "file",
+      "name": "whitelist.js",
+      "filePath": "Commands/protection/whitelist.js",
+      "summary": "Administrator slash command that adds or removes a user from a protection feature's whitelist array in pro.db, guarding against duplicate additions and missing entries.",
+      "tags": ["slash-command", "whitelist", "protection", "prodb"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/ticket/come.js",
+      "type": "file",
+      "name": "come.js",
+      "filePath": "Commands/ticket/come.js",
+      "summary": "Staff-only slash command that DMs a named user to bring them into the current ticket channel, refusing to run outside ticket channels and handling DM-permission failures.",
+      "tags": ["slash-command", "ticket", "staff-tool", "discord-dm"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/ticket/manage.js",
+      "type": "file",
+      "name": "manage.js",
+      "filePath": "Commands/ticket/manage.js",
+      "summary": "Ticket staff slash command with `add` and `remove` subcommands that grants or revokes a user's access to the current ticket channel, gated on the staff role from ticket-config.json.",
+      "tags": ["slash-command", "ticket", "permissions", "subcommands"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/ticket/ticketPanel.js",
+      "type": "file",
+      "name": "ticketPanel.js",
+      "filePath": "Commands/ticket/ticketPanel.js",
+      "summary": "Admin-only `/setup` slash command that posts the ticket system panel — a branded Components V2 container plus a service select menu (apply, purchase, project request, sell, report) whose choices drive ticket creation.",
+      "tags": ["slash-command", "ticket", "panel", "select-menu", "discord-ui"],
+      "complexity": "moderate",
+      "languageNotes": "The select menu uses the custom id `ticket_starter`, so the choice handler lives in a separate interaction-router file rather than in this command."
+    },
+    {
+      "id": "file:Commands/utility/announce.js",
+      "type": "file",
+      "name": "announce.js",
+      "filePath": "Commands/utility/announce.js",
+      "summary": "Manage-Guild slash command that forwards an announcement message to a chosen text channel, validating channel type before sending.",
+      "tags": ["slash-command", "announcement", "utility", "permissions"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/utility/invite.js",
+      "type": "file",
+      "name": "invite.js",
+      "filePath": "Commands/utility/invite.js",
+      "summary": "Slash command that generates and returns the bot's invite URL with the bot and applications.commands scopes plus its full permission set.",
+      "tags": ["slash-command", "invite", "utility", "oauth"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/utility/say.js",
+      "type": "file",
+      "name": "say.js",
+      "filePath": "Commands/utility/say.js",
+      "summary": "Manage-Messages slash command that makes the bot repeat a given message in the current channel, mapping missing-permission errors to a friendly ephemeral reply.",
+      "tags": ["slash-command", "utility", "message-echo", "error-handling"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:Commands/general/help.js", "target": "function:Commands/general/help.js:getHelpContainer", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Commands/general/help.js", "target": "function:Commands/general/help.js:getHelpRows", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:Commands/ticket/come.js", "target": "file:ticket-config.json", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Commands/ticket/manage.js", "target": "file:ticket-config.json", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Commands/ticket/ticketPanel.js", "target": "file:ticket-config.json", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/general/ping.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/ticket/ticketPanel.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/ticket/manage.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/moderation/clear.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/utility/announce.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/utility/say.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/utility/invite.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/info/avatar.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/info/userinfo.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/info/serverinfo.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/info/channelinfo.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/info/roleinfo.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/protection/enable.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/protection/disable.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/protection/setlimted.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/protection/setpunishment.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/protection/whitelist.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/protection/whitelist-list.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/protection/setprotectionlog.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/protection/auditlog.js", "type": "documents", "direction": "forward", "weight": 0.5},
+    {"source": "file:Commands/general/help.js", "target": "file:Commands/protection/verify.js", "type": "documents", "direction": "forward", "weight": 0.5}
+  ]
+}

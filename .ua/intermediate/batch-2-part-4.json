@@ -1,0 +1,1111 @@
+{
+  "nodes": [
+    {
+      "id": "file:savingSystem.js",
+      "type": "file",
+      "name": "savingSystem.js",
+      "filePath": "savingSystem.js",
+      "summary": "Serializes completed application answers into a Markdown file and posts it to the configured Discord channel.",
+      "tags": [
+        "persistence",
+        "serialization",
+        "markdown",
+        "file-io"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:traffic-test.js",
+      "type": "file",
+      "name": "traffic-test.js",
+      "filePath": "traffic-test.js",
+      "summary": "Standalone stress test that exercises pure-logic modules (utils, db, sessions, scanner, rating, giveaway) under concurrent load without connecting to Discord.",
+      "tags": [
+        "test",
+        "stress-test",
+        "concurrency",
+        "harness"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Backs up every JSON state file before the run and restores it afterward so production data is untouched."
+    },
+    {
+      "id": "file:trustedClients.js",
+      "type": "file",
+      "name": "trustedClients.js",
+      "filePath": "trustedClients.js",
+      "summary": "Maintains a JSON-backed registry of trusted clients with spending, referral, and role flags used to gate and fast-track submissions.",
+      "tags": [
+        "persistence",
+        "data-store",
+        "trust",
+        "configuration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:workflow.js",
+      "type": "file",
+      "name": "workflow.js",
+      "filePath": "workflow.js",
+      "summary": "State machine for the post-acceptance project lifecycle: validated transitions, active/delivery phases, and workflow summary queries.",
+      "tags": [
+        "state-machine",
+        "workflow",
+        "project-lifecycle",
+        "validation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:savingSystem.js:buildMarkdown",
+      "type": "function",
+      "name": "buildMarkdown",
+      "filePath": "savingSystem.js",
+      "lineRange": [
+        12,
+        19
+      ],
+      "summary": "Formats numbered question/answer pairs into a Markdown document.",
+      "tags": [
+        "serialization",
+        "markdown",
+        "formatting"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:savingSystem.js:saveAndSend",
+      "type": "function",
+      "name": "saveAndSend",
+      "filePath": "savingSystem.js",
+      "lineRange": [
+        21,
+        61
+      ],
+      "summary": "Writes the answers to a timestamped Markdown file and sends it to the applications channel.",
+      "tags": [
+        "persistence",
+        "file-io",
+        "discord-notification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:traffic-test.js:backupState",
+      "type": "function",
+      "name": "backupState",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        64,
+        76
+      ],
+      "summary": "Backs up all JSON state files before the test run.",
+      "tags": [
+        "test-harness",
+        "backup",
+        "setup"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:traffic-test.js:restoreState",
+      "type": "function",
+      "name": "restoreState",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        78,
+        93
+      ],
+      "summary": "Restores the backed-up state files after the run.",
+      "tags": [
+        "test-harness",
+        "teardown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:traffic-test.js:verifyJsonIntegrity",
+      "type": "function",
+      "name": "verifyJsonIntegrity",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        95,
+        106
+      ],
+      "summary": "Asserts a JSON state file still parses cleanly after concurrent writes.",
+      "tags": [
+        "validation",
+        "json",
+        "test-harness"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:traffic-test.js:makeAnswers",
+      "type": "function",
+      "name": "makeAnswers",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        121,
+        132
+      ],
+      "summary": "Generates randomized questionnaire answers for session tests.",
+      "tags": [
+        "test-data",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:traffic-test.js:testUtilsHelpers",
+      "type": "function",
+      "name": "testUtilsHelpers",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        137,
+        173
+      ],
+      "summary": "Verifies utils duration formatting and cooldown helpers.",
+      "tags": [
+        "test",
+        "utils"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:traffic-test.js:testWriteRace",
+      "type": "function",
+      "name": "testWriteRace",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        175,
+        205
+      ],
+      "summary": "Hammers writeFileAsync with concurrent writes to detect same-file races.",
+      "tags": [
+        "test",
+        "concurrency",
+        "race-condition"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:traffic-test.js:testDbConcurrent",
+      "type": "function",
+      "name": "testDbConcurrent",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        207,
+        242
+      ],
+      "summary": "Exercises db.js get/set/delete under concurrency and checks file integrity.",
+      "tags": [
+        "test",
+        "concurrency",
+        "database"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:traffic-test.js:testQuestionFlow",
+      "type": "function",
+      "name": "testQuestionFlow",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        244,
+        276
+      ],
+      "summary": "Runs concurrent session set/get/delete cycles against the question flow.",
+      "tags": [
+        "test",
+        "concurrency",
+        "session"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:traffic-test.js:testSavingSystem",
+      "type": "function",
+      "name": "testSavingSystem",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        278,
+        294
+      ],
+      "summary": "Verifies savingSystem Markdown output for randomized answers.",
+      "tags": [
+        "test",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:traffic-test.js:testPortfolioScanner",
+      "type": "function",
+      "name": "testPortfolioScanner",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        296,
+        318
+      ],
+      "summary": "Checks portfolioScanner scoring math against known fixtures.",
+      "tags": [
+        "test",
+        "portfolio-scan"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:traffic-test.js:testRatingMath",
+      "type": "function",
+      "name": "testRatingMath",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        320,
+        345
+      ],
+      "summary": "Validates rating embed math and rating calculations.",
+      "tags": [
+        "test",
+        "rating"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:traffic-test.js:testGiveaway",
+      "type": "function",
+      "name": "testGiveaway",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        347,
+        388
+      ],
+      "summary": "Stresses giveaway participant add/reroll operations under concurrency.",
+      "tags": [
+        "test",
+        "concurrency",
+        "giveaway"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:traffic-test.js:testAIProviderResolution",
+      "type": "function",
+      "name": "testAIProviderResolution",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        390,
+        400
+      ],
+      "summary": "Verifies AI provider resolution from environment variables.",
+      "tags": [
+        "test",
+        "configuration",
+        "ai"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:traffic-test.js:testMemory",
+      "type": "function",
+      "name": "testMemory",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        402,
+        412
+      ],
+      "summary": "Samples heap and RSS growth to catch memory leaks during the run.",
+      "tags": [
+        "test",
+        "memory",
+        "monitoring"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:traffic-test.js:runTimed",
+      "type": "function",
+      "name": "runTimed",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        419,
+        430
+      ],
+      "summary": "Runs a test case with a timeout and records pass/fail with duration.",
+      "tags": [
+        "test-harness",
+        "timing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:traffic-test.js:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "traffic-test.js",
+      "lineRange": [
+        435,
+        479
+      ],
+      "summary": "Orchestrates the full suite: backup, run all cases, report results, restore state.",
+      "tags": [
+        "entry-point",
+        "test-harness",
+        "orchestration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:trustedClients.js:loadTrustedClients",
+      "type": "function",
+      "name": "loadTrustedClients",
+      "filePath": "trustedClients.js",
+      "lineRange": [
+        9,
+        21
+      ],
+      "summary": "Loads the trusted client registry from disk into a Map.",
+      "tags": [
+        "loader",
+        "persistence"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:trustedClients.js:saveTrustedClients",
+      "type": "function",
+      "name": "saveTrustedClients",
+      "filePath": "trustedClients.js",
+      "lineRange": [
+        23,
+        34
+      ],
+      "summary": "Persists the trusted client registry to disk.",
+      "tags": [
+        "persistence",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:trustedClients.js:isTrusted",
+      "type": "function",
+      "name": "isTrusted",
+      "filePath": "trustedClients.js",
+      "lineRange": [
+        36,
+        43
+      ],
+      "summary": "Checks whether a user is flagged as trusted.",
+      "tags": [
+        "lookup",
+        "trust"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:trustedClients.js:addSpending",
+      "type": "function",
+      "name": "addSpending",
+      "filePath": "trustedClients.js",
+      "lineRange": [
+        45,
+        52
+      ],
+      "summary": "Adds to a user's recorded spending total.",
+      "tags": [
+        "mutation",
+        "spending"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:trustedClients.js:addReferral",
+      "type": "function",
+      "name": "addReferral",
+      "filePath": "trustedClients.js",
+      "lineRange": [
+        54,
+        61
+      ],
+      "summary": "Increments a user's referral count.",
+      "tags": [
+        "mutation",
+        "referral"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:trustedClients.js:setRoleFlag",
+      "type": "function",
+      "name": "setRoleFlag",
+      "filePath": "trustedClients.js",
+      "lineRange": [
+        63,
+        71
+      ],
+      "summary": "Sets or clears a trusted role flag (YouTuber, streamer, partner) for a user.",
+      "tags": [
+        "mutation",
+        "roles"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:trustedClients.js:getTrustedStatus",
+      "type": "function",
+      "name": "getTrustedStatus",
+      "filePath": "trustedClients.js",
+      "lineRange": [
+        73,
+        83
+      ],
+      "summary": "Returns a user's full trusted status record with computed tiers.",
+      "tags": [
+        "query",
+        "trust"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:workflow.js:transitionProject",
+      "type": "function",
+      "name": "transitionProject",
+      "filePath": "workflow.js",
+      "lineRange": [
+        34,
+        65
+      ],
+      "summary": "Validates and applies a project state transition against the allowed transition table.",
+      "tags": [
+        "state-machine",
+        "validation",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:workflow.js:startProjectActivePhase",
+      "type": "function",
+      "name": "startProjectActivePhase",
+      "filePath": "workflow.js",
+      "lineRange": [
+        71,
+        94
+      ],
+      "summary": "Moves an accepted project into IN_PROGRESS and sets up its active phase.",
+      "tags": [
+        "workflow",
+        "lifecycle",
+        "state-machine"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:workflow.js:markProjectDelivered",
+      "type": "function",
+      "name": "markProjectDelivered",
+      "filePath": "workflow.js",
+      "lineRange": [
+        99,
+        113
+      ],
+      "summary": "Marks a project as delivered and requests client confirmation.",
+      "tags": [
+        "workflow",
+        "delivery",
+        "notification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:workflow.js:confirmDeliveryReceived",
+      "type": "function",
+      "name": "confirmDeliveryReceived",
+      "filePath": "workflow.js",
+      "lineRange": [
+        118,
+        132
+      ],
+      "summary": "Records client delivery confirmation and advances to payment pending.",
+      "tags": [
+        "workflow",
+        "delivery",
+        "confirmation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:workflow.js:completeProject",
+      "type": "function",
+      "name": "completeProject",
+      "filePath": "workflow.js",
+      "lineRange": [
+        137,
+        159
+      ],
+      "summary": "Finalizes payment and closes out a completed project.",
+      "tags": [
+        "workflow",
+        "completion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:workflow.js:closeProject",
+      "type": "function",
+      "name": "closeProject",
+      "filePath": "workflow.js",
+      "lineRange": [
+        164,
+        179
+      ],
+      "summary": "Cancels a project with a reason and transitions it to CLOSED.",
+      "tags": [
+        "workflow",
+        "cancellation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:workflow.js:getProjectWorkflowSummary",
+      "type": "function",
+      "name": "getProjectWorkflowSummary",
+      "filePath": "workflow.js",
+      "lineRange": [
+        184,
+        203
+      ],
+      "summary": "Builds a summary of a project current workflow state and history.",
+      "tags": [
+        "workflow",
+        "reporting",
+        "query"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:workflow.js:getProjectsByState",
+      "type": "function",
+      "name": "getProjectsByState",
+      "filePath": "workflow.js",
+      "lineRange": [
+        208,
+        216
+      ],
+      "summary": "Returns all projects currently in a given workflow state.",
+      "tags": [
+        "query",
+        "workflow"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:savingSystem.js",
+      "target": "function:savingSystem.js:buildMarkdown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:savingSystem.js",
+      "target": "function:savingSystem.js:buildMarkdown",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:savingSystem.js",
+      "target": "function:savingSystem.js:saveAndSend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:savingSystem.js",
+      "target": "function:savingSystem.js:saveAndSend",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:backupState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:restoreState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:verifyJsonIntegrity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:makeAnswers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testUtilsHelpers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testWriteRace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testDbConcurrent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testQuestionFlow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testSavingSystem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testPortfolioScanner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testRatingMath",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testGiveaway",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testAIProviderResolution",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:testMemory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:runTimed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "function:traffic-test.js:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:loadTrustedClients",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:loadTrustedClients",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:saveTrustedClients",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:saveTrustedClients",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:isTrusted",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:isTrusted",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:addSpending",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:addSpending",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:addReferral",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:addReferral",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:setRoleFlag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:setRoleFlag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:getTrustedStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "function:trustedClients.js:getTrustedStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:transitionProject",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:transitionProject",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:startProjectActivePhase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:startProjectActivePhase",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:markProjectDelivered",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:markProjectDelivered",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:confirmDeliveryReceived",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:confirmDeliveryReceived",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:completeProject",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:completeProject",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:closeProject",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:closeProject",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:getProjectWorkflowSummary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:getProjectWorkflowSummary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:getProjectsByState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "function:workflow.js:getProjectsByState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:savingSystem.js",
+      "target": "file:config.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:savingSystem.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "file:db.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "file:giveaway.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "file:portfolioScanner/index.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "file:questionFlow.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "file:ratingSystem/aiHandler.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "file:ratingSystem/autoRating.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "file:savingSystem.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:traffic-test.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:trustedClients.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "file:handlers/devMatch.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:workflow.js",
+      "target": "file:projectTicket.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:traffic-test.js:testQuestionFlow",
+      "target": "function:questionFlow.js:getSession",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:traffic-test.js:testSavingSystem",
+      "target": "function:savingSystem.js:buildMarkdown",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:savingSystem.js",
+      "target": "file:traffic-test.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:db.js",
+      "target": "file:traffic-test.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:giveaway.js",
+      "target": "file:traffic-test.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:portfolioScanner/index.js",
+      "target": "file:traffic-test.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:ratingSystem/aiHandler.js",
+      "target": "file:traffic-test.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:ratingSystem/autoRating.js",
+      "target": "file:traffic-test.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:utils.js",
+      "target": "file:traffic-test.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

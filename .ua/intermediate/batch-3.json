@@ -1,0 +1,282 @@
+{
+  "nodes": [
+    {
+      "id": "file:Events/channelCreate.js",
+      "type": "file",
+      "name": "channelCreate.js",
+      "filePath": "Events/channelCreate.js",
+      "summary": "channelCreate event handler that posts a formatted log embed to the guild's configured log channel whenever a channel is created, identifying the responsible moderator from the audit log and titling the entry by channel type.",
+      "tags": ["event-handler", "discord", "logging", "audit-log"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/channelDelete.js",
+      "type": "file",
+      "name": "channelDelete.js",
+      "filePath": "Events/channelDelete.js",
+      "summary": "channelDelete event handler that logs deleted channels to the configured log channel, resolving the moderator who deleted the channel from the ChannelDelete audit log entry.",
+      "tags": ["event-handler", "discord", "logging", "audit-log"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/channelUpdate.js",
+      "type": "file",
+      "name": "channelUpdate.js",
+      "filePath": "Events/channelUpdate.js",
+      "summary": "channelUpdate event handler that detects channel renames, topic creations/updates/removals, and category reassignments, posting before/after log embeds attributed to the audit-log executor.",
+      "tags": ["event-handler", "discord", "logging", "audit-log"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Events/guildBanAdd.js",
+      "type": "file",
+      "name": "guildBanAdd.js",
+      "filePath": "Events/guildBanAdd.js",
+      "summary": "guildBanAdd event handler that logs member bans to the members log channel, including the banned user and the moderator identified via the MemberBanAdd audit log.",
+      "tags": ["event-handler", "discord", "moderation", "logging"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/guildBanRemove.js",
+      "type": "file",
+      "name": "guildBanRemove.js",
+      "filePath": "Events/guildBanRemove.js",
+      "summary": "guildBanRemove event handler that logs member unbans to the members log channel with the unbanned user and the audit-log executor who lifted the ban.",
+      "tags": ["event-handler", "discord", "moderation", "logging"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/guildMemberAdd.js",
+      "type": "file",
+      "name": "guildMemberAdd.js",
+      "filePath": "Events/guildMemberAdd.js",
+      "summary": "Member join handler that logs new members with invite attribution (resolving the used invite from cached invite uses, or the bot-add audit log for bots) and sends a configurable welcome message containing a getting-started guide.",
+      "tags": ["event-handler", "discord", "welcome-message", "invite-tracking", "logging"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Events/guildMemberRemove.js",
+      "type": "file",
+      "name": "guildMemberRemove.js",
+      "filePath": "Events/guildMemberRemove.js",
+      "summary": "guildMemberRemove event handler that posts a departure log embed with the leaving member's tag and ID to the members log channel.",
+      "tags": ["event-handler", "discord", "logging"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/guildMemberUpdate.js",
+      "type": "file",
+      "name": "guildMemberUpdate.js",
+      "filePath": "Events/guildMemberUpdate.js",
+      "summary": "guildMemberUpdate event handler that logs member changes — role grants/removals, guild ownership transfers, and nickname changes — to the members log channel with audit-log moderator attribution.",
+      "tags": ["event-handler", "discord", "logging", "audit-log"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Events/guildUpdate.js",
+      "type": "file",
+      "name": "guildUpdate.js",
+      "filePath": "Events/guildUpdate.js",
+      "summary": "guildUpdate event handler that logs guild setting changes — AFK channel, description, and name updates — to the guild-updates log channel with before/after details and moderator attribution from the audit log.",
+      "tags": ["event-handler", "discord", "logging", "audit-log"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Events/messageDelete.js",
+      "type": "file",
+      "name": "messageDelete.js",
+      "filePath": "Events/messageDelete.js",
+      "summary": "messageDelete event handler that logs deleted messages with author, channel, send time, and a content snapshot to the messages log channel, skipping uncached messages without an author.",
+      "tags": ["event-handler", "discord", "logging", "moderation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/messageUpdate.js",
+      "type": "file",
+      "name": "messageUpdate.js",
+      "filePath": "Events/messageUpdate.js",
+      "summary": "messageUpdate event handler that logs edited messages by comparing old and new content (truncated to 1024 characters) and posting a before/after embed to the messages log channel.",
+      "tags": ["event-handler", "discord", "logging", "moderation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/roleCreate.js",
+      "type": "file",
+      "name": "roleCreate.js",
+      "filePath": "Events/roleCreate.js",
+      "summary": "roleCreate event handler that logs newly created roles with the responsible moderator resolved from the RoleCreate audit log entry.",
+      "tags": ["event-handler", "discord", "logging", "audit-log"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/roleDelete.js",
+      "type": "file",
+      "name": "roleDelete.js",
+      "filePath": "Events/roleDelete.js",
+      "summary": "roleDelete event handler that logs deleted roles with the moderator identified through the guild audit log.",
+      "tags": ["event-handler", "discord", "logging", "audit-log"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Events/roleUpdate.js",
+      "type": "file",
+      "name": "roleUpdate.js",
+      "filePath": "Events/roleUpdate.js",
+      "summary": "roleUpdate event handler that detects role icon, color, name, and permission changes, posting before/after log embeds attributed to the audit-log executor.",
+      "tags": ["event-handler", "discord", "logging", "audit-log"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Events/voiceStateUpdate.js",
+      "type": "file",
+      "name": "voiceStateUpdate.js",
+      "filePath": "Events/voiceStateUpdate.js",
+      "summary": "voiceStateUpdate event handler covering voice joins/leaves, server mute and deafen toggles, streaming and camera changes, and cross-channel moves with member counts, all logged to the voice log channel.",
+      "tags": ["event-handler", "discord", "logging", "voice-state"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:db.js",
+      "type": "file",
+      "name": "db.js",
+      "filePath": "db.js",
+      "summary": "Central settings persistence layer that routes guild-scoped keys (anti-protection toggles, limits, whitelists, language, log channels) through a JSON-backed cache while falling back to a raw key-value store, plus typo normalization and projects.json load/save helpers.",
+      "tags": ["data-model", "persistence", "settings", "key-value-store", "caching"],
+      "complexity": "complex",
+      "languageNotes": "Combines a pro.db key-value library with hand-rolled JSON files, using file mtime comparison to invalidate an in-memory cache instead of reloading on every read."
+    },
+    {
+      "id": "function:db.js:proDbGet",
+      "type": "function",
+      "name": "proDbGet",
+      "filePath": "db.js",
+      "lineRange": [18, 30],
+      "summary": "Reads a key from the JSON-backed pro.db store using an mtime-validated in-memory cache so unchanged files are never re-parsed.",
+      "tags": ["persistence", "caching", "json-storage", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:db.js:proDbSet",
+      "type": "function",
+      "name": "proDbSet",
+      "filePath": "db.js",
+      "lineRange": [32, 41],
+      "summary": "Writes a key to pro.db, updates the local cache, refreshes the cache mtime, and logs write failures without throwing.",
+      "tags": ["persistence", "caching", "write"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:db.js:proDbDelete",
+      "type": "function",
+      "name": "proDbDelete",
+      "filePath": "db.js",
+      "lineRange": [43, 53],
+      "summary": "Deletes a key from pro.db and the in-memory cache, short-circuiting when the key is not present.",
+      "tags": ["persistence", "caching", "delete"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:db.js:get",
+      "type": "function",
+      "name": "get",
+      "filePath": "db.js",
+      "lineRange": [66, 97],
+      "summary": "Resolves a settings key by splitting the guild prefix and routing language, log-channel, punishment, limit, whitelist, and anti-protection settings through guild settings with fallback to the raw key-value store.",
+      "tags": ["settings", "resolver", "guild-config", "key-value-store"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:db.js:set",
+      "type": "function",
+      "name": "set",
+      "filePath": "db.js",
+      "lineRange": [99, 135],
+      "summary": "Persists a settings key by writing guild-scoped anti, language, log-channel, and punishment settings into the guild settings file, and everything else into the raw key-value store.",
+      "tags": ["settings", "persistence", "guild-config"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:db.js:del",
+      "type": "function",
+      "name": "del",
+      "filePath": "db.js",
+      "lineRange": [137, 157],
+      "summary": "Removes a settings key, deleting guild-scoped settings from the persisted guild settings file and other keys from the raw store.",
+      "tags": ["settings", "persistence", "delete"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:db.js:loadProjects",
+      "type": "function",
+      "name": "loadProjects",
+      "filePath": "db.js",
+      "lineRange": [159, 174],
+      "summary": "Loads and caches projects.json, recovering from read or parse errors by resetting the cache to an empty object and rewriting the file.",
+      "tags": ["persistence", "json-storage", "error-recovery"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:db.js:saveProjects",
+      "type": "function",
+      "name": "saveProjects",
+      "filePath": "db.js",
+      "lineRange": [176, 182],
+      "summary": "Serializes the projects object back to projects.json asynchronously, logging any write failure.",
+      "tags": ["persistence", "json-storage", "serialization"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:Events/channelCreate.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/channelDelete.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/channelUpdate.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/guildBanAdd.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/guildBanRemove.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/guildMemberAdd.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/guildMemberAdd.js", "target": "file:utils.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/guildMemberRemove.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/guildMemberUpdate.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/guildUpdate.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/messageDelete.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/messageUpdate.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/roleCreate.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/roleDelete.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/roleUpdate.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:Events/voiceStateUpdate.js", "target": "file:db.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:db.js", "target": "file:utils.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "file:Events/channelCreate.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/channelDelete.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/channelUpdate.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/guildBanAdd.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/guildBanRemove.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/guildMemberAdd.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/guildMemberRemove.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/guildMemberUpdate.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/guildUpdate.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/messageDelete.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/messageUpdate.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/roleCreate.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/roleDelete.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/roleUpdate.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "file:Events/voiceStateUpdate.js", "target": "function:db.js:proDbGet", "type": "calls", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:db.js", "target": "function:db.js:proDbGet", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:db.js", "target": "function:db.js:proDbSet", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:db.js", "target": "function:db.js:proDbDelete", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:db.js", "target": "function:db.js:get", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:db.js", "target": "function:db.js:set", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:db.js", "target": "function:db.js:del", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:db.js", "target": "function:db.js:loadProjects", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:db.js", "target": "function:db.js:saveProjects", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:db.js", "target": "function:db.js:get", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:db.js", "target": "function:db.js:set", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:db.js", "target": "function:db.js:del", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:db.js", "target": "function:db.js:loadProjects", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:db.js", "target": "function:db.js:saveProjects", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:db.js", "target": "function:db.js:proDbGet", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:db.js", "target": "function:db.js:proDbSet", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:db.js", "target": "function:db.js:proDbDelete", "type": "exports", "direction": "forward", "weight": 0.8}
+  ]
+}

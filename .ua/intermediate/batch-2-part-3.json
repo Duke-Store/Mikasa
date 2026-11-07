@@ -1,0 +1,1708 @@
+{
+  "nodes": [
+    {
+      "id": "file:projectTicket.js",
+      "type": "file",
+      "name": "projectTicket.js",
+      "filePath": "projectTicket.js",
+      "summary": "Core marketplace ticket engine implementing seller and buyer submission flows: terms gating, AI evaluation, admin review queueing, and project acceptance decisions.",
+      "tags": [
+        "marketplace",
+        "submission-flow",
+        "ai-evaluation",
+        "admin-review",
+        "question-flow"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:questionFlow.js",
+      "type": "file",
+      "name": "questionFlow.js",
+      "filePath": "questionFlow.js",
+      "summary": "Reusable multi-step question session engine that renders questions via embeds, modals, and select menus, tracks answers with editing, and persists sessions to disk.",
+      "tags": [
+        "question-flow",
+        "session-engine",
+        "discord-interaction",
+        "persistence"
+      ],
+      "complexity": "complex",
+      "languageNotes": "CommonJS module built around an in-memory Map of sessions snapshotted to saved-sessions.json, with a 30-minute TTL per session."
+    },
+    {
+      "id": "function:projectTicket.js:startProjectFlow",
+      "type": "function",
+      "name": "startProjectFlow",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        104,
+        140
+      ],
+      "summary": "Opens a project request ticket and seeds the project questionnaire session.",
+      "tags": [
+        "project-flow",
+        "ticket",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleLegacyProjectSubmit",
+      "type": "function",
+      "name": "handleLegacyProjectSubmit",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        142,
+        179
+      ],
+      "summary": "Submits the legacy project questionnaire, saving answers to the project store.",
+      "tags": [
+        "project-flow",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:startSellerFlow",
+      "type": "function",
+      "name": "startSellerFlow",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        183,
+        202
+      ],
+      "summary": "Begins the seller submission flow with a terms agreement screen.",
+      "tags": [
+        "seller-flow",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleSellerTermsAgree",
+      "type": "function",
+      "name": "handleSellerTermsAgree",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        204,
+        228
+      ],
+      "summary": "Records seller terms acceptance and advances to product type selection.",
+      "tags": [
+        "seller-flow",
+        "terms"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleSellerTermsDecline",
+      "type": "function",
+      "name": "handleSellerTermsDecline",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        230,
+        237
+      ],
+      "summary": "Cancels the seller flow when the applicant declines the terms.",
+      "tags": [
+        "seller-flow",
+        "terms",
+        "cancellation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projectTicket.js:handleSellerTypeSelect",
+      "type": "function",
+      "name": "handleSellerTypeSelect",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        239,
+        255
+      ],
+      "summary": "Captures the seller's product type and advances to the questionnaire.",
+      "tags": [
+        "seller-flow",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleSellerSubmit",
+      "type": "function",
+      "name": "handleSellerSubmit",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        257,
+        320
+      ],
+      "summary": "Evaluates the seller answers with AI, queues admin review, and posts the submission embed.",
+      "tags": [
+        "seller-flow",
+        "ai-evaluation",
+        "admin-review"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:projectTicket.js:startBuyerFlow",
+      "type": "function",
+      "name": "startBuyerFlow",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        324,
+        342
+      ],
+      "summary": "Begins the buyer project-request flow with a terms agreement screen.",
+      "tags": [
+        "buyer-flow",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleBuyerTermsAgree",
+      "type": "function",
+      "name": "handleBuyerTermsAgree",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        344,
+        360
+      ],
+      "summary": "Records buyer terms acceptance and advances to the description step.",
+      "tags": [
+        "buyer-flow",
+        "terms"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleBuyerDescSubmit",
+      "type": "function",
+      "name": "handleBuyerDescSubmit",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        362,
+        393
+      ],
+      "summary": "Captures the buyer's project description and continues the questionnaire.",
+      "tags": [
+        "buyer-flow",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleBuyerSubmit",
+      "type": "function",
+      "name": "handleBuyerSubmit",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        400,
+        425
+      ],
+      "summary": "Evaluates the buyer request with AI, queues admin review, and posts the analysis.",
+      "tags": [
+        "buyer-flow",
+        "ai-evaluation",
+        "admin-review"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleBuyerBudgetSubmit",
+      "type": "function",
+      "name": "handleBuyerBudgetSubmit",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        427,
+        448
+      ],
+      "summary": "Captures the buyer's budget answer and advances to payment selection.",
+      "tags": [
+        "buyer-flow",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleBuyerPaymentSelect",
+      "type": "function",
+      "name": "handleBuyerPaymentSelect",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        450,
+        505
+      ],
+      "summary": "Captures payment method selection and finalizes the buyer submission.",
+      "tags": [
+        "buyer-flow",
+        "payment"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:loadTermsContent",
+      "type": "function",
+      "name": "loadTermsContent",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        507,
+        511
+      ],
+      "summary": "Reads a terms markdown file from disk for embedding.",
+      "tags": [
+        "file-io",
+        "terms",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projectTicket.js:handleProjectAccept",
+      "type": "function",
+      "name": "handleProjectAccept",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        513,
+        539
+      ],
+      "summary": "Accepts a submitted project, transitioning it into the active workflow phase.",
+      "tags": [
+        "project-workflow",
+        "admin-action",
+        "state-machine"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleProjectDecline",
+      "type": "function",
+      "name": "handleProjectDecline",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        541,
+        552
+      ],
+      "summary": "Declines a submitted project after prompting for a reason.",
+      "tags": [
+        "project-workflow",
+        "admin-action"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projectTicket.js:handleDeclineReasonSubmit",
+      "type": "function",
+      "name": "handleDeclineReasonSubmit",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        554,
+        577
+      ],
+      "summary": "Records the decline reason and notifies the applicant.",
+      "tags": [
+        "project-workflow",
+        "notification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleAdminAcceptSeller",
+      "type": "function",
+      "name": "handleAdminAcceptSeller",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        581,
+        629
+      ],
+      "summary": "Accepts a queued seller submission, lists the product, and notifies the seller.",
+      "tags": [
+        "admin-action",
+        "marketplace"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleAdminDeclineSeller",
+      "type": "function",
+      "name": "handleAdminDeclineSeller",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        631,
+        643
+      ],
+      "summary": "Declines a queued seller submission and requests a reason.",
+      "tags": [
+        "admin-action",
+        "review"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projectTicket.js:handleAdminDeclineSellerReason",
+      "type": "function",
+      "name": "handleAdminDeclineSellerReason",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        645,
+        654
+      ],
+      "summary": "Stores the seller decline reason and notifies the applicant.",
+      "tags": [
+        "admin-action",
+        "review"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projectTicket.js:handleAdminAcceptBuyer",
+      "type": "function",
+      "name": "handleAdminAcceptBuyer",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        656,
+        690
+      ],
+      "summary": "Accepts a queued buyer request, creating the project ticket.",
+      "tags": [
+        "admin-action",
+        "buyer-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:projectTicket.js:handleAdminDeclineBuyer",
+      "type": "function",
+      "name": "handleAdminDeclineBuyer",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        692,
+        704
+      ],
+      "summary": "Declines a queued buyer request and requests a reason.",
+      "tags": [
+        "admin-action",
+        "review"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:projectTicket.js:handleAdminDeclineBuyerReason",
+      "type": "function",
+      "name": "handleAdminDeclineBuyerReason",
+      "filePath": "projectTicket.js",
+      "lineRange": [
+        706,
+        715
+      ],
+      "summary": "Stores the buyer decline reason and notifies the requester.",
+      "tags": [
+        "admin-action",
+        "review"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:loadSavedSessions",
+      "type": "function",
+      "name": "loadSavedSessions",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        11,
+        21
+      ],
+      "summary": "Loads persisted sessions from disk on startup.",
+      "tags": [
+        "loader",
+        "persistence"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:saveSessionsToDisk",
+      "type": "function",
+      "name": "saveSessionsToDisk",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        23,
+        47
+      ],
+      "summary": "Writes active sessions to disk, pruning expired ones.",
+      "tags": [
+        "persistence",
+        "serialization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:makeOnComplete",
+      "type": "function",
+      "name": "makeOnComplete",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        49,
+        75
+      ],
+      "summary": "Creates the completion callback that routes a finished session to its type-specific handler.",
+      "tags": [
+        "callback",
+        "factory",
+        "routing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:restoreSessions",
+      "type": "function",
+      "name": "restoreSessions",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        77,
+        91
+      ],
+      "summary": "Restores saved sessions after a restart, re-rendering pending questions.",
+      "tags": [
+        "restore",
+        "persistence",
+        "lifecycle"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:getSession",
+      "type": "function",
+      "name": "getSession",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        93,
+        101
+      ],
+      "summary": "Returns a user's active session, deleting it if it has expired.",
+      "tags": [
+        "session",
+        "lookup",
+        "ttl"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:setSession",
+      "type": "function",
+      "name": "setSession",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        103,
+        107
+      ],
+      "summary": "Stores or replaces a user's active session.",
+      "tags": [
+        "session",
+        "mutation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:deleteSession",
+      "type": "function",
+      "name": "deleteSession",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        109,
+        112
+      ],
+      "summary": "Removes a user's active session.",
+      "tags": [
+        "session",
+        "mutation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:buildAnswerButton",
+      "type": "function",
+      "name": "buildAnswerButton",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        116,
+        124
+      ],
+      "summary": "Builds the button that opens the answer modal for the current question.",
+      "tags": [
+        "discord-component",
+        "builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:buildEditButton",
+      "type": "function",
+      "name": "buildEditButton",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        126,
+        145
+      ],
+      "summary": "Builds the per-answer edit buttons shown on the summary screen.",
+      "tags": [
+        "discord-component",
+        "builder",
+        "editing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:buildNextButton",
+      "type": "function",
+      "name": "buildNextButton",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        147,
+        154
+      ],
+      "summary": "Builds the next-question navigation button.",
+      "tags": [
+        "discord-component",
+        "builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:buildSummaryEditButton",
+      "type": "function",
+      "name": "buildSummaryEditButton",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        156,
+        163
+      ],
+      "summary": "Builds the edit button shown on the summary screen.",
+      "tags": [
+        "discord-component",
+        "builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:buildSendButton",
+      "type": "function",
+      "name": "buildSendButton",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        165,
+        173
+      ],
+      "summary": "Builds the final submit button shown at the end of the questionnaire.",
+      "tags": [
+        "discord-component",
+        "builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:buildQuestionModal",
+      "type": "function",
+      "name": "buildQuestionModal",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        175,
+        192
+      ],
+      "summary": "Builds the modal used to capture an answer for the current question.",
+      "tags": [
+        "discord-modal",
+        "builder"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:buildSelectMenu",
+      "type": "function",
+      "name": "buildSelectMenu",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        194,
+        209
+      ],
+      "summary": "Builds the select menu for choice-type questions.",
+      "tags": [
+        "discord-component",
+        "builder"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:buildConfirmButtons",
+      "type": "function",
+      "name": "buildConfirmButtons",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        211,
+        223
+      ],
+      "summary": "Builds the agree/decline confirm buttons used for terms questions.",
+      "tags": [
+        "discord-component",
+        "builder",
+        "terms"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:loadTermsContent",
+      "type": "function",
+      "name": "loadTermsContent",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        225,
+        232
+      ],
+      "summary": "Reads a terms file from disk for the terms screen.",
+      "tags": [
+        "file-io",
+        "terms"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:buildTermsEmbed",
+      "type": "function",
+      "name": "buildTermsEmbed",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        234,
+        274
+      ],
+      "summary": "Builds the terms agreement embed shown before the questionnaire starts.",
+      "tags": [
+        "discord-embed",
+        "terms",
+        "builder"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:buildQuestionEmbed",
+      "type": "function",
+      "name": "buildQuestionEmbed",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        276,
+        287
+      ],
+      "summary": "Builds the embed displaying the current question and its prompt.",
+      "tags": [
+        "discord-embed",
+        "builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:buildProgressEmbed",
+      "type": "function",
+      "name": "buildProgressEmbed",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        289,
+        303
+      ],
+      "summary": "Builds the progress indicator embed for the session.",
+      "tags": [
+        "discord-embed",
+        "builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:getCurrentComponents",
+      "type": "function",
+      "name": "getCurrentComponents",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        305,
+        313
+      ],
+      "summary": "Returns the component row appropriate for the current question type.",
+      "tags": [
+        "routing",
+        "discord-component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:questionFlow.js:showCurrentQuestion",
+      "type": "function",
+      "name": "showCurrentQuestion",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        317,
+        336
+      ],
+      "summary": "Renders the current question or terms screen into the interaction channel.",
+      "tags": [
+        "rendering",
+        "question-flow",
+        "interaction"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:handleModalSubmit",
+      "type": "function",
+      "name": "handleModalSubmit",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        338,
+        387
+      ],
+      "summary": "Processes a modal answer, validates it, and advances the session.",
+      "tags": [
+        "interaction-handler",
+        "validation",
+        "question-flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:handleSelectSubmit",
+      "type": "function",
+      "name": "handleSelectSubmit",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        389,
+        427
+      ],
+      "summary": "Processes a select menu answer, applying validation and advancing the session.",
+      "tags": [
+        "interaction-handler",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:handleConfirmSubmit",
+      "type": "function",
+      "name": "handleConfirmSubmit",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        429,
+        470
+      ],
+      "summary": "Processes the terms agree/decline confirmation for a session.",
+      "tags": [
+        "interaction-handler",
+        "terms"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:showSummaryScreen",
+      "type": "function",
+      "name": "showSummaryScreen",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        472,
+        497
+      ],
+      "summary": "Displays the answer summary with edit and submit controls.",
+      "tags": [
+        "question-flow",
+        "discord-embed"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:finalizeSession",
+      "type": "function",
+      "name": "finalizeSession",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        499,
+        518
+      ],
+      "summary": "Finalizes a session: saves answers, runs the completion handler, and clears state.",
+      "tags": [
+        "question-flow",
+        "persistence",
+        "lifecycle"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:editQuestion",
+      "type": "function",
+      "name": "editQuestion",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        521,
+        553
+      ],
+      "summary": "Reopens a specific answered question for editing and applies the change.",
+      "tags": [
+        "editing",
+        "question-flow",
+        "interaction-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:questionFlow.js:handleAnswerButton",
+      "type": "function",
+      "name": "handleAnswerButton",
+      "filePath": "questionFlow.js",
+      "lineRange": [
+        555,
+        568
+      ],
+      "summary": "Routes the answer button press to the modal for the current question.",
+      "tags": [
+        "interaction-handler",
+        "routing"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:startProjectFlow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleLegacyProjectSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:startSellerFlow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:startSellerFlow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleSellerTermsAgree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleSellerTermsAgree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleSellerTermsDecline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleSellerTermsDecline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleSellerTypeSelect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleSellerTypeSelect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleSellerSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleSellerSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:startBuyerFlow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:startBuyerFlow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerTermsAgree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerTermsAgree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerDescSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerDescSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerBudgetSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerBudgetSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerPaymentSelect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleBuyerPaymentSelect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:loadTermsContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:loadTermsContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleProjectAccept",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleProjectAccept",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleProjectDecline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleProjectDecline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleDeclineReasonSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleDeclineReasonSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminAcceptSeller",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminAcceptSeller",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminDeclineSeller",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminDeclineSeller",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminDeclineSellerReason",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminDeclineSellerReason",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminAcceptBuyer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminAcceptBuyer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminDeclineBuyer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminDeclineBuyer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminDeclineBuyerReason",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "function:projectTicket.js:handleAdminDeclineBuyerReason",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:loadSavedSessions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:saveSessionsToDisk",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:makeOnComplete",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:restoreSessions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:restoreSessions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:getSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:getSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:setSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:setSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:deleteSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:deleteSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildAnswerButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildAnswerButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildEditButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildNextButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildNextButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildSummaryEditButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildSummaryEditButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildSendButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildSendButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildQuestionModal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildQuestionModal",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildSelectMenu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildSelectMenu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildConfirmButtons",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildConfirmButtons",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:loadTermsContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:loadTermsContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildTermsEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildTermsEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildQuestionEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildQuestionEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildProgressEmbed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:buildProgressEmbed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:getCurrentComponents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:getCurrentComponents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:showCurrentQuestion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:showCurrentQuestion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:handleModalSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:handleModalSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:handleSelectSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:handleSelectSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:handleConfirmSubmit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:handleConfirmSubmit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:showSummaryScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:showSummaryScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:finalizeSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:finalizeSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:editQuestion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:editQuestion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:handleAnswerButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "function:questionFlow.js:handleAnswerButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:adminReviewTimer.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:aiAgents/originalityGate.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:aiAgents/projectEvaluator.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:config.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:db.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:marketplace/marketplace.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:marketplace/templates/marketplaceEmbed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:questionFlow.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:ticket-config.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:trustedClients.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:projectTicket.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "file:applySystem.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "file:projectTicket.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "file:savingSystem.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:projectTicket.js:handleSellerSubmit",
+      "target": "function:aiAgents/projectEvaluator.js:evaluateSellerProject",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:projectTicket.js:handleSellerSubmit",
+      "target": "function:aiAgents/originalityGate.js:verifyOriginality",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:projectTicket.js:handleSellerSubmit",
+      "target": "function:adminReviewTimer.js:addToQueue",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:projectTicket.js:handleAdminAcceptSeller",
+      "target": "function:marketplace/marketplace.js:listProduct",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:questionFlow.js:makeOnComplete",
+      "target": "function:applySystem.js:finalizeApplication",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:questionFlow.js:makeOnComplete",
+      "target": "function:projectTicket.js:handleSellerSubmit",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:questionFlow.js:makeOnComplete",
+      "target": "function:projectTicket.js:handleBuyerSubmit",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:questionFlow.js:finalizeSession",
+      "target": "function:savingSystem.js:saveAndSend",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:questionFlow.js",
+      "target": "file:traffic-test.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

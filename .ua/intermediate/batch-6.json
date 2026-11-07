@@ -1,0 +1,327 @@
+{
+  "nodes": [
+    {
+      "id": "file:PrefixCommands/addadmin.js",
+      "type": "file",
+      "name": "addadmin.js",
+      "filePath": "PrefixCommands/addadmin.js",
+      "summary": "Prefix command module that adds a mentioned or ID-provided user to the per-guild auto-rating admin list, rejecting bots and duplicate entries.",
+      "tags": ["discord-command", "admin-management", "auto-rating", "embed-reply"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:PrefixCommands/adminslist.js",
+      "type": "file",
+      "name": "adminslist.js",
+      "filePath": "PrefixCommands/adminslist.js",
+      "summary": "Prefix command module that displays the guild's configured auto-rating admins as a numbered embed, with a setup hint when the list is empty.",
+      "tags": ["discord-command", "admin-management", "auto-rating", "embed-reply"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:PrefixCommands/ratingstatus.js",
+      "type": "file",
+      "name": "ratingstatus.js",
+      "filePath": "PrefixCommands/ratingstatus.js",
+      "summary": "Prefix command module that reports whether auto-rating is active for the guild, including the configured channel and the randomized 1–2 hour interval.",
+      "tags": ["discord-command", "auto-rating", "status-check", "embed-reply"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:PrefixCommands/removeadmin.js",
+      "type": "file",
+      "name": "removeadmin.js",
+      "filePath": "PrefixCommands/removeadmin.js",
+      "summary": "Prefix command module that removes a mentioned or ID-provided user from the auto-rating admin list, replying with a confirmation or not-found embed.",
+      "tags": ["discord-command", "admin-management", "auto-rating", "embed-reply"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:PrefixCommands/sendmassratings.js",
+      "type": "file",
+      "name": "sendmassratings.js",
+      "filePath": "PrefixCommands/sendmassratings.js",
+      "summary": "Prefix command module that validates a 1–100 count and loops sending randomly generated rating embeds to the configured channel, tracking sent/failed counts and editing a progress message into a summary.",
+      "tags": ["discord-command", "auto-rating", "bulk-operation", "embed-reply"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:PrefixCommands/sendrating.js",
+      "type": "file",
+      "name": "sendrating.js",
+      "filePath": "PrefixCommands/sendrating.js",
+      "summary": "Prefix command module that manually triggers one rating embed by picking a random non-bot member and posting it to the configured auto-rating channel.",
+      "tags": ["discord-command", "auto-rating", "embed-reply", "manual-trigger"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:PrefixCommands/setratingchannel.js",
+      "type": "file",
+      "name": "setratingchannel.js",
+      "filePath": "PrefixCommands/setratingchannel.js",
+      "summary": "Prefix command module that resolves a mentioned or ID-provided text channel and registers it as the auto-rating target, starting the scheduling loop.",
+      "tags": ["discord-command", "auto-rating", "configuration", "scheduler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:PrefixCommands/stopratings.js",
+      "type": "file",
+      "name": "stopratings.js",
+      "filePath": "PrefixCommands/stopratings.js",
+      "summary": "Prefix command module that disables auto-rating for the guild by clearing its configuration and cancelling the pending timer, after verifying it was active.",
+      "tags": ["discord-command", "auto-rating", "configuration", "scheduler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:ratingSystem/autoRating.js",
+      "type": "file",
+      "name": "autoRating.js",
+      "filePath": "ratingSystem/autoRating.js",
+      "summary": "Core auto-rating engine holding in-memory per-guild admin and channel stores, generators for randomized fake 'Verified Customer' review embeds, a self-rescheduling 1–2 hour timer loop, and the admin/status helpers consumed by the prefix commands.",
+      "tags": ["service", "scheduler", "auto-rating", "embed-builder", "utility"],
+      "complexity": "complex",
+      "languageNotes": "CommonJS module exposing its API via a single module.exports object; all state lives in module-level Maps (no persistence), and the scheduler is a self-rescheduling setTimeout chain rather than setInterval."
+    },
+    {
+      "id": "function:PrefixCommands/addadmin.js:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "PrefixCommands/addadmin.js",
+      "lineRange": [11, 33],
+      "summary": "Resolves a target user from a mention or ID, rejects bots, calls addAdmin, and replies with a green confirmation embed or a warning when the user is already listed.",
+      "tags": ["command-handler", "admin-management", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:PrefixCommands/adminslist.js:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "PrefixCommands/adminslist.js",
+      "lineRange": [11, 28],
+      "summary": "Fetches the guild's auto-rating admins via getAdmins and renders a numbered list embed with a total-count footer, or a setup hint when empty.",
+      "tags": ["command-handler", "admin-management", "embed-reply"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:PrefixCommands/ratingstatus.js:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "PrefixCommands/ratingstatus.js",
+      "lineRange": [11, 29],
+      "summary": "Reads the guild's rating status and replies with an embed showing channel, interval, and active state, or prompts the user to run setratingchannel when nothing is configured.",
+      "tags": ["command-handler", "status-check", "embed-reply"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:PrefixCommands/removeadmin.js:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "PrefixCommands/removeadmin.js",
+      "lineRange": [11, 29],
+      "summary": "Resolves a target user from a mention or ID, calls removeAdmin, and replies with a removal confirmation or a warning when the user is not in the admin list.",
+      "tags": ["command-handler", "admin-management", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:PrefixCommands/sendmassratings.js:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "PrefixCommands/sendmassratings.js",
+      "lineRange": [11, 60],
+      "summary": "Validates a 1–100 count and the configured channel, then loops picking random members and posting rating embeds while counting successes and failures, finally editing the progress message into a summary embed with up to three captured errors.",
+      "tags": ["command-handler", "bulk-operation", "auto-rating", "error-handling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:PrefixCommands/sendrating.js:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "PrefixCommands/sendrating.js",
+      "lineRange": [11, 31],
+      "summary": "Checks that a rating channel is configured and resolvable, picks a random non-bot member, posts one generated rating embed, and confirms the sender.",
+      "tags": ["command-handler", "auto-rating", "embed-reply"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:PrefixCommands/setratingchannel.js:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "PrefixCommands/setratingchannel.js",
+      "lineRange": [10, 26],
+      "summary": "Resolves a mentioned or ID-provided text channel, calls setRatingChannel to persist the config and start scheduling, then replies with a confirmation embed.",
+      "tags": ["command-handler", "configuration", "scheduler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:PrefixCommands/stopratings.js:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "PrefixCommands/stopratings.js",
+      "lineRange": [10, 25],
+      "summary": "Verifies auto-rating is active for the guild, calls stopRating to clear the config and cancel the timer, and replies with a stopped confirmation embed.",
+      "tags": ["command-handler", "configuration", "scheduler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:getAdmins",
+      "type": "function",
+      "name": "getAdmins",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [63, 65],
+      "summary": "Returns the in-memory auto-rating admin list for a guild, defaulting to an empty array when none exist.",
+      "tags": ["utility", "admin-management", "accessor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:addAdmin",
+      "type": "function",
+      "name": "addAdmin",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [67, 75],
+      "summary": "Creates the per-guild admin list on demand and appends a user, returning false when the user is already present.",
+      "tags": ["utility", "admin-management", "mutation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:removeAdmin",
+      "type": "function",
+      "name": "removeAdmin",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [77, 84],
+      "summary": "Finds a user by ID in the guild's admin list and splices them out, returning false when the list or user is missing.",
+      "tags": ["utility", "admin-management", "mutation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:getRandomMember",
+      "type": "function",
+      "name": "getRandomMember",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [86, 96],
+      "summary": "Fetches up to 100 guild members, filters out bots, and returns a random human member or null when none are found or the fetch fails.",
+      "tags": ["utility", "discord-api", "random-selection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:buildRatingEmbed",
+      "type": "function",
+      "name": "buildRatingEmbed",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [98, 130],
+      "summary": "Builds a rating embed for a member with a randomized star score and color, optionally appending fake-review fields (order number, service time, admin, price, payment method, comment) when fake reviews are enabled.",
+      "tags": ["embed-builder", "auto-rating", "generator"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:scheduleNext",
+      "type": "function",
+      "name": "scheduleNext",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [170, 181],
+      "summary": "Cancels any pending timer for the guild and schedules the next sendAutoRating run after a randomized 1–2 hour delay, logging the chosen interval.",
+      "tags": ["scheduler", "timer", "auto-rating"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:sendAutoRating",
+      "type": "function",
+      "name": "sendAutoRating",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [136, 168],
+      "summary": "Sends one generated rating embed to the guild's configured channel with guards for missing guild, channel, or members, then re-schedules itself to keep the loop running.",
+      "tags": ["scheduler", "discord-send", "auto-rating", "error-handling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:setRatingChannel",
+      "type": "function",
+      "name": "setRatingChannel",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [183, 191],
+      "summary": "Stores the rating channel for a guild, clears any existing timer, and kicks off the scheduling loop for the new configuration.",
+      "tags": ["configuration", "scheduler", "auto-rating"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:stopRating",
+      "type": "function",
+      "name": "stopRating",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [193, 198],
+      "summary": "Cancels the guild's pending timer and deletes its rating configuration to fully disable auto-ratings.",
+      "tags": ["configuration", "scheduler", "auto-rating"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:ratingSystem/autoRating.js:getRatingStatus",
+      "type": "function",
+      "name": "getRatingStatus",
+      "filePath": "ratingSystem/autoRating.js",
+      "lineRange": [200, 204],
+      "summary": "Returns the configured channel ID for a guild, or null when auto-rating has not been set up.",
+      "tags": ["status-check", "configuration", "accessor"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {"source": "file:PrefixCommands/addadmin.js", "target": "function:PrefixCommands/addadmin.js:execute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:PrefixCommands/adminslist.js", "target": "function:PrefixCommands/adminslist.js:execute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:PrefixCommands/ratingstatus.js", "target": "function:PrefixCommands/ratingstatus.js:execute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:PrefixCommands/removeadmin.js", "target": "function:PrefixCommands/removeadmin.js:execute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:PrefixCommands/sendmassratings.js", "target": "function:PrefixCommands/sendmassratings.js:execute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:PrefixCommands/sendrating.js", "target": "function:PrefixCommands/sendrating.js:execute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:PrefixCommands/setratingchannel.js", "target": "function:PrefixCommands/setratingchannel.js:execute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:PrefixCommands/stopratings.js", "target": "function:PrefixCommands/stopratings.js:execute", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:getAdmins", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:addAdmin", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:removeAdmin", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:getRandomMember", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:buildRatingEmbed", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:scheduleNext", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:sendAutoRating", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:setRatingChannel", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:stopRating", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:getRatingStatus", "type": "contains", "direction": "forward", "weight": 1.0},
+
+    {"source": "file:PrefixCommands/addadmin.js", "target": "function:PrefixCommands/addadmin.js:execute", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:PrefixCommands/adminslist.js", "target": "function:PrefixCommands/adminslist.js:execute", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:PrefixCommands/ratingstatus.js", "target": "function:PrefixCommands/ratingstatus.js:execute", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:PrefixCommands/removeadmin.js", "target": "function:PrefixCommands/removeadmin.js:execute", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:PrefixCommands/sendmassratings.js", "target": "function:PrefixCommands/sendmassratings.js:execute", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:PrefixCommands/sendrating.js", "target": "function:PrefixCommands/sendrating.js:execute", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:PrefixCommands/setratingchannel.js", "target": "function:PrefixCommands/setratingchannel.js:execute", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:PrefixCommands/stopratings.js", "target": "function:PrefixCommands/stopratings.js:execute", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:setRatingChannel", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:stopRating", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:getRatingStatus", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:sendAutoRating", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:buildRatingEmbed", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:getRandomMember", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:addAdmin", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:removeAdmin", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:ratingSystem/autoRating.js", "target": "function:ratingSystem/autoRating.js:getAdmins", "type": "exports", "direction": "forward", "weight": 0.8},
+
+    {"source": "file:PrefixCommands/addadmin.js", "target": "file:ratingSystem/autoRating.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:PrefixCommands/adminslist.js", "target": "file:ratingSystem/autoRating.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:PrefixCommands/ratingstatus.js", "target": "file:ratingSystem/autoRating.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:PrefixCommands/removeadmin.js", "target": "file:ratingSystem/autoRating.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:PrefixCommands/sendmassratings.js", "target": "file:ratingSystem/autoRating.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:PrefixCommands/sendrating.js", "target": "file:ratingSystem/autoRating.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:PrefixCommands/setratingchannel.js", "target": "file:ratingSystem/autoRating.js", "type": "imports", "direction": "forward", "weight": 0.7},
+    {"source": "file:PrefixCommands/stopratings.js", "target": "file:ratingSystem/autoRating.js", "type": "imports", "direction": "forward", "weight": 0.7},
+
+    {"source": "function:PrefixCommands/addadmin.js:execute", "target": "function:ratingSystem/autoRating.js:addAdmin", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/adminslist.js:execute", "target": "function:ratingSystem/autoRating.js:getAdmins", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/ratingstatus.js:execute", "target": "function:ratingSystem/autoRating.js:getRatingStatus", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/removeadmin.js:execute", "target": "function:ratingSystem/autoRating.js:removeAdmin", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/sendmassratings.js:execute", "target": "function:ratingSystem/autoRating.js:getRatingStatus", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/sendmassratings.js:execute", "target": "function:ratingSystem/autoRating.js:getRandomMember", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/sendmassratings.js:execute", "target": "function:ratingSystem/autoRating.js:buildRatingEmbed", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/sendrating.js:execute", "target": "function:ratingSystem/autoRating.js:getRatingStatus", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/sendrating.js:execute", "target": "function:ratingSystem/autoRating.js:getRandomMember", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/sendrating.js:execute", "target": "function:ratingSystem/autoRating.js:buildRatingEmbed", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/setratingchannel.js:execute", "target": "function:ratingSystem/autoRating.js:setRatingChannel", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/stopratings.js:execute", "target": "function:ratingSystem/autoRating.js:getRatingStatus", "type": "calls", "direction": "forward", "weight": 0.8},
+    {"source": "function:PrefixCommands/stopratings.js:execute", "target": "function:ratingSystem/autoRating.js:stopRating", "type": "calls", "direction": "forward", "weight": 0.8}
+  ]
+}

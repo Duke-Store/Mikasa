@@ -1,0 +1,1162 @@
+{
+  "nodes": [
+    {
+      "id": "file:Commands/moderation/timeout.js",
+      "type": "file",
+      "name": "timeout.js",
+      "filePath": "Commands/moderation/timeout.js",
+      "summary": "Slash command that times out a member for a required duration string, validating the parsed milliseconds before applying the timeout and logging it.",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "timeout",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/moderation/unban.js",
+      "type": "file",
+      "name": "unban.js",
+      "filePath": "Commands/moderation/unban.js",
+      "summary": "Slash command that unbans a user by ID and writes an entry to the guild log channel.",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "ban",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/moderation/unlock.js",
+      "type": "file",
+      "name": "unlock.js",
+      "filePath": "Commands/moderation/unlock.js",
+      "summary": "Slash command that unlocks the current channel by clearing the SendMessages overwrite for @everyone.",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "permissions",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/moderation/unmute.js",
+      "type": "file",
+      "name": "unmute.js",
+      "filePath": "Commands/moderation/unmute.js",
+      "summary": "Slash command that removes a member’s active timeout and logs the unmute action to the guild log channel.",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "timeout",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/moderation/warn.js",
+      "type": "file",
+      "name": "warn.js",
+      "filePath": "Commands/moderation/warn.js",
+      "summary": "Slash command that issues a warning by recording it through the moderation logger and acknowledging with a confirmation container (no persistent warning store).",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "warning",
+        "placeholder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/moderation/warnings.js",
+      "type": "file",
+      "name": "warnings.js",
+      "filePath": "Commands/moderation/warnings.js",
+      "summary": "Slash command placeholder that replies that the warnings feature is not configured, directing users to the moderation log instead.",
+      "tags": [
+        "slash-command",
+        "moderation",
+        "warning",
+        "placeholder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/owner/setstatus-clear.js",
+      "type": "file",
+      "name": "setstatus-clear.js",
+      "filePath": "Commands/owner/setstatus-clear.js",
+      "summary": "Owner-only slash command that resets the bot presence to an empty activity list with online status after an admin allowlist check.",
+      "tags": [
+        "slash-command",
+        "owner",
+        "presence",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/owner/setstatus.js",
+      "type": "file",
+      "name": "setstatus.js",
+      "filePath": "Commands/owner/setstatus.js",
+      "summary": "Owner-only slash command that sets the bot presence activity type, text, and online status, mapping string choices to Discord ActivityType enums.",
+      "tags": [
+        "slash-command",
+        "owner",
+        "presence",
+        "discord"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:Commands/owner/shutdown.js",
+      "type": "file",
+      "name": "shutdown.js",
+      "filePath": "Commands/owner/shutdown.js",
+      "summary": "Owner-only slash command that confirms admin rights, replies with a shutdown notice, and exits the process after a one-second delay.",
+      "tags": [
+        "slash-command",
+        "owner",
+        "lifecycle",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/store/store-setdetails.js",
+      "type": "file",
+      "name": "store-setdetails.js",
+      "filePath": "Commands/store/store-setdetails.js",
+      "summary": "Slash command that saves the store’s detailed description text (up to 2000 characters) into guild settings.",
+      "tags": [
+        "slash-command",
+        "store",
+        "guild-settings",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/store/store-setticketroom.js",
+      "type": "file",
+      "name": "store-setticketroom.js",
+      "filePath": "Commands/store/store-setticketroom.js",
+      "summary": "Slash command that sets the text channel where users are redirected for store purchase and support tickets, validating it is text-based.",
+      "tags": [
+        "slash-command",
+        "store",
+        "tickets",
+        "guild-settings"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/store/store.js",
+      "type": "file",
+      "name": "store.js",
+      "filePath": "Commands/store/store.js",
+      "summary": "Slash command that opens the server store by rendering the configured store details in a Components V2 container.",
+      "tags": [
+        "slash-command",
+        "store",
+        "display",
+        "discord"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/ticket/ticket-setcategory.js",
+      "type": "file",
+      "name": "ticket-setcategory.js",
+      "filePath": "Commands/ticket/ticket-setcategory.js",
+      "summary": "Slash command that sets the guild category under which new ticket channels are created, validating the channel is a category.",
+      "tags": [
+        "slash-command",
+        "tickets",
+        "guild-settings",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Commands/utility/remind.js",
+      "type": "file",
+      "name": "remind.js",
+      "filePath": "Commands/utility/remind.js",
+      "summary": "Slash command that parses a duration, schedules a reminder with setTimeout, and DMs the invoker the reminder text with a channel follow-up fallback.",
+      "tags": [
+        "slash-command",
+        "scheduler",
+        "reminders",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:PrefixCommands/reviews.js",
+      "type": "file",
+      "name": "reviews.js",
+      "filePath": "PrefixCommands/reviews.js",
+      "summary": "Prefix command that posts the Mikasa Developer Portal embed listing bot services, rating commands, and the developer terms of service overview.",
+      "tags": [
+        "prefix-command",
+        "documentation",
+        "embed",
+        "discord"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "References EmbedBuilder without importing it from discord.js in this file, which would throw a ReferenceError at runtime unless a global is defined elsewhere."
+    },
+    {
+      "id": "file:utils.js",
+      "type": "file",
+      "name": "utils.js",
+      "filePath": "utils.js",
+      "summary": "Shared utility module exporting guild settings and user stats persistence, duration formatting/parsing, safe interaction replies, moderation logging, staff permission checks, ticket channel overwrites, and cooldown helpers used across the whole bot.",
+      "tags": [
+        "utility",
+        "persistence",
+        "discord",
+        "shared-library"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Uses a per-file async write queue with atomic temp-file rename so concurrent guild settings and stats writes never clobber each other; a 30s unref’d interval sweeps expired cooldowns."
+    },
+    {
+      "id": "function:utils.js:writeFileAsync",
+      "type": "function",
+      "name": "writeFileAsync",
+      "filePath": "utils.js",
+      "lineRange": [
+        7,
+        31
+      ],
+      "summary": "Queues writes per file and persists through an atomic temp-file rename so settings and stats JSON files are never left partially written.",
+      "tags": [
+        "file-io",
+        "atomic-write",
+        "queue",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils.js:flushFileWrites",
+      "type": "function",
+      "name": "flushFileWrites",
+      "filePath": "utils.js",
+      "lineRange": [
+        33,
+        35
+      ],
+      "summary": "Awaits every pending queued file write so buffered data is flushed to disk before shutdown.",
+      "tags": [
+        "file-io",
+        "persistence",
+        "shutdown",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:loadGuildSettingsFromFile",
+      "type": "function",
+      "name": "loadGuildSettingsFromFile",
+      "filePath": "utils.js",
+      "lineRange": [
+        59,
+        72
+      ],
+      "summary": "Reads the guild settings JSON from disk once at startup and hydrates the in-memory cache with default-filled entries.",
+      "tags": [
+        "persistence",
+        "initialization",
+        "guild-settings",
+        "json-storage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:saveGuildSettingsToFile",
+      "type": "function",
+      "name": "saveGuildSettingsToFile",
+      "filePath": "utils.js",
+      "lineRange": [
+        74,
+        85
+      ],
+      "summary": "Serializes the entire in-memory guild settings map back to disk through the queued async writer.",
+      "tags": [
+        "persistence",
+        "guild-settings",
+        "serialization",
+        "file-io"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:getGuildSettings",
+      "type": "function",
+      "name": "getGuildSettings",
+      "filePath": "utils.js",
+      "lineRange": [
+        87,
+        95
+      ],
+      "summary": "Returns the cached settings for a guild, lazily creating, defaulting, and persisting a new entry on first access.",
+      "tags": [
+        "guild-settings",
+        "cache",
+        "lazy-init",
+        "api"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:loadUserStatsFromFile",
+      "type": "function",
+      "name": "loadUserStatsFromFile",
+      "filePath": "utils.js",
+      "lineRange": [
+        102,
+        122
+      ],
+      "summary": "Loads per-guild message and voice statistics from disk into nested in-memory maps at startup.",
+      "tags": [
+        "persistence",
+        "statistics",
+        "initialization",
+        "json-storage"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils.js:saveUserStatsToFile",
+      "type": "function",
+      "name": "saveUserStatsToFile",
+      "filePath": "utils.js",
+      "lineRange": [
+        124,
+        138
+      ],
+      "summary": "Writes the nested per-guild user statistics maps back to disk as JSON via the queued writer.",
+      "tags": [
+        "persistence",
+        "statistics",
+        "serialization",
+        "file-io"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:getUserStats",
+      "type": "function",
+      "name": "getUserStats",
+      "filePath": "utils.js",
+      "lineRange": [
+        140,
+        152
+      ],
+      "summary": "Fetches or lazily creates a user’s message-count and voice-time record within a guild.",
+      "tags": [
+        "statistics",
+        "cache",
+        "lazy-init",
+        "api"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:formatDuration",
+      "type": "function",
+      "name": "formatDuration",
+      "filePath": "utils.js",
+      "lineRange": [
+        155,
+        165
+      ],
+      "summary": "Converts a millisecond duration into a compact days/hours/minutes/seconds string for leaderboard and status display.",
+      "tags": [
+        "formatting",
+        "duration",
+        "utility",
+        "display"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:formatUptime",
+      "type": "function",
+      "name": "formatUptime",
+      "filePath": "utils.js",
+      "lineRange": [
+        167,
+        180
+      ],
+      "summary": "Formats a process uptime in seconds into a days/hours/minutes/seconds string for the stats command.",
+      "tags": [
+        "formatting",
+        "uptime",
+        "utility",
+        "display"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:parseDuration",
+      "type": "function",
+      "name": "parseDuration",
+      "filePath": "utils.js",
+      "lineRange": [
+        182,
+        197
+      ],
+      "summary": "Parses human duration strings like 10m, 1h, or 1d into milliseconds, returning null for invalid input.",
+      "tags": [
+        "parsing",
+        "duration",
+        "validation",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:safeRespond",
+      "type": "function",
+      "name": "safeRespond",
+      "filePath": "utils.js",
+      "lineRange": [
+        199,
+        214
+      ],
+      "summary": "Responds to an interaction with editReply when possible and falls back to a fresh reply, tolerating already-acknowledged interactions.",
+      "tags": [
+        "discord",
+        "interaction",
+        "error-handling",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:logToGuild",
+      "type": "function",
+      "name": "logToGuild",
+      "filePath": "utils.js",
+      "lineRange": [
+        216,
+        227
+      ],
+      "summary": "Sends a plain-text message to the guild’s configured log channel, silently no-oping when logging is unset or disabled.",
+      "tags": [
+        "logging",
+        "discord",
+        "guild-settings",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:logModerationAction",
+      "type": "function",
+      "name": "logModerationAction",
+      "filePath": "utils.js",
+      "lineRange": [
+        231,
+        250
+      ],
+      "summary": "Builds and sends a structured moderation log entry (action, admin, target, reason) to the guild log channel, consulting the pro database first.",
+      "tags": [
+        "logging",
+        "moderation",
+        "discord",
+        "audit"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils.js:isAdmin",
+      "type": "function",
+      "name": "isAdmin",
+      "filePath": "utils.js",
+      "lineRange": [
+        259,
+        261
+      ],
+      "summary": "Checks a user ID against the hard-coded admin allowlist used to gate owner-only commands.",
+      "tags": [
+        "authorization",
+        "security",
+        "utility",
+        "access-control"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:isStaffMember",
+      "type": "function",
+      "name": "isStaffMember",
+      "filePath": "utils.js",
+      "lineRange": [
+        272,
+        282
+      ],
+      "summary": "Determines whether a member holds a configured staff role or has guild-level moderation permissions.",
+      "tags": [
+        "permissions",
+        "authorization",
+        "moderation",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:applyTicketPermissionOverwrites",
+      "type": "function",
+      "name": "applyTicketPermissionOverwrites",
+      "filePath": "utils.js",
+      "lineRange": [
+        284,
+        300
+      ],
+      "summary": "Applies channel permission overwrites so the guild, staff/manager roles, and optionally the ticket owner can view a ticket channel.",
+      "tags": [
+        "permissions",
+        "tickets",
+        "discord",
+        "access-control"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils.js:getRemainingCooldown",
+      "type": "function",
+      "name": "getRemainingCooldown",
+      "filePath": "utils.js",
+      "lineRange": [
+        304,
+        309
+      ],
+      "summary": "Returns the milliseconds remaining on a named per-user cooldown, or 0 if it has expired or was never set.",
+      "tags": [
+        "cooldown",
+        "rate-limiting",
+        "utility",
+        "cache"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils.js:setCooldown",
+      "type": "function",
+      "name": "setCooldown",
+      "filePath": "utils.js",
+      "lineRange": [
+        311,
+        314
+      ],
+      "summary": "Stores a per-user cooldown expiry timestamp keyed by command name.",
+      "tags": [
+        "cooldown",
+        "rate-limiting",
+        "utility",
+        "cache"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:Commands/moderation/timeout.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/moderation/unban.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/moderation/unlock.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/moderation/unmute.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/moderation/warn.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/moderation/warnings.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/owner/setstatus-clear.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/owner/setstatus.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/owner/shutdown.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/store/store-setdetails.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/store/store-setticketroom.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/store/store.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/ticket/ticket-setcategory.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:Commands/utility/remind.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:PrefixCommands/reviews.js",
+      "target": "file:utils.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils.js",
+      "target": "file:db.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils.js",
+      "target": "file:ticket-config.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:writeFileAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:writeFileAsync",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:flushFileWrites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:flushFileWrites",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:loadGuildSettingsFromFile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:loadGuildSettingsFromFile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:loadUserStatsFromFile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:loadUserStatsFromFile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:saveUserStatsToFile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:saveUserStatsToFile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:getUserStats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:getUserStats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:formatDuration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:formatDuration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:formatUptime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:formatUptime",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:parseDuration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:parseDuration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:logToGuild",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:logToGuild",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:logModerationAction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:logModerationAction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:isAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:isAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:isStaffMember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:isStaffMember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:applyTicketPermissionOverwrites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:applyTicketPermissionOverwrites",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:getRemainingCooldown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:getRemainingCooldown",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:setCooldown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils.js",
+      "target": "function:utils.js:setCooldown",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/timeout.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/timeout.js",
+      "target": "function:utils.js:parseDuration",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/timeout.js",
+      "target": "function:utils.js:logModerationAction",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/unban.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/unban.js",
+      "target": "function:utils.js:logToGuild",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/unlock.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/unmute.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/unmute.js",
+      "target": "function:utils.js:logToGuild",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/warn.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/warn.js",
+      "target": "function:utils.js:logModerationAction",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/moderation/warnings.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/owner/setstatus-clear.js",
+      "target": "function:utils.js:isAdmin",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/owner/setstatus-clear.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/owner/setstatus.js",
+      "target": "function:utils.js:isAdmin",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/owner/setstatus.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/owner/shutdown.js",
+      "target": "function:utils.js:isAdmin",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/store/store-setdetails.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/store/store-setdetails.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/store/store-setdetails.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/store/store-setticketroom.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/store/store-setticketroom.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/store/store-setticketroom.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/store/store.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/store/store.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/ticket/ticket-setcategory.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/ticket/ticket-setcategory.js",
+      "target": "function:utils.js:saveGuildSettingsToFile",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/ticket/ticket-setcategory.js",
+      "target": "function:utils.js:safeRespond",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:Commands/utility/remind.js",
+      "target": "function:utils.js:parseDuration",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:PrefixCommands/reviews.js",
+      "target": "function:utils.js:getGuildSettings",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

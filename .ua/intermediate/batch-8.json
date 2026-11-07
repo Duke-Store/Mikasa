@@ -1,0 +1,240 @@
+{
+  "nodes": [
+    {
+      "id": "document:AGENT-REPORT.md",
+      "type": "document",
+      "name": "AGENT-REPORT.md",
+      "filePath": "AGENT-REPORT.md",
+      "summary": "Comprehensive analysis report of the Mikasa bot covering architecture, current features, a full file map with per-file purposes, gap analysis against client requirements, technical recommendations, risks, and a quick-reference of key file locations.",
+      "tags": ["documentation", "analysis", "architecture", "gap-analysis", "overview"],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:AUDIT-REPORT.md",
+      "type": "document",
+      "name": "AUDIT-REPORT.md",
+      "filePath": "AUDIT-REPORT.md",
+      "summary": "Code audit of the Discord.js v14 bot reporting syntax and module-load failures, traffic-test results, and a prioritized P0-P3 bug list alongside performance, security, and integrity findings for the follow-up coding agent.",
+      "tags": ["documentation", "audit", "bug-tracking", "security", "quality-assurance"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:IMPLEMENTATION-PLAN.md",
+      "type": "document",
+      "name": "IMPLEMENTATION-PLAN.md",
+      "filePath": "IMPLEMENTATION-PLAN.md",
+      "summary": "Detailed marketplace-transformation plan specifying the question-flow redesign, seller and buyer submission flows, AI evaluation and support agents, 24-hour admin review timer, trusted-client detection, and a 12-step implementation order with a testing checklist.",
+      "tags": ["documentation", "planning", "marketplace", "implementation-roadmap", "ai-integration"],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:IMPROVEMENTS.md",
+      "type": "document",
+      "name": "IMPROVEMENTS.md",
+      "filePath": "IMPROVEMENTS.md",
+      "summary": "Prioritized improvement backlog grouping critical bug fixes, JSON/performance upgrades, feature ideas such as a web storefront and Stripe payments, code-quality refactors, and reliability/ops hardening into a color-coded priority order.",
+      "tags": ["documentation", "roadmap", "performance", "technical-debt", "reliability"],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "npm manifest for system-bot declaring the start script and runtime dependencies: discord.js for the bot, Express/EJS for the web dashboard, Groq and Google Gemini SDKs for AI evaluation, Passport Discord auth, and pro.db storage.",
+      "tags": ["configuration", "build-system", "dependencies", "npm", "entry-point"],
+      "complexity": "simple",
+      "languageNotes": "Both the `main` field and the `start` script resolve to `index.js`, so the entire bot runs as a single Node process started with `npm start`."
+    },
+    {
+      "id": "document:terms-dev.md",
+      "type": "document",
+      "name": "terms-dev.md",
+      "filePath": "terms-dev.md",
+      "summary": "Developer Terms of Service with 28 numbered clauses covering conduct, project requirements, payment and withdrawal rules, ownership and confidentiality, disputes and termination, plus payment-split guidance for single and multi-developer projects.",
+      "tags": ["documentation", "legal", "terms-of-service", "developers", "marketplace"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:terms.md",
+      "type": "document",
+      "name": "terms.md",
+      "filePath": "terms.md",
+      "summary": "Buyer-facing customer-protection notice presented before placing an order, covering payment protection, refund eligibility, one free revision, daily progress updates, and a no-direct-messages rule with a pointer to the full terms channel.",
+      "tags": ["documentation", "legal", "customer-protection", "marketplace", "refund-policy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:ticket-config.json",
+      "type": "config",
+      "name": "ticket-config.json",
+      "filePath": "ticket-config.json",
+      "summary": "Runtime configuration for the ticket system: guild, role, category and channel IDs, ticket counter and per-guild limits, five selectable ticket types (support, buy, apply, sell, buy request), and every user-facing message template including submission, AI-analysis and trusted-client strings.",
+      "tags": ["configuration", "ticket-system", "messages", "discord", "marketplace"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:package.json",
+      "target": "file:index.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:ticket-config.json",
+      "target": "file:index.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:ticket-config.json",
+      "target": "file:handlers/ticket.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:ticket-config.json",
+      "target": "file:ticketLogger.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:ticket-config.json",
+      "target": "file:Commands/ticket/ticketPanel.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:ticket-config.json",
+      "target": "file:Commands/ticket/come.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:ticket-config.json",
+      "target": "file:Commands/ticket/manage.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:ticket-config.json",
+      "target": "file:ratingHandler.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:ticket-config.json",
+      "target": "file:idleSystem.js",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:AGENT-REPORT.md",
+      "target": "file:index.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENT-REPORT.md",
+      "target": "file:handlers/ticket.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENT-REPORT.md",
+      "target": "file:projectTicket.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AUDIT-REPORT.md",
+      "target": "file:index.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AUDIT-REPORT.md",
+      "target": "file:handlers/ticket.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:IMPLEMENTATION-PLAN.md",
+      "target": "file:projectTicket.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:IMPLEMENTATION-PLAN.md",
+      "target": "file:index.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:IMPROVEMENTS.md",
+      "target": "file:index.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:IMPROVEMENTS.md",
+      "target": "file:handlers/ticket.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:IMPLEMENTATION-PLAN.md",
+      "target": "document:AGENT-REPORT.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AUDIT-REPORT.md",
+      "target": "document:AGENT-REPORT.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:IMPROVEMENTS.md",
+      "target": "document:AUDIT-REPORT.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:terms-dev.md",
+      "target": "config:ticket-config.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:terms.md",
+      "target": "config:ticket-config.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

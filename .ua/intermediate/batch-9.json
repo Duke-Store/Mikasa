@@ -1,0 +1,780 @@
+{
+  "nodes": [
+    {
+      "id": "document:architectures/Applying system.md",
+      "type": "document",
+      "name": "Applying system.md",
+      "filePath": "architectures/Applying system.md",
+      "summary": "Specification for the developer/staff application flow: an Apply button in the apply ticket triggers a 10-question form with a role selector and terms agreement, followed by the commission rules (60/40 server-referred vs 90/10 direct-client split, multi-developer division, $100 minimum, and general payment rules).",
+      "tags": [
+        "documentation",
+        "application-flow",
+        "payments",
+        "discord-bot"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:architectures/COMPILED-MESSAGES.md",
+      "type": "document",
+      "name": "COMPILED-MESSAGES.md",
+      "filePath": "architectures/COMPILED-MESSAGES.md",
+      "summary": "Master catalog of every user-facing bot message and embed, organized by system (tickets, payments, verification, moderation, giveaways, protection, logging, dashboard) with source line references into the implementing files, plus a section of planned messages still to implement.",
+      "tags": [
+        "documentation",
+        "message-catalog",
+        "embeds",
+        "discord-bot",
+        "reference"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:architectures/Payments on development services.md",
+      "type": "document",
+      "name": "Payments on development services.md",
+      "filePath": "architectures/Payments on development services.md",
+      "summary": "Brief spec for the /payments-method command, which posts an embed with a select menu offering two payment schedules: 'Method 01 - 50% then 50%' and 'Method 02 - Part After Part'.",
+      "tags": [
+        "documentation",
+        "payments",
+        "command-spec",
+        "discord-bot"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:architectures/Portfolio Scanner Report.md",
+      "type": "document",
+      "name": "Portfolio Scanner Report.md",
+      "filePath": "architectures/Portfolio Scanner Report.md",
+      "summary": "Research report and implementation guide for the portfolio scanner: pipeline architecture, keyword and regex pattern matching, link freshness analysis, AI-text detection (perplexity, burstiness, phrase dictionary), stolen-content detection, scoring/classification, false-positive mitigation, admin report format, and a full module skeleton.",
+      "tags": [
+        "documentation",
+        "research-report",
+        "portfolio-scanner",
+        "ai-detection",
+        "security"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:architectures/Projects tickets - Payment.md",
+      "type": "document",
+      "name": "Projects tickets - Payment.md",
+      "filePath": "architectures/Projects tickets - Payment.md",
+      "summary": "Spec for the client buy-ticket flow: Service vs Developer selection, an 8-question project intake form with role multi-select and terms agreement, saving answers to a file, an admin accept/decline embed, and the developer apply/accept flow — including the shared payment split and commission rules.",
+      "tags": [
+        "documentation",
+        "ticket-system",
+        "payments",
+        "discord-bot",
+        "specification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:architectures/Questions Answering System.md",
+      "type": "document",
+      "name": "Questions Answering System.md",
+      "filePath": "architectures/Questions Answering System.md",
+      "summary": "One-paragraph description of the sequential question flow: each question is presented with a button that opens a form, answers are saved after each submission until the set is complete via the Saving system, with input validation for answer formats.",
+      "tags": [
+        "documentation",
+        "question-flow",
+        "specification",
+        "discord-bot"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "type": "document",
+      "name": "SYSTEMS-REQUIREMENTS.md",
+      "filePath": "architectures/SYSTEMS-REQUIREMENTS.md",
+      "summary": "Comprehensive requirements and database specification covering the saving system, question-answering flow, project ticket/payment flow, payment methods, applying system, shared utilities and persistence, channel/role ID references, and complete module skeletons for savingSystem.js, questionFlow.js, projectTicket.js, and applySystem.js.",
+      "tags": [
+        "documentation",
+        "requirements",
+        "system-design",
+        "discord-bot",
+        "specification"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:architectures/Saving system.md",
+      "type": "document",
+      "name": "Saving system.md",
+      "filePath": "architectures/Saving system.md",
+      "summary": "Short spec for persisting question/answer sessions as formatted .md files that record the developer or project owner, with each save routed to the dedicated Discord channel for developer applications or client projects.",
+      "tags": [
+        "documentation",
+        "data-persistence",
+        "specification",
+        "discord-bot"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:architectures/Applying system.md",
+      "target": "file:applySystem.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Applying system.md",
+      "target": "file:savingSystem.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/ticket/ticketPanel.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:index.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/ticket/manage.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/ticket/ticket-setcategory.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:ticketLogger.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/general/payments-method.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/general/help.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/general/ping.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/general/stats.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/general/top.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/general/settings.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/info/avatar.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/info/userinfo.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/info/serverinfo.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/info/channelinfo.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/info/roleinfo.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/warn.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/warnings.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/mute.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/unmute.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/timeout.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/kick.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/ban.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/unban.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/clear.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/lock.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/moderation/unlock.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/utility/say.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/utility/remind.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/utility/invite.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/utility/announce.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/log/log-set.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/log/log-on.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/log/log-off.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/config/setwelcome.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/config/setgoodbye.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/config/setlog.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/config/setautorole.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/config/setmodrole.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/config/setprefix.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/config/setmuterole.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/store/store.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/store/store-setticketroom.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/store/store-setdetails.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/protection/enable.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/protection/disable.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/protection/whitelist.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/protection/whitelist-list.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/protection/setpunishment.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/protection/setprotectionlog.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/protection/setlimted.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/protection/auditlog.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/Giveaway/start.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/Giveaway/end.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/Giveaway/pause.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/Giveaway/resume.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/Giveaway/edit.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/Giveaway/reroll.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/Giveaway/list.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:giveaway.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/owner/shutdown.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/owner/setstatus.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:Commands/owner/setstatus-clear.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:protectionEvents.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:utils.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:server.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/COMPILED-MESSAGES.md",
+      "target": "file:ratingHandler.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Payments on development services.md",
+      "target": "file:Commands/general/payments-method.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Portfolio Scanner Report.md",
+      "target": "file:portfolioScanner/index.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Portfolio Scanner Report.md",
+      "target": "file:portfolioScanner/utils/preprocessor.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Portfolio Scanner Report.md",
+      "target": "file:portfolioScanner/utils/scoring.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Portfolio Scanner Report.md",
+      "target": "file:savingSystem.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Projects tickets - Payment.md",
+      "target": "file:projectTicket.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Projects tickets - Payment.md",
+      "target": "file:questionFlow.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Projects tickets - Payment.md",
+      "target": "file:savingSystem.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Projects tickets - Payment.md",
+      "target": "file:Commands/general/payments-method.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Questions Answering System.md",
+      "target": "file:questionFlow.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Questions Answering System.md",
+      "target": "file:savingSystem.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "target": "file:savingSystem.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "target": "file:questionFlow.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "target": "file:projectTicket.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "target": "file:applySystem.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "target": "file:index.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "target": "file:server.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "target": "file:utils.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Saving system.md",
+      "target": "file:savingSystem.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Saving system.md",
+      "target": "file:questionFlow.js",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Applying system.md",
+      "target": "document:architectures/Projects tickets - Payment.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Projects tickets - Payment.md",
+      "target": "document:architectures/Applying system.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Questions Answering System.md",
+      "target": "document:architectures/Saving system.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Saving system.md",
+      "target": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:architectures/Payments on development services.md",
+      "target": "document:architectures/SYSTEMS-REQUIREMENTS.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

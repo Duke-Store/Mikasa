@@ -1,0 +1,2283 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 165,
+  "totalBatches": 11,
+  "exportsByPath": {
+    "Commands/Giveaway/edit.js": [],
+    "Commands/Giveaway/end.js": [],
+    "Commands/Giveaway/list.js": [],
+    "Commands/Giveaway/pause.js": [],
+    "Commands/Giveaway/reroll.js": [],
+    "Commands/Giveaway/resume.js": [],
+    "Commands/Giveaway/start.js": [],
+    "Commands/config/setautorole.js": [],
+    "Commands/config/setgoodbye.js": [],
+    "Commands/config/setlog.js": [],
+    "Commands/config/setmodrole.js": [],
+    "Commands/config/setmuterole.js": [],
+    "Commands/config/setprefix.js": [],
+    "Commands/config/setwelcome.js": [],
+    "Commands/general/help.js": [],
+    "Commands/general/payments-method.js": [],
+    "Commands/general/ping.js": [],
+    "Commands/general/settings.js": [],
+    "Commands/general/stats.js": [],
+    "Commands/general/top.js": [],
+    "Commands/info/avatar.js": [],
+    "Commands/info/channelinfo.js": [],
+    "Commands/info/roleinfo.js": [],
+    "Commands/info/serverinfo.js": [],
+    "Commands/info/userinfo.js": [],
+    "Commands/log/log-off.js": [],
+    "Commands/log/log-on.js": [],
+    "Commands/log/log-set.js": [],
+    "Commands/moderation/ban.js": [],
+    "Commands/moderation/clear.js": [],
+    "Commands/moderation/kick.js": [],
+    "Commands/moderation/lock.js": [],
+    "Commands/moderation/mute.js": [],
+    "Commands/moderation/timeout.js": [],
+    "Commands/moderation/unban.js": [],
+    "Commands/moderation/unlock.js": [],
+    "Commands/moderation/unmute.js": [],
+    "Commands/moderation/warn.js": [],
+    "Commands/moderation/warnings.js": [],
+    "Commands/owner/setstatus-clear.js": [],
+    "Commands/owner/setstatus.js": [],
+    "Commands/owner/shutdown.js": [],
+    "Commands/protection/auditlog.js": [],
+    "Commands/protection/disable.js": [],
+    "Commands/protection/enable.js": [],
+    "Commands/protection/setlimted.js": [],
+    "Commands/protection/setprotectionlog.js": [],
+    "Commands/protection/setpunishment.js": [],
+    "Commands/protection/verify.js": [],
+    "Commands/protection/whitelist-list.js": [],
+    "Commands/protection/whitelist.js": [],
+    "Commands/store/store-setdetails.js": [],
+    "Commands/store/store-setticketroom.js": [],
+    "Commands/store/store.js": [],
+    "Commands/ticket/come.js": [],
+    "Commands/ticket/manage.js": [],
+    "Commands/ticket/ticket-setcategory.js": [],
+    "Commands/ticket/ticketPanel.js": [],
+    "Commands/utility/announce.js": [],
+    "Commands/utility/invite.js": [],
+    "Commands/utility/remind.js": [],
+    "Commands/utility/say.js": [],
+    "Events/channelCreate.js": [],
+    "Events/channelDelete.js": [],
+    "Events/channelUpdate.js": [],
+    "Events/guildBanAdd.js": [],
+    "Events/guildBanRemove.js": [],
+    "Events/guildMemberAdd.js": [],
+    "Events/guildMemberRemove.js": [],
+    "Events/guildMemberUpdate.js": [],
+    "Events/guildUpdate.js": [],
+    "Events/inviteCreate.js": [],
+    "Events/inviteDelete.js": [],
+    "Events/messageDelete.js": [],
+    "Events/messageUpdate.js": [],
+    "Events/roleCreate.js": [],
+    "Events/roleDelete.js": [],
+    "Events/roleUpdate.js": [],
+    "Events/voiceStateUpdate.js": [],
+    "PrefixCommands/addadmin.js": [],
+    "PrefixCommands/adminslist.js": [],
+    "PrefixCommands/ratingstatus.js": [],
+    "PrefixCommands/removeadmin.js": [],
+    "PrefixCommands/reviews.js": [],
+    "PrefixCommands/sendmassratings.js": [],
+    "PrefixCommands/sendrating.js": [],
+    "PrefixCommands/setratingchannel.js": [],
+    "PrefixCommands/stopratings.js": [],
+    "adminReviewTimer.js": [],
+    "aiAgents/originalityGate.js": [],
+    "aiAgents/projectEvaluator.js": [],
+    "aiAgents/templates/projectEvalEmbed.js": [],
+    "applySystem.js": [],
+    "commands/admin/review.js": [],
+    "commands/marketplace/buy.js": [],
+    "commands/marketplace/list.js": [],
+    "commands/marketplace/submit.js": [],
+    "config.js": [],
+    "db.js": [],
+    "giveaway.js": [],
+    "handlers/apply.js": [],
+    "handlers/devMatch.js": [],
+    "handlers/ticket.js": [],
+    "idleSystem.js": [],
+    "index.js": [],
+    "marketplace/marketplace.js": [],
+    "marketplace/templates/marketplaceEmbed.js": [],
+    "portfolioScanner/aiAgentScanner.js": [],
+    "portfolioScanner/analyzers/aiDetector.js": [],
+    "portfolioScanner/analyzers/fakeDetector.js": [],
+    "portfolioScanner/analyzers/legitimacyCheck.js": [],
+    "portfolioScanner/analyzers/stolenDetector.js": [],
+    "portfolioScanner/index.js": [],
+    "portfolioScanner/templates/aiReportEmbed.js": [],
+    "portfolioScanner/templates/reportEmbed.js": [],
+    "portfolioScanner/utils/adjustments.js": [],
+    "portfolioScanner/utils/keywordSets.js": [],
+    "portfolioScanner/utils/preprocessor.js": [],
+    "portfolioScanner/utils/scoring.js": [],
+    "portfolioScanner/utils/urlChecker.js": [],
+    "projectTicket.js": [],
+    "protectionEvents.js": [],
+    "questionFlow.js": [],
+    "ratingHandler.js": [],
+    "ratingSystem/aiHandler.js": [],
+    "ratingSystem/autoRating.js": [],
+    "ratingSystem/dmHandler.js": [],
+    "ratingSystem/monitor.js": [],
+    "ratingSystem/serverContext.js": [],
+    "savingSystem.js": [],
+    "server.js": [],
+    "supportAI.js": [],
+    "ticketLogger.js": [],
+    "traffic-test.js": [],
+    "trustedClients.js": [],
+    "utils.js": [],
+    "views/admin/reviews.ejs": [],
+    "views/dashboard.ejs": [],
+    "views/error.ejs": [],
+    "views/index.ejs": [],
+    "views/marketplace/index.ejs": [],
+    "views/marketplace/my-products.ejs": [],
+    "views/profile.ejs": [],
+    "views/recaptcha.ejs": [],
+    "views/server-dashboard.ejs": [],
+    "views/verify.ejs": [],
+    "workflow.js": []
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "Commands/config/setautorole.js",
+          "language": "javascript",
+          "sizeLines": 19,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/config/setgoodbye.js",
+          "language": "javascript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/config/setlog.js",
+          "language": "javascript",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/config/setmodrole.js",
+          "language": "javascript",
+          "sizeLines": 19,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/config/setmuterole.js",
+          "language": "javascript",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/config/setprefix.js",
+          "language": "javascript",
+          "sizeLines": 19,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/config/setwelcome.js",
+          "language": "javascript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/general/settings.js",
+          "language": "javascript",
+          "sizeLines": 67,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/general/stats.js",
+          "language": "javascript",
+          "sizeLines": 40,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/general/top.js",
+          "language": "javascript",
+          "sizeLines": 105,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/log/log-off.js",
+          "language": "javascript",
+          "sizeLines": 17,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/log/log-on.js",
+          "language": "javascript",
+          "sizeLines": 17,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/log/log-set.js",
+          "language": "javascript",
+          "sizeLines": 81,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/ban.js",
+          "language": "javascript",
+          "sizeLines": 32,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/kick.js",
+          "language": "javascript",
+          "sizeLines": 32,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/lock.js",
+          "language": "javascript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/mute.js",
+          "language": "javascript",
+          "sizeLines": 40,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/timeout.js",
+          "language": "javascript",
+          "sizeLines": 47,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/unban.js",
+          "language": "javascript",
+          "sizeLines": 27,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/unlock.js",
+          "language": "javascript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/unmute.js",
+          "language": "javascript",
+          "sizeLines": 38,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/warn.js",
+          "language": "javascript",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/warnings.js",
+          "language": "javascript",
+          "sizeLines": 18,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/owner/setstatus-clear.js",
+          "language": "javascript",
+          "sizeLines": 25,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/owner/setstatus.js",
+          "language": "javascript",
+          "sizeLines": 72,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/owner/shutdown.js",
+          "language": "javascript",
+          "sizeLines": 17,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/store/store-setdetails.js",
+          "language": "javascript",
+          "sizeLines": 25,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/store/store-setticketroom.js",
+          "language": "javascript",
+          "sizeLines": 31,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/store/store.js",
+          "language": "javascript",
+          "sizeLines": 12,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/ticket/ticket-setcategory.js",
+          "language": "javascript",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/utility/remind.js",
+          "language": "javascript",
+          "sizeLines": 42,
+          "fileCategory": "code"
+        },
+        {
+          "path": "PrefixCommands/reviews.js",
+          "language": "javascript",
+          "sizeLines": 59,
+          "fileCategory": "code"
+        },
+        {
+          "path": "utils.js",
+          "language": "javascript",
+          "sizeLines": 357,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "Commands/config/setautorole.js": [
+          "utils.js"
+        ],
+        "Commands/config/setgoodbye.js": [
+          "utils.js"
+        ],
+        "Commands/config/setlog.js": [
+          "utils.js"
+        ],
+        "Commands/config/setmodrole.js": [
+          "utils.js"
+        ],
+        "Commands/config/setmuterole.js": [
+          "utils.js"
+        ],
+        "Commands/config/setprefix.js": [
+          "utils.js"
+        ],
+        "Commands/config/setwelcome.js": [
+          "utils.js"
+        ],
+        "Commands/general/settings.js": [
+          "utils.js"
+        ],
+        "Commands/general/stats.js": [
+          "utils.js"
+        ],
+        "Commands/general/top.js": [
+          "utils.js"
+        ],
+        "Commands/log/log-off.js": [
+          "utils.js"
+        ],
+        "Commands/log/log-on.js": [
+          "utils.js"
+        ],
+        "Commands/log/log-set.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/ban.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/kick.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/lock.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/mute.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/timeout.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/unban.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/unlock.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/unmute.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/warn.js": [
+          "utils.js"
+        ],
+        "Commands/moderation/warnings.js": [
+          "utils.js"
+        ],
+        "Commands/owner/setstatus-clear.js": [
+          "utils.js"
+        ],
+        "Commands/owner/setstatus.js": [
+          "utils.js"
+        ],
+        "Commands/owner/shutdown.js": [
+          "utils.js"
+        ],
+        "Commands/store/store-setdetails.js": [
+          "utils.js"
+        ],
+        "Commands/store/store-setticketroom.js": [
+          "utils.js"
+        ],
+        "Commands/store/store.js": [
+          "utils.js"
+        ],
+        "Commands/ticket/ticket-setcategory.js": [
+          "utils.js"
+        ],
+        "Commands/utility/remind.js": [
+          "utils.js"
+        ],
+        "PrefixCommands/reviews.js": [
+          "utils.js"
+        ],
+        "utils.js": [
+          "db.js",
+          "ticket-config.json"
+        ]
+      },
+      "neighborMap": {
+        "utils.js": [
+          {
+            "path": "db.js",
+            "batchIndex": 3,
+            "symbols": []
+          },
+          {
+            "path": "projectTicket.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "index.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "handlers/apply.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "giveaway.js",
+            "batchIndex": 7,
+            "symbols": []
+          },
+          {
+            "path": "portfolioScanner/index.js",
+            "batchIndex": 5,
+            "symbols": []
+          },
+          {
+            "path": "applySystem.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "questionFlow.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "traffic-test.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "adminReviewTimer.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "handlers/devMatch.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "marketplace/marketplace.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "savingSystem.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "handlers/ticket.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "idleSystem.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "trustedClients.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "Commands/Giveaway/edit.js",
+            "batchIndex": 7,
+            "symbols": []
+          },
+          {
+            "path": "Commands/Giveaway/start.js",
+            "batchIndex": 7,
+            "symbols": []
+          },
+          {
+            "path": "Events/guildMemberAdd.js",
+            "batchIndex": 3,
+            "symbols": []
+          },
+          {
+            "path": "commands/admin/review.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "commands/marketplace/buy.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "commands/marketplace/submit.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "supportAI.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "adminReviewTimer.js",
+          "language": "javascript",
+          "sizeLines": 168,
+          "fileCategory": "code"
+        },
+        {
+          "path": "aiAgents/originalityGate.js",
+          "language": "javascript",
+          "sizeLines": 90,
+          "fileCategory": "code"
+        },
+        {
+          "path": "aiAgents/projectEvaluator.js",
+          "language": "javascript",
+          "sizeLines": 356,
+          "fileCategory": "code"
+        },
+        {
+          "path": "aiAgents/templates/projectEvalEmbed.js",
+          "language": "javascript",
+          "sizeLines": 215,
+          "fileCategory": "code"
+        },
+        {
+          "path": "applySystem.js",
+          "language": "javascript",
+          "sizeLines": 342,
+          "fileCategory": "code"
+        },
+        {
+          "path": "commands/admin/review.js",
+          "language": "javascript",
+          "sizeLines": 65,
+          "fileCategory": "code"
+        },
+        {
+          "path": "commands/marketplace/buy.js",
+          "language": "javascript",
+          "sizeLines": 44,
+          "fileCategory": "code"
+        },
+        {
+          "path": "commands/marketplace/list.js",
+          "language": "javascript",
+          "sizeLines": 81,
+          "fileCategory": "code"
+        },
+        {
+          "path": "commands/marketplace/submit.js",
+          "language": "javascript",
+          "sizeLines": 46,
+          "fileCategory": "code"
+        },
+        {
+          "path": "config.js",
+          "language": "javascript",
+          "sizeLines": 21,
+          "fileCategory": "code"
+        },
+        {
+          "path": "handlers/apply.js",
+          "language": "javascript",
+          "sizeLines": 600,
+          "fileCategory": "code"
+        },
+        {
+          "path": "handlers/devMatch.js",
+          "language": "javascript",
+          "sizeLines": 240,
+          "fileCategory": "code"
+        },
+        {
+          "path": "marketplace/marketplace.js",
+          "language": "javascript",
+          "sizeLines": 161,
+          "fileCategory": "code"
+        },
+        {
+          "path": "marketplace/templates/marketplaceEmbed.js",
+          "language": "javascript",
+          "sizeLines": 210,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/templates/reportEmbed.js",
+          "language": "javascript",
+          "sizeLines": 90,
+          "fileCategory": "code"
+        },
+        {
+          "path": "projectTicket.js",
+          "language": "javascript",
+          "sizeLines": 743,
+          "fileCategory": "code"
+        },
+        {
+          "path": "questionFlow.js",
+          "language": "javascript",
+          "sizeLines": 589,
+          "fileCategory": "code"
+        },
+        {
+          "path": "savingSystem.js",
+          "language": "javascript",
+          "sizeLines": 63,
+          "fileCategory": "code"
+        },
+        {
+          "path": "traffic-test.js",
+          "language": "javascript",
+          "sizeLines": 485,
+          "fileCategory": "code"
+        },
+        {
+          "path": "trustedClients.js",
+          "language": "javascript",
+          "sizeLines": 95,
+          "fileCategory": "code"
+        },
+        {
+          "path": "workflow.js",
+          "language": "javascript",
+          "sizeLines": 236,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "adminReviewTimer.js": [
+          "config.js",
+          "utils.js"
+        ],
+        "aiAgents/originalityGate.js": [
+          "aiAgents/projectEvaluator.js"
+        ],
+        "aiAgents/projectEvaluator.js": [],
+        "aiAgents/templates/projectEvalEmbed.js": [],
+        "applySystem.js": [
+          "config.js",
+          "portfolioScanner/index.js",
+          "portfolioScanner/templates/reportEmbed.js",
+          "questionFlow.js",
+          "savingSystem.js",
+          "ticket-config.json",
+          "utils.js"
+        ],
+        "commands/admin/review.js": [
+          "adminReviewTimer.js",
+          "utils.js"
+        ],
+        "commands/marketplace/buy.js": [
+          "projectTicket.js",
+          "utils.js"
+        ],
+        "commands/marketplace/list.js": [
+          "aiAgents/templates/projectEvalEmbed.js",
+          "marketplace/marketplace.js",
+          "marketplace/templates/marketplaceEmbed.js"
+        ],
+        "commands/marketplace/submit.js": [
+          "projectTicket.js",
+          "utils.js"
+        ],
+        "config.js": [],
+        "handlers/apply.js": [
+          "adminReviewTimer.js",
+          "aiAgents/projectEvaluator.js",
+          "config.js",
+          "db.js",
+          "handlers/devMatch.js",
+          "marketplace/marketplace.js",
+          "projectTicket.js",
+          "questionFlow.js",
+          "ticket-config.json",
+          "trustedClients.js",
+          "utils.js"
+        ],
+        "handlers/devMatch.js": [
+          "projectTicket.js",
+          "ticket-config.json",
+          "utils.js"
+        ],
+        "marketplace/marketplace.js": [
+          "aiAgents/projectEvaluator.js",
+          "utils.js"
+        ],
+        "marketplace/templates/marketplaceEmbed.js": [],
+        "portfolioScanner/templates/reportEmbed.js": [],
+        "projectTicket.js": [
+          "adminReviewTimer.js",
+          "aiAgents/originalityGate.js",
+          "aiAgents/projectEvaluator.js",
+          "config.js",
+          "db.js",
+          "marketplace/marketplace.js",
+          "marketplace/templates/marketplaceEmbed.js",
+          "questionFlow.js",
+          "ticket-config.json",
+          "trustedClients.js",
+          "utils.js"
+        ],
+        "questionFlow.js": [
+          "applySystem.js",
+          "projectTicket.js",
+          "savingSystem.js",
+          "utils.js"
+        ],
+        "savingSystem.js": [
+          "config.js",
+          "utils.js"
+        ],
+        "traffic-test.js": [
+          "db.js",
+          "giveaway.js",
+          "portfolioScanner/index.js",
+          "questionFlow.js",
+          "ratingSystem/aiHandler.js",
+          "ratingSystem/autoRating.js",
+          "savingSystem.js",
+          "utils.js"
+        ],
+        "trustedClients.js": [
+          "utils.js"
+        ],
+        "workflow.js": [
+          "handlers/devMatch.js",
+          "projectTicket.js"
+        ]
+      },
+      "neighborMap": {
+        "adminReviewTimer.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "index.js",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "applySystem.js": [
+          {
+            "path": "portfolioScanner/index.js",
+            "batchIndex": 5,
+            "symbols": []
+          },
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          },
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "index.js",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "commands/admin/review.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "commands/marketplace/buy.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "commands/marketplace/submit.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "handlers/apply.js": [
+          {
+            "path": "db.js",
+            "batchIndex": 3,
+            "symbols": []
+          },
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          },
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "index.js",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "handlers/devMatch.js": [
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          },
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "marketplace/marketplace.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "projectTicket.js": [
+          {
+            "path": "db.js",
+            "batchIndex": 3,
+            "symbols": []
+          },
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          },
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "handlers/ticket.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "index.js",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "questionFlow.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "index.js",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "savingSystem.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "traffic-test.js": [
+          {
+            "path": "db.js",
+            "batchIndex": 3,
+            "symbols": []
+          },
+          {
+            "path": "giveaway.js",
+            "batchIndex": 7,
+            "symbols": []
+          },
+          {
+            "path": "portfolioScanner/index.js",
+            "batchIndex": 5,
+            "symbols": []
+          },
+          {
+            "path": "ratingSystem/aiHandler.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "ratingSystem/autoRating.js",
+            "batchIndex": 6,
+            "symbols": []
+          },
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "trustedClients.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "Events/channelCreate.js",
+          "language": "javascript",
+          "sizeLines": 39,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/channelDelete.js",
+          "language": "javascript",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/channelUpdate.js",
+          "language": "javascript",
+          "sizeLines": 110,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/guildBanAdd.js",
+          "language": "javascript",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/guildBanRemove.js",
+          "language": "javascript",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/guildMemberAdd.js",
+          "language": "javascript",
+          "sizeLines": 85,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/guildMemberRemove.js",
+          "language": "javascript",
+          "sizeLines": 21,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/guildMemberUpdate.js",
+          "language": "javascript",
+          "sizeLines": 79,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/guildUpdate.js",
+          "language": "javascript",
+          "sizeLines": 112,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/messageDelete.js",
+          "language": "javascript",
+          "sizeLines": 31,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/messageUpdate.js",
+          "language": "javascript",
+          "sizeLines": 38,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/roleCreate.js",
+          "language": "javascript",
+          "sizeLines": 27,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/roleDelete.js",
+          "language": "javascript",
+          "sizeLines": 26,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/roleUpdate.js",
+          "language": "javascript",
+          "sizeLines": 129,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/voiceStateUpdate.js",
+          "language": "javascript",
+          "sizeLines": 170,
+          "fileCategory": "code"
+        },
+        {
+          "path": "db.js",
+          "language": "javascript",
+          "sizeLines": 184,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "Events/channelCreate.js": [
+          "db.js"
+        ],
+        "Events/channelDelete.js": [
+          "db.js"
+        ],
+        "Events/channelUpdate.js": [
+          "db.js"
+        ],
+        "Events/guildBanAdd.js": [
+          "db.js"
+        ],
+        "Events/guildBanRemove.js": [
+          "db.js"
+        ],
+        "Events/guildMemberAdd.js": [
+          "db.js",
+          "utils.js"
+        ],
+        "Events/guildMemberRemove.js": [
+          "db.js"
+        ],
+        "Events/guildMemberUpdate.js": [
+          "db.js"
+        ],
+        "Events/guildUpdate.js": [
+          "db.js"
+        ],
+        "Events/messageDelete.js": [
+          "db.js"
+        ],
+        "Events/messageUpdate.js": [
+          "db.js"
+        ],
+        "Events/roleCreate.js": [
+          "db.js"
+        ],
+        "Events/roleDelete.js": [
+          "db.js"
+        ],
+        "Events/roleUpdate.js": [
+          "db.js"
+        ],
+        "Events/voiceStateUpdate.js": [
+          "db.js"
+        ],
+        "db.js": [
+          "utils.js"
+        ]
+      },
+      "neighborMap": {
+        "Events/guildMemberAdd.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "db.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "handlers/apply.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "index.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "projectTicket.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "protectionEvents.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "traffic-test.js",
+            "batchIndex": 2,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": "handlers/ticket.js",
+          "language": "javascript",
+          "sizeLines": 336,
+          "fileCategory": "code"
+        },
+        {
+          "path": "idleSystem.js",
+          "language": "javascript",
+          "sizeLines": 153,
+          "fileCategory": "code"
+        },
+        {
+          "path": "index.js",
+          "language": "javascript",
+          "sizeLines": 1053,
+          "fileCategory": "code"
+        },
+        {
+          "path": "protectionEvents.js",
+          "language": "javascript",
+          "sizeLines": 481,
+          "fileCategory": "code"
+        },
+        {
+          "path": "ratingHandler.js",
+          "language": "javascript",
+          "sizeLines": 49,
+          "fileCategory": "code"
+        },
+        {
+          "path": "ratingSystem/aiHandler.js",
+          "language": "javascript",
+          "sizeLines": 200,
+          "fileCategory": "code"
+        },
+        {
+          "path": "ratingSystem/dmHandler.js",
+          "language": "javascript",
+          "sizeLines": 46,
+          "fileCategory": "code"
+        },
+        {
+          "path": "ratingSystem/monitor.js",
+          "language": "javascript",
+          "sizeLines": 51,
+          "fileCategory": "code"
+        },
+        {
+          "path": "ratingSystem/serverContext.js",
+          "language": "javascript",
+          "sizeLines": 345,
+          "fileCategory": "code"
+        },
+        {
+          "path": "server.js",
+          "language": "javascript",
+          "sizeLines": 452,
+          "fileCategory": "code"
+        },
+        {
+          "path": "supportAI.js",
+          "language": "javascript",
+          "sizeLines": 217,
+          "fileCategory": "code"
+        },
+        {
+          "path": "ticketLogger.js",
+          "language": "javascript",
+          "sizeLines": 52,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "handlers/ticket.js": [
+          "projectTicket.js",
+          "ticket-config.json",
+          "utils.js"
+        ],
+        "idleSystem.js": [
+          "ticket-config.json",
+          "utils.js"
+        ],
+        "index.js": [
+          "adminReviewTimer.js",
+          "applySystem.js",
+          "db.js",
+          "giveaway.js",
+          "handlers/apply.js",
+          "handlers/ticket.js",
+          "idleSystem.js",
+          "projectTicket.js",
+          "protectionEvents.js",
+          "questionFlow.js",
+          "ratingHandler.js",
+          "ratingSystem/dmHandler.js",
+          "ratingSystem/monitor.js",
+          "server.js",
+          "ticket-config.json",
+          "ticketLogger.js",
+          "utils.js"
+        ],
+        "protectionEvents.js": [
+          "db.js"
+        ],
+        "ratingHandler.js": [
+          "ticket-config.json",
+          "ticketLogger.js"
+        ],
+        "ratingSystem/aiHandler.js": [
+          "ratingSystem/serverContext.js"
+        ],
+        "ratingSystem/dmHandler.js": [
+          "ratingSystem/aiHandler.js"
+        ],
+        "ratingSystem/monitor.js": [],
+        "ratingSystem/serverContext.js": [],
+        "server.js": [],
+        "supportAI.js": [
+          "ratingSystem/aiHandler.js",
+          "utils.js"
+        ],
+        "ticketLogger.js": [
+          "ticket-config.json"
+        ]
+      },
+      "neighborMap": {
+        "handlers/ticket.js": [
+          {
+            "path": "projectTicket.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          },
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "idleSystem.js": [
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          },
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "index.js": [
+          {
+            "path": "adminReviewTimer.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "applySystem.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "db.js",
+            "batchIndex": 3,
+            "symbols": []
+          },
+          {
+            "path": "giveaway.js",
+            "batchIndex": 7,
+            "symbols": []
+          },
+          {
+            "path": "handlers/apply.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "projectTicket.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "questionFlow.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          },
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "protectionEvents.js": [
+          {
+            "path": "db.js",
+            "batchIndex": 3,
+            "symbols": []
+          }
+        ],
+        "ratingHandler.js": [
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          }
+        ],
+        "ratingSystem/aiHandler.js": [
+          {
+            "path": "traffic-test.js",
+            "batchIndex": 2,
+            "symbols": []
+          }
+        ],
+        "supportAI.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "ticketLogger.js": [
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": "portfolioScanner/analyzers/aiDetector.js",
+          "language": "javascript",
+          "sizeLines": 199,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/analyzers/fakeDetector.js",
+          "language": "javascript",
+          "sizeLines": 122,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/analyzers/legitimacyCheck.js",
+          "language": "javascript",
+          "sizeLines": 24,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/analyzers/stolenDetector.js",
+          "language": "javascript",
+          "sizeLines": 145,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/index.js",
+          "language": "javascript",
+          "sizeLines": 249,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/utils/adjustments.js",
+          "language": "javascript",
+          "sizeLines": 153,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/utils/keywordSets.js",
+          "language": "javascript",
+          "sizeLines": 228,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/utils/preprocessor.js",
+          "language": "javascript",
+          "sizeLines": 12,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/utils/scoring.js",
+          "language": "javascript",
+          "sizeLines": 79,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/utils/urlChecker.js",
+          "language": "javascript",
+          "sizeLines": 101,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "portfolioScanner/analyzers/aiDetector.js": [
+          "portfolioScanner/utils/keywordSets.js"
+        ],
+        "portfolioScanner/analyzers/fakeDetector.js": [
+          "portfolioScanner/utils/keywordSets.js",
+          "portfolioScanner/utils/urlChecker.js"
+        ],
+        "portfolioScanner/analyzers/legitimacyCheck.js": [],
+        "portfolioScanner/analyzers/stolenDetector.js": [
+          "portfolioScanner/utils/keywordSets.js"
+        ],
+        "portfolioScanner/index.js": [
+          "portfolioScanner/analyzers/aiDetector.js",
+          "portfolioScanner/analyzers/fakeDetector.js",
+          "portfolioScanner/analyzers/legitimacyCheck.js",
+          "portfolioScanner/analyzers/stolenDetector.js",
+          "portfolioScanner/utils/adjustments.js",
+          "portfolioScanner/utils/preprocessor.js",
+          "portfolioScanner/utils/scoring.js",
+          "utils.js"
+        ],
+        "portfolioScanner/utils/adjustments.js": [
+          "portfolioScanner/utils/keywordSets.js"
+        ],
+        "portfolioScanner/utils/keywordSets.js": [],
+        "portfolioScanner/utils/preprocessor.js": [],
+        "portfolioScanner/utils/scoring.js": [],
+        "portfolioScanner/utils/urlChecker.js": [
+          "portfolioScanner/utils/keywordSets.js"
+        ]
+      },
+      "neighborMap": {
+        "portfolioScanner/index.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "applySystem.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "traffic-test.js",
+            "batchIndex": 2,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": "PrefixCommands/addadmin.js",
+          "language": "javascript",
+          "sizeLines": 34,
+          "fileCategory": "code"
+        },
+        {
+          "path": "PrefixCommands/adminslist.js",
+          "language": "javascript",
+          "sizeLines": 29,
+          "fileCategory": "code"
+        },
+        {
+          "path": "PrefixCommands/ratingstatus.js",
+          "language": "javascript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "PrefixCommands/removeadmin.js",
+          "language": "javascript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "PrefixCommands/sendmassratings.js",
+          "language": "javascript",
+          "sizeLines": 61,
+          "fileCategory": "code"
+        },
+        {
+          "path": "PrefixCommands/sendrating.js",
+          "language": "javascript",
+          "sizeLines": 32,
+          "fileCategory": "code"
+        },
+        {
+          "path": "PrefixCommands/setratingchannel.js",
+          "language": "javascript",
+          "sizeLines": 27,
+          "fileCategory": "code"
+        },
+        {
+          "path": "PrefixCommands/stopratings.js",
+          "language": "javascript",
+          "sizeLines": 26,
+          "fileCategory": "code"
+        },
+        {
+          "path": "ratingSystem/autoRating.js",
+          "language": "javascript",
+          "sizeLines": 216,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "PrefixCommands/addadmin.js": [
+          "ratingSystem/autoRating.js"
+        ],
+        "PrefixCommands/adminslist.js": [
+          "ratingSystem/autoRating.js"
+        ],
+        "PrefixCommands/ratingstatus.js": [
+          "ratingSystem/autoRating.js"
+        ],
+        "PrefixCommands/removeadmin.js": [
+          "ratingSystem/autoRating.js"
+        ],
+        "PrefixCommands/sendmassratings.js": [
+          "ratingSystem/autoRating.js"
+        ],
+        "PrefixCommands/sendrating.js": [
+          "ratingSystem/autoRating.js"
+        ],
+        "PrefixCommands/setratingchannel.js": [
+          "ratingSystem/autoRating.js"
+        ],
+        "PrefixCommands/stopratings.js": [
+          "ratingSystem/autoRating.js"
+        ],
+        "ratingSystem/autoRating.js": []
+      },
+      "neighborMap": {
+        "ratingSystem/autoRating.js": [
+          {
+            "path": "traffic-test.js",
+            "batchIndex": 2,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 7,
+      "files": [
+        {
+          "path": "Commands/Giveaway/edit.js",
+          "language": "javascript",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/Giveaway/end.js",
+          "language": "javascript",
+          "sizeLines": 23,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/Giveaway/list.js",
+          "language": "javascript",
+          "sizeLines": 29,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/Giveaway/pause.js",
+          "language": "javascript",
+          "sizeLines": 46,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/Giveaway/reroll.js",
+          "language": "javascript",
+          "sizeLines": 24,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/Giveaway/resume.js",
+          "language": "javascript",
+          "sizeLines": 45,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/Giveaway/start.js",
+          "language": "javascript",
+          "sizeLines": 58,
+          "fileCategory": "code"
+        },
+        {
+          "path": "giveaway.js",
+          "language": "javascript",
+          "sizeLines": 181,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "Commands/Giveaway/edit.js": [
+          "giveaway.js",
+          "utils.js"
+        ],
+        "Commands/Giveaway/end.js": [
+          "giveaway.js"
+        ],
+        "Commands/Giveaway/list.js": [
+          "giveaway.js"
+        ],
+        "Commands/Giveaway/pause.js": [
+          "giveaway.js"
+        ],
+        "Commands/Giveaway/reroll.js": [
+          "giveaway.js"
+        ],
+        "Commands/Giveaway/resume.js": [
+          "giveaway.js"
+        ],
+        "Commands/Giveaway/start.js": [
+          "giveaway.js",
+          "utils.js"
+        ],
+        "giveaway.js": [
+          "utils.js"
+        ]
+      },
+      "neighborMap": {
+        "Commands/Giveaway/edit.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "Commands/Giveaway/start.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ],
+        "giveaway.js": [
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "index.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "traffic-test.js",
+            "batchIndex": 2,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 8,
+      "files": [
+        {
+          "path": "AGENT-REPORT.md",
+          "language": "markdown",
+          "sizeLines": 587,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "AUDIT-REPORT.md",
+          "language": "markdown",
+          "sizeLines": 236,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "IMPLEMENTATION-PLAN.md",
+          "language": "markdown",
+          "sizeLines": 578,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "IMPROVEMENTS.md",
+          "language": "markdown",
+          "sizeLines": 467,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "package.json",
+          "language": "json",
+          "sizeLines": 25,
+          "fileCategory": "config"
+        },
+        {
+          "path": "terms-dev.md",
+          "language": "markdown",
+          "sizeLines": 146,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "terms.md",
+          "language": "markdown",
+          "sizeLines": 59,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "ticket-config.json",
+          "language": "json",
+          "sizeLines": 90,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "AGENT-REPORT.md": [],
+        "AUDIT-REPORT.md": [],
+        "IMPLEMENTATION-PLAN.md": [],
+        "IMPROVEMENTS.md": [],
+        "package.json": [],
+        "terms-dev.md": [],
+        "terms.md": [],
+        "ticket-config.json": []
+      },
+      "neighborMap": {
+        "ticket-config.json": [
+          {
+            "path": "Commands/ticket/come.js",
+            "batchIndex": 10,
+            "symbols": []
+          },
+          {
+            "path": "Commands/ticket/manage.js",
+            "batchIndex": 10,
+            "symbols": []
+          },
+          {
+            "path": "Commands/ticket/ticketPanel.js",
+            "batchIndex": 10,
+            "symbols": []
+          },
+          {
+            "path": "applySystem.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "handlers/apply.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "handlers/devMatch.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "handlers/ticket.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "idleSystem.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "index.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "projectTicket.js",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "ratingHandler.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "ticketLogger.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "utils.js",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 9,
+      "files": [
+        {
+          "path": "architectures/Applying system.md",
+          "language": "markdown",
+          "sizeLines": 78,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "architectures/COMPILED-MESSAGES.md",
+          "language": "markdown",
+          "sizeLines": 1448,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "architectures/Payments on development services.md",
+          "language": "markdown",
+          "sizeLines": 10,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "architectures/Portfolio Scanner Report.md",
+          "language": "markdown",
+          "sizeLines": 1739,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "architectures/Projects tickets - Payment.md",
+          "language": "markdown",
+          "sizeLines": 78,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "architectures/Questions Answering System.md",
+          "language": "markdown",
+          "sizeLines": 3,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "architectures/SYSTEMS-REQUIREMENTS.md",
+          "language": "markdown",
+          "sizeLines": 1360,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "architectures/Saving system.md",
+          "language": "markdown",
+          "sizeLines": 12,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        "architectures/Applying system.md": [],
+        "architectures/COMPILED-MESSAGES.md": [],
+        "architectures/Payments on development services.md": [],
+        "architectures/Portfolio Scanner Report.md": [],
+        "architectures/Projects tickets - Payment.md": [],
+        "architectures/Questions Answering System.md": [],
+        "architectures/SYSTEMS-REQUIREMENTS.md": [],
+        "architectures/Saving system.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 10,
+      "files": [
+        {
+          "path": ".ua/config.json",
+          "language": "json",
+          "sizeLines": 1,
+          "fileCategory": "config"
+        },
+        {
+          "path": "Commands/general/help.js",
+          "language": "javascript",
+          "sizeLines": 210,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/general/payments-method.js",
+          "language": "javascript",
+          "sizeLines": 35,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/general/ping.js",
+          "language": "javascript",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/info/avatar.js",
+          "language": "javascript",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/info/channelinfo.js",
+          "language": "javascript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/info/roleinfo.js",
+          "language": "javascript",
+          "sizeLines": 36,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/info/serverinfo.js",
+          "language": "javascript",
+          "sizeLines": 60,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/info/userinfo.js",
+          "language": "javascript",
+          "sizeLines": 29,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/moderation/clear.js",
+          "language": "javascript",
+          "sizeLines": 54,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/protection/auditlog.js",
+          "language": "javascript",
+          "sizeLines": 85,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/protection/disable.js",
+          "language": "javascript",
+          "sizeLines": 124,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/protection/enable.js",
+          "language": "javascript",
+          "sizeLines": 129,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/protection/setlimted.js",
+          "language": "javascript",
+          "sizeLines": 99,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/protection/setprotectionlog.js",
+          "language": "javascript",
+          "sizeLines": 60,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/protection/setpunishment.js",
+          "language": "javascript",
+          "sizeLines": 41,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/protection/verify.js",
+          "language": "javascript",
+          "sizeLines": 51,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/protection/whitelist-list.js",
+          "language": "javascript",
+          "sizeLines": 61,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/protection/whitelist.js",
+          "language": "javascript",
+          "sizeLines": 85,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/ticket/come.js",
+          "language": "javascript",
+          "sizeLines": 44,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/ticket/manage.js",
+          "language": "javascript",
+          "sizeLines": 44,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/ticket/ticketPanel.js",
+          "language": "javascript",
+          "sizeLines": 93,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/utility/announce.js",
+          "language": "javascript",
+          "sizeLines": 35,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/utility/invite.js",
+          "language": "javascript",
+          "sizeLines": 23,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Commands/utility/say.js",
+          "language": "javascript",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        ".ua/config.json": [],
+        "Commands/general/help.js": [],
+        "Commands/general/payments-method.js": [],
+        "Commands/general/ping.js": [],
+        "Commands/info/avatar.js": [],
+        "Commands/info/channelinfo.js": [],
+        "Commands/info/roleinfo.js": [],
+        "Commands/info/serverinfo.js": [],
+        "Commands/info/userinfo.js": [],
+        "Commands/moderation/clear.js": [],
+        "Commands/protection/auditlog.js": [],
+        "Commands/protection/disable.js": [],
+        "Commands/protection/enable.js": [],
+        "Commands/protection/setlimted.js": [],
+        "Commands/protection/setprotectionlog.js": [],
+        "Commands/protection/setpunishment.js": [],
+        "Commands/protection/verify.js": [],
+        "Commands/protection/whitelist-list.js": [],
+        "Commands/protection/whitelist.js": [],
+        "Commands/ticket/come.js": [
+          "ticket-config.json"
+        ],
+        "Commands/ticket/manage.js": [
+          "ticket-config.json"
+        ],
+        "Commands/ticket/ticketPanel.js": [
+          "ticket-config.json"
+        ],
+        "Commands/utility/announce.js": [],
+        "Commands/utility/invite.js": [],
+        "Commands/utility/say.js": []
+      },
+      "neighborMap": {
+        "Commands/ticket/come.js": [
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          }
+        ],
+        "Commands/ticket/manage.js": [
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          }
+        ],
+        "Commands/ticket/ticketPanel.js": [
+          {
+            "path": "ticket-config.json",
+            "batchIndex": 8,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 11,
+      "files": [
+        {
+          "path": "Events/inviteCreate.js",
+          "language": "javascript",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "Events/inviteDelete.js",
+          "language": "javascript",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/aiAgentScanner.js",
+          "language": "javascript",
+          "sizeLines": 199,
+          "fileCategory": "code"
+        },
+        {
+          "path": "portfolioScanner/templates/aiReportEmbed.js",
+          "language": "javascript",
+          "sizeLines": 132,
+          "fileCategory": "code"
+        },
+        {
+          "path": "public/css/style.css",
+          "language": "css",
+          "sizeLines": 465,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "views/admin/reviews.ejs",
+          "language": "ejs",
+          "sizeLines": 136,
+          "fileCategory": "code"
+        },
+        {
+          "path": "views/dashboard.ejs",
+          "language": "ejs",
+          "sizeLines": 226,
+          "fileCategory": "code"
+        },
+        {
+          "path": "views/error.ejs",
+          "language": "ejs",
+          "sizeLines": 26,
+          "fileCategory": "code"
+        },
+        {
+          "path": "views/index.ejs",
+          "language": "ejs",
+          "sizeLines": 219,
+          "fileCategory": "code"
+        },
+        {
+          "path": "views/marketplace/index.ejs",
+          "language": "ejs",
+          "sizeLines": 108,
+          "fileCategory": "code"
+        },
+        {
+          "path": "views/marketplace/my-products.ejs",
+          "language": "ejs",
+          "sizeLines": 81,
+          "fileCategory": "code"
+        },
+        {
+          "path": "views/profile.ejs",
+          "language": "ejs",
+          "sizeLines": 135,
+          "fileCategory": "code"
+        },
+        {
+          "path": "views/recaptcha.ejs",
+          "language": "ejs",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        },
+        {
+          "path": "views/server-dashboard.ejs",
+          "language": "ejs",
+          "sizeLines": 280,
+          "fileCategory": "code"
+        },
+        {
+          "path": "views/verify.ejs",
+          "language": "ejs",
+          "sizeLines": 137,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "Events/inviteCreate.js": [],
+        "Events/inviteDelete.js": [],
+        "portfolioScanner/aiAgentScanner.js": [],
+        "portfolioScanner/templates/aiReportEmbed.js": [],
+        "public/css/style.css": [],
+        "views/admin/reviews.ejs": [],
+        "views/dashboard.ejs": [],
+        "views/error.ejs": [],
+        "views/index.ejs": [],
+        "views/marketplace/index.ejs": [],
+        "views/marketplace/my-products.ejs": [],
+        "views/profile.ejs": [],
+        "views/recaptcha.ejs": [],
+        "views/server-dashboard.ejs": [],
+        "views/verify.ejs": []
+      },
+      "neighborMap": {}
+    }
+  ]
+}
