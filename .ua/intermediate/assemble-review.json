@@ -1,0 +1,104 @@
+{
+  "reviewer": "assemble-reviewer",
+  "reviewedAt": "2026-11-07",
+  "assembledGraph": "C:\\Users\\Admin\\Desktop\\Mikasa\\.ua\\intermediate\\assembled-graph.json",
+  "assembledGraphModified": false,
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "issueCount": 1,
+  "warningCount": 2,
+  "issues": [
+    {
+      "id": "tested-by-all-dropped",
+      "severity": "issue",
+      "status": "open",
+      "title": "All 8 `tested_by` edges were dropped; assembled graph now has zero `tested_by` edges",
+      "detail": "The merge's deterministic tested_by linker classified `traffic-test.js` as a PRODUCTION file, so every `prod -> traffic-test.js` edge was treated as a semantically broken production<->production pair and dropped (this is the entire 'Fixed (8 corrections)' section). Root cause: `is_test_path()` for the JS/TS family only accepts a `.test`/`.spec` infix on the stem; `traffic-test.js` has stem `traffic-test`, which ends with `-test`, not `.test`.",
+      "droppedEdges": [
+        "file:questionFlow.js -tested_by-> file:traffic-test.js",
+        "file:savingSystem.js -tested_by-> file:traffic-test.js",
+        "file:db.js -tested_by-> file:traffic-test.js",
+        "file:giveaway.js -tested_by-> file:traffic-test.js",
+        "file:portfolioScanner/index.js -tested_by-> file:traffic-test.js",
+        "file:ratingSystem/aiHandler.js -tested_by-> file:traffic-test.js",
+        "file:ratingSystem/autoRating.js -tested_by-> file:traffic-test.js",
+        "file:utils.js -tested_by-> file:traffic-test.js"
+      ],
+      "evidence": "These edges are semantically valid: `file:traffic-test.js` contains functions named testQuestionFlow, testSavingSystem, testPortfolioScanner, testRatingMath, testGiveaway, testAIProviderResolution, testMemory, testUtilsHelpers, etc., and it imports exactly those 8 production files. All 8 edges were asserted by batches 2-part-3 / 2-part-4.",
+      "impact": "Test-coverage dimension is absent from the graph (0 of 8 asserted edges survive). Partially mitigated: the same 8 relationships survive as `imports` edges (file:traffic-test.js -> the 8 production files), so coverage is still inferable.",
+      "actionTaken": "Not restored. Per reviewer policy the 'Fixed' section must not be redone; this needs a pipeline fix (teach `is_test_path()` to accept `*-test.js` / `*-test.ts` harness names, or add an override list) and a merge re-run.",
+      "recommendedOwner": "merge-batch-graphs.py `_TEST_NAME_PATTERNS` / `is_test_path()`"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "isolated-nodes",
+      "severity": "warning",
+      "title": "6 nodes have no edges at all",
+      "nodes": [
+        "file:Events/inviteCreate.js",
+        "file:Events/inviteDelete.js",
+        "file:views/error.ejs",
+        "file:views/recaptcha.ejs",
+        "config:.ua/config.json"
+      ],
+      "detail": "All 6 are legitimate leaf files: importMap lists them with no dependencies and nothing imports them, and they carry no functions. Expected, but they will render as loose nodes in the dashboard."
+    },
+    {
+      "id": "css-configures-views",
+      "severity": "warning",
+      "title": "5 questionable `configures` edges emitted by a batch (not by the merge)",
+      "edges": [
+        "file:public/css/style.css -configures-> file:views/admin/reviews.ejs",
+        "file:public/css/style.css -configures-> file:views/profile.ejs",
+        "file:public/css/style.css -configures-> file:views/marketplace/index.ejs",
+        "file:public/css/style.css -configures-> file:views/marketplace/my-products.ejs",
+        "file:public/css/style.css -configures-> file:views/server-dashboard.ejs"
+      ],
+      "detail": "A stylesheet does not 'configure' templates; the LLM most likely meant 'is referenced by'. Left as-is (retyping LLM output without stronger evidence would be speculative), but these 5 edges skew the `configures` edge category (9 of 14 configures edges are genuine config->file)."
+    }
+  ],
+  "verified": [
+    {
+      "check": "ticket-config.json dangling references (dispatch-specific)",
+      "result": "PASS - 0 dangling",
+      "detail": "Batch 8 created the node as `config:ticket-config.json` (type `config`, filePath `ticket-config.json`) while 13 importers were analyzed with `file:ticket-config.json` edge targets. The merge's importMap recovery rewired all 13 edges to `config:ticket-config.json` and marked them `recoveredFromImportMap: true`. The assembled graph contains NO reference to `file:ticket-config.json` (0 dangling source/target endpoints overall). `config:ticket-config.json` now has 15 edges: 13 imports, 8 configures (outbound), 2 related.",
+      "affectedEdges": 13
+    },
+    {
+      "check": "cross-batch import coverage vs scan-result.json importMap",
+      "result": "PASS - perfect 1:1",
+      "detail": "179 importMap dependencies across 165 entries resolve to nodes (root-relative and importer-relative resolution both checked) and map to exactly 179 `imports` edges: 0 missing, 0 extra/speculative edges in the graph."
+    },
+    {
+      "check": "dangling / duplicate / structural integrity",
+      "result": "PASS",
+      "detail": "0 dangling edges, 0 duplicate node IDs, 0 duplicate (source,target,type) edges, 0 self-loops, 0 edges without direction. All 480 node IDs match their `type` prefix (file/function/document/config); all 315 function nodes have an existing parent file node and a `contains` edge; all 241 `exports` edges are file->function."
+    },
+    {
+      "check": "node/edge field completeness and value domains",
+      "result": "PASS",
+      "detail": "Every node has id, name, filePath, summary and complexity. Complexity values only use simple(256)/moderate(183)/complex(41). Node types only file(148)/function(315)/document(14)/config(3). Edge types only imports(179)/calls(146)/contains(315)/exports(241)/configures(14)/documents(119)/related(10)."
+    },
+    {
+      "check": "batch -> assembled coverage",
+      "result": "PASS",
+      "detail": "15 batch files contain 480 nodes / 1032 edges = exactly the merge input; output 480 nodes / 1024 edges = 1032 - 8 tested_by - 13 imports + 13 recovered. 0 nodes without an ID, 0 node IDs shared between batches, and all 165 scanned files have a node (0 scanned files missing a node, 0 nodes outside the scan list)."
+    },
+    {
+      "check": "Fixed section sanity (8 corrections)",
+      "result": "PASS with 1 issue",
+      "detail": "8 fixes out of 1032 edges (0.8%) is far below the 30% flag threshold, and no ID-normalization or complexity remaps were needed at all (batches already emitted canonical IDs). The only concern is that the 8 fixes are all tested_by drops - see issue `tested-by-all-dropped`."
+    }
+  ],
+  "notes": [
+    "No edits were required in assembled-graph.json: nothing to recover (the merge's own importMap recovery already handled all 13 'could not fix' edges), no cross-batch import gaps, no unknown types or complexity values to remap.",
+    "Root cause of the 13 dropped import edges: batch 8 emitted the node as `config:ticket-config.json` while the 13 importing batches emitted edge targets as `file:ticket-config.json`. All three .json nodes in the project (package.json, ticket-config.json, .ua/config.json) consistently use the `config:` prefix, so batch 8's node ID is the correct convention; only the edge-side `file:` references were wrong, and the recovery fixed them.",
+    "traffic-test.js is the project's only test harness (not a unit-test file by naming convention), which is why every tested_by edge in the project collapsed under the same heuristic.",
+    "Edge weight conventions are consistent: contains=1.0, exports=0.8, imports=0.7, configures=0.6, documents/related/tested_by=0.5."
+  ]
+}
