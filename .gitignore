@@ -7,3 +7,8 @@ userStats.json
 guildSettings.json
 giveaways.json
 projects.json
+
+# Understand-Anything knowledge graph — commit the graph, not local scratch
+.ua/intermediate/
+.ua/.trash-*/
+.ua/diff-overlay.json

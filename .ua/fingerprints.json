@@ -1,0 +1,4449 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "31ea6ada5a4991db249fa0bd22765721526c4b87",
+  "generatedAt": "2026-11-07T10:53:50.313Z",
+  "files": {
+    ".ua/config.json": {
+      "filePath": ".ua/config.json",
+      "contentHash": "be2018f115ca7f0c667ad16cf3ac7727810388922a337d54b81d3b20cb769134",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": false
+    },
+    "AGENT-REPORT.md": {
+      "filePath": "AGENT-REPORT.md",
+      "contentHash": "5288b33a0c61f4fae8459f78d36a24ea71ee29657024dacc9303dc2d9c04d35d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 588,
+      "hasStructuralAnalysis": false
+    },
+    "AUDIT-REPORT.md": {
+      "filePath": "AUDIT-REPORT.md",
+      "contentHash": "26cf61e38bfda9866c18966918ed1ce60bedf410d53960d3ada9ec70915fe15e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 237,
+      "hasStructuralAnalysis": false
+    },
+    "Commands/Giveaway/edit.js": {
+      "filePath": "Commands/Giveaway/edit.js",
+      "contentHash": "e75cc56bac1ce37d0a674db5fe1ee0eb4b115a578c9ebd791227888dc6ec8fd2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/Giveaway/end.js": {
+      "filePath": "Commands/Giveaway/end.js",
+      "contentHash": "e801daa607a76607c8a52487fafa38a47d63e74c1924beca8fd064a2e5dc1ca8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/Giveaway/list.js": {
+      "filePath": "Commands/Giveaway/list.js",
+      "contentHash": "de0ac07ffbac5ca660cc217bdce2e6b590af5e7a6533695f7dc042fcbb482dea",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/Giveaway/pause.js": {
+      "filePath": "Commands/Giveaway/pause.js",
+      "contentHash": "3852528b3f3871b38a6933d4641f48ef475375487a878098dbe37dd239cb71bd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 47,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/Giveaway/reroll.js": {
+      "filePath": "Commands/Giveaway/reroll.js",
+      "contentHash": "138aa9f6fcf2738af0e71925f3a6f4344b9719596e6e1f3381a5224d15c24318",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/Giveaway/resume.js": {
+      "filePath": "Commands/Giveaway/resume.js",
+      "contentHash": "d004cf1ccaf5b044d4273c5d91aedcbb853fec3784c7185efd37398795957857",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/Giveaway/start.js": {
+      "filePath": "Commands/Giveaway/start.js",
+      "contentHash": "c5e1d8f5e4444617e499d1d4dff85bcffe82b25eca037881a4ff19acf0ba1bff",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/config/setautorole.js": {
+      "filePath": "Commands/config/setautorole.js",
+      "contentHash": "7fedfd1c9c24658cecf3470f71078adb5d353e817fafce682d6d1c1355e75831",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 20,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/config/setgoodbye.js": {
+      "filePath": "Commands/config/setgoodbye.js",
+      "contentHash": "3a725e48f4ba7775c29dae96ec92271d099196937cc98400fde338bf2c6202ad",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/config/setlog.js": {
+      "filePath": "Commands/config/setlog.js",
+      "contentHash": "442f2af6c55cc1f23cd252ffc4b84a9c53e9e32deaa6fea08bbc47ca8cc8a579",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/config/setmodrole.js": {
+      "filePath": "Commands/config/setmodrole.js",
+      "contentHash": "ecb70a74d0d561dee4689c4b8f03ecd2a17602c9d964455b1758f2e49926d767",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 20,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/config/setmuterole.js": {
+      "filePath": "Commands/config/setmuterole.js",
+      "contentHash": "b46e16cefc09bed1c0d3bff32539435bcf1575edba114219536e00cc4252a67a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/config/setprefix.js": {
+      "filePath": "Commands/config/setprefix.js",
+      "contentHash": "b1dc48e06e9eb6b3dcc3bb0bd04624b635b2530feefb69b0d8ced4398ec85fdd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 20,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/config/setwelcome.js": {
+      "filePath": "Commands/config/setwelcome.js",
+      "contentHash": "e718a54b18374896678057e6f0fb8ac2933c6ac1117787fda3b18e9a72dffb18",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/general/help.js": {
+      "filePath": "Commands/general/help.js",
+      "contentHash": "6e44aafcbc4cc52187b5e026f1a91e687b4798100e52a69c2dd96bd71920d1ee",
+      "functions": [
+        {
+          "name": "getHelpContainer",
+          "params": [],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "getHelpRows",
+          "params": [],
+          "exported": false,
+          "lineCount": 29
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 211,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/general/payments-method.js": {
+      "filePath": "Commands/general/payments-method.js",
+      "contentHash": "b64fab3715a53cbd2037e2217a7d605699a00438711435bd2ba6a3c55e21f309",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 36,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/general/ping.js": {
+      "filePath": "Commands/general/ping.js",
+      "contentHash": "5e3c631d69f2d50a3004ec38f409b58b77ed2f0d3bfd3fbb5dfea09f81de5119",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/general/settings.js": {
+      "filePath": "Commands/general/settings.js",
+      "contentHash": "88b5877ddbef66142ab4d7e3605cc3a99f216a372f5f2482cbb9ba9e3d0b1417",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 68,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/general/stats.js": {
+      "filePath": "Commands/general/stats.js",
+      "contentHash": "de7ace92d65fb69b0f7e6bb5d2f8675cbdaf4be8dbf98c26392d4a4816035a87",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 41,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/general/top.js": {
+      "filePath": "Commands/general/top.js",
+      "contentHash": "7f3bd65c1558029bfe14118d343ca70cea4d76bdd65525b4b5ee0ed087251779",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 106,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/info/avatar.js": {
+      "filePath": "Commands/info/avatar.js",
+      "contentHash": "446902e3386e7c2e65b8ec560e444e51e5a4eca872e7f2d9613cf0e9e27e5be2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/info/channelinfo.js": {
+      "filePath": "Commands/info/channelinfo.js",
+      "contentHash": "4b240f9739e05de213668c05543ed0bbdf2051b00609b9ad3d32320c238e4ed2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/info/roleinfo.js": {
+      "filePath": "Commands/info/roleinfo.js",
+      "contentHash": "9d9332a6fd34d74b2ee6f278ecd7cb12eb485659e608967d37ca7777ea4ac105",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 37,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/info/serverinfo.js": {
+      "filePath": "Commands/info/serverinfo.js",
+      "contentHash": "cf4cb6b535139045aaeaaee1912ed7cb8a749f631c4276f18ed8f5615b48fc9e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 61,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/info/userinfo.js": {
+      "filePath": "Commands/info/userinfo.js",
+      "contentHash": "8eef4e6a92420de28f84ff7cf87325f1dee045c908623d28db19a04022bfb434",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/log/log-off.js": {
+      "filePath": "Commands/log/log-off.js",
+      "contentHash": "9dbbae699dcf763e3552ee8e620d85e36998d8a1fb8ca6199ddb8f07ad119e4f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 18,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/log/log-on.js": {
+      "filePath": "Commands/log/log-on.js",
+      "contentHash": "3654bc3def160615c8dfa5d7859bb48d738217fea68e6bd078be36e4970ba694",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 18,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/log/log-set.js": {
+      "filePath": "Commands/log/log-set.js",
+      "contentHash": "324d19c769111269e5bdeadce6214c86d648229b5dff1f337d09c88e23a79032",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 82,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/ban.js": {
+      "filePath": "Commands/moderation/ban.js",
+      "contentHash": "27eac60ca01e48e5dce29a15abef5f0fd703aa5d3f62fc13f2cc5f54f5468762",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/clear.js": {
+      "filePath": "Commands/moderation/clear.js",
+      "contentHash": "a5f2c2e2e8ac87afb8f01542d80c20f86e4f8b5dba4618f67fa3274bde1a2230",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 55,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/kick.js": {
+      "filePath": "Commands/moderation/kick.js",
+      "contentHash": "bbaf7caf3fbf7103c17629bf93ed5ba81203c131e2a461bd60606d29ca35d589",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/lock.js": {
+      "filePath": "Commands/moderation/lock.js",
+      "contentHash": "0dc2dd3ea5af0521508c411db3a6a837c070b2d2c1a1090a27c00bd9e769faa4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/mute.js": {
+      "filePath": "Commands/moderation/mute.js",
+      "contentHash": "bc5cfa87552c8873798776f2c0c17a4133ed9f6f1c743b4e52be1db093071d9c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 41,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/timeout.js": {
+      "filePath": "Commands/moderation/timeout.js",
+      "contentHash": "5872bc204dc099abc725493bd1a99119e0195287efab28d01fe276880a12622a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 48,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/unban.js": {
+      "filePath": "Commands/moderation/unban.js",
+      "contentHash": "f64f12716102bfaf3cc3d15b0cf4b35b2077799a756ed130cc628292a01c2862",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/unlock.js": {
+      "filePath": "Commands/moderation/unlock.js",
+      "contentHash": "44ef6e8bd49bf7a2d680218e4c9da15ba9b49dbdecc50d82cc8dfbcb0cffe691",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/unmute.js": {
+      "filePath": "Commands/moderation/unmute.js",
+      "contentHash": "aeae4de744ad4223c6b53a3679ab8228ebac5f84c8d73765f99478cc4c3cbacd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/warn.js": {
+      "filePath": "Commands/moderation/warn.js",
+      "contentHash": "44d5f48b90485892aad7094632dfd21521cc1307baa443cdeee10753436810d6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/moderation/warnings.js": {
+      "filePath": "Commands/moderation/warnings.js",
+      "contentHash": "3a7703ef236f15af76f7f6734ba389116e173f893d94f5f81ef71a438e64cf88",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/owner/setstatus-clear.js": {
+      "filePath": "Commands/owner/setstatus-clear.js",
+      "contentHash": "6c2d85f169f3e7eca391fea3c5565a334a381af92856e834baa22d5778454db9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/owner/setstatus.js": {
+      "filePath": "Commands/owner/setstatus.js",
+      "contentHash": "c77d0f50520f6ed08bb5f60a8af749861c90e8d411b683bc529cb72801286561",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 73,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/owner/shutdown.js": {
+      "filePath": "Commands/owner/shutdown.js",
+      "contentHash": "3731cea11704baaf65ea4bdd71ef3ec86ad6e4878e0e20d3d2d1ea9d0f22ad90",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 18,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/protection/auditlog.js": {
+      "filePath": "Commands/protection/auditlog.js",
+      "contentHash": "5352000c8552209f339d10b71bd78b6d941ba51aa2862ec79593ab9ff1385d76",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 86,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/protection/disable.js": {
+      "filePath": "Commands/protection/disable.js",
+      "contentHash": "deb24d5d0531672805ca94f8ed94d74e385e7787ca1c32d2ef8ebbf35b87d92a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 125,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/protection/enable.js": {
+      "filePath": "Commands/protection/enable.js",
+      "contentHash": "5bcad89cb9d1a0e72c70092f2253c19acc0253f709a506f1dd7263121a3de48a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 130,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/protection/setlimted.js": {
+      "filePath": "Commands/protection/setlimted.js",
+      "contentHash": "c8f6ac3025cec29f72815aeed6272fdbf4956216eb4840a114554a4c52246ef0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 100,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/protection/setprotectionlog.js": {
+      "filePath": "Commands/protection/setprotectionlog.js",
+      "contentHash": "1f13226029851cf026f15c7529c8f3a9e901fbd01190dfe0b8841c3d5a7d51f4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 61,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/protection/setpunishment.js": {
+      "filePath": "Commands/protection/setpunishment.js",
+      "contentHash": "b4ce50c4823c53b88a5d6b2eb2d0a1938852700def84e0d5c6191ad79f6ca5dc",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 42,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/protection/verify.js": {
+      "filePath": "Commands/protection/verify.js",
+      "contentHash": "f87a193c069e3c7ded4cda4781457d6b743730696d1d23f117eb8dad6d8e7a1d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 52,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/protection/whitelist-list.js": {
+      "filePath": "Commands/protection/whitelist-list.js",
+      "contentHash": "03403ad6215583f57e9b92edd7ab736c7e220e3b155cd9faa81a3be48adf4a86",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 62,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/protection/whitelist.js": {
+      "filePath": "Commands/protection/whitelist.js",
+      "contentHash": "1a5a3336cf7c2a0e81acdc618c06f7ba6715dab5c64ad5ce00093d5779bd2e00",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 86,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/store/store-setdetails.js": {
+      "filePath": "Commands/store/store-setdetails.js",
+      "contentHash": "43d02c857e1271c71206e8fadaa03f6a1b594579a5b990504d6b686186f46600",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/store/store-setticketroom.js": {
+      "filePath": "Commands/store/store-setticketroom.js",
+      "contentHash": "d909f69b8027481de49f081573356d3c0e0806d0c2cdc7eef7aa132fdf542629",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/store/store.js": {
+      "filePath": "Commands/store/store.js",
+      "contentHash": "8e6775418d7290587bfa66cc5061951b7a74b060b00041a2c7521e2f20d2b58b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/ticket/come.js": {
+      "filePath": "Commands/ticket/come.js",
+      "contentHash": "77be1c997a1c5aabcc5a2873d8aac4fa0b160d5d0449b49e8ea917ae003a67a6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/ticket/manage.js": {
+      "filePath": "Commands/ticket/manage.js",
+      "contentHash": "586a4733e52c32d567921df5dc733216cf4e4bd1d9f7a686957283337da97671",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/ticket/ticket-setcategory.js": {
+      "filePath": "Commands/ticket/ticket-setcategory.js",
+      "contentHash": "9c856eb8310d95d04a83fc92486dbb3a855e325789cb989fa5f21bf9cac975fa",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/ticket/ticketPanel.js": {
+      "filePath": "Commands/ticket/ticketPanel.js",
+      "contentHash": "80b9c1c420de2008c2b47863fd467b9aadc3e766f9634dd1ab12a65501b94009",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 94,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/utility/announce.js": {
+      "filePath": "Commands/utility/announce.js",
+      "contentHash": "325ba28db06196355f6549d970bc3688f99f0980ea8171f90763868b28d6f3e8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 36,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/utility/invite.js": {
+      "filePath": "Commands/utility/invite.js",
+      "contentHash": "aa0f621ba4fa9086862196f9ac1062b609e21b1900d1bf132ead6493ecaaf69f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/utility/remind.js": {
+      "filePath": "Commands/utility/remind.js",
+      "contentHash": "1416a426551c6482ff7a38b7660361e9c83982226bb3310b0419602ff44781ab",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 43,
+      "hasStructuralAnalysis": true
+    },
+    "Commands/utility/say.js": {
+      "filePath": "Commands/utility/say.js",
+      "contentHash": "acb3adc60cfc0f31f0afe66aa14ebee08074a113db65b2025e596f7b427f4238",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "Events/channelCreate.js": {
+      "filePath": "Events/channelCreate.js",
+      "contentHash": "3dbe87470d838d0929d6599b6f17bf5ef144af19d74c2f95e3366416d5327128",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 40,
+      "hasStructuralAnalysis": true
+    },
+    "Events/channelDelete.js": {
+      "filePath": "Events/channelDelete.js",
+      "contentHash": "7e1cd80c485343f36c8435931f7983673bca89a8b52bb183c0326a42ee2efa5b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "Events/channelUpdate.js": {
+      "filePath": "Events/channelUpdate.js",
+      "contentHash": "c90d19dde37bad4b300f8a490be4b74329ba6fbac1dbefc176bf5b17c12d988c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 111,
+      "hasStructuralAnalysis": true
+    },
+    "Events/guildBanAdd.js": {
+      "filePath": "Events/guildBanAdd.js",
+      "contentHash": "71e226e255da30109412be6a8f1cd1b91714f96bee16f0ff3c0b1a9b59bf0a0b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "Events/guildBanRemove.js": {
+      "filePath": "Events/guildBanRemove.js",
+      "contentHash": "5cec9b8c4b863b274b798928ff416b40dde74e3d3281005361fcb2319a3b942b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "Events/guildMemberAdd.js": {
+      "filePath": "Events/guildMemberAdd.js",
+      "contentHash": "1d39d6677a6cd2e1302da5b3e2fbb94f961b7bfb44e12e3f09da24c943fb5212",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 86,
+      "hasStructuralAnalysis": true
+    },
+    "Events/guildMemberRemove.js": {
+      "filePath": "Events/guildMemberRemove.js",
+      "contentHash": "88bef6a225799f05edd42151f17e8448ef4d5cc83e0a059dfdb26884d7b8afe7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 22,
+      "hasStructuralAnalysis": true
+    },
+    "Events/guildMemberUpdate.js": {
+      "filePath": "Events/guildMemberUpdate.js",
+      "contentHash": "be63a012af6730891869f71adcf913562dcee305a3ec095597b18ed3e31fc27a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "Events/guildUpdate.js": {
+      "filePath": "Events/guildUpdate.js",
+      "contentHash": "0b9e9bfdce9b52f09f8cf6ed277faec81b239903f82c618b0ca6e679201ad5a8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 113,
+      "hasStructuralAnalysis": true
+    },
+    "Events/inviteCreate.js": {
+      "filePath": "Events/inviteCreate.js",
+      "contentHash": "ba1aaf5e140a73442f90fb77ea0696a997846275922fd4246b6a5dd0cc82282b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
+    "Events/inviteDelete.js": {
+      "filePath": "Events/inviteDelete.js",
+      "contentHash": "10138ff7aecbaa6d2dfd32abf83e6b0f9022e3918503e0f8c730857b9a41a79f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
+    "Events/messageDelete.js": {
+      "filePath": "Events/messageDelete.js",
+      "contentHash": "ed71cabb9586aee0c13b3b27cfce752f66e73faf35fe31158005abcf0ac74a3f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "Events/messageUpdate.js": {
+      "filePath": "Events/messageUpdate.js",
+      "contentHash": "9943414037a9b7652b0ea21309a302f55fe5933c6263c2a38689fa41876c3726",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "Events/roleCreate.js": {
+      "filePath": "Events/roleCreate.js",
+      "contentHash": "2634fc55ff15cd97e7084094c8862fdef1594adbc04d3bd03173f81eece3a8d7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "Events/roleDelete.js": {
+      "filePath": "Events/roleDelete.js",
+      "contentHash": "602471814d1cf7032d6c4eb563d22d60bd1819c3643666bd975605145f0e3a0e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "Events/roleUpdate.js": {
+      "filePath": "Events/roleUpdate.js",
+      "contentHash": "f14b2ac221c81d196683634f4c062b289e56dd28133063743783abf2ac992b73",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 130,
+      "hasStructuralAnalysis": true
+    },
+    "Events/voiceStateUpdate.js": {
+      "filePath": "Events/voiceStateUpdate.js",
+      "contentHash": "e92600dec4abc27cc2ebe8d993698b91c2640255a7571657ab4f5d822a0440d7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 171,
+      "hasStructuralAnalysis": true
+    },
+    "IMPLEMENTATION-PLAN.md": {
+      "filePath": "IMPLEMENTATION-PLAN.md",
+      "contentHash": "98c8addd0efbb1d860753f62904c0677dd4850872fb0dcafbaf1dfb1f7809378",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 579,
+      "hasStructuralAnalysis": false
+    },
+    "IMPROVEMENTS.md": {
+      "filePath": "IMPROVEMENTS.md",
+      "contentHash": "68fd1c1f8ff45921f4bcd5d5702ec09d40439c7a60e53fcde4966eeae8fd7f4e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 468,
+      "hasStructuralAnalysis": false
+    },
+    "PrefixCommands/addadmin.js": {
+      "filePath": "PrefixCommands/addadmin.js",
+      "contentHash": "92e15c0853a8c7a1621bcd5a60fdba1d3a8e0f595d9b32f44f761f169ec63a38",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 35,
+      "hasStructuralAnalysis": true
+    },
+    "PrefixCommands/adminslist.js": {
+      "filePath": "PrefixCommands/adminslist.js",
+      "contentHash": "7230961da7a0474cec2f926c943b9d6f7a580cb4bc39b286a99b25df3b28e16c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "PrefixCommands/ratingstatus.js": {
+      "filePath": "PrefixCommands/ratingstatus.js",
+      "contentHash": "171c7f092e44dba39f00af3357748ec1296cf8f14e85ad4c0aadb4201c367c98",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "PrefixCommands/removeadmin.js": {
+      "filePath": "PrefixCommands/removeadmin.js",
+      "contentHash": "76c7b96e3f2fd521d0c1058f583f5f402b67d8c5395773a391a4eda1fd117262",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "PrefixCommands/reviews.js": {
+      "filePath": "PrefixCommands/reviews.js",
+      "contentHash": "78b5c798a6781d814dc611e8e047f288b8a90fcb191f0b63577fdb55f4d2d6d1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    "PrefixCommands/sendmassratings.js": {
+      "filePath": "PrefixCommands/sendmassratings.js",
+      "contentHash": "5dc795d460be3ed0e7064296136991937d01a4a2cfaf582b4d7f60b035cbaec3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 62,
+      "hasStructuralAnalysis": true
+    },
+    "PrefixCommands/sendrating.js": {
+      "filePath": "PrefixCommands/sendrating.js",
+      "contentHash": "4da5b854c883b55cfee4485627c3ef7549bf5be6377738d26419ac2f7904507f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "PrefixCommands/setratingchannel.js": {
+      "filePath": "PrefixCommands/setratingchannel.js",
+      "contentHash": "334cb5a14f86aeb8ac5cf27341bd145898d1fb81974091ad20ff4ffd39991d1a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "PrefixCommands/stopratings.js": {
+      "filePath": "PrefixCommands/stopratings.js",
+      "contentHash": "52358615fc5e21900a22c673a1b6d8ebe349f1224fb3921fb6fc9db29af6e8c1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "adminReviewTimer.js": {
+      "filePath": "adminReviewTimer.js",
+      "contentHash": "722f31e06f4d3417cabe8efac5988793c73378020792164fa4fc2460a8ef443b",
+      "functions": [
+        {
+          "name": "loadReviewQueue",
+          "params": [],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "saveReviewQueue",
+          "params": [],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "addToQueue",
+          "params": [
+            "requestId",
+            "type",
+            "userId",
+            "userTag",
+            "ticketNumber",
+            "guildId"
+          ],
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "getPendingReviews",
+          "params": [],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "getExpiredReviews",
+          "params": [],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "acceptReview",
+          "params": [
+            "requestId",
+            "adminId",
+            "decision",
+            "reason"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "getReview",
+          "params": [
+            "requestId"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "removeReview",
+          "params": [
+            "requestId"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "startTimerCheck",
+          "params": [
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "escalateReview",
+          "params": [
+            "client",
+            "entry"
+          ],
+          "exported": false,
+          "lineCount": 36
+        },
+        {
+          "name": "stopTimerCheck",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 169,
+      "hasStructuralAnalysis": true
+    },
+    "aiAgents/originalityGate.js": {
+      "filePath": "aiAgents/originalityGate.js",
+      "contentHash": "35761056988dba54e2b4fb8ab6dbb6a5991394fb66fb3901ffbcb0d7e6a6bf9a",
+      "functions": [
+        {
+          "name": "verifyOriginality",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 40
+        },
+        {
+          "name": "checkForClones",
+          "params": [
+            "productName",
+            "productDescription",
+            "existingProducts"
+          ],
+          "exported": false,
+          "lineCount": 31
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 91,
+      "hasStructuralAnalysis": true
+    },
+    "aiAgents/projectEvaluator.js": {
+      "filePath": "aiAgents/projectEvaluator.js",
+      "contentHash": "9e00160553d27a9485eb5f151d5037715e3919be2320442258b22b192524ab60",
+      "functions": [
+        {
+          "name": "getGroqClient",
+          "params": [],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "buildSellerText",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "callSellerAgent",
+          "params": [
+            "agentConfig",
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 46
+        },
+        {
+          "name": "aggregateSellerResults",
+          "params": [
+            "agentResults"
+          ],
+          "exported": false,
+          "lineCount": 54
+        },
+        {
+          "name": "evaluateSellerProject",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "buildBuyerText",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "callBuyerAgent",
+          "params": [
+            "agentConfig",
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 46
+        },
+        {
+          "name": "aggregateBuyerResults",
+          "params": [
+            "agentResults"
+          ],
+          "exported": false,
+          "lineCount": 52
+        },
+        {
+          "name": "evaluateBuyerProject",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 357,
+      "hasStructuralAnalysis": true
+    },
+    "aiAgents/templates/projectEvalEmbed.js": {
+      "filePath": "aiAgents/templates/projectEvalEmbed.js",
+      "contentHash": "2f6199caef9aeb69d94a05898266632dcc5117dd9615a28ec4bee5504e1d976e",
+      "functions": [
+        {
+          "name": "buildProjectEvalEmbed",
+          "params": [
+            "aiReport",
+            "agentResults"
+          ],
+          "exported": false,
+          "lineCount": 97
+        },
+        {
+          "name": "buildBuyerEvalEmbed",
+          "params": [
+            "aiReport",
+            "agentResults"
+          ],
+          "exported": false,
+          "lineCount": 102
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 216,
+      "hasStructuralAnalysis": true
+    },
+    "applySystem.js": {
+      "filePath": "applySystem.js",
+      "contentHash": "38e4bac67f1eb7694ac29e02ac4daa6e9eed9d4d209077b5233553c64efbe3d2",
+      "functions": [
+        {
+          "name": "startApplyFlow",
+          "params": [
+            "interaction"
+          ],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "handleApplyButton",
+          "params": [
+            "interaction"
+          ],
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "handleStaffApplyButton",
+          "params": [
+            "interaction"
+          ],
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "buildApplySummaryEmbed",
+          "params": [
+            "session",
+            "userTag"
+          ],
+          "exported": false,
+          "lineCount": 30
+        },
+        {
+          "name": "finalizeApplication",
+          "params": [
+            "interaction",
+            "session",
+            "filePath"
+          ],
+          "exported": false,
+          "lineCount": 93
+        },
+        {
+          "name": "handleDevAppApprove",
+          "params": [
+            "interaction"
+          ],
+          "exported": false,
+          "lineCount": 40
+        },
+        {
+          "name": "handleDevAppDecline",
+          "params": [
+            "interaction"
+          ],
+          "exported": false,
+          "lineCount": 30
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 343,
+      "hasStructuralAnalysis": true
+    },
+    "architectures/Applying system.md": {
+      "filePath": "architectures/Applying system.md",
+      "contentHash": "87e65dd1038c57beccc2b6963cf4df0c98db6b2f6705426946ae27160192c5a7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 79,
+      "hasStructuralAnalysis": false
+    },
+    "architectures/COMPILED-MESSAGES.md": {
+      "filePath": "architectures/COMPILED-MESSAGES.md",
+      "contentHash": "35f4d4dc332f1e8f8264d5dd259ca5487db128a7c0e88977cfcf41d019e8fb55",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1449,
+      "hasStructuralAnalysis": false
+    },
+    "architectures/Payments on development services.md": {
+      "filePath": "architectures/Payments on development services.md",
+      "contentHash": "f98f7201304b1a44232d4ecffa544d29e55b0e8aecb6d327901b03cbbab9b0c2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": false
+    },
+    "architectures/Portfolio Scanner Report.md": {
+      "filePath": "architectures/Portfolio Scanner Report.md",
+      "contentHash": "92bfdfce6e964dc6ccebd5b43803b59785c6f1bf63ed1a5523521f5e48a0768f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1740,
+      "hasStructuralAnalysis": false
+    },
+    "architectures/Projects tickets - Payment.md": {
+      "filePath": "architectures/Projects tickets - Payment.md",
+      "contentHash": "e4aac98e9135acecf35f01f1a314229f6cb594ccd8701d399962283805e92ac4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 79,
+      "hasStructuralAnalysis": false
+    },
+    "architectures/Questions Answering System.md": {
+      "filePath": "architectures/Questions Answering System.md",
+      "contentHash": "593211024e04bbfb64cf50d12597438c9dbed3d7046a350e7fdc16e8dadbebc2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": false
+    },
+    "architectures/SYSTEMS-REQUIREMENTS.md": {
+      "filePath": "architectures/SYSTEMS-REQUIREMENTS.md",
+      "contentHash": "c0de373389297c96065325443fa24f5095e66b7c4e7a488eb221257ea4781cb4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1361,
+      "hasStructuralAnalysis": false
+    },
+    "architectures/Saving system.md": {
+      "filePath": "architectures/Saving system.md",
+      "contentHash": "16ed4c36fc145637a23fc8c05f02ee330f6c946d4a1ee1d5d595ce79693b9248",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": false
+    },
+    "commands/admin/review.js": {
+      "filePath": "commands/admin/review.js",
+      "contentHash": "2899fa6d64082572169f4c4b47a7e9aefb8ec99a83a59904f1dcc9be04b7212c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 66,
+      "hasStructuralAnalysis": true
+    },
+    "commands/marketplace/buy.js": {
+      "filePath": "commands/marketplace/buy.js",
+      "contentHash": "0850e2e954fd9479efaae7f4bf0b47153dd56c67fae501ba67d44f9b6df3c6ed",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "commands/marketplace/list.js": {
+      "filePath": "commands/marketplace/list.js",
+      "contentHash": "758c444cd3ac7b9ba920c751e6425b37577f781104b7d5cd252ca55ca6e3a211",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 82,
+      "hasStructuralAnalysis": true
+    },
+    "commands/marketplace/submit.js": {
+      "filePath": "commands/marketplace/submit.js",
+      "contentHash": "b6dce9741b68692760406629e17b5a75408d3b4486555560bff17d4ff092d403",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 47,
+      "hasStructuralAnalysis": true
+    },
+    "config.js": {
+      "filePath": "config.js",
+      "contentHash": "7157cbbd6f39843d7f611eac08dcf2429f2d5989e5b3023285519f43ed65d4be",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 22,
+      "hasStructuralAnalysis": true
+    },
+    "db.js": {
+      "filePath": "db.js",
+      "contentHash": "8de236d59c862f9557c8ddbc053bd759a463f045328d8763d76864ef1258f737",
+      "functions": [
+        {
+          "name": "proDbGet",
+          "params": [
+            "key"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "proDbSet",
+          "params": [
+            "key",
+            "value"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "proDbDelete",
+          "params": [
+            "key"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "fixKey",
+          "params": [
+            "key"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "get",
+          "params": [
+            "key"
+          ],
+          "exported": false,
+          "lineCount": 32
+        },
+        {
+          "name": "set",
+          "params": [
+            "key",
+            "value"
+          ],
+          "exported": false,
+          "lineCount": 37
+        },
+        {
+          "name": "del",
+          "params": [
+            "key"
+          ],
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "loadProjects",
+          "params": [],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "saveProjects",
+          "params": [
+            "projects"
+          ],
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 185,
+      "hasStructuralAnalysis": true
+    },
+    "giveaway.js": {
+      "filePath": "giveaway.js",
+      "contentHash": "ddd17e7067100b78b7e394a462009883a124a16331e187248a6feaaa4125ac2d",
+      "functions": [
+        {
+          "name": "loadGiveawaysFromFile",
+          "params": [],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "saveGiveawaysToFile",
+          "params": [],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "loadGiveaways",
+          "params": [
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "getGiveaway",
+          "params": [
+            "messageId"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "addParticipant",
+          "params": [
+            "messageId",
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "createGiveaway",
+          "params": [
+            "guildId",
+            "channelId",
+            "hostId",
+            "prize",
+            "duration"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "setMessageId",
+          "params": [
+            "messageId",
+            "giveaway"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "pauseGiveaway",
+          "params": [
+            "messageId"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "resumeGiveaway",
+          "params": [
+            "messageId"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "endGiveaway",
+          "params": [
+            "messageId"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "rerollGiveaway",
+          "params": [
+            "messageId"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "editGiveaway",
+          "params": [
+            "messageId",
+            "newPrize",
+            "newDuration"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "getActiveGiveaways",
+          "params": [
+            "guildId"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "checkEndedGiveaways",
+          "params": [
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 39
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 182,
+      "hasStructuralAnalysis": true
+    },
+    "handlers/apply.js": {
+      "filePath": "handlers/apply.js",
+      "contentHash": "329ff98b85fe3fb116d2fe9da744fbf78fafd918cc34ab495516d4476fa41f33",
+      "functions": [
+        {
+          "name": "loadProjectReviews",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "saveProjectReview",
+          "params": [
+            "review"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "startLegacyProjectFlow",
+          "params": [
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 38
+        },
+        {
+          "name": "handleLegacyProjectSubmit",
+          "params": [
+            "interaction",
+            "session",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 38
+        },
+        {
+          "name": "startSellerFlow",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "handleSellerTermsAgree",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "handleSellerTermsDecline",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "handleSellerTypeSelect",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "handleSellerSubmit",
+          "params": [
+            "interaction",
+            "session",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 67
+        },
+        {
+          "name": "startBuyerFlow",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "handleBuyerTermsAgree",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "handleBuyerDescSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 32
+        },
+        {
+          "name": "handleBuyerSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "handleBuyerBudgetSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "handleBuyerPaymentSelect",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 55
+        },
+        {
+          "name": "loadTermsContent",
+          "params": [
+            "fileName"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "handleAdminAcceptSeller",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "handleAdminDeclineSeller",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "handleAdminDeclineSellerReason",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "handleAdminAcceptBuyer",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "handleAdminDeclineBuyer",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "handleAdminDeclineBuyerReason",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 601,
+      "hasStructuralAnalysis": true
+    },
+    "handlers/devMatch.js": {
+      "filePath": "handlers/devMatch.js",
+      "contentHash": "9e8b857c4188333043542e81fa3d4da9736d767564c292ffa4dd1eb467c4ae9b",
+      "functions": [
+        {
+          "name": "showPortfolioModal",
+          "params": [
+            "interaction",
+            "ticketNumber"
+          ],
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "handlePortfolioSubmit",
+          "params": [
+            "interaction",
+            "ticketNumber",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 56
+        },
+        {
+          "name": "handleClientAcceptDev",
+          "params": [
+            "interaction",
+            "devId",
+            "ticketNumber",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 48
+        },
+        {
+          "name": "handleClientDeclineDev",
+          "params": [
+            "interaction",
+            "devId",
+            "ticketNumber",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 24
+        },
+        {
+          "name": "getOpenProjectsForMatching",
+          "params": [],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "matchDeveloperToProjects",
+          "params": [
+            "devRole",
+            "devSpecialty"
+          ],
+          "exported": false,
+          "lineCount": 29
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 241,
+      "hasStructuralAnalysis": true
+    },
+    "handlers/ticket.js": {
+      "filePath": "handlers/ticket.js",
+      "contentHash": "3d029df2597bffa4440ae96fa05b15e96da8207ce33b5280e429e70f11c8f37f",
+      "functions": [
+        {
+          "name": "countOpenTickets",
+          "params": [
+            "guild"
+          ],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "handleCloseTicket",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 33
+        },
+        {
+          "name": "handleConfirmClose",
+          "params": [
+            "interaction",
+            "client",
+            "logTicketAction",
+            "createTranscript",
+            "idleSystem"
+          ],
+          "exported": false,
+          "lineCount": 83
+        },
+        {
+          "name": "handleDeleteTicket",
+          "params": [
+            "interaction",
+            "client",
+            "logTicketAction"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "handleReopenTicket",
+          "params": [
+            "interaction",
+            "client",
+            "idleSystem",
+            "logTicketAction"
+          ],
+          "exported": false,
+          "lineCount": 27
+        },
+        {
+          "name": "handleTranscript",
+          "params": [
+            "interaction",
+            "client",
+            "logTicketAction",
+            "createTranscript"
+          ],
+          "exported": false,
+          "lineCount": 52
+        },
+        {
+          "name": "handleClaimTicket",
+          "params": [
+            "interaction",
+            "client",
+            "idleSystem",
+            "logTicketAction"
+          ],
+          "exported": false,
+          "lineCount": 28
+        },
+        {
+          "name": "handleUnclaimTicket",
+          "params": [
+            "interaction",
+            "client",
+            "idleSystem",
+            "logTicketAction"
+          ],
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "hasButton",
+          "params": [
+            "components",
+            "customId"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "handleProjectAccept",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "handleProjectDecline",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "handleDeclineReasonSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "handleProjectTypeSelect",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 337,
+      "hasStructuralAnalysis": true
+    },
+    "idleSystem.js": {
+      "filePath": "idleSystem.js",
+      "contentHash": "d2d92dcb82b647ee994777e6980859068b4b33cf2e331bbbf7441ae00ddfb2ca",
+      "functions": [
+        {
+          "name": "getTicketNumber",
+          "params": [
+            "channelName"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "getOriginalOwner",
+          "params": [
+            "channel"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "closeTicket",
+          "params": [
+            "channel"
+          ],
+          "exported": false,
+          "lineCount": 28
+        },
+        {
+          "name": "sendWarning",
+          "params": [
+            "channel"
+          ],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "initIdleSystem",
+          "params": [
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 32
+        },
+        {
+          "name": "resetIdleTimer",
+          "params": [
+            "channelId"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "trackTicket",
+          "params": [
+            "channelId",
+            "ownerId"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "untrackTicket",
+          "params": [
+            "channelId"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "isTracked",
+          "params": [
+            "channelId"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "hasOpenTicket",
+          "params": [
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "hasRatingBeenRequested",
+          "params": [
+            "channelId"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "markRatingRequested",
+          "params": [
+            "channelId"
+          ],
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 154,
+      "hasStructuralAnalysis": true
+    },
+    "index.js": {
+      "filePath": "index.js",
+      "contentHash": "9465daed62aeef27557a0de509b2730e8b74651b958c88c7efe7a3fa4c1532ff",
+      "functions": [
+        {
+          "name": "componentHasButton",
+          "params": [
+            "components",
+            "customId"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "loadCommands",
+          "params": [
+            "dir"
+          ],
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "loadPrefixCommands",
+          "params": [
+            "dir"
+          ],
+          "exported": false,
+          "lineCount": 24
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1054,
+      "hasStructuralAnalysis": true
+    },
+    "marketplace/marketplace.js": {
+      "filePath": "marketplace/marketplace.js",
+      "contentHash": "67b8297eebea8b92f02fbce87343d7b9aa10609d5dc0702d82c939c792d8c167",
+      "functions": [
+        {
+          "name": "loadMarketplace",
+          "params": [],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "saveMarketplace",
+          "params": [],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "generateProductId",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "listProduct",
+          "params": [
+            "data"
+          ],
+          "exported": false,
+          "lineCount": 44
+        },
+        {
+          "name": "getProduct",
+          "params": [
+            "productId"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "listAllProducts",
+          "params": [
+            "category"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "getSellerProducts",
+          "params": [
+            "sellerId"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "purchaseProduct",
+          "params": [
+            "productId",
+            "buyerId",
+            "buyerTag"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "removeProduct",
+          "params": [
+            "productId",
+            "adminId"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "searchProducts",
+          "params": [
+            "query"
+          ],
+          "exported": false,
+          "lineCount": 13
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 162,
+      "hasStructuralAnalysis": true
+    },
+    "marketplace/templates/marketplaceEmbed.js": {
+      "filePath": "marketplace/templates/marketplaceEmbed.js",
+      "contentHash": "176c019cbcb9b20ead0c9e85b31b3e684cc040803216f0ee847c7a11801d045b",
+      "functions": [
+        {
+          "name": "buildMarketplaceEmbed",
+          "params": [
+            "products"
+          ],
+          "exported": false,
+          "lineCount": 35
+        },
+        {
+          "name": "buildProductDetailEmbed",
+          "params": [
+            "product"
+          ],
+          "exported": false,
+          "lineCount": 37
+        },
+        {
+          "name": "buildPurchaseConfirmationEmbed",
+          "params": [
+            "product",
+            "buyerTag"
+          ],
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "buildSellerSubmittedEmbed",
+          "params": [
+            "session",
+            "aiReport"
+          ],
+          "exported": false,
+          "lineCount": 45
+        },
+        {
+          "name": "buildBuyerAnalysisEmbed",
+          "params": [
+            "aiReport"
+          ],
+          "exported": false,
+          "lineCount": 50
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 211,
+      "hasStructuralAnalysis": true
+    },
+    "package.json": {
+      "filePath": "package.json",
+      "contentHash": "f45502ac255cd1aef3b1d8eead46a2a9fd3b2a13605b94d9d0b0548baf770cf5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": false
+    },
+    "portfolioScanner/aiAgentScanner.js": {
+      "filePath": "portfolioScanner/aiAgentScanner.js",
+      "contentHash": "5becb0bdf747449360d31880ad278b434ecf3ab60eec2fa8ccf84016c148e730",
+      "functions": [
+        {
+          "name": "getGroqClient",
+          "params": [],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "buildPortfolioText",
+          "params": [
+            "answers",
+            "metadata"
+          ],
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "callAgent",
+          "params": [
+            "agentConfig",
+            "portfolioText"
+          ],
+          "exported": false,
+          "lineCount": 42
+        },
+        {
+          "name": "aggregateResults",
+          "params": [
+            "agentResults"
+          ],
+          "exported": false,
+          "lineCount": 65
+        },
+        {
+          "name": "scanPortfolioWithAI",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 200,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/analyzers/aiDetector.js": {
+      "filePath": "portfolioScanner/analyzers/aiDetector.js",
+      "contentHash": "12138e0d724468eb4b9759e4b7efead0f464c97132931e5f7d28f72f9d5cd229",
+      "functions": [
+        {
+          "name": "analyzeAIGenerated",
+          "params": [
+            "corpus",
+            "answerText",
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 27
+        },
+        {
+          "name": "detectAIPhrases",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "estimatePerplexity",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 73
+        },
+        {
+          "name": "analyzeBurstiness",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 30
+        },
+        {
+          "name": "analyzePunctuation",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 35
+        },
+        {
+          "name": "detectTyposSimple",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 200,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/analyzers/fakeDetector.js": {
+      "filePath": "portfolioScanner/analyzers/fakeDetector.js",
+      "contentHash": "ebe51b5fc401b4279197c3f77f00cac0a7e6652381e2f03c52fb64cf01baaa08",
+      "functions": [
+        {
+          "name": "analyzeFake",
+          "params": [
+            "corpus",
+            "answerText",
+            "answers",
+            "metadata"
+          ],
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "matchKeywords",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "analyzeQuestions",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "normalizeQuestionKey",
+          "params": [
+            "question"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "detectSuspiciousPatterns",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 50
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 123,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/analyzers/legitimacyCheck.js": {
+      "filePath": "portfolioScanner/analyzers/legitimacyCheck.js",
+      "contentHash": "c8df5a2980f59ed9b37853c26fcc6ed5a584f73ced4bb1e54266979cae69c183",
+      "functions": [
+        {
+          "name": "analyzeLegitimacy",
+          "params": [
+            "fakeScore",
+            "stolenScore",
+            "aiScore"
+          ],
+          "exported": false,
+          "lineCount": 22
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/analyzers/stolenDetector.js": {
+      "filePath": "portfolioScanner/analyzers/stolenDetector.js",
+      "contentHash": "ac0649ea79a4d0a61f92f8afb54eb2eb48a7d148e37ce29f3ef4663e27a24a1a",
+      "functions": [
+        {
+          "name": "analyzeStolen",
+          "params": [
+            "corpus",
+            "answerText",
+            "answers",
+            "metadata"
+          ],
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "matchStolenKeywords",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "analyzeFormattingConsistency",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 36
+        },
+        {
+          "name": "detectSkillMismatches",
+          "params": [
+            "answers",
+            "selectedRole"
+          ],
+          "exported": false,
+          "lineCount": 34
+        },
+        {
+          "name": "analyzeMediaLinks",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 30
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 146,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/index.js": {
+      "filePath": "portfolioScanner/index.js",
+      "contentHash": "4f6f4b1f04b8571c845b229eaee27d1d56ce190ca21cfa8d97a8d89b05f56731",
+      "functions": [
+        {
+          "name": "loadScanHistory",
+          "params": [],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "saveScanEntry",
+          "params": [
+            "userId",
+            "entry"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "extractAge",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "extractName",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "extractProjectList",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "extractUrls",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "analyzeWorkSamples",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 51
+        },
+        {
+          "name": "buildUncertainReport",
+          "params": [
+            "reason",
+            "metadata"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "scanPortfolio",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 94
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 250,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/templates/aiReportEmbed.js": {
+      "filePath": "portfolioScanner/templates/aiReportEmbed.js",
+      "contentHash": "3643e7030a35a90a454391f7b0488aef43f79ad28718347ce1432f9e221d5dac",
+      "functions": [
+        {
+          "name": "buildAIScoreBar",
+          "params": [
+            "score"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "buildAIAgentReportEmbed",
+          "params": [
+            "aiReport"
+          ],
+          "exported": false,
+          "lineCount": 123
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 133,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/templates/reportEmbed.js": {
+      "filePath": "portfolioScanner/templates/reportEmbed.js",
+      "contentHash": "fb89a37b6a88f486b15cc71e8fb8f6deb6511231df7d18c094462f5ce176335c",
+      "functions": [
+        {
+          "name": "buildReportEmbed",
+          "params": [
+            "report"
+          ],
+          "exported": false,
+          "lineCount": 86
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 91,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/utils/adjustments.js": {
+      "filePath": "portfolioScanner/utils/adjustments.js",
+      "contentHash": "81eeeb3943f5e7133701815e96f760505d429340ccc5b783957de059b0c62ff3",
+      "functions": [
+        {
+          "name": "guardMinimumLength",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "adjustForAge",
+          "params": [
+            "age",
+            "scores"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "detectNonNativeIndicators",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "checkUserHistory",
+          "params": [
+            "userId",
+            "previousSubmissions"
+          ],
+          "exported": false,
+          "lineCount": 34
+        },
+        {
+          "name": "detectTypos",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "validateBorderlineCase",
+          "params": [
+            "scores",
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "applyCorrections",
+          "params": [
+            "scores",
+            "corrections"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "applyExperienceAdjustment",
+          "params": [
+            "scores",
+            "experienceLevel"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "applyLanguageAdjustment",
+          "params": [
+            "scores",
+            "isNonNative"
+          ],
+          "exported": false,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 154,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/utils/keywordSets.js": {
+      "filePath": "portfolioScanner/utils/keywordSets.js",
+      "contentHash": "ec2056b9e3c1ef7b5ec6c568128f73dd19ac6f9f49a6f1a26c088abf50c5f7c5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 229,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/utils/preprocessor.js": {
+      "filePath": "portfolioScanner/utils/preprocessor.js",
+      "contentHash": "51eeb9807d07d01fe084997f3f1c54631a7223fc717b91c513d289aa70df680c",
+      "functions": [
+        {
+          "name": "preprocess",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/utils/scoring.js": {
+      "filePath": "portfolioScanner/utils/scoring.js",
+      "contentHash": "8c7105bbc061e1aaeae7a9f0d4db95db002c80c870a3ea83f703373cdb3a555c",
+      "functions": [
+        {
+          "name": "calculateScores",
+          "params": [
+            "fake",
+            "stolen",
+            "ai",
+            "legit"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "classifyPortfolio",
+          "params": [
+            "scores"
+          ],
+          "exported": false,
+          "lineCount": 35
+        },
+        {
+          "name": "generateRecommendation",
+          "params": [
+            "report"
+          ],
+          "exported": false,
+          "lineCount": 25
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "portfolioScanner/utils/urlChecker.js": {
+      "filePath": "portfolioScanner/utils/urlChecker.js",
+      "contentHash": "6ff72060c9cb2750d20b3720fbdc25f73d74b03d24ef96197cbf75c70a414ce0",
+      "functions": [
+        {
+          "name": "extractUrls",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "analyzeUrlsSync",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 62
+        },
+        {
+          "name": "validateUrlsAsync",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 23
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 102,
+      "hasStructuralAnalysis": true
+    },
+    "projectTicket.js": {
+      "filePath": "projectTicket.js",
+      "contentHash": "e81e987a7c8feea318a017b8d690c18c3b2f9d678a318070a837d3eddae3fa51",
+      "functions": [
+        {
+          "name": "loadProjectReviews",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "saveProjectReview",
+          "params": [
+            "review"
+          ],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "persistProjectStore",
+          "params": [],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "startProjectFlow",
+          "params": [
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 37
+        },
+        {
+          "name": "handleLegacyProjectSubmit",
+          "params": [
+            "interaction",
+            "session",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 38
+        },
+        {
+          "name": "startSellerFlow",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "handleSellerTermsAgree",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "handleSellerTermsDecline",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "handleSellerTypeSelect",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "handleSellerSubmit",
+          "params": [
+            "interaction",
+            "session",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 64
+        },
+        {
+          "name": "startBuyerFlow",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "handleBuyerTermsAgree",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "handleBuyerDescSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 32
+        },
+        {
+          "name": "handleSellerSubmit_legacy",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "handleBuyerSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "handleBuyerBudgetSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "handleBuyerPaymentSelect",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 56
+        },
+        {
+          "name": "loadTermsContent",
+          "params": [
+            "fileName"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "handleProjectAccept",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 27
+        },
+        {
+          "name": "handleProjectDecline",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "handleDeclineReasonSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 24
+        },
+        {
+          "name": "handleAdminAcceptSeller",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 49
+        },
+        {
+          "name": "handleAdminDeclineSeller",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "handleAdminDeclineSellerReason",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "handleAdminAcceptBuyer",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 35
+        },
+        {
+          "name": "handleAdminDeclineBuyer",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "handleAdminDeclineBuyerReason",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 744,
+      "hasStructuralAnalysis": true
+    },
+    "protectionEvents.js": {
+      "filePath": "protectionEvents.js",
+      "contentHash": "62de29439590b6f3a5eaab770e5f9a37adba870d778f8a5a172c0e574e956f5a",
+      "functions": [
+        {
+          "name": "getRateCounter",
+          "params": [
+            "key"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "incrementRateCounter",
+          "params": [
+            "key"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "sendProtectionLog",
+          "params": [
+            "guild",
+            "logChannelId",
+            "title",
+            "fields"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "applyPunishment",
+          "params": [
+            "member",
+            "punishmentAction"
+          ],
+          "exported": false,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 482,
+      "hasStructuralAnalysis": true
+    },
+    "public/css/style.css": {
+      "filePath": "public/css/style.css",
+      "contentHash": "359e8202172fbef6df7460741afabe69f80ffa97e4713809b6caed733bb04e81",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 466,
+      "hasStructuralAnalysis": false
+    },
+    "questionFlow.js": {
+      "filePath": "questionFlow.js",
+      "contentHash": "7c5611e88f376e888c8da84ac81a552d0bfa90765e2ef62ec0cb8bba4f400709",
+      "functions": [
+        {
+          "name": "loadSavedSessions",
+          "params": [],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "saveSessionsToDisk",
+          "params": [],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "makeOnComplete",
+          "params": [
+            "type"
+          ],
+          "exported": false,
+          "lineCount": 27
+        },
+        {
+          "name": "restoreSessions",
+          "params": [
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "getSession",
+          "params": [
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "setSession",
+          "params": [
+            "userId",
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "deleteSession",
+          "params": [
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "buildAnswerButton",
+          "params": [],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "buildEditButton",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "buildNextButton",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "buildSummaryEditButton",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "buildSendButton",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "buildQuestionModal",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 18
+        },
+        {
+          "name": "buildSelectMenu",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "buildConfirmButtons",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "loadTermsContent",
+          "params": [
+            "fileName"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "buildTermsEmbed",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 41
+        },
+        {
+          "name": "buildQuestionEmbed",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "buildProgressEmbed",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "getCurrentComponents",
+          "params": [
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "showCurrentQuestion",
+          "params": [
+            "interaction",
+            "session"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "handleModalSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 50
+        },
+        {
+          "name": "handleSelectSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 39
+        },
+        {
+          "name": "handleConfirmSubmit",
+          "params": [
+            "interaction",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 42
+        },
+        {
+          "name": "showSummaryScreen",
+          "params": [
+            "interaction",
+            "session",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "finalizeSession",
+          "params": [
+            "interaction",
+            "session",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "editQuestion",
+          "params": [
+            "interaction",
+            "targetIndex",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 33
+        },
+        {
+          "name": "handleAnswerButton",
+          "params": [
+            "interaction"
+          ],
+          "exported": false,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 590,
+      "hasStructuralAnalysis": true
+    },
+    "ratingHandler.js": {
+      "filePath": "ratingHandler.js",
+      "contentHash": "b906af13f24c14fb407f050d3fddc1082ce0164279bcd6345d3f1234ac434ac5",
+      "functions": [
+        {
+          "name": "handleRatingInteraction",
+          "params": [
+            "client",
+            "interaction"
+          ],
+          "exported": false,
+          "lineCount": 43
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 50,
+      "hasStructuralAnalysis": true
+    },
+    "ratingSystem/aiHandler.js": {
+      "filePath": "ratingSystem/aiHandler.js",
+      "contentHash": "0be470ee303a2c6a213ca174146993552922a0ca712baaccc58c5b6e46498fca",
+      "functions": [
+        {
+          "name": "sleep",
+          "params": [
+            "ms"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "getActiveProviders",
+          "params": [],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "getOrCreateSession",
+          "params": [
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "getAIResponse",
+          "params": [
+            "userId",
+            "userMessage"
+          ],
+          "exported": false,
+          "lineCount": 123
+        },
+        {
+          "name": "clearUserSession",
+          "params": [
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "getActiveSessionCount",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 201,
+      "hasStructuralAnalysis": true
+    },
+    "ratingSystem/autoRating.js": {
+      "filePath": "ratingSystem/autoRating.js",
+      "contentHash": "febfa9f0200a422d13bd2b06075585b4a679ba59a35e2c33dd3c872cb86187ad",
+      "functions": [
+        {
+          "name": "randomPick",
+          "params": [
+            "arr"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "randomPastTimestamp",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "generateOrderNumber",
+          "params": [],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "generateStarRating",
+          "params": [],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "generatePrice",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "getAdmins",
+          "params": [
+            "guildId"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "addAdmin",
+          "params": [
+            "guildId",
+            "userId",
+            "username"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "removeAdmin",
+          "params": [
+            "guildId",
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "getRandomMember",
+          "params": [
+            "guild"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "buildRatingEmbed",
+          "params": [
+            "member"
+          ],
+          "exported": false,
+          "lineCount": 33
+        },
+        {
+          "name": "getRandomInterval",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "sendAutoRating",
+          "params": [
+            "client",
+            "guildId"
+          ],
+          "exported": false,
+          "lineCount": 33
+        },
+        {
+          "name": "scheduleNext",
+          "params": [
+            "client",
+            "guildId"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "setRatingChannel",
+          "params": [
+            "client",
+            "guildId",
+            "channelId"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "stopRating",
+          "params": [
+            "guildId"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "getRatingStatus",
+          "params": [
+            "guildId"
+          ],
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 217,
+      "hasStructuralAnalysis": true
+    },
+    "ratingSystem/dmHandler.js": {
+      "filePath": "ratingSystem/dmHandler.js",
+      "contentHash": "2347535df812d1296030cfc48c0ed574277e4a0758c5e925c4465904fd5d870c",
+      "functions": [
+        {
+          "name": "handleDM",
+          "params": [
+            "message"
+          ],
+          "exported": false,
+          "lineCount": 33
+        },
+        {
+          "name": "splitMessage",
+          "params": [
+            "text",
+            "maxLength"
+          ],
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 47,
+      "hasStructuralAnalysis": true
+    },
+    "ratingSystem/monitor.js": {
+      "filePath": "ratingSystem/monitor.js",
+      "contentHash": "e85b427902b520e050c8685c75bf7624d344423913d6b816e4fa9c4aa68419d2",
+      "functions": [
+        {
+          "name": "formatBytes",
+          "params": [
+            "bytes"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "logMemory",
+          "params": [],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "getMemoryStats",
+          "params": [],
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "startMonitoring",
+          "params": [],
+          "exported": false,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 52,
+      "hasStructuralAnalysis": true
+    },
+    "ratingSystem/serverContext.js": {
+      "filePath": "ratingSystem/serverContext.js",
+      "contentHash": "54168bb31572ba6fbc43965e6850295aa8ea80539d5863240a55db2aa71b77d2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 346,
+      "hasStructuralAnalysis": true
+    },
+    "savingSystem.js": {
+      "filePath": "savingSystem.js",
+      "contentHash": "8d57b33988453743bbf7868dc753a08ba911742a9eca3e1602da81fc6f09fa20",
+      "functions": [
+        {
+          "name": "ensureDir",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "buildMarkdown",
+          "params": [
+            "answers"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "saveAndSend",
+          "params": [
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 41
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 64,
+      "hasStructuralAnalysis": true
+    },
+    "server.js": {
+      "filePath": "server.js",
+      "contentHash": "7573a433a094be38dd796b6d0a89808699cde05e33abae459b4787fccbeaf112",
+      "functions": [
+        {
+          "name": "startDatabaseCleanup",
+          "params": [],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "gracefulShutdown",
+          "params": [
+            "signal"
+          ],
+          "exported": false,
+          "lineCount": 18
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 453,
+      "hasStructuralAnalysis": true
+    },
+    "supportAI.js": {
+      "filePath": "supportAI.js",
+      "contentHash": "1068c99530e5404ebadae1b461b6c6a963e3e21f3c23f6cd2ae160fad8556804",
+      "functions": [
+        {
+          "name": "loadSupportLog",
+          "params": [],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "saveSupportLog",
+          "params": [],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "handleSupportMessage",
+          "params": [
+            "message",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 111
+        },
+        {
+          "name": "initSupportAI",
+          "params": [
+            "client",
+            "config"
+          ],
+          "exported": false,
+          "lineCount": 28
+        },
+        {
+          "name": "startSupportAI",
+          "params": [],
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 218,
+      "hasStructuralAnalysis": true
+    },
+    "terms-dev.md": {
+      "filePath": "terms-dev.md",
+      "contentHash": "8abe7b55e2bcc4063051982a3017948d2bec96accec56d96bf7ee57719d2c033",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 147,
+      "hasStructuralAnalysis": false
+    },
+    "terms.md": {
+      "filePath": "terms.md",
+      "contentHash": "f54b84cbedfc66bd6195988a960d6fdb4b70bbf20b93dbfea8443168ce25bec7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 60,
+      "hasStructuralAnalysis": false
+    },
+    "ticket-config.json": {
+      "filePath": "ticket-config.json",
+      "contentHash": "f080749bd9fecdbd42293aed55c7f6e8637942e5f80a1b5674bd444fea490185",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 91,
+      "hasStructuralAnalysis": false
+    },
+    "ticketLogger.js": {
+      "filePath": "ticketLogger.js",
+      "contentHash": "ff0779182ab771ef3414043bb1a2864091fede9cdf2236d66867c10401b1e8ec",
+      "functions": [
+        {
+          "name": "logTicketAction",
+          "params": [
+            "client",
+            "action",
+            "user",
+            "channel"
+          ],
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "logTicketRating",
+          "params": [
+            "client",
+            "rating",
+            "rater",
+            "channel",
+            "closer"
+          ],
+          "exported": false,
+          "lineCount": 24
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 53,
+      "hasStructuralAnalysis": true
+    },
+    "traffic-test.js": {
+      "filePath": "traffic-test.js",
+      "contentHash": "28e6d94eebe2602bd846b57769131d43efc0e5c9410eda2ad4c52cc32b180278",
+      "functions": [
+        {
+          "name": "record",
+          "params": [
+            "name",
+            "pass",
+            "detail"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "backupState",
+          "params": [],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "restoreState",
+          "params": [],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "verifyJsonIntegrity",
+          "params": [
+            "fileName"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "randInt",
+          "params": [
+            "min",
+            "max"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "randStr",
+          "params": [
+            "len"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "randUser",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "randGuild",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "makeAnswers",
+          "params": [],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "testUtilsHelpers",
+          "params": [],
+          "exported": false,
+          "lineCount": 37
+        },
+        {
+          "name": "testWriteRace",
+          "params": [],
+          "exported": false,
+          "lineCount": 31
+        },
+        {
+          "name": "testDbConcurrent",
+          "params": [],
+          "exported": false,
+          "lineCount": 36
+        },
+        {
+          "name": "testQuestionFlow",
+          "params": [],
+          "exported": false,
+          "lineCount": 33
+        },
+        {
+          "name": "testSavingSystem",
+          "params": [],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "testPortfolioScanner",
+          "params": [],
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "testRatingMath",
+          "params": [],
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "testGiveaway",
+          "params": [],
+          "exported": false,
+          "lineCount": 42
+        },
+        {
+          "name": "testAIProviderResolution",
+          "params": [],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "testMemory",
+          "params": [],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "settle",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "runTimed",
+          "params": [
+            "name",
+            "fn"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "main",
+          "params": [],
+          "exported": false,
+          "lineCount": 45
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 486,
+      "hasStructuralAnalysis": true
+    },
+    "trustedClients.js": {
+      "filePath": "trustedClients.js",
+      "contentHash": "cb76dcbb7b78b790a663efc3168c9ace728600489d82881c903b9eb2f2de2de5",
+      "functions": [
+        {
+          "name": "loadTrustedClients",
+          "params": [],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "saveTrustedClients",
+          "params": [],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "isTrusted",
+          "params": [
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "addSpending",
+          "params": [
+            "userId",
+            "amount"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "addReferral",
+          "params": [
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "setRoleFlag",
+          "params": [
+            "userId",
+            "role",
+            "active"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "getTrustedStatus",
+          "params": [
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 96,
+      "hasStructuralAnalysis": true
+    },
+    "utils.js": {
+      "filePath": "utils.js",
+      "contentHash": "ff9b65b5ec4bacee2c7a0d8e5f3e55793d02200ff47ca37d164c2a8e7248d4d7",
+      "functions": [
+        {
+          "name": "writeFileAsync",
+          "params": [
+            "filePath",
+            "data"
+          ],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "flushFileWrites",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "applyDefaultGuildSettings",
+          "params": [
+            "partial"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "loadGuildSettingsFromFile",
+          "params": [],
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "saveGuildSettingsToFile",
+          "params": [],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "getGuildSettings",
+          "params": [
+            "guildId"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "loadUserStatsFromFile",
+          "params": [],
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "saveUserStatsToFile",
+          "params": [],
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "getUserStats",
+          "params": [
+            "guildId",
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "formatDuration",
+          "params": [
+            "ms"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "formatUptime",
+          "params": [
+            "seconds"
+          ],
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "parseDuration",
+          "params": [
+            "str"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "safeRespond",
+          "params": [
+            "interaction"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "logToGuild",
+          "params": [
+            "guild",
+            "message"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "logModerationAction",
+          "params": [
+            "guild",
+            "action",
+            "admin",
+            "targetUser",
+            "reason"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "isAdmin",
+          "params": [
+            "userId"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "getStaffRoleIds",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "isStaffMember",
+          "params": [
+            "member"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "applyTicketPermissionOverwrites",
+          "params": [
+            "channel"
+          ],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "getRemainingCooldown",
+          "params": [
+            "userId",
+            "key"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "setCooldown",
+          "params": [
+            "userId",
+            "key",
+            "durationMs"
+          ],
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 358,
+      "hasStructuralAnalysis": true
+    },
+    "views/admin/reviews.ejs": {
+      "filePath": "views/admin/reviews.ejs",
+      "contentHash": "905e4430df0ce0156a17bac3f7a33fcab930746c8fb4cee02db17a367539ebe8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 137,
+      "hasStructuralAnalysis": false
+    },
+    "views/dashboard.ejs": {
+      "filePath": "views/dashboard.ejs",
+      "contentHash": "f1f905d9f703add214fbaa8852b8112d5237d174c76d74e929bee2efbce578be",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 227,
+      "hasStructuralAnalysis": false
+    },
+    "views/error.ejs": {
+      "filePath": "views/error.ejs",
+      "contentHash": "0c7ebfc7fe9de3294c854be269445cbb5e1ea805ff7243bafc7762e3847cdd09",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": false
+    },
+    "views/index.ejs": {
+      "filePath": "views/index.ejs",
+      "contentHash": "6fbd3bc8b069db9c22ac4a4c9759dbf11df5686054273ec4cd4321ac09f92925",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 220,
+      "hasStructuralAnalysis": false
+    },
+    "views/marketplace/index.ejs": {
+      "filePath": "views/marketplace/index.ejs",
+      "contentHash": "f33c40684da5a691bdda0affd200ac36a5e9fe24bb9e3e225bf81e07296a4b0b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 109,
+      "hasStructuralAnalysis": false
+    },
+    "views/marketplace/my-products.ejs": {
+      "filePath": "views/marketplace/my-products.ejs",
+      "contentHash": "aa938429002659078c276cd8f9f812ba35e8463949026c64d93ff673f84e1da2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 82,
+      "hasStructuralAnalysis": false
+    },
+    "views/profile.ejs": {
+      "filePath": "views/profile.ejs",
+      "contentHash": "ba973a18c4458fb4d6e4c0f4a260bb91182b03ead6aab4d65bce1fa1eed40332",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 136,
+      "hasStructuralAnalysis": false
+    },
+    "views/recaptcha.ejs": {
+      "filePath": "views/recaptcha.ejs",
+      "contentHash": "90374c4ee96e625c02b13d4d6581a25e0d0bc5b0c23e0f3f7e24eb16ed334282",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": false
+    },
+    "views/server-dashboard.ejs": {
+      "filePath": "views/server-dashboard.ejs",
+      "contentHash": "3b1ff9a365d2f945ec7f0396e169571e3ec4aa62c8bec7a75cbbf2250978d230",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 281,
+      "hasStructuralAnalysis": false
+    },
+    "views/verify.ejs": {
+      "filePath": "views/verify.ejs",
+      "contentHash": "62df491457c2afc6d9ba982585ac2c4535fdec06dbb039949c1299165afd8fb3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 138,
+      "hasStructuralAnalysis": false
+    },
+    "workflow.js": {
+      "filePath": "workflow.js",
+      "contentHash": "dd05cc5cf559d30ceb4999b7935e1d9daf4fd76a7e49be5b958bf8c55a99d8e7",
+      "functions": [
+        {
+          "name": "transitionProject",
+          "params": [
+            "projectId",
+            "newState"
+          ],
+          "exported": false,
+          "lineCount": 32
+        },
+        {
+          "name": "startProjectActivePhase",
+          "params": [
+            "projectId",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 24
+        },
+        {
+          "name": "markProjectDelivered",
+          "params": [
+            "projectId",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "confirmDeliveryReceived",
+          "params": [
+            "projectId",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "completeProject",
+          "params": [
+            "projectId",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "closeProject",
+          "params": [
+            "projectId",
+            "reason",
+            "client"
+          ],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "getProjectWorkflowSummary",
+          "params": [
+            "projectId"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "getProjectsByState",
+          "params": [
+            "state"
+          ],
+          "exported": false,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 237,
+      "hasStructuralAnalysis": true
+    }
+  }
+}
